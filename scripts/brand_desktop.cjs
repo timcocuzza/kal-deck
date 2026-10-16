@@ -3,6 +3,27 @@ const fs = require('node:fs')
 const path = require('node:path')
 const { execFileSync } = require('node:child_process')
 
+function signingOrder(bundle) {
+  const targets = []
+  const magic = new Set(['feedface', 'cefaedfe', 'feedfacf', 'cffaedfe', 'cafebabe', 'bebafeca', 'cafebabf', 'bfbafeca'])
+  function visit(target) {
+    const stat = fs.lstatSync(target)
+    if (stat.isSymbolicLink()) return // Framework aliases must not be traversed twice.
+    if (stat.isDirectory()) {
+      for (const name of fs.readdirSync(target)) visit(path.join(target, name))
+      if (/\.(app|framework|xpc)$/.test(target)) targets.push(target)
+    } else if (stat.isFile()) {
+      const handle = fs.openSync(target, 'r')
+      try {
+        const bytes = Buffer.alloc(4)
+        if (fs.readSync(handle, bytes, 0, 4, 0) === 4 && magic.has(bytes.toString('hex'))) targets.push(target)
+      } finally { fs.closeSync(handle) }
+    }
+  }
+  visit(bundle)
+  return targets
+}
+
 function brandMacRuntime(root, platform = process.platform, execute = execFileSync) {
   if (platform !== 'darwin') return false
   const bundle = path.join(root, 'node_modules/electron/dist/Electron.app')
@@ -28,9 +49,12 @@ function brandMacRuntime(root, platform = process.platform, execute = execFileSy
     if (fs.existsSync(localized)) update(localized, read(localized), { CFBundleName: 'Deck', CFBundleDisplayName: 'Deck' })
   }
   // Editing a signed bundle invalidates its seal. Ad-hoc signing is local and needs
-  // no account/certificate. Preserve Electron's runtime entitlements and leave its
-  // nested binaries untouched; verify the entire bundle before accepting it.
-  execute('/usr/bin/codesign', ['--force', '--sign', '-', '--preserve-metadata=entitlements,flags,runtime', bundle], options)
+  // no account/certificate. Seal nested code inside-out: the downloaded framework
+  // contains bare-binary signatures rather than a complete framework resource seal.
+  // Preserve existing runtime entitlements and flags on every code object.
+  for (const target of signingOrder(bundle)) {
+    execute('/usr/bin/codesign', ['--force', '--sign', '-', '--preserve-metadata=entitlements,flags,runtime', target], options)
+  }
   execute('/usr/bin/codesign', ['--verify', '--deep', '--strict', bundle], options)
   const branded = read(info)
   if (branded.CFBundleName !== 'Deck' || branded.CFBundleDisplayName !== 'Deck') throw new Error('Mac runtime branding did not persist.')
@@ -40,4 +64,4 @@ function brandMacRuntime(root, platform = process.platform, execute = execFileSy
 }
 
 if (require.main === module && brandMacRuntime(path.resolve(__dirname, '..'))) console.log('Mac runtime branded as Deck; signature and native startup verified.')
-module.exports = { brandMacRuntime }
+module.exports = { brandMacRuntime, signingOrder }
