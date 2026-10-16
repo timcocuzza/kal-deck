@@ -162,7 +162,7 @@ export function MatchupsView({ season, revision, refreshing, onRecord }: {
     {error && <p role="alert">{error}{data && ' Showing previously loaded games.'}</p>}
     {data?.sources.some(source => source.error) && <p className="data-warning" role="status">Some source updates failed. Saved data remains visible; inspect source timestamps below.</p>}
     {!game ? <div className="games-home">
-      <div className="page-heading"><div><h1 ref={heading} tabIndex={-1}>This week’s games</h1><p>Find your next matchup.</p></div><div className="controls">
+      <div className="page-heading"><div><h1 ref={heading} tabIndex={-1}>This week’s games</h1></div><div className="controls">
         {data && <Dropdown label="NFL week" value={String(data.week)} options={(data.weeks.length ? data.weeks : [data.week]).map(value => ({ value: String(value), label: `Week ${value}` }))}
           onChange={value => { setWeek(Number(value)); navigate('games', true) }} />}
         <WeekHistoryButton tickers={games.flatMap(item => item.default_market_ticker ? [item.default_market_ticker] : [])} />

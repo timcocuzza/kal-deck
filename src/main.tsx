@@ -39,7 +39,7 @@ async function request<T>(url: string, options?: RequestInit): Promise<T> {
 
 function App() {
   const watchlist = useWatchlist()
-  // Visible and editable until season rollover rules are agreed.
+  // Default to the current year; saved watchlist games retain their season.
   const [season, setSeason] = useState(String(new Date().getFullYear()))
   const [sources, setSources] = useState<Source[]>([])
   const [loading, setLoading] = useState(true)
@@ -125,17 +125,14 @@ function App() {
           <button aria-current={view === 'tracker' ? 'page' : undefined} onClick={() => navigate('tracker')}>Bet tracker</button>
           <button aria-current={view === 'sources' ? 'page' : undefined} onClick={() => navigate('sources')}>Data</button>
         </nav>
-        <div className="app-actions"><label htmlFor="season" className="season-label">Season <input id="season" inputMode="numeric" value={season} disabled={refreshing !== null}
-          onChange={event => { setSeason(event.target.value); navigate('games', true) }} aria-describedby="season-note" /></label>
+        <div className="app-actions">
           <button disabled={loading || refreshing !== null || !validSeason || sources.length === 0} onClick={() => void refresh(sources)}>
             {refreshing ? 'Refreshing…' : '↻ Refresh'}</button></div>
       </header>
       <main className="app-main">
-        <span id="season-note" className="sr-only">NFL season for saved statistics and game identities. Current markets and injury reports may cover a different period.</span>
         <div className="refresh-status" role="status" aria-live="polite">{loading ? 'Loading saved source status…' : refreshing
           ? `Refreshing ${sources.find(source => source.name === refreshing)?.label ?? 'sources'} · Saved data remains visible`
           : sources.some(source => source.status === 'refresh_failed') ? 'Some updates failed · Saved data retained. See Data for details.' : sources.length ? 'Saved snapshots ready · Refresh on open' : ''}</div>
-        {!validSeason && <p role="alert">Enter a four-digit NFL season between 1999 and 2100.</p>}
         {error && <p role="alert">{error}</p>}
         <WatchlistStatus />
         {view === 'watchlist' && <WatchlistView revision={revision} onRecord={recordSelection} onOpen={entry => {

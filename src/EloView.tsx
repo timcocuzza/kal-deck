@@ -59,7 +59,6 @@ export function EloCard({ data, game, onTeam }: {
 }) {
   const matchup = eloMatchup(data, game)
   return <section className="elo-card" aria-label="Elo ratings">
-    <div className="elo-heading">Elo <small>{matchup ? 'Elo expected score' : 'Matchup expectation unavailable'}</small></div>
     <div className="elo-columns">{(['away', 'home'] as const).map(side => {
       const code = game[side].code
       const team = data?.available ? data.teams.find(t => t.team === code) : undefined
