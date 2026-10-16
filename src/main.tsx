@@ -7,6 +7,7 @@ import { PositionDefenseView } from './PositionDefenseView'
 import { TrackerView } from './TrackerView'
 import type { BetSelection, PendingSelection } from './TrackerView'
 import { navigate, useHash } from './ui'
+import { WatchlistProvider, WatchlistStatus, WatchlistView, useWatchlist } from './Watchlist'
 import { InstallApp } from './InstallApp'
 
 type Source = {
@@ -37,6 +38,7 @@ async function request<T>(url: string, options?: RequestInit): Promise<T> {
 }
 
 function App() {
+  const watchlist = useWatchlist()
   // Visible and editable until season rollover rules are agreed.
   const [season, setSeason] = useState(String(new Date().getFullYear()))
   const [sources, setSources] = useState<Source[]>([])
@@ -45,7 +47,7 @@ function App() {
   const [refreshing, setRefreshing] = useState<string | null>(null)
   const [revision, setRevision] = useState(0)
   const hash = useHash()
-  const view = ['rankings', 'sources', 'tracker'].includes(hash) ? hash : 'matchups'
+  const view = ['rankings', 'sources', 'tracker', 'watchlist'].includes(hash) ? hash : 'matchups'
   const autoOpened = useRef(new Set<string>())
   const [pendingSelection, setPendingSelection] = useState<PendingSelection | null>(null)
   const refreshLock = useRef(false)
@@ -108,7 +110,8 @@ function App() {
   }
 
   function recordSelection(leg: BetSelection) {
-    setPendingSelection({ id: crypto.randomUUID(), leg })
+    const watched = watchlist.entries.find(entry => entry.ticker === leg.market_ticker && entry.game_id === leg.game_id)
+    setPendingSelection({ id: crypto.randomUUID(), leg: { ...leg, selection: leg.selection || watched?.side || '' }, notes: watched?.notes ?? '' })
     navigate('tracker')
   }
 
@@ -118,6 +121,7 @@ function App() {
         <nav className="app-nav" aria-label="Research views">
           <button aria-current={view === 'matchups' ? 'page' : undefined} onClick={() => navigate('games')}>Games</button>
           <button aria-current={view === 'rankings' ? 'page' : undefined} onClick={() => navigate('rankings')}>Rankings</button>
+          <button aria-current={view === 'watchlist' ? 'page' : undefined} onClick={() => navigate('watchlist')}>Watchlist</button>
           <button aria-current={view === 'tracker' ? 'page' : undefined} onClick={() => navigate('tracker')}>Bet tracker</button>
           <button aria-current={view === 'sources' ? 'page' : undefined} onClick={() => navigate('sources')}>Data</button>
         </nav>
@@ -133,6 +137,11 @@ function App() {
           : sources.some(source => source.status === 'refresh_failed') ? 'Some updates failed · Saved data retained. See Data for details.' : sources.length ? 'Saved snapshots ready · Refresh on open' : ''}</div>
         {!validSeason && <p role="alert">Enter a four-digit NFL season between 1999 and 2100.</p>}
         {error && <p role="alert">{error}</p>}
+        <WatchlistStatus />
+        {view === 'watchlist' && <WatchlistView revision={revision} onRecord={recordSelection} onOpen={entry => {
+          setSeason(String(entry.season))
+          navigate(`game/${encodeURIComponent(entry.game_id)}?week=${entry.week}&tab=${entry.kind === 'prop' ? 'props' : 'stats'}&market=${encodeURIComponent(entry.ticker)}`)
+        }} />}
         <div hidden={view !== 'matchups'}>{validSeason && <MatchupsView key={season} season={season} revision={revision} refreshing={refreshing !== null} onRecord={recordSelection} />}</div>
         <TrackerView visible={view === 'tracker'} pending={pendingSelection} consumePending={() => setPendingSelection(null)} />
         {validSeason && view === 'rankings' && <div className="research-page"><RankingsView key={season} season={season} revision={revision} refreshing={refreshing !== null} />
@@ -169,7 +178,7 @@ function App() {
 }
 
 createRoot(document.getElementById('root')!).render(
-  <StrictMode><App /></StrictMode>,
+  <StrictMode><WatchlistProvider><App /></WatchlistProvider></StrictMode>,
 )
 
 // Register only in the built app; Vite development should remain independent.

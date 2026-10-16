@@ -144,6 +144,7 @@ def build_props(season, game_id, schedule, markets, milestones, team_targets, pl
         result['warnings'].append('Duplicate schedule matchup; game matching requires review.')
         return result
     start = kickoff(game)
+    result['kickoff'] = start.isoformat() if start else None
     if start is None or start <= now or any(game.get(key) not in (None, '') for key in ('home_score', 'away_score')):
         result['warnings'].append('Player props are available here only for verified, unstarted games.')
         return result

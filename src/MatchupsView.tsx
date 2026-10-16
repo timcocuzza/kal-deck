@@ -7,6 +7,7 @@ import { PlayerPropsView } from './PlayerPropsView'
 import { SpreadHistory, WeekHistoryButton } from './SpreadHistory'
 import { PositionDefenseView } from './PositionDefenseView'
 import type { BetSelection } from './TrackerView'
+import { WatchButton } from './Watchlist'
 import { EloCard, EloSources, EloTeamDialog, useElo } from './EloView'
 import type { EloTeam } from './elo'
 
@@ -140,8 +141,9 @@ export function MatchupsView({ season, revision, refreshing, onRecord }: {
   }, [selected, path])
   const games = data?.games.filter(game => !game.kickoff || new Date(game.kickoff).getTime() > clock) ?? []
   const game = games.find(item => item.game_id === selected)
-  const market = game?.markets.find(item => item.ticker === selectedMarket[game.game_id])
+  const market = game?.markets.find(item => item.ticker === (params.get('market') || selectedMarket[game.game_id]))
     ?? game?.markets.find(item => item.ticker === game.default_market_ticker)
+  const watchEntry = (item: Game, contract: Market) => ({ kind: 'spread' as const, season: Number(season), week: item.week, game_id: item.game_id, ticker: contract.ticker, label: contract.label })
   const days = [...new Set(games.map(dayKey))].sort()
   function openGame(id: string) {
     if (!selected) { homeScroll.current = window.scrollY; history.replaceState({ ...history.state, deckGame: id }, '') }
@@ -177,6 +179,7 @@ export function MatchupsView({ season, revision, refreshing, onRecord }: {
             </button>
             <div className="game-market">{defaultMarket ? <><button className="game-spread" onClick={() => openGame(item.game_id)}><Quote market={defaultMarket} /></button>
               <SpreadHistory key={defaultMarket.ticker} ticker={defaultMarket.ticker} label={defaultMarket.label} compact /></> : <small>{item.spread_status}</small>}</div>
+            {defaultMarket && <WatchButton entry={watchEntry(item, defaultMarket)} />}
             <EloCard data={elo.data} game={item} onTeam={openElo} />
           </article>
         })}</div>
@@ -195,12 +198,13 @@ export function MatchupsView({ season, revision, refreshing, onRecord }: {
           <div><h1 ref={heading} tabIndex={-1}>{game.away.name} <span>{game.neutral ? 'vs' : 'at'}</span> {game.home.name}</h1><p>{date(game.kickoff)} · Week {data?.week} · {game.stadium}</p></div></div>
         <nav className="detail-tabs" aria-label="Matchup views"><button aria-pressed={tab === 'stats'} onClick={() => changeTab('stats')}>Stats</button><button aria-pressed={tab === 'props'} onClick={() => changeTab('props')}>Player props</button></nav>
         {tab === 'props' ? <PlayerPropsView key={`${season}:${game.game_id}`} gameId={game.game_id} season={season} revision={revision} refreshing={refreshing} onRecord={onRecord}
-          teamLogos={{ [game.away.code]: game.away.logo, [game.home.code]: game.home.logo }} /> : <>
+          initialTicker={params.get('market') ?? ''} teamLogos={{ [game.away.code]: game.away.logo, [game.home.code]: game.home.logo }} /> : <>
           <section className="spread-panel"><div className="section-heading"><Dropdown label="Available spread" value={market?.ticker ?? ''} disabled={!game.markets.length}
             options={[...(!market ? [{ value: '', label: 'Select a spread' }] : []), ...game.markets.map(item => ({ value: item.ticker, label: item.label }))]}
-            onChange={value => setSelectedMarket(current => ({ ...current, [game.game_id]: value }))} />
+            onChange={value => { setSelectedMarket(current => ({ ...current, [game.game_id]: value }));
+              navigate(`game/${encodeURIComponent(game.game_id)}?week=${game.week}&tab=stats&market=${encodeURIComponent(value)}`, true) }} />
             {market && <Quote market={market} />}</div>
-            {market ? <><SpreadHistory key={market.ticker} ticker={market.ticker} label={market.label} />
+            {market ? <><WatchButton entry={watchEntry(game, market)} /><SpreadHistory key={market.ticker} ticker={market.ticker} label={market.label} />
               <details className="provenance"><summary>Contract wording & quotes</summary><p>{market.wording}</p><p>{market.rules}</p><p>No ask: {askPrice(market.no_ask_dollars)} · before fees</p><small>{market.ticker}</small></details>
               <button onClick={() => onRecord({ description: `${game.away.name} vs ${game.home.name}: ${market.wording}`, selection: '', market_ticker: market.ticker, game_id: game.game_id })}>Record a bet on this spread</button></> : <p>{game.spread_status}</p>}
           </section>

@@ -105,4 +105,45 @@ details[open]>:not(summary){animation:reveal 160ms ease-out}
 .prop-card:hover{border-color:color-mix(in srgb,var(--team-color) 65%,var(--border))}
 .player-heading small{color:color-mix(in srgb,var(--team-color) 65%,white)}
 .team-research{border-top:2px solid var(--team-color)}
+.threshold-table{margin:12px 0;max-height:240px;overflow:auto}
+.threshold-table th,.threshold-table td{padding:6px 8px;vertical-align:middle;font-size:12px}
+.threshold-table thead{position:sticky;top:0;background:var(--surface);z-index:1}
+.threshold-table td{text-align:right;font-variant-numeric:tabular-nums}
+.threshold-table thead th:not(:first-child){text-align:right}
+.threshold-table th button{background:none;border:1px solid transparent;padding:4px 7px;font-size:12px;white-space:nowrap}
+.threshold-table .threshold-selected{background:#ffffff06}
+.threshold-table button[aria-pressed=true]{border-color:var(--accent);color:var(--accent)}
+.player-log .threshold-table{max-height:300px}
+.watch-button{font-size:11px;padding:6px 9px;margin:0 0 12px;white-space:nowrap}
+.watch-button[aria-pressed=true]{color:var(--accent);border-color:var(--accent)}
+.game-card>.watch-button{margin:4px 16px 10px}
+.watch-card{display:flex;flex-direction:column}
+.watch-card-heading{display:flex;align-items:flex-start;gap:10px}
+.watch-card-heading .player-heading{flex:1;min-width:0}
+.watch-card-heading .player-heading>span{min-width:0;overflow-wrap:anywhere}
+.watch-remove{border:0;background:none;color:var(--muted);font-size:18px;line-height:1;padding:4px 7px;margin:-5px -7px 0 0;flex:none}
+.watch-card .prop-market>div:first-child{min-width:0}
+.watch-threshold{font-size:13px;padding:6px 9px}
+.watch-card .prop-ask{font-variant-numeric:tabular-nums}
+.watch-context{margin:0}
+.watch-side{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:11px;color:#bdc9df}
+.watch-side strong{font-size:13px;font-weight:500;color:#ededf0}
+.watch-note-preview{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;overflow-wrap:anywhere;white-space:pre-wrap;font-size:11px;line-height:1.6;color:var(--muted);margin:10px 0 0}
+.watch-card-status,.watch-quote-time{display:block;font-size:10px;color:var(--muted);overflow-wrap:anywhere;margin-bottom:8px}
+.watch-context .watch-card-status{margin:8px 0 0}
+.watch-card-actions{display:flex;align-items:center;gap:20px;border-top:1px solid var(--border);margin-top:auto}
+.watch-card-actions .prop-log-button{border-top:0;gap:12px}
+.watch-card-actions .prop-log-button:last-child{justify-content:flex-end}
+.watch-dialog{width:min(520px,calc(100vw - 32px));height:auto;max-height:calc(100dvh - 32px);border-radius:14px;padding:24px;margin:auto;border:1px solid #414650}
+.watch-editor-label{font-size:13px;color:#bdc9df;margin:0 0 20px;overflow-wrap:anywhere}
+.watch-details{display:flex;flex-direction:column;gap:18px}
+.watch-details label{display:flex;flex-direction:column;gap:8px;font-size:12px;color:var(--muted)}
+.watch-details select,.watch-details textarea{font:inherit;font-size:13px;color:#ededf0;background:var(--surface);border:1px solid var(--border);border-radius:7px;padding:10px;width:100%}
+.watch-notes textarea{resize:vertical;min-height:110px}
+.watch-edit-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.watch-edit-actions button,.watch-conflict button{font-size:12px}
+.watch-edit-actions small{font-size:11px;color:var(--muted)}
+.watch-edit-actions>button:last-child{margin-left:auto}
+.watch-conflict{width:100%;font-size:12px}
+@media(max-width:620px){.app-nav{flex-wrap:wrap;gap:4px}.watch-dialog{padding:20px}}
 .detail-heading{border-bottom:2px solid transparent;border-image:linear-gradient(90deg,var(--away-color),var(--home-color)) 1;padding-bottom:20px}

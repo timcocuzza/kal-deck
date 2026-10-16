@@ -84,7 +84,9 @@ export function Dropdown({ label, value, options, onChange, disabled = false }: 
   </details>
 }
 
-export function Modal({ title, children, onClose }: { title: string; children: ReactNode; onClose: () => void }) {
+export function Modal({ title, children, onClose, className = '', closeLabel = 'Close game log' }: {
+  title: string; children: ReactNode; onClose: () => void; className?: string; closeLabel?: string
+}) {
   const ref = useRef<HTMLDialogElement>(null)
   const id = useId()
   useEffect(() => {
@@ -96,13 +98,13 @@ export function Modal({ title, children, onClose }: { title: string; children: R
     return () => { dialog.close(); document.body.style.overflow = overflow; if (previous?.isConnected) previous.focus({ preventScroll: true }) }
   }, [])
   useEffect(() => { ref.current?.querySelector('button')?.focus({ preventScroll: true }) }, [title])
-  return <dialog ref={ref} className="log-dialog" aria-labelledby={id} onCancel={event => { event.preventDefault(); onClose() }}
+  return <dialog ref={ref} className={`log-dialog ${className}`} aria-labelledby={id} onCancel={event => { event.preventDefault(); onClose() }}
     onClick={event => {
       if (event.target !== event.currentTarget) return
       const bounds = event.currentTarget.getBoundingClientRect()
       if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) onClose()
     }}>
-    <header className="dialog-heading"><h2 id={id}>{title}</h2><button autoFocus onClick={onClose} aria-label="Close game log">Close <span aria-hidden="true">×</span></button></header>
+    <header className="dialog-heading"><h2 id={id}>{title}</h2><button autoFocus onClick={onClose} aria-label={closeLabel}>Close <span aria-hidden="true">×</span></button></header>
     {children}
   </dialog>
 }

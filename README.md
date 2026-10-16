@@ -103,6 +103,31 @@ window; failure leaves the previous chart visible with an error. History is kept
 in memory across navigation, cleared on page reload, and never polls automatically.
 Source-snapshot refreshes do not refresh charts. Weekly requests run sequentially.
 
+The **Watchlist** saves specific spread and player-prop contracts across games and
+seasons. Select a threshold, then **Watch** to save it and open the details popup.
+The Watchlist tab uses the player-prop card styling: team logos and accents, a
+player/team heading, threshold and ask price, saved side, and a short notes preview.
+**Edit details** reopens the popup with **Your side**
+(Yes / No / Not chosen) and **Notes** fields; use **Save** to persist them and close
+the popup. Closing without saving keeps the draft for this session. The price
+follows the selected side's ask, with Yes ask shown while undecided. Missing No asks
+remain unavailable; they are never calculated from the Yes ask. Existing bookmarks
+start with no chosen side and empty notes. Unsaved edits survive navigation within
+the app, but require saving before a page reload or restart. **Record a bet** carries
+the saved side and notes into the tracker, including when recording from the matching
+spread or prop. Source refreshes cannot replace your notes; conflicting edits from
+another tab require review. Bookmarks persist in SQLite across
+restarts and source refreshes. Quotes come from the latest verified source snapshots,
+not a stored price at the time of pinning. Unavailable contracts remain removable;
+pregame quotes are withheld after kickoff. Watchlist records are separate from
+tracker tickets and are not included in tracker JSON backups.
+
+Prop cards show a compact **Threshold / Yes ask** comparison table. Select a row to
+change the active threshold. Player game logs add **Games hit** for every available
+threshold, displayed as hits / verified games. Equality counts as a hit; missing
+statistics are excluded, verified zeroes count, and logs without usable values show
+unavailable. Counts use the existing current-season regular-season player logs.
+
 The **Bet tracker** records singles and multi-leg combos placed elsewhere. It does
 not submit orders. Set a default unit size, then use **Record a bet**, or start from
 a spread/prop's **Record a bet** button. Enter the chosen side, actual total cost

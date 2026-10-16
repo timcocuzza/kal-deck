@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import type { FormEvent } from 'react'
 
 export type BetSelection = { description: string; selection: string; market_ticker: string; game_id: string }
-export type PendingSelection = { id: string; leg: BetSelection }
+export type PendingSelection = { id: string; leg: BetSelection; notes?: string }
 type Units = { display: string; exact: string; rounded: boolean }
 type TicketData = {
   title: string; kind: 'single' | 'combo'; placed_at: string; cost: string; unit_size: string
@@ -18,10 +18,10 @@ type Report = {
 }
 type Draft = { id: string; revision: number | null; data: TicketData; closed: boolean }
 const blankLeg = (): BetSelection => ({ description: '', selection: '', market_ticker: '', game_id: '' })
-function newDraft(unit: string | null, leg?: BetSelection): Draft {
+function newDraft(unit: string | null, leg?: BetSelection, notes = ''): Draft {
   return { id: crypto.randomUUID(), revision: null, closed: false, data: {
     title: leg?.description ?? '', kind: 'single', placed_at: new Date().toISOString(), cost: '', unit_size: unit ?? '',
-    potential_payout: null, returned: null, closed_at: null, notes: '', legs: [leg ? { ...leg } : blankLeg()],
+    potential_payout: null, returned: null, closed_at: null, notes, legs: [leg ? { ...leg } : blankLeg()],
   } }
 }
 function editDraft(ticket: Ticket, close = false): Draft {
@@ -173,13 +173,16 @@ export function TrackerView({ visible, pending, consumePending }: {
       {!report.default_unit_size && <p className="source-note">Set your usual unit size, or enter the original unit size directly when recording a bet.</p>}
 
       {pending && <aside className="pending-bet">
-        <p><strong>Selection to record:</strong> {pending.leg.description}</p>
+        <p><strong>Selection to record:</strong> {pending.leg.description}{pending.leg.selection && ` · ${pending.leg.selection}`}</p>
+        {pending.notes && <p className="settlement-rules">{pending.notes}</p>}
         <div className="controls">
           <button disabled={busy} onClick={() => {
-            if (replaceDraft(newDraft(report.default_unit_size, pending.leg))) consumePending()
+            if (replaceDraft(newDraft(report.default_unit_size, pending.leg, pending.notes))) consumePending()
           }}>Start a ticket with this selection</button>
           {draft && <button disabled={busy} onClick={() => {
-            update({ kind: 'combo', legs: [...draft.data.legs, { ...pending.leg }] }); consumePending()
+            const notes = [draft.data.notes, pending.notes ? `${pending.leg.description}:\n${pending.notes}` : ''].filter(Boolean).join('\n\n')
+            if (notes.length > 10000) { setError('Combined notes exceed 10,000 characters. Shorten the ticket notes before adding this selection.'); return }
+            update({ kind: 'combo', legs: [...draft.data.legs, { ...pending.leg }], notes }); consumePending()
           }}>Add as a combo leg to this form</button>}
           <button disabled={busy} onClick={consumePending}>Dismiss selection</button>
         </div>

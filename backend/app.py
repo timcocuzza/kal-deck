@@ -19,6 +19,7 @@ from .props import PROP_TYPES, build_props, build_player_log
 from .position_defense import calculate_position_defense, position_rank_context
 from .tracker import TrackerStore, TrackerError, TrackerConflict
 from .elo import calculate_elo
+from .watchlist import WatchlistStore, WatchlistConflict
 
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -34,6 +35,7 @@ async def lifespan(app: FastAPI):
         raise RuntimeError("Browser build missing. Run npm run build first.")
     store.initialize()
     TrackerStore(DATABASE).initialize()
+    WatchlistStore(DATABASE).initialize()
     yield
 
 
@@ -226,9 +228,9 @@ def tracker_write_request(request: Request):
     port = request.url.port or 80
     allowed = {f'http://{host}:{p}' for host in ('localhost', '127.0.0.1') for p in (port, 5173)}
     if request.headers.get('sec-fetch-site') == 'cross-site' or (origin is not None and origin not in allowed):
-        raise HTTPException(status_code=403, detail='Tracker changes must come from the local app.')
+        raise HTTPException(status_code=403, detail='Changes must come from the local app.')
     if request.headers.get('content-type', '').split(';')[0].strip().lower() != 'application/json':
-        raise HTTPException(status_code=415, detail='Tracker requests require JSON.')
+        raise HTTPException(status_code=415, detail='Requests require JSON.')
 
 
 def tracker_call(operation, *args):
@@ -274,6 +276,42 @@ def tracker_import(payload: dict):
     if len(json.dumps(payload).encode()) > 10 * 1024 * 1024:
         raise HTTPException(status_code=413, detail='Tracker backups must be at most 10 MB.')
     return tracker_call('import_backup', payload)
+
+
+def watchlist_call(operation, *args):
+    try:
+        bookmarks = WatchlistStore(DATABASE)
+        if operation != 'entries':
+            getattr(bookmarks, operation)(*args)
+        return {'entries': bookmarks.entries()}
+    except WatchlistConflict as error:
+        raise HTTPException(status_code=409, detail=str(error)) from error
+    except LookupError as error:
+        raise HTTPException(status_code=404, detail=str(error)) from error
+    except ValueError as error:
+        raise HTTPException(status_code=422, detail=str(error)) from error
+    except sqlite3.Error as error:
+        raise HTTPException(status_code=503, detail='Watchlist storage unavailable. Try again.') from error
+
+
+@app.get('/api/watchlist')
+def watchlist_report():
+    return watchlist_call('entries')
+
+
+@app.put('/api/watchlist', dependencies=[Depends(tracker_write_request)])
+def watchlist_save(payload: dict):
+    return watchlist_call('save', payload)
+
+
+@app.delete('/api/watchlist/{ticker}', dependencies=[Depends(tracker_write_request)])
+def watchlist_remove(ticker: str):
+    return watchlist_call('remove', ticker)
+
+
+@app.patch('/api/watchlist/{ticker}', dependencies=[Depends(tracker_write_request)])
+def watchlist_update(ticker: str, payload: dict):
+    return watchlist_call('update', ticker, payload)
 
 
 # Register API routes before mounting the built browser assets.

@@ -1,5 +1,7 @@
 import { teamStyle } from './teamColors'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { ThresholdTable } from './ThresholdTable'
+import { WatchButton } from './Watchlist'
 import { useReport } from './useReport'
 import { askPrice, Dropdown, Modal } from './ui'
 import type { BetSelection } from './TrackerView'
@@ -42,13 +44,15 @@ function Sources({ sources }: { sources: Source[] }) {
     </li>)}
   </ul></details>
 }
-function PlayerLog({ group, season, revision, threshold, onInspect }: { group: Group; season: string; revision: number; threshold: number | undefined; onInspect: (value: Inspection) => void }) {
+function PlayerLog({ group, season, revision, threshold, selectedTicker, onSelect, onInspect }: { group: Group; season: string; revision: number; threshold: number | undefined; selectedTicker?: string; onSelect: (ticker: string) => void; onInspect: (value: Inspection) => void }) {
   const { data, error, loading } = useReport<Log>(`/api/players/${encodeURIComponent(group.player.id)}/games?season=${season}&category=${group.category}`, revision)
   return <section aria-label={`${group.player.name} game log`} className="player-log">
     <h3>{group.player.name} · {group.label} · {season} game log</h3>
     {loading && <p role="status">Loading saved player statistics…</p>}
     {error && <p role="alert">{error}</p>}
     {data && <>
+      <ThresholdTable markets={group.markets} selected={selectedTicker} onSelect={onSelect} games={data.games} />
+      <p className="source-note">Games hit: games at or above each threshold / games with a verified statistic. Missing values are excluded. Current-season regular season; historical counts, not predictions.</p>
       <p className="source-note">{data.note}</p>
       <Sources sources={data.sources} />
       {data.sources.some(s => s.error) && <p role="status">A source refresh failed; check the saved-data timestamps above.</p>}
@@ -76,8 +80,9 @@ function PlayerLog({ group, season, revision, threshold, onInspect }: { group: G
   </section>
 }
 
-export function PlayerPropsView({ gameId, season, revision, refreshing, onRecord, teamLogos = {} }: {
+export function PlayerPropsView({ gameId, season, revision, refreshing, onRecord, initialTicker = '', teamLogos = {} }: {
   gameId: string; season: string; revision: number; refreshing: boolean; onRecord: (selection: BetSelection) => void
+  initialTicker?: string
   teamLogos?: Record<string, string | null>
 }) {
   const { data, error, loading } = useReport<PropsReport>(`/api/matchups/${encodeURIComponent(gameId)}/props?season=${season}`, revision)
@@ -88,6 +93,17 @@ export function PlayerPropsView({ gameId, season, revision, refreshing, onRecord
   const [selected, setSelected] = useState('')
   const [contracts, setContracts] = useState<Record<string, string>>({})
   const [inspection, setInspection] = useState<Inspection | null>(null)
+  const openedTicker = useRef('')
+  useEffect(() => {
+    if (!initialTicker || initialTicker === openedTicker.current || !data) return
+    const item = data.groups.find(group => group.markets.some(market => market.ticker === initialTicker))
+    if (!item) return
+    openedTicker.current = initialTicker
+    setCategory(item.category); setTeamFilter('all'); setSelected(item.key); setInspection(null)
+    setContracts(current => ({ ...current, [item.key]: initialTicker }))
+  }, [initialTicker, data])
+  const watchEntry = (item: Group, contract: Contract) => ({ kind: 'prop' as const, season: Number(season), week: Number(gameId.split('_')[1]),
+    game_id: gameId, ticker: contract.ticker, label: `${item.player.name} · ${item.label} · ${contract.label}` })
   const categoryValue = category || (data?.groups.some(group => group.category === 'receiving_yards') ? 'receiving_yards' : data?.groups[0]?.category ?? 'all')
   const groups = data?.groups.filter(group => (categoryValue === 'all' || group.category === categoryValue) && (teamFilter === 'all' || group.player.team === teamFilter)) ?? []
   const group = data?.groups.find(group => group.key === selected)
@@ -127,7 +143,9 @@ export function PlayerPropsView({ gameId, season, revision, refreshing, onRecord
         <button className="player-heading" onClick={() => { setSelected(item.key); setInspection(null) }}>
           {teamLogos[item.player.team] && <img src={teamLogos[item.player.team]!} alt="" width="32" height="32" />}
           <span>{item.player.name}<small>{item.player.team} · {item.player.position}</small></span></button>
-        <div className="prop-market"><div><small>{item.label}</small>{thresholdPicker(item)}</div><div className="prop-ask"><small>Yes ask</small><strong>{askPrice(selectedMarket(item)?.yes_ask_dollars)}</strong></div></div>
+        <p className="metric-note">{item.label}</p>
+        <ThresholdTable markets={item.markets} selected={selectedMarket(item)?.ticker} onSelect={ticker => setContracts(current => ({ ...current, [item.key]: ticker }))} />
+        {selectedMarket(item) && <WatchButton entry={watchEntry(item, selectedMarket(item))} />}
         {context(item)}
         <button className="prop-log-button" onClick={() => { setSelected(item.key); setInspection(null) }}>Game log <span aria-hidden="true">↗</span></button>
       </article>)}</div>
@@ -148,7 +166,9 @@ export function PlayerPropsView({ gameId, season, revision, refreshing, onRecord
           : <RankingInspection season={season} revision={revision} teamCode={inspection.team} category={inspection.category} />}
       </> : group && <>
         <div className="log-context">{thresholdPicker(group)}<strong>{askPrice(market?.yes_ask_dollars)} <small>Yes ask · before fees</small></strong></div>
-        <PlayerLog group={group} season={season} revision={revision} threshold={market?.threshold} onInspect={setInspection} />
+        {market && <WatchButton entry={watchEntry(group, market)} />}
+        <PlayerLog group={group} season={season} revision={revision} threshold={market?.threshold} selectedTicker={market?.ticker}
+          onSelect={ticker => setContracts(current => ({ ...current, [group.key]: ticker }))} onInspect={setInspection} />
         {market && <><details className="provenance"><summary>Contract & settlement rules</summary><p>{market.title}</p><p>{market.rules}</p><p className="settlement-rules">{market.rules_secondary}</p><small>{market.ticker}</small></details>
           <button onClick={() => onRecord({ description: market.title, selection: '', market_ticker: market.ticker, game_id: gameId })}>Record a bet on this prop</button></>}
       </>}
