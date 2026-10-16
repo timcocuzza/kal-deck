@@ -108,6 +108,7 @@ async function createWindow(origin) {
   })
   mainWindow = new BrowserWindow({
     width: 1440, height: 940, minWidth: 360, minHeight: 500, show: false,
+    autoHideMenuBar: true,
     title: 'Deck', backgroundColor: '#101113',
     icon: path.join(__dirname, 'icons', 'deck.png'),
     webPreferences: { preload: path.join(__dirname, 'preload.cjs'), session: browserSession,
