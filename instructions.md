@@ -1,4 +1,4 @@
-Kalshi Deck Project:
+Deck Project:
 
 Build a GUI that contains a variety of information about nfl spreads. Pull the sportsbook data from kalshi and research options for the neccessary stats, advanced stats, depth charts, and rankings. The info I would like included is as follows:
 
@@ -217,3 +217,40 @@ These decisions clarify the original brief above. Items marked unresolved are no
 - Game and initial player matching, midpoint selection, tie-breaking, missing-quote behavior and spread-history rules are approved. Future exact player-match failures require review rather than fuzzy matching.
 
 - October 16 visual refinement: home-card sparklines show only the line, without the “Midpoint · 7D” caption or a load button. Description, fetch time and error context remain in accessible labels/tooltips and matchup details. Team-inspired accents appear on game cards, line gradients, Elo tiles, paired comparison columns and player-prop cards; data text stays neutral.
+
+
+### Hosted Deck proposal from October 16 2026 — superseded
+
+The product is branded **Deck**, using the supplied logos in `public/icons`. The
+planned address is `deck.getwellsedge.com` on the existing Vegas EC2 server.
+Public users must have separate accounts and require administrator approval.
+These hosted requirements supersede the earlier local-only access scope; existing
+single-user storage is not yet suitable for public access. Preserve the current
+interface feel while adding secure identity, private records and bounded shared
+research computation. The audit and phased rollout are recorded in
+`docs/deployment-audit.md`. Infrastructure changes and production exposure have
+not been performed as part of deployment preparation.
+
+### Current desktop direction from October 16 2026
+
+- Replace the hosted proposal with standalone Deck installers for Windows x64,
+  macOS Intel and Apple Silicon, and Linux x64. Each person has a separate local
+  database. End users should launch an app icon without Bash, Git, Python, or Node.
+- Install once and receive automatic updates. Keep personal data outside the
+  installation directory, back up before version upgrades, and ask before
+  restarting to install a downloaded update so unsaved edits are not lost silently.
+- Source remains `timcocuzza/kal-deck`. Do not transfer it to wellstechadvisorsllc.
+  A public installer-only repository under timcocuzza is proposed if source stays
+  private; the release repository has not been created or confirmed.
+- Apple Developer signing may already be available; Windows signing is not yet
+  set up. Preview builds can be unsigned, but the production workflow must require
+  Mac signing/notarization and Windows publisher verification. Never embed GitHub
+  tokens or signing credentials in distributed apps.
+- Preserve the current visual feel and use the supplied Deck branding. Technical
+  data-quality details belong in collapsed disclosures. Keep unavailable/incomplete
+  metrics and actual refresh failures visible beside the affected data.
+- The six unidentified zero-contribution row notices were checked against the
+  current saved 2026 data: 80 completed games, six benign skips, no reconciliation
+  failures and no incomplete position-defense headlines. This is a snapshot result,
+  not permission to skip validation on future downloads.
+- Implementation and release gates are documented in `docs/desktop.md`.

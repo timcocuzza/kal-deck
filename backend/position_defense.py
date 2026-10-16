@@ -95,7 +95,7 @@ def calculate_position_defense(season, schedule, player_stats, team_stats, plays
                 continue
             if (source is player_stats and not any(row.get(field) for field in ('player_id', 'player_display_name', 'position'))
                     and all(number(row.get(field)) == 0 for field in FIELDS)):
-                warnings.add(f'{gid} {team}: excluded an unidentified row with explicitly zero rushing/receiving contributions; team totals still require reconciliation.')
+                warnings.add(f'{gid} {team}: excluded an unidentified row with explicitly zero rushing/receiving contributions; remaining player statistics are checked against team totals.')
                 continue
             destination[key].append(row)
             if source is player_stats:

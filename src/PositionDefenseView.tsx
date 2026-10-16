@@ -1,4 +1,5 @@
 import { useId, useState } from 'react'
+import { DataNotices } from './DataNotices'
 import type { ReactNode } from 'react'
 import { useReport } from './useReport'
 import { Modal } from './ui'
@@ -51,7 +52,7 @@ export function PositionDefenseView({ season, revision, refreshing, teamCodes, c
       <ul>{report.sources.map(source => <li key={source.name}>{source.label}: {source.fetched_at ? new Date(source.fetched_at).toLocaleString() : 'Not downloaded'}
         {source.error && ` · Refresh failed: ${source.error}. Saved data may be out of date.`}</li>)}</ul>
       <p>All completed games in the saved schedule count equally, including verified zeroes. Unverifiable games are excluded and flagged. No minimum sample cutoff. Positions use each game's player statistics.</p>
-      <ul>{report.warnings.map(warning => <li key={warning}>{warning}</li>)}</ul>
+      <DataNotices warnings={report.warnings} />
     </details>}
     {report?.sources.some(source => source.error) && <p role="status">A source refresh failed. Check timestamps before using these saved rankings.</p>}
     {team && report && <>

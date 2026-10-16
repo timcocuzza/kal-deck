@@ -1,4 +1,5 @@
 import { teamStyle } from './teamColors'
+import { DataNotices } from './DataNotices'
 import { useEffect, useRef, useState } from 'react'
 import { ThresholdTable } from './ThresholdTable'
 import { WatchButton } from './Watchlist'
@@ -56,7 +57,7 @@ function PlayerLog({ group, season, revision, threshold, selectedTicker, onSelec
       <p className="source-note">{data.note}</p>
       <Sources sources={data.sources} />
       {data.sources.some(s => s.error) && <p role="status">A source refresh failed; check the saved-data timestamps above.</p>}
-      {data.warnings.map((warning, index) => <p role="status" key={index}>{warning}</p>)}
+      <DataNotices warnings={data.warnings} />
       {!data.games.length ? <p>No verified completed player-game rows are available in the saved data.</p> : <div className="table-scroll"><table>
         <caption>{group.player.name} · official game statistics and opponent’s current ranks</caption>
         <thead><tr><th scope="col">Week / date</th><th scope="col">Team / opponent</th><th scope="col">{data.label}</th><th scope="col">At {threshold ?? "—"}+</th><th scope="col">Opponent’s current rank</th></tr></thead>
@@ -152,8 +153,7 @@ export function PlayerPropsView({ gameId, season, revision, refreshing, onRecord
       <p className="source-note">Saved Yes ask prices before fees. Choose a threshold, then open a player’s log. Position ranks cover the entire position group.</p>
       <Sources sources={data.sources} />
       {(rankings.data?.sources.some(source => source.error) || positions.data?.sources.some(source => source.error)) && <p role="status">Opponent ranking data has a refresh error. Inspect source timestamps in the team logs.</p>}
-      <details className="provenance"><summary>Matching & coverage notices ({data.issues.length + data.warnings.length})</summary>
-        {data.warnings.map((warning, index) => <p key={index}>{warning}</p>)}<ul>{data.issues.map((issue, index) => <li key={index}>{issue.market}: {issue.reason}</li>)}</ul></details>
+      <DataNotices warnings={data.warnings} issues={data.issues} />
       {!!data.unsupported.length && <details className="provenance"><summary>Other linked markets · not yet supported ({data.unsupported.length} series)</summary>
         <p>Quotes and logs for these market types are not implemented. Linked events do not guarantee open contracts.</p>
         <ul>{data.unsupported.map(item => <li key={item.series}>{item.label}<small className="metric-note">{item.events.join(', ')}</small></li>)}</ul></details>}

@@ -1,14 +1,20 @@
 {
-  "name": "kalshi-deck",
+  "name": "deck",
   "version": "0.1.0",
   "private": true,
   "type": "module",
   "scripts": {
+    "test": "node --experimental-strip-types --test tests/*.test.mjs",
     "dev": "vite --host 127.0.0.1",
     "typecheck": "tsc --noEmit",
-    "build": "npm run typecheck && vite build"
+    "build": "npm run typecheck && vite build",
+    "desktop:dev": "npm run build && electron .",
+    "desktop:pack": "electron-builder --config desktop/builder.config.cjs --dir",
+    "desktop:dist": "electron-builder --config desktop/builder.config.cjs",
+    "desktop:install-runtime": "node node_modules/electron/install.js"
   },
   "dependencies": {
+    "electron-updater": "6.8.9",
     "react": "19.3.1",
     "react-dom": "19.3.1"
   },
@@ -16,7 +22,14 @@
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
     "@vitejs/plugin-react": "6.1.2",
+    "electron": "44.8.0",
+    "electron-builder": "26.15.3",
+    "js-yaml": "4.3.2",
     "typescript": "7.0.2",
     "vite": "8.3.4"
-  }
+  },
+  "description": "Deck — your personal NFL research desktop app",
+  "author": "Wells Tech Advisors LLC",
+  "main": "desktop/main.cjs",
+  "desktopName": "com.getwellsedge.deck.desktop"
 }

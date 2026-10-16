@@ -163,6 +163,16 @@ class TrackerTests(unittest.TestCase):
         self.assertEqual(other.import_backup(backup)['skipped'], 2)
         self.assertEqual(len(other.report()['tickets']), 2)
 
+    def test_deck_exports_accept_legacy_backup_branding(self):
+        self.add()
+        backup = self.store.export()
+        self.assertEqual(backup['format'], 'deck-tracker')
+        backup['format'] = 'kalshi-deck-tracker'
+        restored = TrackerStore(Path(self.temp.name) / 'legacy.sqlite3')
+        restored.initialize()
+        restored.import_backup(backup)
+        self.assertEqual(restored.report(), self.store.report())
+
     def test_import_keeps_current_default_and_ticket_units(self):
         self.store.set_unit('10'); self.add(); backup = self.store.export()
         self.store.set_unit('20')

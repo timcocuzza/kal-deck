@@ -8,3 +8,10 @@ __pycache__/
 .env.*
 !.env.example
 *.tsbuildinfo
+.aws
+*.pem
+*.key
+coverage/
+release/
+build/
+*.spec

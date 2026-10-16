@@ -42,9 +42,16 @@ export function InstallApp() {
     }
   }
 
+  if (window.deckDesktop) return <section className="install-card" aria-labelledby="install-title">
+    <div><h2 id="install-title">Deck desktop</h2>
+      <p>Your watchlist, tracker, and saved research stay on this computer. Updates preserve your saved data.</p>
+      <p className="source-note">Use Help → Check for updates to check for a new version. An internet connection is needed to refresh research.</p>
+    </div>
+  </section>
+
   return <section className="install-card" aria-labelledby="install-title">
-    <div><h2 id="install-title">{installed ? 'Kalshi Deck is installed' : 'Keep Kalshi Deck close'}</h2>
-      <p>Open it in its own app window. Start the local service with <code>bash scripts/start.sh</code> and keep that terminal open while you use it.</p>
+    <div><h2 id="install-title">{installed ? 'Deck is installed' : 'Keep Deck close'}</h2>
+      <p>The Deck desktop installer opens the app and starts its local service for you. Browser installation adds a shortcut to this browser version and still requires its local service to be running.</p>
       {!installed && !prompt && <p className="source-note">In Chrome or Edge, use the address bar’s install icon or the browser menu’s install option when available.</p>}
       {message && !installed && <p role="status">{message}</p>}
     </div>

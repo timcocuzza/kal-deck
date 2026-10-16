@@ -23,14 +23,15 @@ def saved_entry(**changes):
 
 def request(method, path, payload=None, origin=None):
     """Exercise the ASGI routes without an extra HTTP client dependency."""
+    route, _, query = path.partition('?')
     async def invoke():
         messages = []
         headers = [(b'host', b'127.0.0.1:8000'), (b'content-type', b'application/json')]
         if origin:
             headers.append((b'origin', origin.encode()))
         scope = {'type': 'http', 'asgi': {'version': '3.0'}, 'http_version': '1.1',
-                 'method': method, 'scheme': 'http', 'path': path, 'raw_path': path.encode(),
-                 'query_string': b'', 'root_path': '', 'headers': headers,
+                 'method': method, 'scheme': 'http', 'path': route, 'raw_path': route.encode(),
+                 'query_string': query.encode(), 'root_path': '', 'headers': headers,
                  'server': ('127.0.0.1', 8000), 'client': ('127.0.0.1', 50000)}
         async def receive():
             return {'type': 'http.request', 'body': json.dumps(payload).encode(), 'more_body': False}

@@ -121,6 +121,12 @@ class PositionDefenseTests(unittest.TestCase):
         r = report(rows, totals=totals)
         self.assertEqual(category(r)['headline']['value'], 0)
         self.assertTrue(any('excluded an unidentified row' in warning for warning in r['warnings']))
+        # A benign skipped row must never suppress a real reconciliation failure.
+        conflicting_totals = deepcopy(totals)
+        conflicting_totals[0]['receiving_yards'] = '1'
+        conflict = report(rows, totals=conflicting_totals)
+        self.assertIsNone(category(conflict)['headline']['value'])
+        self.assertTrue(any('cannot be reconciled' in warning for warning in conflict['warnings']))
         for value in ('1', '', None):
             changed = deepcopy(rows)
             changed[1]['rushing_yards'] = value

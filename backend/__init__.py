@@ -1,1 +1,1 @@
-"""Local Kalshi Deck service."""
+"""Local Deck service."""

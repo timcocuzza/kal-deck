@@ -37,18 +37,18 @@ def existing_service() -> bool:
             health = json.load(response)
         with opener.open(f"{URL}/openapi.json", timeout=3) as response:
             schema = json.load(response)
-        if health.get("status") == "ok" and health.get("database") == "ok" and schema.get("info", {}).get("title") == "Kalshi Deck":
+        if health.get("status") == "ok" and health.get("database") == "ok" and schema.get("info", {}).get("title") == "Deck":
             return True
     except (OSError, ValueError, AttributeError):
         pass
-    raise RuntimeError("Port 8000 is occupied, but a healthy Kalshi Deck service could not be confirmed. Stop that service before retrying; no process was stopped automatically.")
+    raise RuntimeError("Port 8000 is occupied, but a healthy Deck service could not be confirmed. Stop that service before retrying; no process was stopped automatically.")
 
 
 def main() -> int:
     os.chdir(ROOT)
     try:
         if existing_service():
-            print(f"Kalshi Deck is already running: {URL}\nKeep its original terminal open. To apply code changes, stop it there with Ctrl+C and run this command again.", flush=True)
+            print(f"Deck is already running: {URL}\nKeep its original terminal open. To apply code changes, stop it there with Ctrl+C and run this command again.", flush=True)
             return 0
         signature = build_signature(ROOT)
         marker = ROOT / "dist" / ".build-signature"
@@ -59,10 +59,10 @@ def main() -> int:
             marker.write_text(signature + "\n")
         else:
             print("Interface is up to date; skipping build.", flush=True)
-        print(f"Starting Kalshi Deck at {URL}\nKeep this terminal open while using the app. Press Ctrl+C to stop.\nTo install the app, open Data in Chrome or Edge.", flush=True)
+        print(f"Starting Deck at {URL}\nKeep this terminal open while using the app. Press Ctrl+C to stop.\nTo install the app, open Data in Chrome or Edge.", flush=True)
         os.execv(sys.executable, [sys.executable, "-m", "uvicorn", "backend.app:app", "--host", "127.0.0.1", "--port", "8000"])
     except (OSError, RuntimeError, subprocess.CalledProcessError) as error:
-        print(f"Could not start Kalshi Deck: {error}", file=sys.stderr)
+        print(f"Could not start Deck: {error}", file=sys.stderr)
         return 1
     return 0
 

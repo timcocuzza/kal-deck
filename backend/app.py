@@ -3,6 +3,7 @@
 from contextlib import asynccontextmanager, closing
 from pathlib import Path
 import json
+import os
 import sqlite3
 
 from fastapi import FastAPI, HTTPException, Query, Request, Depends
@@ -20,10 +21,12 @@ from .position_defense import calculate_position_defense, position_rank_context
 from .tracker import TrackerStore, TrackerError, TrackerConflict
 from .elo import calculate_elo
 from .watchlist import WatchlistStore, WatchlistConflict
+from .security import DesktopAccess, PrivateAPIResponses, allowed_origins, validate_write_origin
 
 
 ROOT = Path(__file__).resolve().parent.parent
-DATABASE = ROOT / ".data" / "kalshi-deck.sqlite3"
+# Keep the legacy local filename so existing records are not silently abandoned.
+DATABASE = Path(os.environ.get("DECK_DATABASE_PATH", ROOT / ".data" / "kalshi-deck.sqlite3")).expanduser().resolve()
 DIST = ROOT / "dist"
 store = SnapshotStore(DATABASE)
 refresh_service = RefreshService(store)
@@ -31,6 +34,7 @@ refresh_service = RefreshService(store)
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    allowed_origins()  # Reject malformed hosted configuration before accepting traffic.
     if not (DIST / "index.html").is_file():
         raise RuntimeError("Browser build missing. Run npm run build first.")
     store.initialize()
@@ -39,7 +43,13 @@ async def lifespan(app: FastAPI):
     yield
 
 
-app = FastAPI(title="Kalshi Deck", lifespan=lifespan)
+desktop_mode = bool(os.environ.get('DECK_DESKTOP_TOKEN'))
+app = FastAPI(title="Deck", lifespan=lifespan, dependencies=[Depends(validate_write_origin)],
+              docs_url=None if desktop_mode else '/docs',
+              redoc_url=None if desktop_mode else '/redoc',
+              openapi_url=None if desktop_mode else '/openapi.json')
+app.add_middleware(PrivateAPIResponses)
+app.add_middleware(DesktopAccess)
 
 
 @app.get("/api/health")
@@ -224,11 +234,6 @@ def player_games(player_id: str, season: int = Query(ge=1999, le=2100), category
 
 
 def tracker_write_request(request: Request):
-    origin = request.headers.get('origin')
-    port = request.url.port or 80
-    allowed = {f'http://{host}:{p}' for host in ('localhost', '127.0.0.1') for p in (port, 5173)}
-    if request.headers.get('sec-fetch-site') == 'cross-site' or (origin is not None and origin not in allowed):
-        raise HTTPException(status_code=403, detail='Changes must come from the local app.')
     if request.headers.get('content-type', '').split(';')[0].strip().lower() != 'application/json':
         raise HTTPException(status_code=415, detail='Requests require JSON.')
 
@@ -267,7 +272,7 @@ def tracker_save(ticket_id: str, payload: dict):
 def tracker_export():
     backup = tracker_call('export')
     return Response(json.dumps(backup, indent=2, ensure_ascii=False), media_type='application/json',
-                    headers={'Content-Disposition': 'attachment; filename="kalshi-deck-tracker.json"',
+                    headers={'Content-Disposition': 'attachment; filename="deck-tracker.json"',
                              'Cache-Control': 'no-store'})
 
 

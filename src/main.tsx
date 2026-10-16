@@ -73,7 +73,7 @@ function App() {
         }
       })
       .catch(() => {
-        if (!disposed) setError('Unable to load saved data. Make sure Kalshi Deck is running, then reload this page.')
+        if (!disposed) setError('Unable to load saved data. Make sure Deck is running, then reload this page.')
       })
       .finally(() => {
         window.clearTimeout(timeout)
@@ -117,7 +117,7 @@ function App() {
 
   return (
     <div className="app-shell">
-      <header className="app-header"><button className="brand" onClick={() => navigate('games')}><span className="brand-mark" aria-hidden="true">K</span>Kalshi Deck</button>
+      <header className="app-header"><button className="brand" onClick={() => navigate('games')}><img className="brand-logo" src="/icons/deck-logo.webp" alt="Deck" width="112" height="40" /></button>
         <nav className="app-nav" aria-label="Research views">
           <button aria-current={view === 'matchups' ? 'page' : undefined} onClick={() => navigate('games')}>Games</button>
           <button aria-current={view === 'rankings' ? 'page' : undefined} onClick={() => navigate('rankings')}>Rankings</button>
@@ -182,10 +182,10 @@ createRoot(document.getElementById('root')!).render(
 )
 
 // Register only in the built app; Vite development should remain independent.
-if (import.meta.env.PROD && 'serviceWorker' in navigator) {
+if (import.meta.env.PROD && !window.deckDesktop && 'serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     void navigator.serviceWorker.register('/sw.js', { updateViaCache: 'none' }).catch(error => {
-      console.warn('Kalshi Deck recovery page could not be registered.', error)
+      console.warn('Deck recovery page could not be registered.', error)
     })
   })
 }

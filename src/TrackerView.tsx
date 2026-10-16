@@ -263,7 +263,7 @@ export function TrackerView({ visible, pending, consumePending }: {
 
       <details className="tracker-backups"><summary>Export / import backups</summary>
         <p>Export saves all tickets and the default unit size. Import adds missing tickets and skips identical ones. Conflicting tickets stop the import without changing saved records. An existing default unit size is kept.</p>
-        <p><a href="/api/tracker/export" download="kalshi-deck-tracker.json">Download tracker backup</a></p>
+        <p><a href="/api/tracker/export" download="deck-tracker.json">Download tracker backup</a></p>
         <label>Select a tracker backup<input type="file" accept=".json,application/json" disabled={busy} onChange={event => void chooseBackup(event.target.files?.[0])} /></label>
         {backup && <><p>{backup.name} · {backup.count} tickets in file. The full file will be validated before saving.</p>
           <button disabled={busy} onClick={() => void mutate(async () => {

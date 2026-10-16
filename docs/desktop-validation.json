@@ -1,0 +1,41 @@
+{
+  "checked_at": "2026-10-16T18:40:15.557416+00:00",
+  "target": "Standalone Windows x64, macOS arm64/x64, Linux x64",
+  "source_repository": "timcocuzza/kal-deck",
+  "checks": {
+    "python_tests": 145,
+    "javascript_tests": 18,
+    "typescript_build": "passed",
+    "workflow_actionlint": "passed",
+    "bundle_budget": "passed",
+    "frozen_service_smoke": "passed: private access, Host/Origin rejection, assets, persistent watchlist, version backup, EOF shutdown, bundled timezone data",
+    "runtime_npm_audit_vulnerabilities": 0,
+    "runtime_python_audit_vulnerabilities": 0,
+    "builder_npm_audit_moderate_findings": 8,
+    "archive_private_file_check": "passed",
+    "linux_desktop_entry": "validated",
+    "linux_appimage_mount": "passed after installing fuse2",
+    "linux_launch": "app, renderer, and bundled service running; first-launch database backup created",
+    "database_migration": "SQLite online backup; four tables; integrity_check passed; original unchanged"
+  },
+  "saved_2026_data_check": {
+    "completed_games": 80,
+    "unidentified_zero_rows_skipped": 6,
+    "other_position_defense_warnings": 0,
+    "incomplete_position_defense_headlines": 0
+  },
+  "linux_artifact": {
+    "path": "release/desktop/Deck-0.1.0-linux-x86_64.AppImage",
+    "bytes": 148820572,
+    "sha256": "9a5f9d5a316746858c1c03ef354ba52039c79a531deed1c84143cb5f2061cd32"
+  },
+  "pending": [
+    "Graphical inspection",
+    "Native Windows and both Mac builds",
+    "Code signing and notarization with real credentials",
+    "Public release repository selection/configuration",
+    "Signed upgrade and restore acceptance on all platforms",
+    "Upstream download limits and full-season memory profiling"
+  ],
+  "publication": "No remote push, GitHub settings change, or release publication performed."
+}

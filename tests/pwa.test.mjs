@@ -13,7 +13,7 @@ function harness({ offline = false, missingFallback = false } = {}) {
   const context = {
     URL, Request, Response,
     self: { location: { origin: 'http://127.0.0.1:8000' }, clients: { claim: async () => {} }, addEventListener: (name, handler) => { handlers[name] = handler } },
-    caches: { open: async () => cache, keys: async () => ['kalshi-deck-recovery-v0', 'kalshi-deck-recovery-v1', 'another-app'], delete: async name => removed.push(name) },
+    caches: { open: async () => cache, keys: async () => ['kalshi-deck-recovery-v0', 'kalshi-deck-recovery-v1', 'deck-recovery-v2', 'another-app'], delete: async name => removed.push(name) },
     fetch: async () => { if (offline) throw new TypeError('Disconnected'); return new Response('current response') },
   }
   // Node requires absolute Request URLs; browser workers resolve against origin.
@@ -37,7 +37,7 @@ test('only recovery HTML is stored; activation leaves other app caches alone', a
   assert.equal(h.cached[0].cache, 'reload')
   h.handlers.activate({ waitUntil: promise => { pending = promise } })
   await pending
-  assert.deepEqual(h.removed, ['kalshi-deck-recovery-v0'])
+  assert.deepEqual(h.removed, ['kalshi-deck-recovery-v0', 'kalshi-deck-recovery-v1'])
 })
 
 test('online navigation uses the service; offline navigation has a useful recovery', async () => {

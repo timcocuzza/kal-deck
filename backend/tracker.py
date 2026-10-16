@@ -200,13 +200,13 @@ class TrackerStore:
 
     def export(self):
         setting, tickets = self.raw()
-        return {'format': 'kalshi-deck-tracker', 'version': 1, 'exported_at': utc_now(),
+        return {'format': 'deck-tracker', 'version': 1, 'exported_at': utc_now(),
                 'default_unit_size': setting, 'tickets': tickets}
 
     def import_backup(self, backup):
         if (not isinstance(backup, dict) or set(backup) != {'format', 'version', 'exported_at', 'default_unit_size', 'tickets'}
-                or backup['format'] != 'kalshi-deck-tracker' or type(backup['version']) is not int or backup['version'] != 1):
-            raise TrackerError('This is not a supported Kalshi Deck tracker backup.')
+                or backup['format'] not in ('deck-tracker', 'kalshi-deck-tracker') or type(backup['version']) is not int or backup['version'] != 1):
+            raise TrackerError('This is not a supported Deck tracker backup.')
         date_field(backup['exported_at'], 'Backup date')
         setting = amount(backup['default_unit_size'], 'Backup default unit size', positive=True, optional=True)
         incoming = backup['tickets']

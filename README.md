@@ -1,8 +1,19 @@
-# Kalshi Deck
+# Deck
 
-Personal NFL and Kalshi research app, running locally with React, TypeScript,
-Vite, FastAPI, and SQLite. Agreed product requirements and outstanding decisions
-are in [instructions.md](instructions.md).
+Personal NFL and Kalshi research app for **Windows, macOS and Linux**. Deck bundles
+its local service, opens from an app icon, and keeps each person's records on their
+computer. Friends need no Git checkout, Python, Node, terminal, or hosted account.
+The React interface and SQLite calculations remain the same.
+
+The [desktop release plan](docs/desktop.md) covers installers, automatic updates,
+security, resource requirements, signing, and GitHub Actions. A local Linux AppImage
+has been built; Windows/Mac installers and signed upgrades still need platform
+validation. Automatic updates become available through published release builds.
+Source stays at `timcocuzza/kal-deck`; no ownership transfer is planned.
+
+The earlier [Vegas deployment audit](docs/deployment-audit.md) is retained as history.
+Public web hosting and administrator-approved accounts are superseded by the
+desktop direction. Product requirements are in [instructions.md](instructions.md).
 
 ## Current status
 
@@ -85,9 +96,9 @@ includes scrambles and kneeldowns.
 Player matching requires one exact name-and-team match with an agreeing position;
 logs then follow the NFL player ID across teams. Conflicts are reported and quotes
 withheld. Other linked market types are listed as not yet supported; event links
-do not guarantee open contracts. Broader prop support and real-browser visual
-verification remain unfinished. Browser installation support is implemented;
-the native installation flow still needs verification in a connected browser.
+do not guarantee open contracts. Broader prop support and visual verification
+remain unfinished. The browser shortcut remains a development option; the current
+distribution target is the standalone desktop installer described above.
 
 Spread charts are available on each weekly game card and in selected-spread details.
 History loads automatically as cards or selected spreads appear. Use **Refresh lines**
@@ -149,7 +160,7 @@ An existing default unit size is kept; an unset default is restored from the fil
 Tickets persist across app restarts, source refreshes and season changes. Draft
 forms survive navigation within the app but are not saved until **Save ticket**.
 
-## Setup
+## Developer setup
 
 Node.js with npm and Python with venv support are required.
 
@@ -159,7 +170,7 @@ python3 -m venv .venv
 npm ci
 ```
 
-## Run
+## Legacy browser development runner
 
 ```bash
 bash scripts/start.sh
@@ -168,7 +179,7 @@ bash scripts/start.sh
 This builds the interface when its source files change and starts one Python service at
 <http://127.0.0.1:8000>. Keep the terminal running while using the app;
 press Ctrl+C to stop it. The service listens only on this computer.
-Repeating the command reuses an already-running healthy Kalshi Deck service.
+Repeating the command reuses an already-running healthy Deck service.
 To apply code changes, stop the original service with Ctrl+C and start again.
 An unrelated or unhealthy service on port 8000 produces a clear error; startup
 does not stop other processes. Sources refresh once on opening. Use the header's
@@ -189,8 +200,8 @@ Use this exact address consistently; `localhost` is a different browser origin.
 Installation adds a browser app shortcut; it does not start the Python service.
 Run `bash scripts/start.sh` and keep its terminal open before using the shortcut.
 There is no login autostart or background daemon. After a successful first load,
-the service worker provides a **Start Kalshi Deck** recovery page if the service
-is unreachable. Start the service and select **Try again**. Only that recovery
+the service worker provides a **Reconnect to Deck** recovery page if the service
+is unreachable. The page includes local startup help. Start the service and select **Try again**. Only that recovery
 page is cached by the worker: API responses, market quotes and tracker writes
 are neither cached nor queued. Worker updates take effect after old app windows
 and tabs are closed and the app is reopened. Vite development does not register it.
@@ -217,6 +228,12 @@ snapshots, provenance, and the latest refresh outcome, plus permanent tracker ti
 and settings in separate tables. This database now contains user-entered records;
 keep tracker backups before moving or replacing it. Price history is fetched from
 Kalshi on request. `.data/`, dependencies, and build outputs are ignored by Git.
+The legacy local database filename is retained so existing data remains available.
+Set `DECK_DATABASE_PATH` to use a different absolute persistent path; the directory
+must be writable by the service account. `DECK_PUBLIC_ORIGIN` accepts one HTTPS
+origin without a trailing slash and enforces it for API mutations. These settings
+do not add user authentication. New tracker exports use the `deck-tracker` format
+and continue to accept older `kalshi-deck-tracker` backups.
 
 ## Development
 

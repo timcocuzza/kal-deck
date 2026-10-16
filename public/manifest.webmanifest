@@ -1,8 +1,8 @@
 {
   "id": "/",
-  "name": "Kalshi Deck",
-  "short_name": "Kalshi Deck",
-  "description": "Your local NFL matchup and Kalshi research workspace.",
+  "name": "Deck",
+  "short_name": "Deck",
+  "description": "Your NFL matchup and market research workspace.",
   "start_url": "/#games",
   "scope": "/",
   "display": "standalone",

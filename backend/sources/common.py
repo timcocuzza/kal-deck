@@ -1,4 +1,6 @@
 from dataclasses import dataclass, field
+import ssl
+import certifi
 from datetime import datetime, timezone
 from http.client import HTTPException
 from typing import Any, Callable
@@ -37,9 +39,11 @@ Fetcher = Callable[[str], Resource]
 
 def fetch_public(url: str) -> Resource:
     """Fetch a public URL chosen by a source reader; no account credentials."""
-    request = Request(url, headers={"User-Agent": "KalshiDeck/0.1 (personal research)"})
+    request = Request(url, headers={"User-Agent": "Deck/0.1 (personal research)"})
     try:
-        with urlopen(request, timeout=30) as response:
+        context = ssl.create_default_context()
+        context.load_verify_locations(cafile=certifi.where())
+        with urlopen(request, timeout=30, context=context) as response:
             return Resource(
                 body=response.read(), url=url, fetched_at=utc_now(),
                 last_modified=response.headers.get("Last-Modified"),

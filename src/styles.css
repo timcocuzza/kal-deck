@@ -26,7 +26,7 @@ details[open]>:not(summary){animation:reveal 160ms ease-out}
 @keyframes enter{from{opacity:.5;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 .app-header{display:flex;align-items:center;gap:25px;padding:15px 28px;background:#141518;border-bottom:1px solid var(--border);flex-wrap:wrap}
 .brand{display:flex;align-items:center;gap:9px;border:0;padding:0;background:transparent;font-size:15px;font-weight:500;white-space:nowrap}
-.brand-mark{display:grid;place-items:center;width:27px;height:27px;border-radius:7px;color:#17181c;background:#ededf0;font-weight:600}
+.brand-logo{display:block;width:112px;height:40px;object-fit:contain}
 .app-nav{display:flex;gap:4px;margin:0}
 .app-nav button{border-color:transparent;background:transparent;font-size:13px;padding:7px 10px;color:var(--muted)}
 .app-nav button[aria-current=page]{background:#282b31;color:#ededf0;border-color:transparent}

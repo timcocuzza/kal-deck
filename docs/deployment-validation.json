@@ -1,0 +1,65 @@
+{
+  "date": "2026-10-16",
+  "launch_ready": false,
+  "blockers": [
+    "Authentication and admin approval",
+    "Per-user ownership and session isolation",
+    "Bounded shared research computation",
+    "Capacity upgrade and load verification",
+    "Backup and deployment/rollback rehearsal"
+  ],
+  "server": {
+    "name": "Vegas",
+    "instance_type": "t3.medium",
+    "region": "us-east-1",
+    "vcpu": 2,
+    "memory_total_MiB": 3831,
+    "memory_available_MiB": 1415,
+    "swap_MiB": 0,
+    "disk_available_GiB": 242,
+    "python": "3.14.4",
+    "inspection_mode": "read-only SSH and IMDSv2"
+  },
+  "validation": {
+    "python_tests_passed": 145,
+    "frontend_test_files_passed": 5,
+    "typecheck": "passed",
+    "production_build": "passed",
+    "pip_check": "passed",
+    "clean_hash_locked_install": "passed",
+    "actionlint": "passed, v1.7.12",
+    "npm_audit_known_vulnerabilities": 0,
+    "python_audit_known_vulnerabilities": 0,
+    "gitleaks_history": "0 findings in 2 local commits, v8.30.1",
+    "gitleaks_working_sources": "0 findings",
+    "bandit": "1 medium B310 advisory: urllib source URL scheme audit; fixed internal URLs, no user-supplied URL found",
+    "browser_visual": "not performed; no connected browser",
+    "github_actions_remote": "not run; GitHub CLI unauthenticated",
+    "frontend_tests_passed": 14
+  },
+  "local_benchmark": {
+    "description": "sequential direct API functions, saved 2026 partial-season data, cumulative peak RSS; not production load test",
+    "matchups": {
+      "seconds": 0.041,
+      "peak_RSS_MiB": 55.1,
+      "json_bytes": 750225
+    },
+    "rankings": {
+      "seconds": 1.975,
+      "peak_RSS_MiB": 467.7,
+      "json_bytes": 965139
+    },
+    "position_defense": {
+      "seconds": 2.03,
+      "peak_RSS_MiB": 499.6,
+      "json_bytes": 987966
+    },
+    "elo": {
+      "seconds": 0.187,
+      "peak_RSS_MiB": 499.6,
+      "json_bytes": 274538
+    }
+  },
+  "infrastructure_changed": false,
+  "ownership_changed": false
+}

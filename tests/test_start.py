@@ -41,7 +41,7 @@ class StartTests(unittest.TestCase):
     def test_healthy_app_can_be_reused(self, connect, opener):
         connect.return_value.__enter__ = Mock()
         connect.return_value.__exit__ = Mock()
-        opener.return_value.open.side_effect = [io.BytesIO(b'{"status":"ok","database":"ok"}'), io.BytesIO(b'{"info":{"title":"Kalshi Deck"}}')]
+        opener.return_value.open.side_effect = [io.BytesIO(b'{"status":"ok","database":"ok"}'), io.BytesIO(b'{"info":{"title":"Deck"}}')]
         self.assertTrue(startup.existing_service())
 
     @patch.object(startup, "build_opener")
