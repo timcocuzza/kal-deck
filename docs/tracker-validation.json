@@ -1,0 +1,52 @@
+{
+  "unit_tests": 81,
+  "http_checks": [
+    "browser shell",
+    "health",
+    "empty tracker",
+    "default units",
+    "create single",
+    "idempotent retry",
+    "fractional units",
+    "close ticket",
+    "stale edit rejected",
+    "mixed original unit sizes",
+    "combo counted once",
+    "export",
+    "duplicate import",
+    "conflicting import rejected",
+    "invalid money rejected",
+    "cross-origin write rejected",
+    "source refresh isolation",
+    "server restart persistence",
+    "restore into fresh database"
+  ],
+  "example": {
+    "cost": "9.99",
+    "unit_size": "10",
+    "stake_units": "0.999",
+    "returned": "20",
+    "profit": "10.01",
+    "profit_units": "1.001"
+  },
+  "mixed_ticket_totals": {
+    "open_count": 0,
+    "closed_count": 2,
+    "open_cost": "0",
+    "open_units": {
+      "display": "0",
+      "exact": "0",
+      "rounded": false
+    },
+    "profit": "25.01",
+    "profit_units": {
+      "display": "1.751",
+      "exact": "1751/1000",
+      "rounded": false
+    }
+  },
+  "database_safety": "All writes used temporary databases; user database and running server were not changed.",
+  "browser_qa": "Unavailable: browser inventory is empty.",
+  "verified_at": "2026-10-15T04:57:52.271703+00:00",
+  "production_build": "TypeScript and Vite production build passed."
+}

@@ -1,0 +1,68 @@
+{
+  "checked_at_utc": "2026-10-15T06:38:38.009962+00:00",
+  "database": "Disposable database; user data untouched",
+  "api": "/api/elo?season=2026",
+  "source_snapshot_rows": 6771,
+  "replayed_games": 6578,
+  "teams": 32,
+  "current_season_completed_games": 79,
+  "upcoming_games": 193,
+  "source_catalog_entries": 23,
+  "config": {
+    "k": 20,
+    "home_advantage": 50,
+    "offseason_retention": 0.6666666666666666
+  },
+  "league": {
+    "mean": 1500.0,
+    "median": 1515.3657235712321,
+    "direction": "Higher is better",
+    "teams": 32
+  },
+  "top_five": [
+    {
+      "team": "SEA",
+      "rank": 1,
+      "rating": 1662.1769078654795
+    },
+    {
+      "team": "SF",
+      "rank": 2,
+      "rating": 1648.8177924840077
+    },
+    {
+      "team": "BUF",
+      "rank": 3,
+      "rating": 1640.952913641973
+    },
+    {
+      "team": "MIN",
+      "rank": 4,
+      "rating": 1624.790755963189
+    },
+    {
+      "team": "JAX",
+      "rank": 5,
+      "rating": 1620.8804572353708
+    }
+  ],
+  "checks": [
+    "Empty-cache response",
+    "Manual refresh validates and stores history",
+    "All 32 teams and current-season logs",
+    "Historical pregame vs latest upcoming expectations",
+    "Repeated reads do not double count",
+    "Failed refresh preserves ratings and fetch time",
+    "Reopened SQLite store preserves ratings",
+    "Wrong-season cache isolation",
+    "Invalid-season HTTP 422"
+  ],
+  "python_tests_passed": 123,
+  "gui_modified": false,
+  "limitations": [
+    "Elo expected score: P(win) + 0.5 \u00d7 P(tie). No separate tie model or spread-cover probability.",
+    "Completion follows published nflverse scores after kickoff; the source has no explicit final-status field. Games without both scores do not update Elo.",
+    "Schedule validation cannot independently detect every omitted source game.",
+    "HTTP source download used the previously audited public CSV, not a new network fetch."
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "purpose": "Backend contract for the separate GUI agent; layout and presentation remain user decisions.",
+  "read": {
+    "method": "GET",
+    "path": "/api/elo?season=2026",
+    "season_range": [
+      2002,
+      2100
+    ],
+    "network_behavior": "Reads SQLite and replays locally; never downloads or polls."
+  },
+  "refresh": {
+    "method": "POST",
+    "path": "/api/sources/elo_history/refresh?season=2026",
+    "catalog_name": "elo_history",
+    "label": "Elo game history",
+    "cache_key": "elo_history:2026",
+    "scope": "2002 through selected season, regular season and playoffs",
+    "behavior": "Same source catalog, refresh-all loop and failure-preserving snapshot behavior as other datasets."
+  },
+  "states": {
+    "not_loaded": {
+      "available": false,
+      "teams": [],
+      "matchups": [],
+      "note": "sources and warnings explain absence; do not display default 1500 or 50% as a substitute."
+    },
+    "loaded": "available=true. sources[0] includes fetched_at, source_updated_at, attempted_at, status, error, URL, row_count, context and warnings.",
+    "refresh_failed_with_cache": "available=true and saved results retained; sources[0].status=refresh_failed and error describes failure. Preserve freshness/error visibility.",
+    "invalid_history": "HTTP 422 with detail; do not fabricate ratings. HTTP 422 also rejects season outside 2002\u20132100."
+  },
+  "joins": {
+    "team": "Canonical NFL codes, identical to matchups/rankings. Historical relocations map OAK->LV, STL->LA, SD->LAC.",
+    "game": "matchups[].game_id matches the nflverse game_id used by the matchup API."
+  },
+  "team_fields": {
+    "team": "Canonical code",
+    "rating": "Unrounded current rating for selected season",
+    "rank": "Higher is better; exact ties use 1,2,2,4 competition ranks",
+    "season_start_rating": "Rating after offseason regression and before the first selected-season result",
+    "season_change": "Current rating minus season-start rating; excludes offseason regression",
+    "last_change": "Most recent game adjustment, or null when no selected-season result exists",
+    "games_played": "Completed regular-season plus playoff games in selected season",
+    "games": "Chronological current-season logs, including opponent, side, rating_before, rating_after, change, expected_score, result (1/0.5/0), scores, kickoff, phase, week and complete home/away replay details"
+  },
+  "matchup_fields": {
+    "status": "completed | upcoming | awaiting_score",
+    "basis": "pregame_ratings for completed; latest_ratings for upcoming/awaiting_score",
+    "home_expected_score": "Fraction 0\u20131; away_expected_score is its complement",
+    "home_advantage": "50 points for designated home team, 0 at a neutral site",
+    "completed": "home/away_rating_before, home/away_rating_after, home/away_change, home_result and margin_multiplier",
+    "upcoming_or_awaiting_score": "home_rating and away_rating are latest available ratings; scores are null; no invented result or rating change"
+  },
+  "other_fields": {
+    "league": "Mean, median, direction and number of teams. Team weights are equal.",
+    "latest_result_kickoff": "Kickoff of latest included result, NOT source fetch time or final whistle time",
+    "replayed_games": "All completed games from 2002 through selected season",
+    "awaiting_score_game_ids": "Started games without published scores, excluded from updates",
+    "config": "Approved K, home advantage and offseason retention",
+    "warnings": "Completion convention and missing-score notices"
+  },
+  "required_interpretation": [
+    "Elo expected score: P(win) + 0.5 \u00d7 P(tie). No separate tie model or spread-cover probability.",
+    "Label percentage as Elo expected score. It is neither a Kalshi quote nor a spread-cover probability.",
+    "Keep the nflverse final-status limitation and source timestamps/errors accessible.",
+    "Latest-rating expectations for future games do not simulate intervening games.",
+    "No GUI-side Elo calculation or margin application is needed; use backend values."
+  ],
+  "audited_data_examples": {
+    "season": 2026,
+    "team_without_logs": {
+      "team": "SEA",
+      "rating": 1662.1769078654795,
+      "rank": 1,
+      "season_start_rating": 1670.960249630664,
+      "season_change": -8.78334176518456,
+      "last_change": -18.61979502433295,
+      "games_played": 5
+    },
+    "team_game_log": {
+      "game_id": "2026_05_SF_SEA",
+      "season": 2026,
+      "phase": "REG",
+      "week": "5",
+      "kickoff": "2026-10-11T20:25:00+00:00",
+      "home_team": "SEA",
+      "away_team": "SF",
+      "home_score": 29,
+      "away_score": 32,
+      "neutral": false,
+      "home_rating_before": 1680.7967028898124,
+      "away_rating_before": 1630.1979974596748,
+      "home_advantage": 50,
+      "home_expected_score": 0.6408586096182156,
+      "away_expected_score": 0.3591413903817844,
+      "home_result": 0.0,
+      "margin_multiplier": 1.4527225463527351,
+      "home_change": -18.61979502433295,
+      "away_change": 18.61979502433295,
+      "home_rating_after": 1662.1769078654795,
+      "away_rating_after": 1648.8177924840077,
+      "opponent": "SF",
+      "side": "home",
+      "rating_before": 1680.7967028898124,
+      "rating_after": 1662.1769078654795,
+      "change": -18.61979502433295,
+      "expected_score": 0.6408586096182156,
+      "result": 0.0
+    },
+    "upcoming_matchup": {
+      "game_id": "2026_06_SEA_DEN",
+      "season": 2026,
+      "phase": "REG",
+      "week": "6",
+      "kickoff": "2026-10-16T00:15:00+00:00",
+      "home_team": "DEN",
+      "away_team": "SEA",
+      "home_score": null,
+      "away_score": null,
+      "neutral": false,
+      "status": "upcoming",
+      "basis": "latest_ratings",
+      "home_rating": 1593.396013642275,
+      "away_rating": 1662.1769078654795,
+      "home_advantage": 50,
+      "home_expected_score": 0.4729984152276856,
+      "away_expected_score": 0.5270015847723144
+    }
+  },
+  "evidence": [
+    "docs/elo-parameter-comparison.json",
+    "docs/elo-validation.json",
+    "tests/test_elo.py",
+    "tests/test_elo_integration.py"
+  ]
+}

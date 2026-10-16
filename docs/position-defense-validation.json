@@ -1,0 +1,91 @@
+{
+  "checked_at_utc": "2026-10-15T05:25:20.624144+00:00",
+  "data_basis": "Previously downloaded current-season nflverse and Kalshi snapshots; no new subscription, source, or automatic refresh. The HTTP audit used only disposable storage.",
+  "approved_categories": [
+    "RB/FB receiving yards allowed",
+    "WR receiving yards allowed",
+    "TE receiving yards allowed",
+    "RB/FB rushing yards allowed",
+    "QB rushing yards allowed"
+  ],
+  "calculation_rules": {
+    "headline": "Equal-weight mean of verified team-game yards allowed; #1 is fewest; exact competition ties",
+    "supporting": "Targets/receptions or carries per game, total opportunities, season-total yards/opportunities, season-total touchdowns",
+    "scope": "Current-season completed regular-season games including overtime",
+    "qb": "Official rushing total; designed-run/scramble/kneeldown components only where every QB yards and carries reconcile with play-by-play",
+    "missing": "Unavailable/conflicting games excluded and flagged; verified zeroes included; zero-opportunity efficiency unavailable",
+    "positions": "Each player-game row; RB and FB grouped",
+    "sample_minimum": null,
+    "league": "Equal weight per available team season value; missing and incomplete data flagged",
+    "unidentified_rows": "Ignore only records lacking name, ID and position with all seven relevant fields explicitly zero; report each exclusion and still reconcile team totals"
+  },
+  "validation": {
+    "python_tests": 103,
+    "new_position_defense_tests": 16,
+    "typescript_and_production_build": "passed",
+    "http": {
+      "teams": 32,
+      "completed_games": 79,
+      "team_game_logs": 158,
+      "headline_rankings": 160,
+      "verified_qb_game_breakdowns": 158,
+      "zero_contribution_notices": 5,
+      "upcoming_games": 14,
+      "prop_groups": 233,
+      "prop_groups_with_position_context": 174,
+      "sample_player_logs": [
+        {
+          "player": "RJ Harvey",
+          "category": "rushing_receiving_yards",
+          "rows": 4,
+          "ranks_per_row": 4
+        },
+        {
+          "player": "Bo Nix",
+          "category": "rushing_yards",
+          "rows": 5,
+          "ranks_per_row": 2
+        },
+        {
+          "player": "Courtland Sutton",
+          "category": "receiving_yards",
+          "rows": 5,
+          "ranks_per_row": 2
+        }
+      ],
+      "checks": [
+        "local browser shell",
+        "health",
+        "five position categories across 32 teams",
+        "all current prop opponents verified",
+        "current overall and position ranks together",
+        "combined props retain two separate position ranks",
+        "wrong season",
+        "failed refresh preserves snapshot",
+        "partial player data flagged",
+        "partial QB play-by-play withholds breakdown only",
+        "tracker unchanged"
+      ],
+      "database_safety": "Only a disposable database and ephemeral localhost port were used. User database and running app were untouched."
+    },
+    "incomplete_headline_values": 0,
+    "source_notices": [
+      "2026_01_NE_SEA SEA: excluded an unidentified row with explicitly zero rushing/receiving contributions; team totals still require reconciliation.",
+      "2026_02_DET_BUF BUF: excluded an unidentified row with explicitly zero rushing/receiving contributions; team totals still require reconciliation.",
+      "2026_03_ATL_GB ATL: excluded an unidentified row with explicitly zero rushing/receiving contributions; team totals still require reconciliation.",
+      "2026_04_PIT_CLE CLE: excluded an unidentified row with explicitly zero rushing/receiving contributions; team totals still require reconciliation.",
+      "2026_05_TB_DAL DAL: excluded an unidentified row with explicitly zero rushing/receiving contributions; team totals still require reconciliation."
+    ],
+    "browser_visual_qa": "Unavailable: no apps or browsers returned by the browser inventory."
+  },
+  "limitations": [
+    "Position-group totals do not predict one individual player's output.",
+    "No opponent-strength adjustment or minimum sample cutoff.",
+    "Position/statistic combinations outside the five approved categories retain overall defense context.",
+    "Unverified QB breakdowns remain unavailable even when official rushing totals are available."
+  ],
+  "documentation_references": [
+    "https://nflreadr.nflverse.com/articles/dictionary_player_stats.html",
+    "https://nflreadr.nflverse.com/articles/dictionary_pbp.html"
+  ]
+}

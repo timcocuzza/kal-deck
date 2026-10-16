@@ -1,0 +1,270 @@
+{
+  "audit_completed_at": "2026-10-15T04:40:46.347299+00:00",
+  "season": 2026,
+  "week": 6,
+  "game_filter_as_of": "2026-10-15T00:00:00Z",
+  "scope": "Read-only public source audit plus verification of the approved first ten prop categories. Not an exhaustive census of all Kalshi NFL market types.",
+  "source_urls": [
+    "https://external-api.kalshi.com/trade-api/v2/structured_targets?type=football_player&competition=NFL&page_size=2000",
+    "https://external-api.kalshi.com/trade-api/v2/markets?status=open&limit=1000&series_ticker={series}",
+    "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv.gz",
+    "https://github.com/nflverse/nflverse-data/releases/download/depth_charts/depth_charts_2026.csv.gz",
+    "https://github.com/nflverse/nflverse-data/releases/download/players/players.csv.gz"
+  ],
+  "documentation": [
+    "https://docs.kalshi.com/api-reference/structured-targets/get-structured-targets",
+    "https://docs.kalshi.com/api-reference/milestone/get-milestones",
+    "https://nflreadr.nflverse.com/reference/load_players.html"
+  ],
+  "player_identity_rows": 4114,
+  "shared_ids": "No verified shared ID found between the inspected Kalshi source IDs and nflverse player directory. The approved implementation uses unique exact name/team matching plus position agreement against season player stats and latest depth charts, then follows GSIS ID for game logs. The separately inspected nflverse player directory is not an added runtime source.",
+  "core": {
+    "series": [
+      "KXNFLPASSYDS",
+      "KXNFLRSHYDS",
+      "KXNFLRECYDS",
+      "KXNFLREC",
+      "KXNFLPASSTDS",
+      "KXNFLPASSATT",
+      "KXNFLPASSCOMP",
+      "KXNFLPASSINT",
+      "KXNFLRSHATT",
+      "KXNFLRRYDS"
+    ],
+    "contracts": 1752,
+    "players": 136,
+    "identity_issues": [],
+    "game_link_issues": []
+  },
+  "games": [
+    {
+      "game_id": "2026_06_SEA_DEN",
+      "player_stat_groups": 55,
+      "contracts": 299,
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "game_id": "2026_06_HOU_JAX",
+      "player_stat_groups": 21,
+      "contracts": 165,
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "game_id": "2026_06_CHI_ATL",
+      "player_stat_groups": 13,
+      "contracts": 112,
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "game_id": "2026_06_BAL_CLE",
+      "player_stat_groups": 4,
+      "contracts": 40,
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "game_id": "2026_06_TEN_IND",
+      "player_stat_groups": 21,
+      "contracts": 155,
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "game_id": "2026_06_NYJ_NE",
+      "player_stat_groups": 8,
+      "contracts": 68,
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "game_id": "2026_06_NO_NYG",
+      "player_stat_groups": 11,
+      "contracts": 99,
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "game_id": "2026_06_CAR_PHI",
+      "player_stat_groups": 10,
+      "contracts": 81,
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "game_id": "2026_06_PIT_TB",
+      "player_stat_groups": 16,
+      "contracts": 112,
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "game_id": "2026_06_ARI_LA",
+      "player_stat_groups": 22,
+      "contracts": 178,
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "game_id": "2026_06_LAC_KC",
+      "player_stat_groups": 5,
+      "contracts": 37,
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "game_id": "2026_06_BUF_LV",
+      "player_stat_groups": 16,
+      "contracts": 130,
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "game_id": "2026_06_DAL_GB",
+      "player_stat_groups": 17,
+      "contracts": 152,
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "game_id": "2026_06_WAS_SF",
+      "player_stat_groups": 14,
+      "contracts": 124,
+      "issues": [],
+      "warnings": []
+    }
+  ],
+  "logs": {
+    "player_stat_groups": 233,
+    "rows_across_groups": 1091,
+    "empty_groups": 0,
+    "warnings": 0,
+    "unavailable_opponent_ranks": 0
+  },
+  "series_audit": [
+    {
+      "series": "KXNFLFFPTS",
+      "contracts": 9,
+      "events": 1
+    },
+    {
+      "series": "KXNFLFFPTSLADDER",
+      "contracts": 5,
+      "events": 1
+    },
+    {
+      "series": "KXNFLFIRSTTD",
+      "contracts": 303,
+      "events": 14
+    },
+    {
+      "series": "KXNFLINT",
+      "contracts": 0,
+      "events": 0
+    },
+    {
+      "series": "KXNFLLONGREC",
+      "contracts": 13,
+      "events": 1
+    },
+    {
+      "series": "KXNFLLONGRSH",
+      "contracts": 6,
+      "events": 1
+    },
+    {
+      "series": "KXNFLPASSATT",
+      "contracts": 6,
+      "events": 1
+    },
+    {
+      "series": "KXNFLPASSCOMP",
+      "contracts": 6,
+      "events": 1
+    },
+    {
+      "series": "KXNFLPASSINT",
+      "contracts": 6,
+      "events": 1
+    },
+    {
+      "series": "KXNFLPASSTDS",
+      "contracts": 108,
+      "events": 14
+    },
+    {
+      "series": "KXNFLPASSYDS",
+      "contracts": 223,
+      "events": 13
+    },
+    {
+      "series": "KXNFLREC",
+      "contracts": 84,
+      "events": 1
+    },
+    {
+      "series": "KXNFLRECYDS",
+      "contracts": 847,
+      "events": 13
+    },
+    {
+      "series": "KXNFLRRYDS",
+      "contracts": 9,
+      "events": 1
+    },
+    {
+      "series": "KXNFLRSHATT",
+      "contracts": 17,
+      "events": 1
+    },
+    {
+      "series": "KXNFLRSHYDS",
+      "contracts": 446,
+      "events": 14
+    },
+    {
+      "series": "KXNFLSACK",
+      "contracts": 0,
+      "events": 0
+    },
+    {
+      "series": "KXNFLTD",
+      "contracts": 488,
+      "events": 14
+    },
+    {
+      "series": "KXNFLTKL",
+      "contracts": 0,
+      "events": 0
+    }
+  ],
+  "broader_scope_concerns": [
+    "First-touchdown and longest-play markets need additional play-by-play calculations.",
+    "Fantasy markets require settlement-specific scoring; the inspected fantasy scalar ladder has variable payouts and cannot be displayed as an ordinary binary probability.",
+    "The broader series include team D/ST and No Touchdown identities, which are not individual players.",
+    "An expanded match audit found one unmatched individual (Matt Hibner) and one position disagreement (Connor Heyward: RB versus FB); neither affects the approved first ten categories.",
+    "Other linked market series are disclosed in the UI; their event links alone are not evidence of open contracts."
+  ],
+  "rate_limits": "Three initial series reads returned HTTP 429; later sequential retries succeeded. Failed runtime refreshes use the existing visible error / retain-previous-snapshot behavior. No automatic retry policy added.",
+  "http": {
+    "games": 14,
+    "contracts": 1752,
+    "player_stat_groups": 233,
+    "sources": 22,
+    "combined_log_rows": 4,
+    "checks": [
+      "HTTP shell",
+      "source catalog",
+      "all current matchups",
+      "combined log with two ranks",
+      "stale identity snapshot retained",
+      "wrong season",
+      "unknown player",
+      "unsupported category validation"
+    ]
+  },
+  "browser_qa": "Unavailable: browser-control inventory returned no browsers or apps.",
+  "cache_safety": "Live public reads and local HTTP checks used audit files and a disposable database; the user source database and running server were not modified."
+}

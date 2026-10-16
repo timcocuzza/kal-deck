@@ -1,0 +1,16 @@
+{
+  "id": "/",
+  "name": "Kalshi Deck",
+  "short_name": "Kalshi Deck",
+  "description": "Your local NFL matchup and Kalshi research workspace.",
+  "start_url": "/#games",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#101113",
+  "theme_color": "#101113",
+  "icons": [
+    { "src": "/icons/deck-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/deck-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/deck-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

@@ -1,0 +1,142 @@
+{
+  "checked_at": "2026-10-15T04:11:15.942162+00:00",
+  "scope": "Read-only matching feasibility audit; proposed rules await user approval.",
+  "aliases": {
+    "JAC": "JAX",
+    "LAR": "LA"
+  },
+  "games": [
+    {
+      "event": "KXNFLSPREAD-26OCT15SEADEN",
+      "game_id": "2026_06_SEA_DEN",
+      "milestone_id": "6bb552cf-2cca-4521-b2c1-a6810501b0ff",
+      "kickoff_agrees": true,
+      "kickoff_utc": "2026-10-16T00:15:00+00:00",
+      "neutral": false
+    },
+    {
+      "event": "KXNFLSPREAD-26OCT18ARILAR",
+      "game_id": "2026_06_ARI_LA",
+      "milestone_id": "ba8dc26b-3138-4742-ad78-6bd202819fc3",
+      "kickoff_agrees": true,
+      "kickoff_utc": "2026-10-18T20:05:00+00:00",
+      "neutral": false
+    },
+    {
+      "event": "KXNFLSPREAD-26OCT18BALCLE",
+      "game_id": "2026_06_BAL_CLE",
+      "milestone_id": "443f2052-895f-4c01-ad13-623ab9c4fca9",
+      "kickoff_agrees": true,
+      "kickoff_utc": "2026-10-18T17:00:00+00:00",
+      "neutral": false
+    },
+    {
+      "event": "KXNFLSPREAD-26OCT18BUFLV",
+      "game_id": "2026_06_BUF_LV",
+      "milestone_id": "1f33e36b-9ccd-42d9-b2ff-14277d4e5b30",
+      "kickoff_agrees": true,
+      "kickoff_utc": "2026-10-18T20:25:00+00:00",
+      "neutral": false
+    },
+    {
+      "event": "KXNFLSPREAD-26OCT18CARPHI",
+      "game_id": "2026_06_CAR_PHI",
+      "milestone_id": "6ac09131-7278-4d5f-898d-ad477d7da922",
+      "kickoff_agrees": true,
+      "kickoff_utc": "2026-10-18T17:00:00+00:00",
+      "neutral": false
+    },
+    {
+      "event": "KXNFLSPREAD-26OCT18CHIATL",
+      "game_id": "2026_06_CHI_ATL",
+      "milestone_id": "e20694b6-4ce6-4c1a-b284-e5692d965019",
+      "kickoff_agrees": true,
+      "kickoff_utc": "2026-10-18T17:00:00+00:00",
+      "neutral": false
+    },
+    {
+      "event": "KXNFLSPREAD-26OCT18DALGB",
+      "game_id": "2026_06_DAL_GB",
+      "milestone_id": "28f4a481-6ebc-4b95-aef4-bc6ae387cf9e",
+      "kickoff_agrees": true,
+      "kickoff_utc": "2026-10-19T00:20:00+00:00",
+      "neutral": false
+    },
+    {
+      "event": "KXNFLSPREAD-26OCT18HOUJAC",
+      "game_id": "2026_06_HOU_JAX",
+      "milestone_id": "1d24aff1-e292-4075-9b9d-1ee584d18b95",
+      "kickoff_agrees": true,
+      "kickoff_utc": "2026-10-18T13:30:00+00:00",
+      "neutral": true
+    },
+    {
+      "event": "KXNFLSPREAD-26OCT18LACKC",
+      "game_id": "2026_06_LAC_KC",
+      "milestone_id": "ef91117b-268b-4e6d-96fa-29f19923748b",
+      "kickoff_agrees": true,
+      "kickoff_utc": "2026-10-18T20:25:00+00:00",
+      "neutral": false
+    },
+    {
+      "event": "KXNFLSPREAD-26OCT18NONYG",
+      "game_id": "2026_06_NO_NYG",
+      "milestone_id": "af9a4a30-ce68-4732-864d-40761e2d7ed2",
+      "kickoff_agrees": true,
+      "kickoff_utc": "2026-10-18T17:00:00+00:00",
+      "neutral": false
+    },
+    {
+      "event": "KXNFLSPREAD-26OCT18NYJNE",
+      "game_id": "2026_06_NYJ_NE",
+      "milestone_id": "ee2af303-0788-45d4-85f9-15d812e3ed9d",
+      "kickoff_agrees": true,
+      "kickoff_utc": "2026-10-18T17:00:00+00:00",
+      "neutral": false
+    },
+    {
+      "event": "KXNFLSPREAD-26OCT18PITTB",
+      "game_id": "2026_06_PIT_TB",
+      "milestone_id": "0c18b58b-fa50-45cd-8ca6-f1126b577cf4",
+      "kickoff_agrees": true,
+      "kickoff_utc": "2026-10-18T17:00:00+00:00",
+      "neutral": false
+    },
+    {
+      "event": "KXNFLSPREAD-26OCT18TENIND",
+      "game_id": "2026_06_TEN_IND",
+      "milestone_id": "6f8e2425-2056-4a08-a948-0e5503aad5eb",
+      "kickoff_agrees": true,
+      "kickoff_utc": "2026-10-18T17:00:00+00:00",
+      "neutral": false
+    },
+    {
+      "event": "KXNFLSPREAD-26OCT19WASSF",
+      "game_id": "2026_06_WAS_SF",
+      "milestone_id": "794d4c92-b7cd-4f5e-ae33-0c5c9028be62",
+      "kickoff_agrees": true,
+      "kickoff_utc": "2026-10-20T00:15:00+00:00",
+      "neutral": false
+    }
+  ],
+  "problems": [],
+  "contracts_checked": 359,
+  "contract_issues": [],
+  "strike_types": {
+    "greater": 359
+  },
+  "all_half_point_strikes": true,
+  "minimum_strike": 1.5,
+  "notes": [
+    "Kalshi milestone links events to team UUIDs, season, week, type, and start time.",
+    "No common verified external game ID was found; source_ids use unlabeled provider numbers.",
+    "nflverse kickoff is Eastern time; convert with America/New_York before comparing.",
+    "Market close_time and occurrence_datetime are not used as kickoff.",
+    "Team UUID is checked against the game participants and the contract team label/strike."
+  ],
+  "documentation": [
+    "https://docs.kalshi.com/api-reference/milestone/get-milestones",
+    "https://docs.kalshi.com/api-reference/structured-targets/get-structured-target",
+    "https://nflreadr.nflverse.com/articles/dictionary_schedules.html"
+  ]
+}

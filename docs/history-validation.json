@@ -1,0 +1,110 @@
+{
+  "checked_at_utc": "2026-10-15T05:08:36.581558+00:00",
+  "approved_behavior": {
+    "metric": "Hourly closing YES bid/ask midpoint",
+    "ranges_hours": [
+      168,
+      24,
+      6
+    ],
+    "scale_percent": [
+      0,
+      100
+    ],
+    "refresh": "Manual only, sequential weekly requests",
+    "storage": "Browser memory, retained across app navigation; cleared on page reload",
+    "missing_data": "Gaps; no trade-price substitution or forward filling"
+  },
+  "validation": {
+    "python_tests": 87,
+    "frontend_history_tests": 4,
+    "typescript_and_production_build": "passed",
+    "frontend_checks": [
+      "three ranges share one downloaded window",
+      "line breaks for absent and invalid quotes",
+      "fixed probability scale",
+      "sequential request queue",
+      "duplicate requests skipped",
+      "previous chart retained after source failure",
+      "wrong-contract response rejected",
+      "recovery after failure"
+    ],
+    "http": {
+      "checks": [
+        "browser shell",
+        "health",
+        "normalized live-data fixture",
+        "original candles preserved",
+        "contract/window/fetch provenance",
+        "invalid interval",
+        "wrong contract",
+        "invalid window",
+        "source outage",
+        "source recovery",
+        "tracker unchanged",
+        "source snapshots unchanged"
+      ],
+      "database_safety": "Temporary database and ephemeral localhost port only; user database and running server were not changed."
+    },
+    "browser_visual_qa": "Unavailable: browser inventory returned no apps or browsers."
+  },
+  "live_samples": [
+    {
+      "ticker": "KXNFLSPREAD-26OCT19WASSF-SF8",
+      "fetched_at": "2026-10-15T05:08:36.301256+00:00",
+      "url": "https://external-api.kalshi.com/trade-api/v2/series/KXNFLSPREAD/markets/KXNFLSPREAD-26OCT19WASSF-SF8/candlesticks?start_ts=1791436116&end_ts=1792040916&period_interval=60",
+      "context": {
+        "ticker": "KXNFLSPREAD-26OCT19WASSF-SF8",
+        "series": "KXNFLSPREAD",
+        "start_ts": 1791436116,
+        "end_ts": 1792040916,
+        "interval_minutes": 60
+      },
+      "candles": 52,
+      "valid_midpoints": 52,
+      "off_grid": 0,
+      "missing_hourly_intervals": 0,
+      "rows_without_trade_close": 2
+    },
+    {
+      "ticker": "KXNFLSPREAD-26OCT18CHIATL-CHI2",
+      "fetched_at": "2026-10-15T05:08:36.453389+00:00",
+      "url": "https://external-api.kalshi.com/trade-api/v2/series/KXNFLSPREAD/markets/KXNFLSPREAD-26OCT18CHIATL-CHI2/candlesticks?start_ts=1791436116&end_ts=1792040916&period_interval=60",
+      "context": {
+        "ticker": "KXNFLSPREAD-26OCT18CHIATL-CHI2",
+        "series": "KXNFLSPREAD",
+        "start_ts": 1791436116,
+        "end_ts": 1792040916,
+        "interval_minutes": 60
+      },
+      "candles": 59,
+      "valid_midpoints": 59,
+      "off_grid": 0,
+      "missing_hourly_intervals": 11,
+      "rows_without_trade_close": 46
+    },
+    {
+      "ticker": "KXNFLSPREAD-26OCT19WASSF-WAS8",
+      "fetched_at": "2026-10-15T05:08:36.581558+00:00",
+      "url": "https://external-api.kalshi.com/trade-api/v2/series/KXNFLSPREAD/markets/KXNFLSPREAD-26OCT19WASSF-WAS8/candlesticks?start_ts=1791436116&end_ts=1792040916&period_interval=60",
+      "context": {
+        "ticker": "KXNFLSPREAD-26OCT19WASSF-WAS8",
+        "series": "KXNFLSPREAD",
+        "start_ts": 1791436116,
+        "end_ts": 1792040916,
+        "interval_minutes": 60
+      },
+      "candles": 43,
+      "valid_midpoints": 43,
+      "off_grid": 0,
+      "missing_hourly_intervals": 9,
+      "rows_without_trade_close": 43
+    }
+  ],
+  "limitations": [
+    "New markets may have fewer than seven days of history.",
+    "Hourly closing quotes do not show all intrahour movement.",
+    "Historical midpoint quotes are indicative and are not traded prices.",
+    "Final GUI styling and browser installation remain pending."
+  ]
+}

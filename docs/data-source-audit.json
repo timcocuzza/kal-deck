@@ -1,0 +1,311 @@
+{
+  "checked_at_utc": "2026-10-15T03:33:28.248564+00:00",
+  "purpose": "Read-only source feasibility audit. These are observed snapshots, not selected integrations or guarantees of future coverage.",
+  "user_confirmed_local_startup": true,
+  "nflverse": {
+    "stats_team": {
+      "source": "stats_team",
+      "rows": 158,
+      "weeks": {
+        "1": 32,
+        "2": 32,
+        "3": 32,
+        "4": 32,
+        "5": 30
+      },
+      "teams": 32,
+      "games": 79,
+      "latest_date": null,
+      "statuses": {},
+      "blitz_present": 0,
+      "columns": [
+        "season_type",
+        "game_id",
+        "opponent_team"
+      ],
+      "release_url": "https://github.com/nflverse/nflverse-data/releases/tag/stats_team"
+    },
+    "stats_player": {
+      "source": "stats_player",
+      "rows": 5506,
+      "weeks": {
+        "1": 1118,
+        "2": 1107,
+        "3": 1114,
+        "4": 1110,
+        "5": 1057
+      },
+      "teams": 32,
+      "games": 79,
+      "latest_date": null,
+      "statuses": {},
+      "blitz_present": 0,
+      "columns": [
+        "season_type",
+        "game_id",
+        "opponent_team"
+      ],
+      "release_url": "https://github.com/nflverse/nflverse-data/releases/tag/stats_player"
+    },
+    "pbp": {
+      "source": "pbp",
+      "rows": 13842,
+      "weeks": {
+        "1": 2756,
+        "2": 2733,
+        "3": 2822,
+        "4": 2844,
+        "5": 2687
+      },
+      "teams": 32,
+      "games": 79,
+      "latest_date": "2026-10-12",
+      "statuses": {},
+      "blitz_present": 0,
+      "columns": [
+        "game_id",
+        "season_type",
+        "qb_dropback",
+        "qb_kneel",
+        "qb_spike",
+        "qb_scramble",
+        "epa",
+        "sack",
+        "success",
+        "pass",
+        "rush"
+      ],
+      "release_url": "https://github.com/nflverse/nflverse-data/releases/tag/pbp"
+    },
+    "injuries": {
+      "source": "injuries",
+      "rows": 1428,
+      "weeks": {
+        "1": 182,
+        "2": 251,
+        "3": 301,
+        "4": 318,
+        "5": 361,
+        "6": 15
+      },
+      "teams": 32,
+      "games": 0,
+      "latest_date": null,
+      "statuses": {
+        "Out": 309,
+        "Questionable": 267,
+        "Doubtful": 25
+      },
+      "blitz_present": 0,
+      "columns": [
+        "season",
+        "season_type",
+        "game_type",
+        "team",
+        "week",
+        "gsis_id",
+        "position",
+        "full_name",
+        "first_name",
+        "last_name",
+        "report_primary_injury",
+        "report_secondary_injury",
+        "report_status",
+        "practice_primary_injury",
+        "practice_secondary_injury",
+        "practice_status"
+      ],
+      "release_url": "https://github.com/nflverse/nflverse-data/releases/tag/injuries"
+    },
+    "depth_charts": {
+      "source": "depth_charts",
+      "rows": 650071,
+      "weeks": {},
+      "teams": 32,
+      "games": 0,
+      "latest_date": "2026-10-14T12:51:31Z",
+      "statuses": {},
+      "blitz_present": 0,
+      "columns": [
+        "dt",
+        "team",
+        "player_name",
+        "espn_id",
+        "gsis_id",
+        "pos_grp_id",
+        "pos_grp",
+        "pos_id",
+        "pos_name",
+        "pos_abb",
+        "pos_slot",
+        "pos_rank"
+      ],
+      "release_url": "https://github.com/nflverse/nflverse-data/releases/tag/depth_charts"
+    },
+    "ftn_charting": {
+      "source": "ftn_charting",
+      "rows": 13438,
+      "weeks": {
+        "1": 2675,
+        "2": 2649,
+        "3": 2741,
+        "4": 2764,
+        "5": 2609
+      },
+      "teams": 0,
+      "games": 79,
+      "latest_date": "2026-10-14T16:30:02.385859Z",
+      "statuses": {},
+      "blitz_present": 13438,
+      "columns": [
+        "ftn_game_id",
+        "nflverse_game_id",
+        "season",
+        "week",
+        "ftn_play_id",
+        "nflverse_play_id",
+        "starting_hash",
+        "qb_location",
+        "n_offense_backfield",
+        "n_defense_box",
+        "is_no_huddle",
+        "is_motion",
+        "is_play_action",
+        "is_screen_pass",
+        "is_rpo",
+        "is_trick_play",
+        "is_qb_out_of_pocket",
+        "is_interception_worthy",
+        "is_throw_away",
+        "read_thrown",
+        "is_catchable_ball",
+        "is_contested_ball",
+        "is_created_reception",
+        "is_drop",
+        "is_qb_sneak",
+        "n_blitzers",
+        "n_pass_rushers",
+        "is_qb_fault_sack",
+        "date_pulled"
+      ],
+      "release_url": "https://github.com/nflverse/nflverse-data/releases/tag/ftn_charting"
+    }
+  },
+  "completed_game_check": {
+    "season": 2026,
+    "weeks": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "completed_games": 79,
+    "datasets_matching_schedule_game_ids": [
+      "pbp",
+      "stats_team",
+      "stats_player",
+      "ftn_charting"
+    ],
+    "missing_games": 0,
+    "extra_games": 0,
+    "schedule_url": "https://raw.githubusercontent.com/nflverse/nfldata/master/data/games.csv"
+  },
+  "ftn_join": {
+    "dropbacks_excluding_spikes": 5902,
+    "matched_dropbacks": 5902,
+    "blitz_formula_not_yet_approved": true
+  },
+  "depth_chart_latest": {
+    "teams": 32,
+    "snapshot": "2026-10-14T12:51:31Z"
+  },
+  "injury_caveat": {
+    "nflverse_week": 6,
+    "nflverse_rows": 15,
+    "nflverse_teams": [
+      "DEN",
+      "SEA"
+    ],
+    "nflverse_nonempty_game_statuses": 0,
+    "official_page": "https://www.nfl.com/injuries/",
+    "official_page_rows": 284,
+    "official_page_out": 5,
+    "official_page_questionable": 1,
+    "official_page_doubtful": 0,
+    "note": "Blank game status is not evidence of health. Official page was fresher than the downloaded nflverse snapshot."
+  },
+  "coverage_candidate": {
+    "url": "https://www.sharpfootballanalysis.com/stats-nfl/nfl-coverage-schemes/",
+    "page_date": "2026-10-13",
+    "teams": 32,
+    "direct_html_table_readable": true,
+    "concerns": [
+      "HTML layout can change; no stable API verified.",
+      "Exact season/week cutoff and charting denominator not explicitly stated in the table.",
+      "Published man and zone percentages do not always sum to 100; do not silently normalize."
+    ]
+  },
+  "kalshi": {
+    "api_base": "https://external-api.kalshi.com/trade-api/v2",
+    "authentication_used": false,
+    "sampled_market_series": {
+      "KXNFLSPREAD": {
+        "markets": 359,
+        "events": 14,
+        "has_more": false
+      },
+      "KXNFLRECYDS": {
+        "markets": 847,
+        "events": 13,
+        "has_more": false
+      },
+      "KXNFLRSHYDS": {
+        "markets": 443,
+        "events": 14,
+        "has_more": false
+      },
+      "KXNFLPASSYDS": {
+        "markets": 223,
+        "events": 13,
+        "has_more": false
+      },
+      "KXNFLREC": {
+        "markets": 84,
+        "events": 1,
+        "has_more": false
+      },
+      "KXNFLANYTD": {
+        "markets": 0,
+        "events": 0,
+        "has_more": false
+      }
+    },
+    "history_sample": {
+      "ticker": "KXNFLSPREAD-26OCT15SEADEN-SEA3",
+      "interval_minutes": 60,
+      "requested_window_days": 7,
+      "candles": 125,
+      "candles_with_trade_close": 98,
+      "candles_with_bid_close": 125
+    },
+    "quote_check": {
+      "spread_events_with_two_sided_quotes": 14,
+      "spread_contracts_with_zero_last_price": 62
+    },
+    "concerns": [
+      "Prop availability differs by game and series; zero markets in one series is not proof that the prop type is unavailable elsewhere.",
+      "Kalshi close time is not kickoff time.",
+      "Default-price selection, missing quotes, and history-gap behavior remain unapproved.",
+      "Player UUIDs and team aliases need a validated mapping to NFL data."
+    ]
+  },
+  "proposed_sources_pending_approval": {
+    "markets": "Kalshi public API",
+    "stats_rankings_depth_charts_schedule": "nflverse",
+    "blitz_inputs": "FTN via nflverse",
+    "man_zone": "Sharp Football public coverage table",
+    "injuries": "Official NFL injury page"
+  },
+  "application_changes": "None. Only this audit report was added."
+}

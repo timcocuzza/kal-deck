@@ -1,0 +1,104 @@
+{
+  "checked_at_utc": "2026-10-15T06:21:21.398887+00:00",
+  "scope": "Initial feasibility evidence, followed by approved backend implementation; see elo-validation.json.",
+  "coordination": {
+    "elo_work": "Backend calculations, tests and Elo-specific documentation; additive API integration after definitions are approved.",
+    "gui_work": "Owned by the separate GUI agent. No GUI files modified by this audit.",
+    "direct_gui_agent_channel_available": false
+  },
+  "approved_so_far": {
+    "historical_carryover": true,
+    "winning_margin": true,
+    "start_season": 2002,
+    "initial_rating": 1500,
+    "regular_season_and_playoffs": true,
+    "preseason": false,
+    "margin_formula": "FiveThirtyEight diminishing margin with opponent correction",
+    "k": 20,
+    "home_advantage": 50,
+    "offseason_retention": 0.6666666666666666,
+    "ties": "half credit; label expected score",
+    "cache": "separate latest history snapshot and replay",
+    "completion": "published valid scores after kickoff; disclose missing final-status flag"
+  },
+  "pending": [
+    "GUI placement and presentation, owned by the separate GUI agent"
+  ],
+  "source_url": "https://raw.githubusercontent.com/nflverse/nfldata/master/data/games.csv",
+  "downloaded_snapshot": {
+    "rows": 7548,
+    "seasons": {
+      "1999": 259,
+      "2000": 259,
+      "2001": 259,
+      "2002": 267,
+      "2003": 267,
+      "2004": 267,
+      "2005": 267,
+      "2006": 267,
+      "2007": 267,
+      "2008": 267,
+      "2009": 267,
+      "2010": 267,
+      "2011": 267,
+      "2012": 267,
+      "2013": 267,
+      "2014": 267,
+      "2015": 267,
+      "2016": 267,
+      "2017": 267,
+      "2018": 267,
+      "2019": 267,
+      "2020": 269,
+      "2021": 285,
+      "2022": 284,
+      "2023": 285,
+      "2024": 285,
+      "2025": 285,
+      "2026": 272
+    },
+    "game_types": {
+      "REG": 7239,
+      "WC": 120,
+      "DIV": 108,
+      "CON": 54,
+      "SB": 27
+    },
+    "locations": {
+      "Home": 7445,
+      "Neutral": 103
+    },
+    "ties": 16,
+    "current_season": {
+      "season": 2026,
+      "scheduled": 272,
+      "scored": 79,
+      "ties": [
+        "2026_05_NYG_WAS"
+      ]
+    }
+  },
+  "integration_facts": [
+    "Current schedule loader filters the public multi-season download to one season and stores schedule:<season>.",
+    "Existing cache keeps the previous snapshot on source-refresh failure.",
+    "Neutral-site information is explicit in the location field, but location is not currently a required schedule column.",
+    "1999 kickoff times are missing; 2000 onward timestamps parsed in the audit.",
+    "League has 31 teams through 2001 and 32 from 2002.",
+    "Historical relocations require OAK/LV, STL/LA and SD/LAC continuity; existing aliases only handle JAC/JAX and LAR/LA.",
+    "Schedule has no explicit final/in-progress status field.",
+    "The 2022 regular season has 271 games, including 16 each for BUF and CIN; fixed expected game counts would be inappropriate."
+  ],
+  "references": [
+    "https://github.com/fivethirtyeight/nfl-elo-game/blob/master/forecast.py",
+    "https://nflreadr.nflverse.com/reference/load_schedules.html"
+  ],
+  "baseline_validation": {
+    "existing_backend_tests_passed": 103
+  },
+  "finality_audit": {
+    "conclusion": "One game observed with blank midgame scores and populated later scores; supports but does not guarantee final-only publication.",
+    "dictionary": "https://raw.githubusercontent.com/nflverse/nflreadr/main/data-raw/dictionary_schedules.csv",
+    "midgame_example": "https://raw.githubusercontent.com/nflverse/nfldata/adc7c3b7bf3c140772cdefbece4a5c5a0aaa061f/data/games.csv",
+    "later_example": "https://raw.githubusercontent.com/nflverse/nfldata/662efa56edf94f4de80db98d66af09cb220b744e/data/games.csv"
+  }
+}
