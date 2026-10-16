@@ -3,6 +3,7 @@ import { DataNotices } from './DataNoticeList'
 import type { ReactNode } from 'react'
 import { useReport } from './useReport'
 import { Modal } from './ui'
+import { LeagueLeaderboard } from './LeagueLeaderboard'
 import { LeagueContext, MetricValue } from './RankingsView'
 import type { LeagueSummary, Metric } from './RankingsView'
 
@@ -37,10 +38,12 @@ export function PositionDefenseView({ season, revision, refreshing, teamCodes, c
   const { data: report, error, loading } = useReport<PositionReport>(`/api/position-defense?season=${season}`, revision)
   const [selected, setSelected] = useState('')
   const [open, setOpen] = useState(initialCategory ?? '')
+  const [leaderboard, setLeaderboard] = useState('')
   const id = useId()
   const teams = report?.teams.filter(team => !teamCodes || teamCodes.includes(team.team)) ?? []
   const team = teams.find(item => item.team === selected) ?? teams[0]
   const categories = report?.categories.filter(category => !categoryKeys || categoryKeys.includes(category.key)) ?? []
+  const boardCategory = report?.categories.find(category => category.key === leaderboard)
   return <section className="rankings position-defense" aria-labelledby={`${id}-title`}>
     <h3 id={`${id}-title`}>Defense by opponent position</h3>
     <p className="source-note">Current regular season, including overtime. #1 allows the fewest yards per team game.
@@ -70,10 +73,13 @@ export function PositionDefenseView({ season, revision, refreshing, teamCodes, c
             onClick={() => setOpen(open === category.key ? '' : category.key)}>
             {data.headline.rank == null ? 'Unranked' : `#${data.headline.rank}`} · {open === category.key ? 'Hide' : 'View'} game log
           </button>
+          <button className="leaderboard-open" onClick={() => setLeaderboard(category.key)} aria-label={`View ${category.label} league leaderboard`}>League leaderboard ↗</button>
           <p><MetricValue metric={data.headline} /> yards allowed / game · Lower is better
             <LeagueContext summary={report.league[category.key]} /></p>
           <p className="source-note">Coverage: {data.headline.coverage.games_used}/{data.headline.coverage.games_expected} games.</p>
-          <dl className="supporting-stats">{columns.map(key => <div key={key}><dt>{statLabel(key)}</dt><dd><MetricValue metric={data.supporting[key]} /></dd></div>)}</dl>
+          <details className="support-details"><summary>Supporting stats</summary>
+            <dl className="supporting-stats">{columns.map(key => <div key={key}><dt>{statLabel(key)}</dt><dd><MetricValue metric={data.supporting[key]} /></dd></div>)}</dl>
+          </details>
           {category.key === 'qb_rushing' && <p className="source-note">Official totals include designed runs, scrambles and kneeldowns. A breakdown is shown only when every QB's rushing yards and carries reconcile with play-by-play. Component averages may cover fewer games; inspect incomplete labels.</p>}
           {open === category.key && <PositionLogContainer embedded={embedded} title={`${team.team} · ${category.label}`} onClose={() => setOpen('')}>
             <div id={`${id}-${category.key}`}>
@@ -95,5 +101,24 @@ export function PositionDefenseView({ season, revision, refreshing, teamCodes, c
       {!categories.length && <p>No approved position-specific category applies to this selection.</p>}
     </>}
     {!loading && report && !team && <p>No team schedule is available for this selection.</p>}
+    {report && boardCategory && <LeagueLeaderboard title={boardCategory.label} season={season} measure="Yards allowed / game"
+      onClose={() => setLeaderboard('')} note="Lower is better. Regular season including overtime; totals against the entire position group."
+      rows={report.teams.map(item => {
+        const data = item.categories[leaderboard]
+        return { team: item.team, rank: data?.headline.rank, value: <MetricValue metric={data?.headline} />,
+          supporting: <>
+            <p className="source-note">{item.games_played} completed games · Coverage: {data?.headline.coverage.games_used ?? 0}/{data?.headline.coverage.games_expected ?? 0} games.</p>
+            <dl className="supporting-stats">{Object.entries(data?.supporting ?? {}).map(([key, value]) => <div key={key}>
+              <dt>{statLabel(key)}</dt><dd><MetricValue metric={value} /></dd>
+            </div>)}</dl>
+          </> }
+      })}>
+      <LeagueContext summary={report.league[leaderboard]} />
+      {leaderboard === 'qb_rushing' && <p className="source-note">QB totals include designed runs, scrambles and kneeldowns. Breakdowns require reconciliation with play-by-play; incomplete components are flagged.</p>}
+      <details className="provenance"><summary>Sources and coverage notices</summary>
+        {report.sources.map(source => <p key={source.name}>{source.label}: {source.fetched_at ? new Date(source.fetched_at).toLocaleString() : 'Not downloaded'}{source.error && ` · Refresh failed: ${source.error}`}</p>)}
+        <DataNotices warnings={report.warnings} />
+      </details>
+    </LeagueLeaderboard>}
   </section>
 }

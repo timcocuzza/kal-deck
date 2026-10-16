@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { useReport } from './useReport'
 import { Dropdown, Modal } from './ui'
+import { LeagueLeaderboard } from './LeagueLeaderboard'
+import { EloRankingCard } from './EloRankings'
 
 export type Metric = {
   value: number | null
@@ -129,22 +131,43 @@ export function RankingInspection({ season, revision, teamCode, category }: { se
     {!loading && !team && <p>No saved team statistics for this selection.</p>}</>
 }
 
+function SupportingStats({ team, category }: { team: RankedTeam; category: string }) {
+  const metric = category === 'blitz' ? team.blitz : team.categories[category]?.headline
+  return <>
+    <p className="source-note">{team.games_played} completed games{metric && ` · ${coverage(metric)}`}</p>
+    {category === 'blitz' ? <>
+      <dl className="supporting-stats">
+        <div><dt>Games with charting</dt><dd>{team.blitz.coverage.games_used} / {team.blitz.coverage.games_expected}</dd></div>
+        <div><dt>Eligible plays with data</dt><dd>{team.blitz.coverage.samples_used ?? 'Unavailable'} / {team.blitz.coverage.samples_expected ?? 'Unavailable'}</dd></div>
+      </dl>
+      <p className="source-note">At least one FTN-charted blitzer on an eligible dropback. Each game's rate is weighted equally; frequency is not effectiveness.</p>
+    </>
+      : <dl className="supporting-stats">{Object.entries(team.categories[category]?.supporting ?? {}).map(([key, value]) => <div key={key}>
+        <dt>{statLabel(key, category)}</dt><dd><MetricValue metric={value} percent={key.endsWith('percentage')} /></dd>
+      </div>)}</dl>}
+  </>
+}
+
 export function RankingsView({ season, revision, refreshing, teamCodes, initialCategory, categoryKeys }: {
   season: string; revision: number; refreshing: boolean; teamCodes?: string[]; initialCategory?: string; categoryKeys?: string[]
 }) {
   const { data: report, error, loading } = useReport<RankingReport>(`/api/rankings?season=${season}`, revision)
   const [selected, setSelected] = useState('')
   const [open, setOpen] = useState(initialCategory ?? '')
+  const [leaderboard, setLeaderboard] = useState('')
   const teams = teamCodes ? teamCodes.flatMap(code => report?.teams.filter(team => team.team === code) ?? []) : report?.teams ?? []
   const team = teams.find(team => team.team === selected) ?? teams[0]
   const categories = report?.categories.filter(category => !categoryKeys || categoryKeys.includes(category.key)) ?? []
+  const boardCategory = report?.categories.find(category => category.key === leaderboard)
   return <section className="rankings">
     <div className="section-heading"><h2>Team rankings</h2>{team && <Dropdown label="Team" value={team.team} onChange={value => { setSelected(value); setOpen('') }} options={teams.map(team => ({ value: team.team, label: team.team }))} />}</div>
     {loading && !report && <p role="status">Calculating saved rankings…</p>}{error && <p role="alert">{error}</p>}
     {refreshing && <p className="source-note" role="status">Refreshing sources · Saved rankings remain visible.</p>}
     {report && <RankingSources report={report} />}
     {report?.sources.some(source => source.error) && <p role="status">A ranking source refresh failed. Check saved-data timestamps.</p>}
-    {team && report && <><div className="ranking-cards">
+    <div className="ranking-cards">
+      {!categoryKeys && <EloRankingCard season={season} revision={revision} teamCode={team?.team} />}
+      {team && report && <>
       {categories.map(category => {
         const data = team.categories[category.key]
         return <article key={category.key} className="ranking-card"><h3>{category.label}</h3>
@@ -153,6 +176,7 @@ export function RankingsView({ season, revision, refreshing, teamCodes, initialC
           <p><MetricValue metric={data.headline} /> {category.measure}</p>
           <LeagueContext summary={report.league?.categories[category.key]} />
           <small className="metric-note">{category.higher_is_better ? 'Higher' : 'Lower'} is better · {coverage(data.headline)}</small>
+          <button className="leaderboard-open" onClick={() => setLeaderboard(category.key)} aria-label={`View ${category.label} league leaderboard`}>League leaderboard ↗</button>
           <details className="support-details"><summary>Supporting stats</summary><dl className="supporting-stats">{Object.entries(data.supporting).map(([key, value]) => <div key={key}>
             <dt>{statLabel(key, category.key)}</dt><dd><MetricValue metric={value} percent={key.endsWith('percentage')} /></dd></div>)}</dl></details>
         </article>
@@ -161,8 +185,23 @@ export function RankingsView({ season, revision, refreshing, teamCodes, initialC
         <button className="rank-button" onClick={() => setOpen('blitz')}>{team.blitz.rank == null ? 'Unranked' : `#${team.blitz.rank}`} <small>Game log ↗</small></button>
         <p><MetricValue metric={team.blitz} percent /></p><LeagueContext summary={report.league?.blitz} percent />
         <small className="metric-note">#1 means most frequent · {coverage(team.blitz)}</small>
-        <p className="source-note">Frequency, not defensive effectiveness.</p></article>}
-    </div>{open && <Modal title={`${team.team} · ${open === 'blitz' ? 'FTN-charted blitz rate' : report.categories.find(category => category.key === open)?.label ?? open}`} onClose={() => setOpen('')}>
-      <TeamLog team={team} category={open} report={report} /></Modal>}</>}
+        <p className="source-note">Frequency, not defensive effectiveness.</p>
+        <button className="leaderboard-open" onClick={() => setLeaderboard('blitz')} aria-label="View blitz rate league leaderboard">League leaderboard ↗</button>
+      </article>}
+      </>}
+    </div>
+    {team && report && open && <Modal title={`${team.team} · ${open === 'blitz' ? 'FTN-charted blitz rate' : report.categories.find(category => category.key === open)?.label ?? open}`} onClose={() => setOpen('')}>
+      <TeamLog team={team} category={open} report={report} /></Modal>}
+    {report && leaderboard && <LeagueLeaderboard title={boardCategory?.label ?? 'FTN-charted blitz rate'} season={season}
+      measure={boardCategory?.measure ?? 'Blitz rate'} onClose={() => setLeaderboard('')}
+      note={leaderboard === 'blitz' ? 'Most frequent first; frequency is not effectiveness.' : `${boardCategory?.higher_is_better ? 'Higher' : 'Lower'} is better. Regular season including overtime.`}
+      rows={report.teams.map(item => {
+        const metric = leaderboard === 'blitz' ? item.blitz : item.categories[leaderboard]?.headline
+        return { team: item.team, rank: metric?.rank, value: <MetricValue metric={metric} percent={leaderboard === 'blitz'} />,
+          supporting: <SupportingStats team={item} category={leaderboard} /> }
+      })}>
+      <LeagueContext summary={leaderboard === 'blitz' ? report.league?.blitz : report.league?.categories[leaderboard]} percent={leaderboard === 'blitz'} />
+      <RankingSources report={report} />
+    </LeagueLeaderboard>}
   </section>
 }
