@@ -8,6 +8,7 @@
     "dev": "vite --host 127.0.0.1",
     "typecheck": "tsc --noEmit",
     "build": "npm run typecheck && vite build",
+    "postbuild": "node scripts/brand_desktop.cjs",
     "desktop:dev": "npm run build && electron .",
     "desktop:install-runtime": "node node_modules/electron/install.js"
   },
