@@ -116,6 +116,11 @@ details[open]>:not(summary){animation:reveal 160ms ease-out}
 .watch-button[aria-pressed=true]{color:var(--accent);border-color:var(--accent)}
 .game-card>.watch-button{display:block;margin:4px 0 10px;text-align:left}
 .watch-card{display:flex;flex-direction:column}
+.watch-card.combo-selected{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.watch-combo-pick{display:flex;align-items:center;gap:8px;margin-bottom:14px;font-size:12px;color:var(--accent);cursor:pointer}
+.watch-combo-pick input{accent-color:var(--accent);width:16px;height:16px;margin:0}
+.watch-combo-bar{position:sticky;top:12px;z-index:2;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;background:var(--raised);border:1px solid var(--border);border-radius:10px;padding:12px 16px;margin-bottom:18px;box-shadow:0 8px 20px #0003}
+.watch-combo-bar>small,.watch-combo-bar>[role=alert]{width:100%;margin:0}
 .watch-card-heading{display:flex;align-items:flex-start;gap:10px}
 .watch-card-heading .player-heading{flex:1;min-width:0}
 .watch-card-heading .player-heading>span{min-width:0;overflow-wrap:anywhere}

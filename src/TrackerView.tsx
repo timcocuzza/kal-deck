@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import type { FormEvent } from 'react'
+import { ticketSelections } from './ticketSelections'
+import type { BetSelection, NotedSelection, PendingSelection } from './ticketSelections'
+export type { BetSelection, PendingSelection } from './ticketSelections'
 
-export type BetSelection = { description: string; selection: string; market_ticker: string; game_id: string }
-export type PendingSelection = { id: string; leg: BetSelection; notes?: string }
 type Units = { display: string; exact: string; rounded: boolean }
 type TicketData = {
   title: string; kind: 'single' | 'combo'; placed_at: string; cost: string; unit_size: string
@@ -18,10 +19,12 @@ type Report = {
 }
 type Draft = { id: string; revision: number | null; data: TicketData; closed: boolean }
 const blankLeg = (): BetSelection => ({ description: '', selection: '', market_ticker: '', game_id: '' })
-function newDraft(unit: string | null, leg?: BetSelection, notes = ''): Draft {
+function newDraft(unit: string | null, selections: NotedSelection[] = []): Draft {
+  const selected = ticketSelections(selections)
   return { id: crypto.randomUUID(), revision: null, closed: false, data: {
-    title: leg?.description ?? '', kind: 'single', placed_at: new Date().toISOString(), cost: '', unit_size: unit ?? '',
-    potential_payout: null, returned: null, closed_at: null, notes, legs: [leg ? { ...leg } : blankLeg()],
+    title: (selected.kind === 'combo' ? `${selected.legs.length}-leg combo` : selected.legs[0]?.description ?? '').slice(0, 240),
+    kind: selected.kind, placed_at: new Date().toISOString(), cost: '', unit_size: unit ?? '',
+    potential_payout: null, returned: null, closed_at: null, notes: selected.notes, legs: selected.legs.length ? selected.legs : [blankLeg()],
   } }
 }
 function editDraft(ticket: Ticket, close = false): Draft {
@@ -83,6 +86,9 @@ export function TrackerView({ visible, pending, consumePending }: {
   const [backup, setBackup] = useState<{ name: string; data: unknown; count: number | null } | null>(null)
   const mutationLock = useRef(false)
   const fileSelection = useRef(0)
+  const autoStarted = useRef('')
+  const draftHeading = useRef<HTMLHeadingElement>(null)
+  const pendingHeading = useRef<HTMLParagraphElement>(null)
   useEffect(() => {
     if (!visible || report) return
     let disposed = false
@@ -91,6 +97,20 @@ export function TrackerView({ visible, pending, consumePending }: {
       .catch((cause: unknown) => { if (!disposed) setError(cause instanceof Error ? cause.message : 'Tracker unavailable.') })
     return () => { disposed = true }
   }, [visible, report])
+
+  useEffect(() => {
+    if (!visible || !report || !pending?.autoStart || autoStarted.current === pending.id) return
+    autoStarted.current = pending.id
+    if (draft || busy) return
+    try {
+      setDraft(newDraft(report.default_unit_size, pending.selections))
+      setError(''); setMessage(''); consumePending()
+    } catch (cause) { setError(cause instanceof Error ? cause.message : 'Unable to prepare ticket.') }
+  }, [visible, report, pending, draft, busy, consumePending])
+
+  useEffect(() => {
+    if (visible) (pending ? pendingHeading.current : draftHeading.current)?.focus()
+  }, [visible, pending?.id, draft?.id, report !== null])
 
   async function reload(updateUnit = false) {
     const result = await request<Report>('/api/tracker')
@@ -173,23 +193,28 @@ export function TrackerView({ visible, pending, consumePending }: {
       {!report.default_unit_size && <p className="source-note">Set your usual unit size, or enter the original unit size directly when recording a bet.</p>}
 
       {pending && <aside className="pending-bet">
-        <p><strong>Selection to record:</strong> {pending.leg.description}{pending.leg.selection && ` · ${pending.leg.selection}`}</p>
-        {pending.notes && <p className="settlement-rules">{pending.notes}</p>}
+        <p ref={pendingHeading} tabIndex={-1}><strong>{pending.selections.length > 1 ? `${pending.selections.length} selections to record` : 'Selection to record'}</strong></p>
+        <ul>{pending.selections.map((item, index) => <li key={index}>
+          {item.leg.description}{item.leg.selection && ` · ${item.leg.selection}`}
+          {item.notes && <p className="settlement-rules">{item.notes}</p>}
+        </li>)}</ul>
         <div className="controls">
           <button disabled={busy} onClick={() => {
-            if (replaceDraft(newDraft(report.default_unit_size, pending.leg, pending.notes))) consumePending()
-          }}>Start a ticket with this selection</button>
+            try {
+              if (replaceDraft(newDraft(report.default_unit_size, pending.selections))) consumePending()
+            } catch (cause) { setError(cause instanceof Error ? cause.message : 'Unable to prepare ticket.') }
+          }}>{pending.selections.length > 1 ? 'Start a new combo' : 'Start a ticket with this selection'}</button>
           {draft && <button disabled={busy} onClick={() => {
-            const notes = [draft.data.notes, pending.notes ? `${pending.leg.description}:\n${pending.notes}` : ''].filter(Boolean).join('\n\n')
-            if (notes.length > 10000) { setError('Combined notes exceed 10,000 characters. Shorten the ticket notes before adding this selection.'); return }
-            update({ kind: 'combo', legs: [...draft.data.legs, { ...pending.leg }], notes }); consumePending()
-          }}>Add as a combo leg to this form</button>}
+            try {
+              update(ticketSelections(pending.selections, draft.data)); setError(''); consumePending()
+            } catch (cause) { setError(cause instanceof Error ? cause.message : 'Unable to add selections.') }
+          }}>{pending.selections.length > 1 ? `Add ${pending.selections.length} legs to this ticket` : 'Add as a combo leg to this form'}</button>}
           <button disabled={busy} onClick={consumePending}>Dismiss selection</button>
         </div>
       </aside>}
 
       {draft && <form className="ticket-form" onSubmit={event => void saveTicket(event)}>
-        <h3>{draft.revision === null ? 'Record a ticket' : 'Edit / close ticket'}</h3>
+        <h3 ref={draftHeading} tabIndex={-1}>{draft.revision === null ? 'Record a ticket' : 'Edit / close ticket'}</h3>
         <fieldset disabled={busy}>
           <legend>Ticket details</legend>
           <label>Description<input value={draft.data.title} required maxLength={240} onChange={event => update({ title: event.target.value })} /></label>

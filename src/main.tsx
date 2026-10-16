@@ -111,7 +111,7 @@ function App() {
 
   function recordSelection(leg: BetSelection) {
     const watched = watchlist.entries.find(entry => entry.ticker === leg.market_ticker && entry.game_id === leg.game_id)
-    setPendingSelection({ id: crypto.randomUUID(), leg: { ...leg, selection: leg.selection || watched?.side || '' }, notes: watched?.notes ?? '' })
+    setPendingSelection({ id: crypto.randomUUID(), selections: [{ leg: { ...leg, selection: leg.selection || watched?.side || '' }, notes: watched?.notes ?? '' }] })
     navigate('tracker')
   }
 
@@ -135,7 +135,10 @@ function App() {
           : sources.some(source => source.status === 'refresh_failed') ? 'Some updates failed · Saved data retained. See Data for details.' : sources.length ? 'Saved snapshots ready · Refresh on open' : ''}</div>
         {error && <p role="alert">{error}</p>}
         <WatchlistStatus />
-        {view === 'watchlist' && <WatchlistView revision={revision} onRecord={recordSelection} onOpen={entry => {
+        {view === 'watchlist' && <WatchlistView revision={revision} onRecord={recordSelection} onCombo={selections => {
+          setPendingSelection({ id: crypto.randomUUID(), selections, autoStart: true })
+          navigate('tracker')
+        }} onOpen={entry => {
           setSeason(String(entry.season))
           navigate(`game/${encodeURIComponent(entry.game_id)}?week=${entry.week}&tab=${entry.kind === 'prop' ? 'props' : 'stats'}&market=${encodeURIComponent(entry.ticker)}`)
         }} />}

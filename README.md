@@ -134,6 +134,14 @@ not a stored price at the time of pinning. Unavailable contracts remain removabl
 pregame quotes are withheld after kickoff. Watchlist records are separate from
 tracker tickets and are not included in tracker JSON backups.
 
+To record a combo, choose **Build combo**, select at least two watched picks, then
+**Record combo**. Save each pick's side and any edited notes first. The tracker opens
+a combo draft with all selected sides and market/game references, and each pick's
+notes labeled by selection. Enter the actual total cost and payout, then save the
+ticket. If a ticket form is already open, add the selected legs to it or start a new
+combo. Existing notes are preserved; duplicate contracts and transfers exceeding
+the ticket's leg or notes limit are rejected without dropping data.
+
 Prop cards show a compact **Threshold / Yes ask** comparison table. Select a row to
 change the active threshold. Player game logs add **Games hit** for every available
 threshold, displayed as hits / verified games. Equality counts as a hit; missing

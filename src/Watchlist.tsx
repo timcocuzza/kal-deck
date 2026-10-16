@@ -4,6 +4,8 @@ import { useReport } from './useReport'
 import { askPrice, Modal } from './ui'
 import { teamStyle } from './teamColors'
 import type { BetSelection } from './TrackerView'
+import { ticketSelections } from './ticketSelections'
+import type { NotedSelection } from './ticketSelections'
 
 type WatchReference = { ticker: string; kind: 'prop' | 'spread'; season: number; week: number; game_id: string; label: string }
 type WatchDetails = { side: '' | 'Yes' | 'No'; notes: string; revision: number }
@@ -126,8 +128,9 @@ type QuoteReport = {
 }
 type WatchMarket = { ticker: string; label: string; team?: string; yes_ask_dollars: string | null; no_ask_dollars: string | null }
 type WatchTeam = { code: string; name: string; logo: string | null }
-function WatchCard({ entry, revision, onOpen, onRecord }: {
+function WatchCard({ entry, revision, onOpen, onRecord, choosing, selected, onSelect }: {
   entry: WatchEntry; revision: number; onOpen: (entry: WatchEntry) => void; onRecord: (selection: BetSelection) => void
+  choosing: boolean; selected: boolean; onSelect: () => void
 }) {
   const { busy, drafts, openEditor, toggle } = useWatchlist()
   const draft = drafts[entry.ticker]
@@ -160,7 +163,11 @@ function WatchCard({ entry, revision, onOpen, onRecord }: {
   const title = entry.kind === 'prop' ? group?.player.name ?? savedLabel[0] : team?.name ?? matchup
   const statistic = entry.kind === 'prop' ? group?.label ?? (savedLabel.slice(1, -1).join(' · ') || 'Player prop') : 'Spread'
   const threshold = contract?.label ?? (entry.kind === 'prop' ? savedLabel.at(-1) : entry.label)
-  return <article className="prop-card watch-card" style={teamStyle(teamCode)}>
+  return <article className={`prop-card watch-card${selected ? ' combo-selected' : ''}`} style={teamStyle(teamCode)}>
+    {choosing && <label className="watch-combo-pick"><input type="checkbox" checked={selected}
+      disabled={busy || (!selected && (dirty || !entry.side))} onChange={onSelect} aria-label={`Include in combo: ${entry.label}`} />
+      {dirty ? 'Save edits to include' : !entry.side ? 'Choose a side to include' : selected ? 'Selected for combo' : 'Include in combo'}
+    </label>}
     <div className="watch-card-heading">
       <button className="player-heading" disabled={!market} onClick={() => onOpen(entry)} aria-label={`Open ${entry.label}`}>
         {team?.logo && <img src={team.logo} alt="" width="32" height="32" onError={event => { event.currentTarget.style.display = 'none' }} />}
@@ -186,22 +193,49 @@ function WatchCard({ entry, revision, onOpen, onRecord }: {
     </small>}
     <div className="watch-card-actions">
       <button className="prop-log-button" disabled={busy} onClick={() => openEditor(entry.ticker)} aria-label={`Edit side and notes: ${entry.label}`}>Edit details <span aria-hidden="true">↗</span></button>
-      <button className="prop-log-button" disabled={busy || dirty || !entry.side} onClick={() => onRecord({
+      {!choosing && <button className="prop-log-button" disabled={busy || dirty || !entry.side} onClick={() => onRecord({
         description: entry.label, selection: entry.side, market_ticker: entry.ticker, game_id: entry.game_id,
-      })}>Record a bet</button>
+      })}>Record a bet</button>}
     </div>
   </article>
 }
 
-export function WatchlistView({ revision, onOpen, onRecord }: {
+export function WatchlistView({ revision, onOpen, onRecord, onCombo }: {
   revision: number; onOpen: (entry: WatchEntry) => void; onRecord: (selection: BetSelection) => void
+  onCombo: (selections: NotedSelection[]) => void
 }) {
-  const { entries, ready, busy } = useWatchlist()
+  const { entries, ready, busy, drafts } = useWatchlist()
+  const [choosing, setChoosing] = useState(false)
+  const [selected, setSelected] = useState<string[]>([])
+  const [comboError, setComboError] = useState('')
+  const picks = entries.filter(entry => selected.includes(entry.ticker))
+  const needsDetails = picks.some(entry => !entry.side || (drafts[entry.ticker]
+    && (drafts[entry.ticker].side !== entry.side || drafts[entry.ticker].notes !== entry.notes)))
   return <section className="research-page" aria-label="Watchlist"><div className="page-heading"><div><h1>Watchlist</h1>
-    <p>Your saved spreads and player props across games.</p></div></div>
+    <p>Your saved spreads and player props across games.</p></div>
+    {!choosing && entries.length > 1 && <button disabled={busy} onClick={() => setChoosing(true)}>Build combo</button>}</div>
+    {choosing && <div className="watch-combo-bar" role="region" aria-label="Build a combo">
+      <span role="status">{picks.length ? `${picks.length} selected` : 'Select at least 2 picks'}</span>
+      <div className="controls"><button disabled={busy || picks.length < 2 || picks.length > 100 || needsDetails} onClick={() => {
+        const selections = picks.map(entry => ({ leg: {
+          description: entry.label, selection: entry.side, market_ticker: entry.ticker, game_id: entry.game_id,
+        }, notes: entry.notes }))
+        try { ticketSelections(selections); setComboError(''); onCombo(selections) }
+        catch (cause) { setComboError(cause instanceof Error ? cause.message : 'Unable to prepare combo.') }
+      }}>Record combo</button>
+        <button disabled={busy} onClick={() => { setChoosing(false); setSelected([]); setComboError('') }}>Cancel</button>
+      </div>
+      {needsDetails && <small>Save the side and notes for each selected pick.</small>}
+      {picks.length > 100 && <small>Select at most 100 picks.</small>}
+      {comboError && <p role="alert">{comboError}</p>}
+    </div>}
     {!ready && busy && <p role="status">Loading watchlist…</p>}
     {ready && !entries.length && <p className="empty-state">Select Watch on a spread or player prop to keep it here.</p>}
-    <div className="prop-grid watch-list">{entries.map(entry => <WatchCard key={entry.ticker} entry={entry} revision={revision} onOpen={onOpen} onRecord={onRecord} />)}</div>
+    <div className="prop-grid watch-list">{entries.map(entry => <WatchCard key={entry.ticker} entry={entry} revision={revision} onOpen={onOpen} onRecord={onRecord}
+      choosing={choosing} selected={selected.includes(entry.ticker)} onSelect={() => {
+        setSelected(current => current.includes(entry.ticker) ? current.filter(ticker => ticker !== entry.ticker) : [...current, entry.ticker])
+        setComboError('')
+      }} />)}</div>
     {!!entries.length && <p className="source-note">Use Edit details to choose a side and write notes. Prices show the selected side’s saved ask before fees; Yes ask is shown until you choose. Unavailable contracts stay saved until you remove them.</p>}
   </section>
 }
