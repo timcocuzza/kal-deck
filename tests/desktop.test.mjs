@@ -4,7 +4,6 @@ import { createRequire } from 'node:module'
 import fs from 'node:fs'
 import os from 'node:os'
 import path from 'node:path'
-import crypto from 'node:crypto'
 const require = createRequire(import.meta.url)
 const { safeExternal, localRequest, backendPort } = require('../desktop/policy.cjs')
 
@@ -31,47 +30,31 @@ test('desktop token stays on the exact loopback origin and handshake validates p
   assert.equal(backendPort('log output'), null)
 })
 
-const { mergeManifests } = require('../scripts/assemble_desktop_release.cjs')
-test('release feed keeps both Mac architectures and rejects conflicting versions and unsafe paths', () => {
-  const manifest = (arch, version = '0.2.0') => ({ version, path: 'legacy.zip', sha512: 'legacy',
-    files: [{ url: `Deck-${version}-mac-${arch}.zip`, sha512: `hash-${arch}`, size: 123 }] })
-  const merged = mergeManifests([manifest('arm64'), manifest('x64')], '0.2.0')
-  assert.equal(merged.files.length, 2)
-  assert.equal(merged.path, undefined)
-  assert.equal(merged.sha512, undefined)
-  assert.throws(() => mergeManifests([manifest('arm64'), manifest('x64', '0.1.0')], '0.2.0'))
-  const unsafe = manifest('x64'); unsafe.files[0].url = '../../private.txt'
-  assert.throws(() => mergeManifests([unsafe], '0.2.0'))
-  const conflict = manifest('x64'); conflict.files[0].sha512 = 'different'
-  assert.throws(() => mergeManifests([manifest('x64'), conflict], '0.2.0'))
+const { sourceContext, trustedSender } = require('../desktop/source-updates.cjs')
+test('source context requires an exact managed revision and a valid Python path', () => {
+  const home = fs.mkdtempSync(path.join(os.tmpdir(), 'deck-context-'))
+  try {
+    const revision = 'a'.repeat(40)
+    const root = path.join(home, 'releases', revision)
+    fs.writeFileSync(path.join(home, 'tools.json'), JSON.stringify({ python: process.execPath }))
+    const env = { DECK_SOURCE_HOME: home, DECK_SOURCE_REVISION: revision }
+    assert.equal(sourceContext(root, env).revision, revision)
+    assert.equal(sourceContext(path.join(home, 'other'), env), null)
+    assert.equal(sourceContext(root, { ...env, DECK_SOURCE_REVISION: '../../etc' }), null)
+    fs.writeFileSync(path.join(home, 'tools.json'), JSON.stringify({ python: 'relative/python' }))
+    assert.throws(() => sourceContext(root, env))
+  } finally { fs.rmSync(home, { recursive: true, force: true }) }
 })
 
-test('release assembly verifies the actual installers before publishing update manifests', () => {
-  const { assemble } = require('../scripts/assemble_desktop_release.cjs')
-  const yaml = require('js-yaml')
-  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'deck-release-'))
-  try {
-    const input = path.join(root, 'incoming')
-    const targets = [
-      ['win', 'latest.yml', 'Deck-0.2.0-win-x64.exe'],
-      ['linux', 'latest-linux.yml', 'Deck-0.2.0-linux-x86_64.AppImage'],
-      ['mac-arm64', 'latest-mac.yml', 'Deck-0.2.0-mac-arm64.zip'],
-      ['mac-x64', 'latest-mac.yml', 'Deck-0.2.0-mac-x64.zip'],
-    ]
-    for (const [platform, feed, name] of targets) {
-      const folder = path.join(input, platform)
-      fs.mkdirSync(folder, { recursive: true })
-      const body = Buffer.from(`test installer for ${platform}`)
-      fs.writeFileSync(path.join(folder, name), body)
-      fs.writeFileSync(path.join(folder, feed), yaml.dump({ version: '0.2.0', files: [
-        { url: name, size: body.length, sha512: crypto.createHash('sha512').update(body).digest('base64') },
-      ] }))
-    }
-    const output = path.join(root, 'publish')
-    assemble(input, output, '0.2.0')
-    assert.equal(yaml.load(fs.readFileSync(path.join(output, 'latest-mac.yml'), 'utf8')).files.length, 2)
-    assert.equal(fs.readFileSync(path.join(output, 'SHA256SUMS'), 'utf8').trim().split('\n').length, 7)
-    fs.appendFileSync(path.join(input, 'win', targets[0][2]), 'tampered')
-    assert.throws(() => assemble(input, path.join(root, 'tampered'), '0.2.0'), /checksum mismatch/)
-  } finally { fs.rmSync(root, { recursive: true, force: true }) }
+test('update IPC accepts only the owning main frame on its private origin', () => {
+  const origin = 'http://127.0.0.1:48123'
+  const mainFrame = { url: origin + '/#games' }
+  const webContents = { mainFrame }
+  const window = { webContents }
+  assert.equal(trustedSender({ sender: webContents, senderFrame: mainFrame }, window, origin), true)
+  assert.equal(trustedSender({ sender: {}, senderFrame: mainFrame }, window, origin), false)
+  assert.equal(trustedSender({ sender: webContents, senderFrame: { url: origin } }, window, origin), false)
+  mainFrame.url = 'https://attacker.example'
+  assert.equal(trustedSender({ sender: webContents, senderFrame: mainFrame }, window, origin), false)
+  assert.equal(trustedSender({}, null, origin), false)
 })

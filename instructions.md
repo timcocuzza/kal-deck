@@ -231,7 +231,7 @@ research computation. The audit and phased rollout are recorded in
 `docs/deployment-audit.md`. Infrastructure changes and production exposure have
 not been performed as part of deployment preparation.
 
-### Current desktop direction from October 16 2026
+### Packaged desktop proposal from October 16 2026 — superseded by Git updates
 
 - Replace the hosted proposal with standalone Deck installers for Windows x64,
   macOS Intel and Apple Silicon, and Linux x64. Each person has a separate local
@@ -254,3 +254,20 @@ not been performed as part of deployment preparation.
   failures and no incomplete position-defense headlines. This is a snapshot result,
   not permission to skip validation on future downloads.
 - Implementation and release gates are documented in `docs/desktop.md`.
+
+### Current desktop direction with Git updates
+
+- The user chose a Git-backed desktop launcher to avoid annual Apple signing costs
+  and is willing to make `timcocuzza/kal-deck` public. Do not change visibility on
+  their behalf without explicit authorization to publish it.
+- One-time setup may require Git, Node and Python. Everyday launching and updates
+  must use a normal app icon and an Update Deck control without terminal commands.
+- Build each candidate in an isolated managed checkout/environment. Keep the
+  current app usable during preparation, verify the candidate before switching,
+  preserve the previous version and personal records, and prompt before restarting.
+- Identify updates and database backups by Git revision, including commits that
+  retain the same package version. Personal data stays outside managed code.
+- Keep the existing interface and private local backend. Replace the certificate
+  release workflow with native source-install validation on all four targets.
+- Follow `docs/desktop.md` for the current setup and maintenance flow. The old signed
+  installer plan and its validation results are historical and no longer the default.

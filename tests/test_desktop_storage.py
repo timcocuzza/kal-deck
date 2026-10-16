@@ -41,3 +41,16 @@ class DesktopStorageTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             with self.assertRaises(ValueError):
                 prepare_data(Path(directory) / 'deck.sqlite3', '../../elsewhere')
+
+    def test_each_source_revision_backs_up_even_without_a_version_bump(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / 'deck.sqlite3'
+            with closing(sqlite3.connect(path)) as connection, connection:
+                connection.execute('CREATE TABLE records (value TEXT)')
+            prepare_data(path, '0.1.0', 'a' * 40)
+            prepare_data(path, '0.1.0', 'a' * 40)
+            self.assertEqual(len(list((path.parent / 'backups').glob('*.sqlite3'))), 1)
+            prepare_data(path, '0.1.0', 'b' * 40)
+            self.assertEqual(len(list((path.parent / 'backups').glob('*.sqlite3'))), 2)
+            with self.assertRaises(ValueError):
+                prepare_data(path, '0.1.0', '../bad')

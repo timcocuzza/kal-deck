@@ -1,15 +1,16 @@
 # Deck
 
-Personal NFL and Kalshi research app for **Windows, macOS and Linux**. Deck bundles
-its local service, opens from an app icon, and keeps each person's records on their
-computer. Friends need no Git checkout, Python, Node, terminal, or hosted account.
-The React interface and SQLite calculations remain the same.
+Personal NFL and Kalshi research app for **Windows, macOS and Linux**. Install Git,
+Node.js 24 (or 26), and Python 3.14 once, then run `python scripts/install_desktop.py`
+from a clean checkout. Open the **Deck** app icon for everyday use. **Data → Update
+Deck** builds and checks new Git revisions before offering a restart. Each person's
+records stay on their computer; no terminal is needed for normal use or updates.
 
-The [desktop release plan](docs/desktop.md) covers installers, automatic updates,
-security, resource requirements, signing, and GitHub Actions. A local Linux AppImage
-has been built; Windows/Mac installers and signed upgrades still need platform
-validation. Automatic updates become available through published release builds.
-Source stays at `timcocuzza/kal-deck`; no ownership transfer is planned.
+The [desktop setup guide](docs/desktop.md) covers Mac/Windows/Linux installation,
+updates, security, resources and CI. This source-based approach requires no Apple
+Developer membership or Windows signing account. Native Mac and Windows GUI
+acceptance is still pending. Source stays at `timcocuzza/kal-deck`; the public HTTPS
+repository is the update channel. Repository visibility has not been changed here.
 
 The earlier [Vegas deployment audit](docs/deployment-audit.md) is retained as history.
 Public web hosting and administrator-approved accounts are superseded by the
@@ -98,7 +99,7 @@ logs then follow the NFL player ID across teams. Conflicts are reported and quot
 withheld. Other linked market types are listed as not yet supported; event links
 do not guarantee open contracts. Broader prop support and visual verification
 remain unfinished. The browser shortcut remains a development option; the current
-distribution target is the standalone desktop installer described above.
+distribution target is the desktop source launcher described above.
 
 Spread charts are available on each weekly game card and in selected-spread details.
 History loads automatically as cards or selected spreads appear. Use **Refresh lines**

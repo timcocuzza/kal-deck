@@ -1,20 +1,22 @@
 'use strict'
 
-const { app, BrowserWindow, dialog, Menu, session, shell } = require('electron')
+const { app, BrowserWindow, dialog, ipcMain, Menu, session, shell } = require('electron')
 const { spawn } = require('node:child_process')
 const { randomBytes } = require('node:crypto')
 const { existsSync, mkdirSync, appendFileSync, statSync, renameSync, unlinkSync } = require('node:fs')
 const path = require('node:path')
 const readline = require('node:readline')
 const { safeExternal, localRequest, backendPort } = require('./policy.cjs')
+const { sourceContext, trustedSender, createSourceUpdater } = require('./source-updates.cjs')
 
 app.setName('Deck')
 app.setAppUserModelId('com.getwellsedge.deck')
 if (process.platform === 'linux') app.setDesktopName('com.getwellsedge.deck.desktop')
 app.enableSandbox()
 const singleInstance = app.requestSingleInstanceLock()
-let mainWindow, backend, quitting = false, stopping = false, updateReady = false
-let updateTimer, quitAfterStop
+let mainWindow, backend, quitting = false, stopping = false
+let quitAfterStop
+const source = sourceContext(path.resolve(__dirname, '..'))
 const desktopToken = randomBytes(32).toString('hex')
 
 function showFailure(message) {
@@ -27,7 +29,7 @@ function childEnvironment(database) {
   for (const key of Object.keys(env)) {
     if (key.startsWith('DECK_') || key.startsWith('PYTHON') || key === 'ELECTRON_RUN_AS_NODE') delete env[key]
   }
-  return { ...env, DECK_DESKTOP_TOKEN: desktopToken, DECK_DATABASE_PATH: database, DECK_DESKTOP_VERSION: app.getVersion(), PYTHONUNBUFFERED: '1' }
+  return { ...env, DECK_DESKTOP_TOKEN: desktopToken, DECK_DATABASE_PATH: database, DECK_DESKTOP_VERSION: app.getVersion(), ...(source ? { DECK_DESKTOP_REVISION: source.revision } : {}), PYTHONUNBUFFERED: '1' }
 }
 
 function log(message) {
@@ -49,7 +51,7 @@ async function startBackend() {
   const executable = app.isPackaged
     ? path.join(process.resourcesPath, 'backend', 'deck-service', process.platform === 'win32' ? 'deck-service.exe' : 'deck-service')
     : path.join(root, '.venv', process.platform === 'win32' ? 'Scripts/python.exe' : 'bin/python')
-  if (!existsSync(executable)) throw new Error('The bundled Deck service is missing. Reinstall Deck; your data stays in your user profile.')
+  if (!existsSync(executable)) throw new Error('The local Deck service is missing. Run setup again; your data stays in your user profile.')
   backend = spawn(executable, app.isPackaged ? [] : [path.join(root, 'desktop/backend_entry.py')], {
     env: childEnvironment(path.join(folder, 'deck.sqlite3')),
     stdio: ['pipe', 'pipe', 'pipe'], windowsHide: true,
@@ -110,7 +112,7 @@ async function createWindow(origin) {
     icon: path.join(__dirname, 'icons', 'deck.png'),
     webPreferences: { preload: path.join(__dirname, 'preload.cjs'), session: browserSession,
       nodeIntegration: false, contextIsolation: true, sandbox: true, webSecurity: true,
-      webviewTag: false, devTools: !app.isPackaged, spellcheck: false },
+      webviewTag: false, devTools: !app.isPackaged && !source, spellcheck: false },
   })
   const external = url => { if (safeExternal(url)) void shell.openExternal(url).catch(error => log(error.message)) }
   mainWindow.webContents.setWindowOpenHandler(({ url }) => { external(url); return { action: 'deny' } })
@@ -132,59 +134,49 @@ async function stopBackend() {
   })
 }
 
-function installUpdate() {
-  if (!updateReady || quitting) return
-  quitAfterStop = () => require('electron-updater').autoUpdater.quitAndInstall(false, true)
-  app.quit()
-}
-
-function configureUpdates() {
-  const { autoUpdater } = require('electron-updater')
-  // Local builds have no update configuration. AppImage is the supported Linux channel.
-  const enabled = app.isPackaged && existsSync(path.join(process.resourcesPath, 'app-update.yml')) &&
-    (process.platform !== 'linux' || Boolean(process.env.APPIMAGE))
-  autoUpdater.autoDownload = true
-  autoUpdater.autoInstallOnAppQuit = false
-  autoUpdater.allowDowngrade = false
-  autoUpdater.logger = { info: log, warn: log, error: log, debug: () => {} }
-  autoUpdater.on('error', () => log('Update check failed; the installed version remains usable.'))
-  async function offerInstall() {
-    if (!mainWindow || quitting) return
-    const result = await dialog.showMessageBox(mainWindow, { type: 'info', title: 'Deck update ready',
-      message: 'A new version of Deck is ready.', detail: 'Save any edits before restarting. Your saved records will be kept.',
-      buttons: ['Later', 'Restart and install'], defaultId: 0, cancelId: 0 })
-    if (result.response === 1) installUpdate()
-  }
-  autoUpdater.on('update-downloaded', () => { updateReady = true; void offerInstall() })
-  async function check(manual = false) {
-    if (!enabled) {
-      if (manual) await dialog.showMessageBox({ message: 'Updates are available in release installations.',
-        detail: 'This build is for local testing. Install a released Windows, Mac, or Linux AppImage build to receive updates.' })
-      return
-    }
-    if (updateReady && manual) { await offerInstall(); return }
-    try {
-      const result = await autoUpdater.checkForUpdates()
-      if (manual && result && !result.isUpdateAvailable) await dialog.showMessageBox({ message: 'Deck is up to date.' })
-    } catch {
-      if (manual) await dialog.showMessageBox({ type: 'warning', message: 'Deck could not check for updates.',
-        detail: 'Check your connection and try again later. Your installed app remains available.' })
+function configureUpdates(origin) {
+  const updater = createSourceUpdater(source, state => {
+    if (mainWindow && !mainWindow.isDestroyed()) mainWindow.webContents.send('deck:update-state', state)
+  })
+  async function restart() {
+    if (updater.state().status !== 'ready' || !mainWindow || quitting) return
+    const choice = await dialog.showMessageBox(mainWindow, { type: 'info', title: 'Restart Deck',
+      message: 'Your update is ready.', detail: 'Save any edits before restarting. Your saved records will be kept.',
+      buttons: ['Later', 'Restart and update'], defaultId: 0, cancelId: 0 })
+    if (choice.response === 1) {
+      quitAfterStop = () => updater.restartAfterExit()
+      app.quit()
     }
   }
+  function handle(channel, callback) {
+    ipcMain.handle(channel, event => {
+      if (!trustedSender(event, mainWindow, origin)) throw new Error('Open this action from Deck.')
+      return callback()
+    })
+  }
+  handle('deck:update-state', updater.state)
+  handle('deck:update', updater.prepare)
+  handle('deck:restart', restart)
   const template = [
     ...(process.platform === 'darwin' ? [{ label: 'Deck', submenu: [{ role: 'about' }, { type: 'separator' }, { role: 'quit' }] }] : []),
-    { label: 'File', submenu: [{ label: 'Open data folder', click: () => { void shell.openPath(path.join(app.getPath('userData'), 'data')) } }, { type: 'separator' }, { role: 'quit' }] },
+    { label: 'File', submenu: [
+      { label: 'Open data folder', click: () => { void shell.openPath(path.join(app.getPath('userData'), 'data')) } },
+      ...(source ? [{ label: 'Open update log', click: () => { void shell.openPath(path.join(source.home, 'update.log')) } }] : []),
+      { type: 'separator' }, { role: 'quit' }] },
     { role: 'editMenu' },
     { label: 'View', submenu: [{ role: 'resetZoom' }, { role: 'zoomIn' }, { role: 'zoomOut' }, { role: 'togglefullscreen' }] },
-    { label: 'Help', submenu: [{ label: 'Check for updates…', click: () => { void check(true) } },
-      { label: 'About Deck', click: () => { void dialog.showMessageBox({ message: `Deck ${app.getVersion()}`, detail: 'Your NFL research, watchlist, and tracker. Saved locally on this computer.' }) } }] },
+    { label: 'Help', submenu: [
+      { label: 'Update Deck…', enabled: Boolean(source), click: () => {
+        if (updater.state().status === 'ready') void restart()
+        else {
+          updater.prepare()
+          void dialog.showMessageBox({ message: 'Deck is checking for updates.', detail: 'Open Data to see progress and restart when the update is ready.' })
+        }
+      } },
+      { label: 'About Deck', click: () => { void dialog.showMessageBox({ message: `Deck ${app.getVersion()}`,
+        detail: `Your NFL research, watchlist, and tracker. Saved locally on this computer.${source ? `\nRevision ${source.revision.slice(0, 12)}` : ''}` }) } }] },
   ]
   Menu.setApplicationMenu(Menu.buildFromTemplate(template))
-  if (enabled) {
-    setTimeout(() => { void check() }, 15000).unref()
-    updateTimer = setInterval(() => { void check() }, 4 * 60 * 60 * 1000)
-    updateTimer.unref()
-  }
 }
 
 if (!singleInstance) {
@@ -197,20 +189,18 @@ if (!singleInstance) {
     event.preventDefault()
     if (quitting) return
     quitting = true
-    clearInterval(updateTimer)
     void stopBackend().finally(() => {
       stopping = true
-      if (quitAfterStop) {
-        quitAfterStop()
-        // If the installer cannot launch, do not leave an app with a stopped service.
-        setTimeout(() => app.quit(), 3000).unref()
-      } else app.quit()
+      try { if (quitAfterStop) quitAfterStop() }
+      catch (error) { log(error.message) }
+      finally { app.quit() }
     })
   })
   void app.whenReady().then(async () => {
     const origin = await startBackend()
     if (quitting) return
+    configureUpdates(origin)
+    if (process.platform === 'darwin') app.dock.setIcon(path.join(__dirname, 'icons', 'deck.png'))
     await createWindow(origin)
-    configureUpdates()
   }).catch(error => { log(error.message); if (!quitting) showFailure(error.message); app.quit() })
 }

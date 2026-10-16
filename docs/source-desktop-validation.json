@@ -1,0 +1,30 @@
+{
+  "checked_on": "2026-10-16",
+  "target": "Git-backed Deck desktop: Windows x64, macOS arm64/x64, Linux x64",
+  "source_repository": "timcocuzza/kal-deck",
+  "validated_platform": "Linux x64; Python 3.14.7; Node 26.8.2",
+  "checks": {
+    "python_tests": 154,
+    "javascript_tests": 18,
+    "typescript_build": "passed",
+    "workflow_actionlint": "passed",
+    "bundle_budget": "passed: JavaScript 93897 gzip bytes; CSS 6066 gzip bytes",
+    "npm_audit_vulnerabilities": 0,
+    "python_audit_vulnerabilities": 0,
+    "secret_scan": "passed: repository history and clean source snapshot",
+    "fresh_installation": "passed in a disposable runtime from a clean committed snapshot; hash-locked Python dependencies, npm ci, Electron download, tests, build and private backend smoke checks",
+    "real_update": "passed against a disposable local upstream: incompatible candidate rejected, current unchanged, valid candidate fully built and checked, atomic activation, previous version retained, no-change check skips rebuilding",
+    "linux_managed_launch": "Electron, renderer and backend running with a separate temporary profile database; test instance closed afterwards",
+    "revision_backups": "same app version with different Git revisions produces separate verified SQLite backups",
+    "ipc_boundary": "own window, main frame and private origin required",
+    "source_release_disk_usage": "approximately 415 MiB per built Linux revision, excluding shared download caches and personal data"
+  },
+  "pending": [
+    "GitHub-hosted workflow execution after push",
+    "Windows and both Mac architectures: native setup and graphical acceptance",
+    "In-app restart/update confirmation flow on all platforms",
+    "Live public HTTPS update after repository publication",
+    "Upstream download limits and full-season memory profiling"
+  ],
+  "publication": "No remote push, GitHub visibility change, or release publication performed."
+}

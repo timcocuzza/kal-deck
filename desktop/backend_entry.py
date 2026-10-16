@@ -19,7 +19,8 @@ def main():
     if not getattr(sys, 'frozen', False):
         sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
     from backend.desktop_storage import prepare_data
-    prepare_data(Path(data_path), os.environ.get('DECK_DESKTOP_VERSION', '0.1.0'))
+    prepare_data(Path(data_path), os.environ.get('DECK_DESKTOP_VERSION', '0.1.0'),
+                 os.environ.get('DECK_DESKTOP_REVISION'))
     # Windows has no system IANA database. Fail early if packaging omitted ours.
     from zoneinfo import ZoneInfo
     ZoneInfo('America/New_York')

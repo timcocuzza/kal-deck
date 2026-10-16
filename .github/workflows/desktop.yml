@@ -2,62 +2,49 @@ name: Deck Desktop
 
 on:
   workflow_dispatch:
-    inputs:
-      release:
-        description: Build signed installers and create a draft in the public release repository
-        type: boolean
-        default: false
+  push:
+    branches: [main]
   pull_request:
     paths:
       - 'desktop/**'
       - 'src/**'
       - 'public/**'
-      - 'index.html'
-      - 'vite.config.*'
-      - 'tsconfig*.json'
       - 'backend/**'
-      - 'scripts/*desktop*'
-      - '*requirements*.txt'
+      - 'tests/**'
+      - 'scripts/**'
+      - 'requirements.txt'
       - 'package*.json'
-      - '.github/workflows/desktop.yml'
+      - 'index.html'
+      - '*config*'
+      - '.github/workflows/**'
 
 permissions:
   contents: read
 
 concurrency:
-  group: deck-desktop-${{ github.ref }}-${{ inputs.release || false }}
-  cancel-in-progress: false
+  group: deck-desktop-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   verify:
     uses: ./.github/workflows/ci.yml
 
-  build:
+  setup:
     needs: verify
-    if: inputs.release != true || github.ref == 'refs/heads/main'
-    environment: ${{ inputs.release && 'desktop-release' || 'desktop-build' }}
     strategy:
       fail-fast: false
       matrix:
         include:
           - runner: windows-2025
-            platform: win
             arch: x64
-            service: build/desktop/backend/deck-service/deck-service.exe
           - runner: macos-15
-            platform: mac
             arch: arm64
-            service: build/desktop/backend/deck-service/deck-service
           - runner: macos-15-intel
-            platform: mac
             arch: x64
-            service: build/desktop/backend/deck-service/deck-service
           - runner: ubuntu-24.04
-            platform: linux
             arch: x64
-            service: build/desktop/backend/deck-service/deck-service
     runs-on: ${{ matrix.runner }}
-    timeout-minutes: 45
+    timeout-minutes: 30
     defaults:
       run:
         shell: bash
@@ -65,6 +52,7 @@ jobs:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           persist-credentials: false
+          fetch-depth: 0
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: '24'
@@ -73,107 +61,15 @@ jobs:
         with:
           python-version: '3.14.7'
           architecture: ${{ matrix.arch }}
-          cache: pip
-          cache-dependency-path: '*requirements*.txt'
-      - name: Install verified build dependencies
-        run: |
-          npm ci
-          npm run desktop:install-runtime
-          python -m pip install --require-hashes -r requirements-desktop.txt
-          python -m pip check
-      - name: Test and freeze the native service
-        run: |
-          npm test
-          npm run build
-          python -m unittest discover -s tests -v
-          python scripts/build_desktop_backend.py
-          python scripts/smoke_desktop.py --executable '${{ matrix.service }}'
-      - name: Build installers
+      - name: Build and verify a fresh source installation
         env:
-          DECK_RELEASE: ${{ inputs.release && '1' || '0' }}
-          DECK_RELEASE_OWNER: ${{ vars.DECK_RELEASE_OWNER }}
-          DECK_RELEASE_REPO: ${{ vars.DECK_RELEASE_REPO }}
-          DECK_WINDOWS_PUBLISHER: ${{ vars.DECK_WINDOWS_PUBLISHER }}
-          DECK_AZURE_SIGNING_ACCOUNT: ${{ vars.DECK_AZURE_SIGNING_ACCOUNT }}
-          DECK_AZURE_SIGNING_ENDPOINT: ${{ vars.DECK_AZURE_SIGNING_ENDPOINT }}
-          DECK_AZURE_SIGNING_PROFILE: ${{ vars.DECK_AZURE_SIGNING_PROFILE }}
-          AZURE_TENANT_ID: ${{ inputs.release && matrix.platform == 'win' && secrets.DECK_AZURE_TENANT_ID || '' }}
-          AZURE_CLIENT_ID: ${{ inputs.release && matrix.platform == 'win' && secrets.DECK_AZURE_CLIENT_ID || '' }}
-          AZURE_CLIENT_SECRET: ${{ inputs.release && matrix.platform == 'win' && secrets.DECK_AZURE_CLIENT_SECRET || '' }}
-          CSC_LINK: ${{ inputs.release && matrix.platform == 'mac' && secrets.DECK_MAC_CERTIFICATE || '' }}
-          CSC_KEY_PASSWORD: ${{ inputs.release && matrix.platform == 'mac' && secrets.DECK_MAC_CERTIFICATE_PASSWORD || '' }}
-          WIN_CSC_LINK: ${{ inputs.release && matrix.platform == 'win' && secrets.DECK_WINDOWS_CERTIFICATE || '' }}
-          WIN_CSC_KEY_PASSWORD: ${{ inputs.release && matrix.platform == 'win' && secrets.DECK_WINDOWS_CERTIFICATE_PASSWORD || '' }}
-          APPLE_ID: ${{ inputs.release && matrix.platform == 'mac' && secrets.DECK_APPLE_ID || '' }}
-          APPLE_APP_SPECIFIC_PASSWORD: ${{ inputs.release && matrix.platform == 'mac' && secrets.DECK_APPLE_APP_PASSWORD || '' }}
-          APPLE_TEAM_ID: ${{ inputs.release && matrix.platform == 'mac' && secrets.DECK_APPLE_TEAM_ID || '' }}
-        run: npm run desktop:dist -- --${{ matrix.platform }} --${{ matrix.arch }} --publish never
-      - name: Verify signed Mac app
-        if: inputs.release && matrix.platform == 'mac'
-        run: |
-          if [ '${{ matrix.arch }}' = arm64 ]; then
-            APP_PATH='release/desktop/mac-arm64/Deck.app'
-          else
-            APP_PATH='release/desktop/mac/Deck.app'
-          fi
-          codesign --verify --deep --strict "$APP_PATH"
-          xcrun stapler validate "$APP_PATH"
-      - name: Verify Windows app and service signatures
-        if: inputs.release && matrix.platform == 'win'
-        shell: pwsh
-        run: |
-          $files = @('release/desktop/win-unpacked/Deck.exe', 'release/desktop/win-unpacked/resources/backend/deck-service/deck-service.exe')
-          $files += (Get-ChildItem release/desktop -Filter '*.exe').FullName
-          foreach ($file in $files) {
-            $signature = Get-AuthenticodeSignature $file
-            if ($signature.Status -ne 'Valid') { throw "Invalid signature: $file" }
-          }
-      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+          DECK_TEST_HOME: ${{ runner.temp }}/deck-source-test
+        run: python scripts/install_desktop.py --no-shortcuts --home "$DECK_TEST_HOME"
+      - name: Save setup diagnostics
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
-          name: deck-${{ matrix.platform }}-${{ matrix.arch }}-${{ github.sha }}
-          path: |
-            release/desktop/*.exe
-            release/desktop/*.dmg
-            release/desktop/*.zip
-            release/desktop/*.AppImage
-            release/desktop/*.blockmap
-            release/desktop/latest*.yml
-          if-no-files-found: error
-          retention-days: 14
-          compression-level: 0
-
-  draft-release:
-    needs: build
-    if: inputs.release && github.ref == 'refs/heads/main'
-    environment: desktop-release
-    runs-on: ubuntu-24.04
-    timeout-minutes: 10
-    steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
-        with:
-          persist-credentials: false
-      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
-        with:
-          node-version: '24'
-          cache: npm
-      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
-        with:
-          pattern: deck-*-${{ github.sha }}
-          path: release/incoming
-      - name: Assemble and verify all platform update files
-        run: |
-          npm ci --ignore-scripts
-          node scripts/assemble_desktop_release.cjs
-      - name: Create draft release
-        env:
-          GH_TOKEN: ${{ secrets.DECK_RELEASE_TOKEN }}
-          DECK_RELEASE_OWNER: ${{ vars.DECK_RELEASE_OWNER }}
-          DECK_RELEASE_REPO: ${{ vars.DECK_RELEASE_REPO }}
-        run: |
-          set -euo pipefail
-          : "${GH_TOKEN:?Set a fine-grained release-repository token}"
-          RELEASE_REPOSITORY="$DECK_RELEASE_OWNER/$DECK_RELEASE_REPO"
-          test "$(gh repo view "$RELEASE_REPOSITORY" --json visibility --jq .visibility)" = PUBLIC
-          VERSION=$(node -p 'require("./package.json").version')
-          printf 'Deck %s\n\nSource revision: %s\n\nInstall the package for your platform. Existing local data is preserved.\n' "$VERSION" "$GITHUB_SHA" > release/notes.txt
-          gh release create "v$VERSION" release/publish/* --repo "$RELEASE_REPOSITORY" --draft --title "Deck $VERSION" --notes-file release/notes.txt
+          name: deck-setup-${{ matrix.runner }}-${{ github.sha }}
+          path: ${{ runner.temp }}/deck-source-test/setup.log
+          if-no-files-found: ignore
+          retention-days: 7

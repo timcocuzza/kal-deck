@@ -10,6 +10,16 @@ export function InstallApp() {
   const [installed, setInstalled] = useState(() => window.matchMedia('(display-mode: standalone)').matches)
   const [message, setMessage] = useState('')
   const [busy, setBusy] = useState(false)
+  const [update, setUpdate] = useState<DeckUpdateState | null>(null)
+
+  useEffect(() => {
+    const desktop = window.deckDesktop
+    if (!desktop?.getUpdateState) return
+    let active = true
+    const unsubscribe = desktop.onUpdate(value => { if (active) setUpdate(value) })
+    void desktop.getUpdateState().then(value => { if (active) setUpdate(value) }).catch(() => {})
+    return () => { active = false; unsubscribe() }
+  }, [])
 
   useEffect(() => {
     const capture = (event: Event) => { event.preventDefault(); setPrompt(event as InstallPrompt) }
@@ -45,13 +55,18 @@ export function InstallApp() {
   if (window.deckDesktop) return <section className="install-card" aria-labelledby="install-title">
     <div><h2 id="install-title">Deck desktop</h2>
       <p>Your watchlist, tracker, and saved research stay on this computer. Updates preserve your saved data.</p>
-      <p className="source-note">Use Help → Check for updates to check for a new version. An internet connection is needed to refresh research.</p>
+      <p className="source-note" role="status">{update?.message ?? 'Your personal data stays separate from app updates.'}</p>
     </div>
+    {update && update.status !== 'unavailable' && <button disabled={update.status === 'checking' || update.status === 'preparing'}
+      onClick={() => { void (update.status === 'ready' ? window.deckDesktop!.restart() : window.deckDesktop!.update()).catch(() =>
+        setUpdate({ status: 'error', message: 'The update could not start. Try again or reopen Deck.' })) }}>
+      {update.status === 'ready' ? 'Restart to update' : ['checking', 'preparing'].includes(update.status) ? 'Preparing update…' : 'Update Deck'}
+    </button>}
   </section>
 
   return <section className="install-card" aria-labelledby="install-title">
     <div><h2 id="install-title">{installed ? 'Deck is installed' : 'Keep Deck close'}</h2>
-      <p>The Deck desktop installer opens the app and starts its local service for you. Browser installation adds a shortcut to this browser version and still requires its local service to be running.</p>
+      <p>Deck desktop setup creates an app icon that starts Deck for you. Browser installation adds a shortcut to this browser version and still requires its local service to be running.</p>
       {!installed && !prompt && <p className="source-note">In Chrome or Edge, use the address bar’s install icon or the browser menu’s install option when available.</p>}
       {message && !installed && <p role="status">{message}</p>}
     </div>
