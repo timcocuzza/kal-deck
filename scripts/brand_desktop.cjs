@@ -21,7 +21,9 @@ function signingOrder(bundle) {
     }
   }
   visit(bundle)
-  return targets
+  // codesign recognizes a framework's main binary as its containing bundle, so
+  // its deeper helpers must be signed before that binary as well as the bundle.
+  return targets.sort((a, b) => b.split(path.sep).length - a.split(path.sep).length)
 }
 
 function brandMacRuntime(root, platform = process.platform, execute = execFileSync) {

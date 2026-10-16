@@ -14,9 +14,12 @@ test('Mac signing seals nested Mach-O code and frameworks before their containin
     const binary = path.join(framework, 'Versions/A/Electron Framework')
     fs.mkdirSync(path.dirname(binary), { recursive: true })
     fs.writeFileSync(binary, Buffer.from('cffaedfe00000000', 'hex'))
+    const crashHandler = path.join(framework, 'Versions/A/Helpers/chrome_crashpad_handler')
+    fs.mkdirSync(path.dirname(crashHandler), { recursive: true })
+    fs.writeFileSync(crashHandler, Buffer.from('cffaedfe00000000', 'hex'))
     fs.writeFileSync(path.join(framework, 'Info.plist'), '<plist>resources are not executable code</plist>')
     if (process.platform !== 'win32') fs.symlinkSync('A', path.join(framework, 'Versions/Current'))
-    assert.deepEqual(signingOrder(bundle), [binary, framework, bundle])
+    assert.deepEqual(signingOrder(bundle), [crashHandler, binary, framework, bundle])
     assert.equal(brandMacRuntime(temporary, 'linux'), false)
     assert.equal(brandMacRuntime(temporary, 'win32'), false)
   } finally { fs.rmSync(temporary, { recursive: true, force: true }) }
