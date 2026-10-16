@@ -1,0 +1,5 @@
+# Keep clean checkouts consistent when setup isolates itself from global Git config.
+* text=auto eol=lf
+*.png binary
+*.ico binary
+*.icns binary

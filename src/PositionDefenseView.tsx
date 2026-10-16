@@ -1,5 +1,5 @@
 import { useId, useState } from 'react'
-import { DataNotices } from './DataNotices'
+import { DataNotices } from './DataNoticeList'
 import type { ReactNode } from 'react'
 import { useReport } from './useReport'
 import { Modal } from './ui'

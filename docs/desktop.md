@@ -164,11 +164,25 @@ refreshes are still the primary performance risks. Core UI interactions are unch
 
 ## CI and publishing an update
 
-`Deck CI` checks tests, build size, dependency vulnerabilities and repository history
-for secrets. `Deck Desktop` performs fresh source setups on Windows x64, macOS ARM64,
-macOS Intel, and Linux x64, including temporary-profile backend smoke checks. These
-jobs use read-only repository permissions and require no Apple/Windows certificates,
-release token, or separate release repository. They upload diagnostic logs, not DMGs.
+There is one workflow, **Deck CI**. Every push to `main` and every pull request runs
+tests, build-size checks, dependency vulnerability audits and a repository-history
+secret scan once. UI-only and documentation-only changes stop there. Desktop,
+backend, dependency, test, script, workflow and unrecognized root-file changes also
+run fresh source setups on Windows x64, macOS ARM64, macOS Intel and Linux x64,
+including temporary-profile backend smoke checks. Weekly and manually requested
+runs check every platform. New commits cancel older runs on the same branch/PR.
+
+The normal verification job skips Electron's binary download because it does not
+launch the desktop. Native setup jobs cache npm, Python and Electron downloads but
+still create fresh environments and validate the locked dependencies. Failed setup
+logs appear directly in the job output and are also saved as diagnostic artifacts.
+GitHub's runner queues can still add waiting time, especially on Mac.
+
+Dependabot groups weekly version updates into one PR per ecosystem (npm, Python,
+GitHub Actions). Its own dependency-discovery runs are separate GitHub-managed jobs;
+the version-update limit does not disable security alerts or security updates.
+All project jobs use read-only repository permissions and require no Apple/Windows
+certificates, release token or separate release repository. No DMGs are published.
 
 Push reviewed changes to `main` after the required checks pass. Once those commits
 are publicly accessible, installed users receive them through **Update Deck**. App

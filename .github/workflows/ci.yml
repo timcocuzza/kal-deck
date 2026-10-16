@@ -1,7 +1,6 @@
 name: Deck CI
 
 on:
-  workflow_call:
   pull_request:
   push:
     branches: [main]
@@ -13,23 +12,31 @@ permissions:
   contents: read
 
 concurrency:
-  group: deck-ci-${{ github.workflow }}-${{ github.ref }}
+  group: deck-ci-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 jobs:
   verify:
     runs-on: ubuntu-24.04
     timeout-minutes: 15
+    outputs:
+      desktop: ${{ steps.scope.outputs.desktop }}
     steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
           fetch-depth: 0
-      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+      - name: Select platform checks
+        id: scope
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
+          HEAD_SHA: ${{ github.sha }}
+        run: python3 scripts/ci_scope.py
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: '24'
           cache: npm
-      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           python-version: '3.14.7'
           cache: pip
@@ -41,7 +48,7 @@ jobs:
           /tmp/gitleaks git --redact .
       - name: Install locked application dependencies
         run: |
-          npm ci
+          npm ci --ignore-scripts --no-audit --no-fund
           python -m pip install --require-hashes -r requirements.txt
           python -m pip check
       - name: Test and build
@@ -57,3 +64,64 @@ jobs:
           python -m venv /tmp/deck-security
           /tmp/deck-security/bin/pip install pip-audit==2.10.1
           /tmp/deck-security/bin/pip-audit -r requirements.txt --no-deps --disable-pip
+
+  setup:
+    needs: verify
+    if: needs.verify.outputs.desktop == 'true'
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: windows-2025
+            arch: x64
+          - runner: macos-15
+            arch: arm64
+          - runner: macos-15-intel
+            arch: x64
+          - runner: ubuntu-24.04
+            arch: x64
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 20
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '24'
+          cache: npm
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.14.7'
+          architecture: ${{ matrix.arch }}
+          cache: pip
+          cache-dependency-path: requirements.txt
+      - uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ${{ runner.temp }}/deck-electron-cache
+          key: electron-${{ runner.os }}-${{ matrix.arch }}-${{ hashFiles('package-lock.json') }}
+      - name: Build and verify a fresh source installation
+        env:
+          DECK_TEST_HOME: ${{ runner.temp }}/deck-source-test
+          electron_config_cache: ${{ runner.temp }}/deck-electron-cache
+        run: python scripts/install_desktop.py --no-shortcuts --home "$DECK_TEST_HOME"
+      - name: Show setup failure details
+        if: failure()
+        env:
+          DECK_TEST_HOME: ${{ runner.temp }}/deck-source-test
+        run: |
+          if [ -f "$DECK_TEST_HOME/setup.log" ]; then
+            tail -n 120 "$DECK_TEST_HOME/setup.log"
+          fi
+      - name: Save setup diagnostics
+        if: failure()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: deck-setup-${{ matrix.runner }}-${{ github.sha }}
+          path: ${{ runner.temp }}/deck-source-test/setup.log
+          if-no-files-found: ignore
+          retention-days: 7

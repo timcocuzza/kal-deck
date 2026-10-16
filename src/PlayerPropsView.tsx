@@ -1,5 +1,5 @@
 import { teamStyle } from './teamColors'
-import { DataNotices } from './DataNotices'
+import { DataNotices } from './DataNoticeList'
 import { useEffect, useRef, useState } from 'react'
 import { ThresholdTable } from './ThresholdTable'
 import { WatchButton } from './Watchlist'
