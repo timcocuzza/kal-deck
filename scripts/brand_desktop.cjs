@@ -30,7 +30,7 @@ function brandMacRuntime(root, platform = process.platform, execute = execFileSy
   // Editing a signed bundle invalidates its seal. Ad-hoc signing is local and needs
   // no account/certificate. Preserve Electron's runtime entitlements and leave its
   // nested binaries untouched; verify the entire bundle before accepting it.
-  execute('/usr/bin/codesign', ['--force', '--sign', '-', '--preserve-metadata=entitlements', bundle], options)
+  execute('/usr/bin/codesign', ['--force', '--sign', '-', '--preserve-metadata=entitlements,flags,runtime', bundle], options)
   execute('/usr/bin/codesign', ['--verify', '--deep', '--strict', bundle], options)
   const branded = read(info)
   if (branded.CFBundleName !== 'Deck' || branded.CFBundleDisplayName !== 'Deck') throw new Error('Mac runtime branding did not persist.')
