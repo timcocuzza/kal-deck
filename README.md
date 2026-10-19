@@ -25,7 +25,8 @@ returns through matchup navigation; wide screens include a collapsible game side
 
 Opening the app reads saved snapshots immediately and starts one background source
 refresh for the selected season. Manual **Refresh** remains available afterward;
-there is no polling. SQLite keeps each source's latest validated snapshot and
+watched contracts also check pregame asks and results while Deck is running.
+SQLite keeps each source's latest validated snapshot and
 refresh status. Failed updates preserve saved data and expose their errors.
 Spread history lines load automatically once per displayed contract per page session.
 
@@ -129,9 +130,21 @@ the app, but require saving before a page reload or restart. **Record a bet** ca
 the saved side and notes into the tracker, including when recording from the matching
 spread or prop. Source refreshes cannot replace your notes; conflicting edits from
 another tab require review. Bookmarks persist in SQLite across
-restarts and source refreshes. Quotes come from the latest verified source snapshots,
-not a stored price at the time of pinning. Unavailable contracts remain removable;
-pregame quotes are withheld after kickoff. Watchlist records are separate from
+restarts and source refreshes. Each side's last valid pregame ask and fetch time are
+retained separately from replaceable source snapshots and stay visible after kickoff.
+Existing bookmarks recover quotes from saved sources when available. While the backend
+is running, watched contracts with missing quotes are checked every five minutes;
+in the final five minutes before scheduled kickoff, asks are checked every 30 seconds.
+Requests completed at or after kickoff never replace the retained pregame ask.
+Missed quotes cannot be captured while Deck is closed; unavailable asks stay blank.
+After kickoff, official results are checked every five minutes using Kalshi's
+[market endpoint](https://docs.kalshi.com/api-reference/market/get-market), with an
+[archived-market fallback](https://docs.kalshi.com/api-reference/historical/get-historical-market).
+Green **Hit** / red **Miss** badges compare the reported result to the saved side.
+Undecided picks show the resolved Yes/No outcome, and void/non-binary results stay
+neutral. Pending results are never treated as misses; settlement can lag game end.
+The watchlist reloads saved tracking data every 30 seconds. Unavailable contracts
+remain removable. Watchlist records are separate from
 tracker tickets and are not included in tracker JSON backups.
 
 To record a combo, choose **Build combo**, select at least two watched picks, then

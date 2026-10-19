@@ -2,6 +2,8 @@
 
 from contextlib import asynccontextmanager, closing
 from pathlib import Path
+import asyncio
+import logging
 import json
 import os
 import sqlite3
@@ -21,6 +23,7 @@ from .position_defense import calculate_position_defense, position_rank_context
 from .tracker import TrackerStore, TrackerError, TrackerConflict
 from .elo import calculate_elo
 from .watchlist import WatchlistStore, WatchlistConflict
+from .watchlist_tracking import WatchlistMonitor, sync_saved_quotes
 from .security import DesktopAccess, PrivateAPIResponses, allowed_origins, validate_write_origin
 
 
@@ -40,7 +43,26 @@ async def lifespan(app: FastAPI):
     store.initialize()
     TrackerStore(DATABASE).initialize()
     WatchlistStore(DATABASE).initialize()
-    yield
+    stop = asyncio.Event()
+    monitor = WatchlistMonitor(DATABASE)
+
+    async def watch_contracts():
+        while not stop.is_set():
+            try:
+                await asyncio.to_thread(monitor.refresh)
+            except Exception:
+                logging.exception('Watchlist update failed; saved quotes and results remain available.')
+            try:
+                await asyncio.wait_for(stop.wait(), timeout=30)
+            except asyncio.TimeoutError:
+                pass
+
+    task = asyncio.create_task(watch_contracts())
+    try:
+        yield
+    finally:
+        stop.set()
+        await task
 
 
 desktop_mode = bool(os.environ.get('DECK_DESKTOP_TOKEN'))
@@ -288,6 +310,7 @@ def watchlist_call(operation, *args):
         bookmarks = WatchlistStore(DATABASE)
         if operation != 'entries':
             getattr(bookmarks, operation)(*args)
+        sync_saved_quotes(DATABASE)
         return {'entries': bookmarks.entries()}
     except WatchlistConflict as error:
         raise HTTPException(status_code=409, detail=str(error)) from error

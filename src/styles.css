@@ -116,6 +116,12 @@ details[open]>:not(summary){animation:reveal 160ms ease-out}
 .watch-button[aria-pressed=true]{color:var(--accent);border-color:var(--accent)}
 .game-card>.watch-button{display:block;margin:4px 0 10px;text-align:left}
 .watch-card{display:flex;flex-direction:column}
+.watch-card.watch-hit{border-color:#4ba881}
+.watch-card.watch-miss{border-color:#bb636e}
+.watch-outcome{align-self:flex-start;display:table;margin:12px 0;padding:5px 9px;border:1px solid currentColor;border-radius:6px;font-size:12px;font-weight:600}
+.watch-outcome.hit{color:#8ee0b8;background:#164b3433}
+.watch-outcome.miss{color:#ffa8b0;background:#6b243133}
+.watch-outcome.neutral{color:var(--muted)}
 .watch-card.combo-selected{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
 .watch-combo-pick{display:flex;align-items:center;gap:8px;margin-bottom:14px;font-size:12px;color:var(--accent);cursor:pointer}
 .watch-combo-pick input{accent-color:var(--accent);width:16px;height:16px;margin:0}

@@ -65,6 +65,21 @@ def load_markets(series: str, fetch: Fetcher = fetch_public) -> SourceData:
     return SourceData(rows, initial_url, resource.fetched_at, context={"series": series})
 
 
+def load_market(ticker: str, fetch: Fetcher = fetch_public) -> SourceData:
+    """Look up a bookmarked contract even after it leaves the open-market list."""
+    path = f"/markets/{_identifier(ticker)}"
+    try:
+        resource, data = _json_resource(BASE + path, fetch)
+    except SourceError as error:
+        if str(error) != 'Source returned HTTP 404.':
+            raise
+        resource, data = _json_resource(BASE + '/historical' + path, fetch)
+    market = data.get('market')
+    if not isinstance(market, dict) or market.get('ticker') != ticker or market.get('market_type') != 'binary':
+        raise SourceError('Kalshi returned an invalid or different contract.')
+    return SourceData([market], resource.url, resource.fetched_at)
+
+
 def load_history(series: str, ticker: str, start: int, end: int, interval: int,
                  fetch: Fetcher = fetch_public) -> SourceData:
     if start < 0 or end <= start or interval not in (1, 60, 1440):

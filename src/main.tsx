@@ -148,7 +148,7 @@ function App() {
           <details className="research-expand"><summary>Defense by player position</summary><PositionDefenseView key={`position-${season}`} season={season} revision={revision} refreshing={refreshing !== null} /></details></div>}
       <div hidden={view !== 'sources'}><InstallApp /></div>
       {view === 'sources' && <div className="research-page"><h1>Data sources</h1>
-      <p className="source-note">Season applies to nflverse data and game identities. Markets, coverage and injury reports use current published data. Sources refresh once on opening; spread lines load automatically when shown. No background polling.</p>
+      <p className="source-note">Season applies to nflverse data and game identities. Markets, coverage and injury reports use current published data. Sources refresh once on opening; spread lines load automatically when shown. Watched contracts check quotes near kickoff and results afterward while Deck is running.</p>
       <ul className="sources">
         {sources.map(source => (
           <li key={source.name}>

@@ -9,6 +9,7 @@ from unittest.mock import patch
 
 from backend import app as api
 from backend.storage import SnapshotStore
+from backend.sources.common import SourceData
 from backend.watchlist import WatchlistStore, WatchlistConflict
 
 
@@ -51,6 +52,7 @@ class WatchlistTests(unittest.TestCase):
         self.path = Path(self.temp.name) / 'local.sqlite3'
         self.store = WatchlistStore(self.path)
         self.store.initialize()
+        SnapshotStore(self.path).initialize()
 
     def test_cross_game_and_season_bookmarks_survive_restart_and_source_initialization(self):
         values = [entry(), entry(ticker='SPREAD-OTHER', kind='spread', game_id='2025_03_KC_BAL', season=2025, week=3)]
@@ -140,3 +142,24 @@ class WatchlistTests(unittest.TestCase):
             self.assertEqual(request('PATCH', path, details), expected)
             self.assertEqual(request('PATCH', path, {**details, 'notes': 'Stale overwrite'})[0], 409)
             self.assertEqual(request('GET', '/api/watchlist'), expected)
+
+    def test_api_recovers_ended_quote_and_returns_result_without_changing_user_revision(self):
+        snapshots = SnapshotStore(self.path)
+        stamp = '2026-10-18T16:59:00+00:00'
+        snapshots.save('schedule:2026', SourceData([{'game_id': entry()['game_id'], 'season': 2026,
+                        'week': 6, 'gameday': '2026-10-18', 'gametime': '13:00'}], '', stamp))
+        snapshots.save('receiving_yards', SourceData([{'ticker': entry()['ticker'], 'market_type': 'binary',
+                        'status': 'active', 'yes_ask_dollars': '0.42', 'no_ask_dollars': '0.60'}], '', stamp))
+        with patch.object(api, 'DATABASE', self.path):
+            status, data = request('PUT', '/api/watchlist', entry())
+            self.assertEqual(status, 200)
+            self.assertEqual(data['entries'][0]['tracking']['yes_ask'], {'dollars': '0.42', 'fetched_at': stamp})
+            self.store.observe(entry()['ticker'], market={'ticker': entry()['ticker'], 'market_type': 'binary',
+                               'status': 'finalized', 'result': 'no'}, fetched_at='2026-10-18T21:00:00+00:00')
+            status, data = request('PATCH', '/api/watchlist/' + entry()['ticker'],
+                                   {'side': 'No', 'notes': 'Saved pick', 'revision': 0})
+            self.assertEqual(status, 200)
+            result = data['entries'][0]
+            self.assertEqual(result['revision'], 1)
+            self.assertEqual(result['tracking']['result'], 'no')
+            self.assertEqual(result['tracking']['no_ask']['dollars'], '0.60')

@@ -7,6 +7,8 @@ from .sources.kalshi_metadata import load_games, load_teams, load_players
 from .sources.nflverse import load_dataset
 from .sources.pages import load_coverage, load_injuries
 from .storage import SnapshotStore
+from .watchlist import WatchlistStore
+from .watchlist_tracking import sync_saved_quotes
 
 
 @dataclass(frozen=True)
@@ -88,8 +90,11 @@ class RefreshService:
             raise SourceError("This source is already refreshing.")
         try:
             try:
+                WatchlistStore(self.store.path).initialize()
+                sync_saved_quotes(self.store.path)
                 result = source.load(season, self.fetch, self.store)
                 self.store.save(source.key(season), result)
+                sync_saved_quotes(self.store.path)
             except SourceError as error:
                 self.store.record_failure(source.key(season), str(error))
             return self.status(name, season)

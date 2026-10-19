@@ -6,10 +6,12 @@ import { teamStyle } from './teamColors'
 import type { BetSelection } from './TrackerView'
 import { ticketSelections } from './ticketSelections'
 import type { NotedSelection } from './ticketSelections'
+import { watchAsk, watchOutcome } from './watchlistStatus'
+import type { WatchTracking } from './watchlistStatus'
 
 type WatchReference = { ticker: string; kind: 'prop' | 'spread'; season: number; week: number; game_id: string; label: string }
 type WatchDetails = { side: '' | 'Yes' | 'No'; notes: string; revision: number }
-export type WatchEntry = WatchReference & WatchDetails
+export type WatchEntry = WatchReference & WatchDetails & { tracking?: WatchTracking }
 type WatchState = {
   entries: WatchEntry[]; busy: boolean; ready: boolean; error: string; toggle: (entry: WatchReference) => void; reload: () => void
   drafts: Record<string, WatchDetails>; setDraft: (ticker: string, draft: WatchDetails | null) => void
@@ -51,7 +53,11 @@ export function WatchlistProvider({ children }: { children: ReactNode }) {
     finally { lock.current = false; setBusy(false) }
   }
   const reload = () => { void run(() => request()) }
-  useEffect(reload, [])
+  useEffect(() => {
+    reload()
+    const timer = window.setInterval(reload, 30000)
+    return () => window.clearInterval(timer)
+  }, [])
   const toggle = (entry: WatchReference) => {
     const { ticker, kind, season, week, game_id, label } = entry
     const removing = entries.some(item => item.ticker === ticker)
@@ -141,7 +147,7 @@ function WatchCard({ entry, revision, onOpen, onRecord, choosing, selected, onSe
     ? `/api/matchups/${encodeURIComponent(entry.game_id)}/props?season=${entry.season}`
     : matchupUrl, revision)
   const game = matchups.data?.games?.find(game => game.game_id === entry.game_id)
-  const kickoff = entry.kind === 'prop' ? data?.kickoff : game?.kickoff
+  const kickoff = entry.tracking?.kickoff ?? (entry.kind === 'prop' ? data?.kickoff : game?.kickoff)
   const [clock, setClock] = useState(Date.now())
   useEffect(() => {
     if (!kickoff) return
@@ -156,6 +162,13 @@ function WatchCard({ entry, revision, onOpen, onRecord, choosing, selected, onSe
   const market = !started ? contract : undefined
   const group = data?.groups?.find(group => group.markets.some(market => market.ticker === entry.ticker))
   const source = data?.sources.find(source => source.name === (entry.kind === 'spread' ? 'spreads' : group?.category))
+  const savedAsk = watchAsk(entry.side, entry.tracking)
+  const currentAsk = entry.side === 'No' ? market?.no_ask_dollars : market?.yes_ask_dollars
+  const useCurrent = !!currentAsk && (!savedAsk || (source?.fetched_at != null
+    && new Date(source.fetched_at).getTime() > new Date(savedAsk.fetched_at).getTime()))
+  const price = useCurrent ? currentAsk : savedAsk?.dollars
+  const quoteTime = useCurrent ? source?.fetched_at : savedAsk?.fetched_at
+  const outcome = watchOutcome(entry.side, entry.tracking)
   const teamCode = group?.player.team ?? contract?.team ?? ''
   const team = [game?.away, game?.home].find(team => team?.code === teamCode)
   const matchup = entry.game_id.split('_').slice(2).join(' vs ')
@@ -163,7 +176,7 @@ function WatchCard({ entry, revision, onOpen, onRecord, choosing, selected, onSe
   const title = entry.kind === 'prop' ? group?.player.name ?? savedLabel[0] : team?.name ?? matchup
   const statistic = entry.kind === 'prop' ? group?.label ?? (savedLabel.slice(1, -1).join(' · ') || 'Player prop') : 'Spread'
   const threshold = contract?.label ?? (entry.kind === 'prop' ? savedLabel.at(-1) : entry.label)
-  return <article className={`prop-card watch-card${selected ? ' combo-selected' : ''}`} style={teamStyle(teamCode)}>
+  return <article className={`prop-card watch-card${outcome ? ` watch-${outcome.tone}` : ''}${selected ? ' combo-selected' : ''}`} style={teamStyle(teamCode)}>
     {choosing && <label className="watch-combo-pick"><input type="checkbox" checked={selected}
       disabled={busy || (!selected && (dirty || !entry.side))} onChange={onSelect} aria-label={`Include in combo: ${entry.label}`} />
       {dirty ? 'Save edits to include' : !entry.side ? 'Choose a side to include' : selected ? 'Selected for combo' : 'Include in combo'}
@@ -177,19 +190,24 @@ function WatchCard({ entry, revision, onOpen, onRecord, choosing, selected, onSe
     </div>
     <div className="prop-market">
       <div><small>{statistic}</small><button className="watch-threshold" disabled={!market} onClick={() => onOpen(entry)}>{threshold}</button></div>
-      <div className="prop-ask"><small>{entry.side || 'Yes'} ask</small><strong>{loading && !data ? 'Loading…' : askPrice(entry.side === 'No' ? market?.no_ask_dollars : market?.yes_ask_dollars)}</strong></div>
+      <div className="prop-ask"><small>{entry.side || 'Yes'} {started ? 'last pregame ask' : 'ask'}</small><strong>{loading && !data && !price ? 'Loading…' : askPrice(price)}</strong></div>
     </div>
     <div className="opponent-context watch-context">
       <small>{matchup} · Week {entry.week} · {entry.season}</small>
       <div className="watch-side"><span>Your side</span><strong>{entry.side || 'Not chosen'}</strong></div>
+      {outcome && <div className={`watch-outcome ${outcome.tone}`} role="status" title={`Kalshi result: ${entry.tracking?.result}`}>
+        {outcome.label}
+      </div>}
+      {started && !outcome && <div className="watch-outcome neutral" role="status">Awaiting result</div>}
       {entry.notes && <p className="watch-note-preview">{entry.notes}</p>}
       {dirty && <small className="watch-card-status">Unsaved edits</small>}
     </div>
     {error && <small className="watch-card-status" role="alert">{error} {market && 'Showing the previous quote.'}</small>}
-    {!loading && !market && <small className="watch-card-status">{started ? 'Game started · pregame quote unavailable' : 'Contract unavailable'}</small>}
+    {!loading && !market && !price && <small className="watch-card-status">{started ? 'No saved pregame ask available' : 'Contract unavailable'}</small>}
+    {entry.tracking?.error && <small className="watch-card-status" role="alert">Quote/result check failed · saved data retained. Retrying automatically.</small>}
     {data?.sources.some(source => source.error) && <small className="watch-card-status">Refresh failed · saved data may be out of date</small>}
-    {source?.fetched_at && <small className="watch-quote-time" title={`Quote snapshot: ${new Date(source.fetched_at).toLocaleString()}`}>
-      Saved quote · {new Date(source.fetched_at).toLocaleString(undefined, { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })}
+    {quoteTime && <small className="watch-quote-time" title={`Quote snapshot: ${new Date(quoteTime).toLocaleString()}`}>
+      {started ? 'Last saved pregame quote' : 'Saved quote'} · {new Date(quoteTime).toLocaleString(undefined, { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })}
     </small>}
     <div className="watch-card-actions">
       <button className="prop-log-button" disabled={busy} onClick={() => openEditor(entry.ticker)} aria-label={`Edit side and notes: ${entry.label}`}>Edit details <span aria-hidden="true">↗</span></button>
@@ -204,7 +222,8 @@ export function WatchlistView({ revision, onOpen, onRecord, onCombo }: {
   revision: number; onOpen: (entry: WatchEntry) => void; onRecord: (selection: BetSelection) => void
   onCombo: (selections: NotedSelection[]) => void
 }) {
-  const { entries, ready, busy, drafts } = useWatchlist()
+  const { entries, ready, busy, drafts, reload } = useWatchlist()
+  useEffect(reload, [revision])
   const [choosing, setChoosing] = useState(false)
   const [selected, setSelected] = useState<string[]>([])
   const [comboError, setComboError] = useState('')
@@ -236,6 +255,6 @@ export function WatchlistView({ revision, onOpen, onRecord, onCombo }: {
         setSelected(current => current.includes(entry.ticker) ? current.filter(ticker => ticker !== entry.ticker) : [...current, entry.ticker])
         setComboError('')
       }} />)}</div>
-    {!!entries.length && <p className="source-note">Use Edit details to choose a side and write notes. Prices show the selected side’s saved ask before fees; Yes ask is shown until you choose. Unavailable contracts stay saved until you remove them.</p>}
+    {!!entries.length && <p className="source-note">Prices show the selected side’s last saved pregame ask before fees; Yes is shown until you choose. While Deck is running, quotes are checked near kickoff and results every five minutes after kickoff. Hit/Miss follows your saved side and Kalshi’s reported result; settlement can lag the final whistle.</p>}
   </section>
 }
