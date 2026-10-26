@@ -6,6 +6,10 @@ from .sources.kalshi import load_markets
 from .sources.kalshi_metadata import load_games, load_teams, load_players
 from .sources.nflverse import load_dataset
 from .sources.pages import load_coverage, load_injuries
+from .sources.college import load_college
+from .sources.college_schedule import load_current_schedule
+from .sources.college_markets import load_college_markets
+from .sources.college_history import load_history as load_college_history
 from .storage import SnapshotStore
 from .watchlist import WatchlistStore
 from .watchlist_tracking import sync_saved_quotes
@@ -23,6 +27,17 @@ class SourceSpec:
         return f"{self.name}:{season}" if self.seasonal else self.name
 
     def load(self, season: int, fetch: Fetcher, store: SnapshotStore):
+        if self.name == 'cfb_strength':
+            return load_college_history(season, fetch, store)
+        if self.name == 'cfb_schedule':
+            baseline = store.read(f'cfb_research:{season}')
+            if baseline is None:
+                raise SourceError('Refresh college schedule and statistics first.')
+            return load_current_schedule(season, baseline.rows[0]['schedule'], fetch)
+        if self.name == 'cfb_markets':
+            return load_college_markets(season, fetch, store)
+        if self.provider == "SportsDataverse":
+            return load_college(season, fetch)
         if self.provider == "nflverse":
             return load_dataset(self.dataset, season, fetch)
         if self.provider == "Kalshi":
@@ -66,14 +81,20 @@ SOURCES = [
     SourceSpec("rushing_attempts", "Rushing attempts props", "Kalshi", "KXNFLRSHATT"),
     SourceSpec("rushing_receiving_yards", "Combined rushing / receiving yards props", "Kalshi", "KXNFLRRYDS"),
 ]
-BY_NAME = {source.name: source for source in SOURCES}
+CFB_SOURCES = [
+    SourceSpec("cfb_research", "College statistics and baseline schedule", "SportsDataverse", "research", True),
+    SourceSpec("cfb_schedule", "Current college schedule and results", "ESPN", "college_schedule", True),
+    SourceSpec("cfb_markets", "College spreads and identities", "Kalshi", "college_markets", True),
+    SourceSpec("cfb_strength", "College strength and FCS result history", "SportsDataverse + ESPN", "college_history", True),
+]
+BY_NAME = {source.name: source for source in [*SOURCES, *CFB_SOURCES]}
 
 
 class RefreshService:
     def __init__(self, store: SnapshotStore, fetch: Fetcher = fetch_public):
         self.store = store
         self.fetch = fetch
-        self.locks = {source.name: Lock() for source in SOURCES}
+        self.locks = {name: Lock() for name in BY_NAME}
 
     def status(self, name: str, season: int) -> dict:
         source = BY_NAME[name]

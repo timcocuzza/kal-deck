@@ -1,0 +1,397 @@
+{
+  "protocol_sha256": "5289a0f5d866e007db84d0e347fd664ea4ef324e37b0fb3c2fecfc6fde710913",
+  "script_sha256": "af2414cc31b6ff81648c66da777454757f18cd02121dae5ed51a053da788ef04",
+  "training_history_sha256": "dbc6c788d3b2df1596af689e12a922e96dfe776cbf8515c9dcc90b526c1f6d2d",
+  "created_before_held_out_scoring": true,
+  "candidate_counts": {
+    "performance": 288,
+    "linear": 48,
+    "win_elo": 27
+  },
+  "selected": {
+    "config": {
+      "family": "clip",
+      "alpha": 0.2,
+      "home": 2,
+      "cap": 28,
+      "retention": 0.4
+    },
+    "selection": {
+      "games": 3626,
+      "mae": 13.483031191322443,
+      "rmse": 17.017491689970722,
+      "bias_predicted_minus_actual": -1.1533883455660265,
+      "median_absolute_error": 11.439616690902465,
+      "p90_absolute_error": 28.069699776892147,
+      "winner_direction_accuracy": 0.7178709321566464,
+      "winner_rating_decreases": 744,
+      "non_tied_games": 3626
+    },
+    "conversion": 1
+  },
+  "top_10": [
+    {
+      "config": {
+        "family": "clip",
+        "alpha": 0.2,
+        "home": 2,
+        "cap": 28,
+        "retention": 0.4
+      },
+      "selection": {
+        "games": 3626,
+        "mae": 13.483031191322443,
+        "rmse": 17.017491689970722,
+        "bias_predicted_minus_actual": -1.1533883455660265,
+        "median_absolute_error": 11.439616690902465,
+        "p90_absolute_error": 28.069699776892147,
+        "winner_direction_accuracy": 0.7178709321566464,
+        "winner_rating_decreases": 744,
+        "non_tied_games": 3626
+      },
+      "conversion": 1
+    },
+    {
+      "config": {
+        "family": "tanh",
+        "alpha": 0.2,
+        "home": 2,
+        "cap": 28,
+        "retention": 0.4
+      },
+      "selection": {
+        "games": 3626,
+        "mae": 13.49106408182265,
+        "rmse": 17.032729864071506,
+        "bias_predicted_minus_actual": -1.2170833225818083,
+        "median_absolute_error": 11.330548005221582,
+        "p90_absolute_error": 28.071201179921484,
+        "winner_direction_accuracy": 0.7214561500275786,
+        "winner_rating_decreases": 683,
+        "non_tied_games": 3626
+      },
+      "conversion": 1
+    },
+    {
+      "config": {
+        "family": "tanh",
+        "alpha": 0.2,
+        "home": 4,
+        "cap": 28,
+        "retention": 0.4
+      },
+      "selection": {
+        "games": 3626,
+        "mae": 13.537325250721358,
+        "rmse": 17.06539952710997,
+        "bias_predicted_minus_actual": 0.8510374037047576,
+        "median_absolute_error": 11.211326550097173,
+        "p90_absolute_error": 28.158907558092768,
+        "winner_direction_accuracy": 0.7181467181467182,
+        "winner_rating_decreases": 753,
+        "non_tied_games": 3626
+      },
+      "conversion": 1
+    },
+    {
+      "config": {
+        "family": "clip",
+        "alpha": 0.2,
+        "home": 2,
+        "cap": 21,
+        "retention": 0.4
+      },
+      "selection": {
+        "games": 3626,
+        "mae": 13.543888710355585,
+        "rmse": 17.104702549900097,
+        "bias_predicted_minus_actual": -1.2223426866906442,
+        "median_absolute_error": 11.320933648862033,
+        "p90_absolute_error": 28.26612105802709,
+        "winner_direction_accuracy": 0.7225592939878654,
+        "winner_rating_decreases": 699,
+        "non_tied_games": 3626
+      },
+      "conversion": 1
+    },
+    {
+      "config": {
+        "family": "clip",
+        "alpha": 0.2,
+        "home": 4,
+        "cap": 28,
+        "retention": 0.4
+      },
+      "selection": {
+        "games": 3626,
+        "mae": 13.547964452082873,
+        "rmse": 17.066939447719378,
+        "bias_predicted_minus_actual": 0.9497810850719925,
+        "median_absolute_error": 11.229637836701695,
+        "p90_absolute_error": 27.965756159928787,
+        "winner_direction_accuracy": 0.7189740761169333,
+        "winner_rating_decreases": 798,
+        "non_tied_games": 3626
+      },
+      "conversion": 1
+    },
+    {
+      "config": {
+        "family": "tanh",
+        "alpha": 0.3,
+        "home": 2,
+        "cap": 21,
+        "retention": 0.4
+      },
+      "selection": {
+        "games": 3626,
+        "mae": 13.558931438515998,
+        "rmse": 17.09876341427045,
+        "bias_predicted_minus_actual": -1.1091201686324135,
+        "median_absolute_error": 11.469324519573078,
+        "p90_absolute_error": 28.353573189786587,
+        "winner_direction_accuracy": 0.7148372862658577,
+        "winner_rating_decreases": 791,
+        "non_tied_games": 3626
+      },
+      "conversion": 1
+    },
+    {
+      "config": {
+        "family": "tanh",
+        "alpha": 0.2,
+        "home": 2,
+        "cap": 21,
+        "retention": 0.4
+      },
+      "selection": {
+        "games": 3626,
+        "mae": 13.565512327034124,
+        "rmse": 17.13517511207154,
+        "bias_predicted_minus_actual": -1.2747197718168344,
+        "median_absolute_error": 11.357494265710333,
+        "p90_absolute_error": 28.37444489908732,
+        "winner_direction_accuracy": 0.7209045780474352,
+        "winner_rating_decreases": 658,
+        "non_tied_games": 3626
+      },
+      "conversion": 1
+    },
+    {
+      "config": {
+        "family": "tanh",
+        "alpha": 0.3,
+        "home": 2,
+        "cap": 14,
+        "retention": 0.4
+      },
+      "selection": {
+        "games": 3626,
+        "mae": 13.574878720949842,
+        "rmse": 17.144582527964015,
+        "bias_predicted_minus_actual": -1.2196593056560254,
+        "median_absolute_error": 11.410438843297975,
+        "p90_absolute_error": 28.264524587817014,
+        "winner_direction_accuracy": 0.7170435741864313,
+        "winner_rating_decreases": 708,
+        "non_tied_games": 3626
+      },
+      "conversion": 1
+    },
+    {
+      "config": {
+        "family": "clip",
+        "alpha": 0.2,
+        "home": 4,
+        "cap": 21,
+        "retention": 0.4
+      },
+      "selection": {
+        "games": 3626,
+        "mae": 13.588197030145187,
+        "rmse": 17.134447327594778,
+        "bias_predicted_minus_actual": 0.8529242655653907,
+        "median_absolute_error": 11.300649728903675,
+        "p90_absolute_error": 28.311804727719725,
+        "winner_direction_accuracy": 0.7184225041367899,
+        "winner_rating_decreases": 758,
+        "non_tied_games": 3626
+      },
+      "conversion": 1
+    },
+    {
+      "config": {
+        "family": "tanh",
+        "alpha": 0.2,
+        "home": 4,
+        "cap": 21,
+        "retention": 0.4
+      },
+      "selection": {
+        "games": 3626,
+        "mae": 13.602099005806672,
+        "rmse": 17.155408589054893,
+        "bias_predicted_minus_actual": 0.7700068802315532,
+        "median_absolute_error": 11.38528382968807,
+        "p90_absolute_error": 28.705774724159937,
+        "winner_direction_accuracy": 0.7167677881963597,
+        "winner_rating_decreases": 707,
+        "non_tied_games": 3626
+      },
+      "conversion": 1
+    }
+  ],
+  "retention_candidates": {
+    "0": {
+      "config": {
+        "family": "clip",
+        "alpha": 0.2,
+        "home": 2,
+        "cap": 28,
+        "retention": 0
+      },
+      "selection": {
+        "games": 3626,
+        "mae": 14.232252697613164,
+        "rmse": 18.01978934050436,
+        "bias_predicted_minus_actual": -1.5095711749974334,
+        "median_absolute_error": 11.690753819647263,
+        "p90_absolute_error": 29.64291100737199,
+        "winner_direction_accuracy": 0.694015444015444,
+        "winner_rating_decreases": 655,
+        "non_tied_games": 3626
+      },
+      "conversion": 1
+    },
+    "0.15": {
+      "config": {
+        "family": "clip",
+        "alpha": 0.2,
+        "home": 2,
+        "cap": 28,
+        "retention": 0.15
+      },
+      "selection": {
+        "games": 3626,
+        "mae": 13.912906041049343,
+        "rmse": 17.59448533514781,
+        "bias_predicted_minus_actual": -1.3925212759237797,
+        "median_absolute_error": 11.564934330924977,
+        "p90_absolute_error": 29.028687179910534,
+        "winner_direction_accuracy": 0.7112520683949255,
+        "winner_rating_decreases": 675,
+        "non_tied_games": 3626
+      },
+      "conversion": 1
+    },
+    "0.25": {
+      "config": {
+        "family": "clip",
+        "alpha": 0.2,
+        "home": 2,
+        "cap": 28,
+        "retention": 0.25
+      },
+      "selection": {
+        "games": 3626,
+        "mae": 13.726284834940149,
+        "rmse": 17.342780955268022,
+        "bias_predicted_minus_actual": -1.3043218965901893,
+        "median_absolute_error": 11.480675213137797,
+        "p90_absolute_error": 28.58789653886919,
+        "winner_direction_accuracy": 0.7159404302261445,
+        "winner_rating_decreases": 709,
+        "non_tied_games": 3626
+      },
+      "conversion": 1
+    },
+    "0.4": {
+      "config": {
+        "family": "clip",
+        "alpha": 0.2,
+        "home": 2,
+        "cap": 28,
+        "retention": 0.4
+      },
+      "selection": {
+        "games": 3626,
+        "mae": 13.483031191322443,
+        "rmse": 17.017491689970722,
+        "bias_predicted_minus_actual": -1.1533883455660265,
+        "median_absolute_error": 11.439616690902465,
+        "p90_absolute_error": 28.069699776892147,
+        "winner_direction_accuracy": 0.7178709321566464,
+        "winner_rating_decreases": 744,
+        "non_tied_games": 3626
+      },
+      "conversion": 1
+    }
+  },
+  "linear": {
+    "config": {
+      "family": "linear",
+      "alpha": 0.2,
+      "home": 2,
+      "cap": 0,
+      "retention": 0.4
+    },
+    "selection": {
+      "games": 3626,
+      "mae": 13.453607106425597,
+      "rmse": 16.954603846511745,
+      "bias_predicted_minus_actual": -1.0904948910510017,
+      "median_absolute_error": 11.23447654682538,
+      "p90_absolute_error": 27.827342521199615,
+      "winner_direction_accuracy": 0.7189740761169333,
+      "winner_rating_decreases": 789,
+      "non_tied_games": 3626
+    },
+    "conversion": 1
+  },
+  "win_elo": {
+    "config": {
+      "family": "elo",
+      "alpha": 60,
+      "home": 50,
+      "cap": 0,
+      "retention": 0.4
+    },
+    "conversion": 0.09041017036398515,
+    "selection": {
+      "games": 3626,
+      "mae": 14.187692517209268,
+      "rmse": 17.878924861972465,
+      "bias_predicted_minus_actual": 0.9828481154419129,
+      "median_absolute_error": 11.689387705783407,
+      "p90_absolute_error": 29.763031582475357,
+      "winner_direction_accuracy": 0.7013237727523441,
+      "winner_rating_decreases": 0,
+      "non_tied_games": 3626
+    }
+  },
+  "nfl_margin": {
+    "config": {
+      "family": "nfl_margin",
+      "alpha": 20,
+      "home": 50,
+      "cap": 0,
+      "retention": 0.6666666666666666
+    },
+    "conversion": 0.08152418640544139,
+    "selection": {
+      "games": 3626,
+      "mae": 13.665802565982018,
+      "rmse": 17.150923135815912,
+      "bias_predicted_minus_actual": 0.8582325135314497,
+      "median_absolute_error": 11.253513449519449,
+      "p90_absolute_error": 28.160996462746773,
+      "winner_direction_accuracy": 0.7120794263651407,
+      "winner_rating_decreases": 0,
+      "non_tied_games": 3626
+    }
+  },
+  "division_only": {
+    "gap": 24.907267421256506,
+    "home": 3.7553407313132183
+  }
+}

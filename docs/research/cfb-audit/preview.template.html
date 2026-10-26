@@ -1,0 +1,152 @@
+<div id="deck-cfb-preview">
+  <style>
+    #deck-cfb-preview{--deck-bg:#101113;--deck-panel:#18191c;--deck-raised:#22242a;--deck-line:#2c2e35;--deck-text:#ededf0;--deck-muted:#aeb3bf;--deck-blue:#8ab4f8;--deck-gold:#cfba83;color:var(--deck-text);background:var(--deck-bg);color-scheme:dark;font:14px/1.5 Inter,system-ui,sans-serif;border-radius:14px;overflow:hidden}
+    #deck-cfb-preview *{box-sizing:border-box}
+    #deck-cfb-preview [hidden]{display:none!important}
+    #deck-cfb-preview button,#deck-cfb-preview select{font:inherit;color:inherit;border:1px solid var(--deck-line);background:var(--deck-panel);border-radius:7px;padding:7px 10px;max-width:100%}
+    #deck-cfb-preview button:hover,#deck-cfb-preview summary:hover{background:var(--deck-raised)}
+    #deck-cfb-preview button:focus-visible,#deck-cfb-preview select:focus-visible,#deck-cfb-preview summary:focus-visible{outline:2px solid var(--deck-blue);outline-offset:3px}
+    #deck-cfb-preview button[aria-pressed=true]{background:#30333b;color:#f4f5f9;border-color:#505665}
+    #deck-cfb-preview .deck-header{display:flex;gap:16px;align-items:center;padding:16px 24px;border-bottom:1px solid var(--deck-line);padding-right:100px;flex-wrap:wrap}
+    #deck-cfb-preview .deck-brand{font-weight:500;letter-spacing:2px}
+    #deck-cfb-preview .deck-tag{font-size:12px;color:var(--deck-muted)}
+    #deck-cfb-preview .deck-content{padding:24px}
+    #deck-cfb-preview .deck-heading{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+    #deck-cfb-preview .deck-logos{display:flex;gap:8px;flex:none}
+    #deck-cfb-preview .deck-logos img{width:40px;height:40px;object-fit:contain}
+    #deck-cfb-preview h2{font-size:23px;line-height:1.25;margin:0 0 7px;font-weight:500}
+    #deck-cfb-preview h3{font-size:15px;margin:0;font-weight:500}
+    #deck-cfb-preview small{display:block;font-size:12px;color:var(--deck-muted)}
+    #deck-cfb-preview .deck-notice{border-left:2px solid var(--deck-gold);padding:8px 12px;color:#e6d3ae;background:#24221e;font-size:12px;margin:18px 0}
+    #deck-cfb-preview .deck-spread{border:1px solid var(--deck-line);background:var(--deck-panel);border-radius:12px;padding:16px;margin-bottom:22px}
+    #deck-cfb-preview .deck-spread-row{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+    #deck-cfb-preview .deck-quote{font-size:24px;font-weight:500;font-variant-numeric:tabular-nums}
+    #deck-cfb-preview .deck-spread a{color:var(--deck-blue);font-size:12px}
+    #deck-cfb-preview .deck-chart{width:100%;height:100px;display:block;margin:8px 0}
+    #deck-cfb-preview .deck-controls{display:flex;justify-content:space-between;align-items:end;gap:12px;flex-wrap:wrap;margin:20px 0 14px}
+    #deck-cfb-preview .deck-segment{display:flex;gap:4px;flex-wrap:wrap}
+    #deck-cfb-preview label{display:flex;flex-direction:column;gap:5px;font-size:12px;color:var(--deck-muted)}
+    #deck-cfb-preview .deck-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-items:start}
+    #deck-cfb-preview .deck-card{background:var(--deck-panel);border:1px solid var(--deck-line);border-radius:12px;overflow:hidden;min-width:0}
+    #deck-cfb-preview .deck-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+    #deck-cfb-preview .deck-rank{display:flex;flex-direction:column;align-items:start;text-align:left;gap:6px;padding:15px;border:0;border-radius:0;min-width:0;border-top:2px solid var(--deck-blue);background:linear-gradient(#8ab4f80b,transparent)}
+    #deck-cfb-preview .deck-rank:last-child{align-items:end;text-align:right;border-left:1px solid var(--deck-line);border-top-color:var(--deck-gold);background:linear-gradient(#cfba830b,transparent)}
+    #deck-cfb-preview .deck-rank strong{font-size:24px;font-weight:500;font-variant-numeric:tabular-nums}
+    #deck-cfb-preview .deck-team{font-size:12px;color:var(--deck-muted)}
+    #deck-cfb-preview .deck-metric{font-size:13px;font-variant-numeric:tabular-nums}
+    #deck-cfb-preview .deck-unit{font-size:11px;color:var(--deck-muted)}
+    #deck-cfb-preview details{border-top:1px solid var(--deck-line)}
+    #deck-cfb-preview summary{padding:11px 15px;font-size:12px;user-select:none}
+    #deck-cfb-preview .deck-context{padding:0 15px 14px;font-size:12px;gap:16px}
+    #deck-cfb-preview .deck-context>div:last-child{text-align:right}
+    #deck-cfb-preview .deck-context strong{font-weight:500;display:block;margin:4px 0;font-variant-numeric:tabular-nums}
+    #deck-cfb-preview .deck-support{padding:0 15px 12px;display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:12px}
+    #deck-cfb-preview .deck-support>div:nth-child(even){text-align:right}
+    #deck-cfb-preview .deck-support b{font-weight:500;display:block;font-variant-numeric:tabular-nums}
+    #deck-cfb-preview .deck-methods{margin-top:20px;font-size:12px;color:var(--deck-muted)}
+    #deck-cfb-preview .deck-methods dl{padding:0 15px 12px;margin:0}
+    #deck-cfb-preview .deck-methods dt{color:var(--deck-text);margin-top:10px}
+    #deck-cfb-preview .deck-methods dd{margin:4px 0}
+    #deck-cfb-preview .deck-log{background:#191b20;color:var(--deck-text);border:1px solid #414650;border-radius:12px;padding:20px;width:min(760px,95%);max-height:85%;overflow:auto;box-shadow:0 16px 50px #0009}
+    #deck-cfb-preview .deck-log::backdrop{background:#0009}
+    #deck-cfb-preview .deck-log-head{display:flex;justify-content:space-between;gap:14px;align-items:start;margin-bottom:12px}
+    #deck-cfb-preview .deck-table-scroll{overflow-x:auto;max-width:100%}
+    #deck-cfb-preview table{width:100%;border-collapse:collapse;font-size:12px;font-variant-numeric:tabular-nums}
+    #deck-cfb-preview th,#deck-cfb-preview td{padding:10px 7px;border-bottom:1px solid var(--deck-line);text-align:left;vertical-align:top}
+    #deck-cfb-preview th{font-weight:500;color:var(--deck-muted)}
+    #deck-cfb-preview caption{text-align:left;padding:10px 0;color:var(--deck-muted)}
+    #deck-cfb-preview .deck-numeric{text-align:right}
+    @media(max-width:640px){#deck-cfb-preview .deck-grid{grid-template-columns:1fr}#deck-cfb-preview .deck-content{padding:16px}#deck-cfb-preview .deck-header{padding-left:16px}#deck-cfb-preview .deck-logos{flex-direction:column;gap:2px}#deck-cfb-preview h2{font-size:20px}#deck-cfb-preview .deck-log{padding:14px}#deck-cfb-preview .deck-log h3{font-size:14px}}
+    @media(pointer:coarse){#deck-cfb-preview button,#deck-cfb-preview summary,#deck-cfb-preview select{min-height:44px}}
+  </style>
+  <div class="deck-header"><span class="deck-brand">DECK</span><span class="deck-tag">College football · Research preview</span></div>
+  <div class="deck-content">
+    <div class="deck-heading"><div class="deck-logos"><img data-logo="252" alt="BYU"><img data-logo="2116" alt="UCF"></div><div><h2>BYU <span style="color:var(--deck-muted)">at</span> UCF</h2><small>Saturday, October 24 · 3:30 PM EDT · Week 8</small></div></div>
+    <div class="deck-notice">Saved research through October 17 · 12 newer finals missing from statistics · EPA ranks use rounded source values</div>
+    <div class="deck-spread">
+      <div class="deck-spread-row"><div><small>Available spread · verified sample</small><h3>BYU −7.5</h3></div><div><small>Saved Yes ask · before fees</small><span class="deck-quote" data-quote></span></div></div>
+      <svg class="deck-chart" role="img" aria-label="Hourly Yes bid and ask midpoint history, fixed zero to one hundred percent scale"></svg>
+      <div class="deck-spread-row"><small data-quote-time></small><a href="https://kalshi.com/markets/kxncaafspread/college-football-spread/kxncaafspread-26oct24byuucf" target="_blank" rel="noopener noreferrer">Source market</a></div>
+    </div>
+    <div class="deck-controls">
+      <div><h3 style="margin-bottom:9px">Team comparison</h3><div class="deck-segment" aria-label="Comparison mode"><button class="cursor-interaction" type="button" data-mode="opposing" aria-pressed="true">Opposing units</button><button class="cursor-interaction" type="button" data-mode="same" aria-pressed="false">Same units</button></div></div>
+      <label>Games counted · sensitivity comparison<select data-scope><option value="fbs_only">FBS opponents only</option><option value="including_fcs_performances">Include FCS performances</option></select></label>
+    </div>
+    <small data-scope-note aria-live="polite" style="margin-bottom:14px"></small>
+    <div class="deck-grid" data-cards></div>
+    <details class="deck-methods"><summary class="cursor-interaction">Sources and definitions</summary><dl>
+      <dt>Statistics</dt><dd>SportsDataverse season files · October 18 publication · completed games through October 17 Eastern.</dd>
+      <dt>EPA headline ranks</dt><dd>Equal weight per game; source-published EPA/play rounded to two decimals before aggregation. College scrambles remain rushing plays. Raw play exclusions have not been independently audited.</dd>
+      <dt>Schedule context</dt><dd>Average current opposing-unit metric per FBS meeting, including head-to-head games. Descriptive context, not an adjusted rank or a projected spread.</dd>
+      <dt>Ranking population</dt><dd>138 teams classified as FBS by the source. Both FCS treatments are comparison options, not an approved product choice. FCS opponent season statistics and rankings are withheld.</dd>
+      <dt>Freshness</dt><dd>Current ESPN schedule and Kalshi sample identities agree. The 12 newer finals are absent from this statistical snapshot, so national ranks remain provisional.</dd>
+      <dt>Unavailable in this sample</dt><dd>Passing/rushing touchdown totals, blitz rates, man/zone coverage and comprehensive availability data.</dd>
+    </dl></details>
+  </div>
+  <dialog class="deck-log" aria-labelledby="deck-log-title"><div class="deck-log-head"><div><h3 id="deck-log-title"></h3><small data-log-unit></small></div><button class="cursor-interaction" type="button" data-close>Close</button></div><small data-log-context></small><div class="deck-table-scroll"><table><caption data-log-caption></caption><thead><tr><th>Date</th><th>Opponent</th><th class="deck-numeric">Team game value</th><th class="deck-numeric">Opponent unit rank</th><th class="deck-numeric">Opponent unit average</th></tr></thead><tbody data-log-rows></tbody></table></div><small>Opponent ranks and averages use the saved season snapshot, not their values at kickoff.</small></dialog>
+  <script type="application/json" data-deck-data>__DECK_AUDIT_DATA__</script>
+  <script>
+    (()=>{
+      const root=document.getElementById('deck-cfb-preview');
+      const data=JSON.parse(root.querySelector('[data-deck-data]').textContent);
+      const saved=window.openai?.widgetState?.modelContent;
+      const state={scope:data.variants[saved?.scope]?saved.scope:'fbs_only',mode:saved?.mode==='same'?'same':'opposing',context:true};
+      const opposing={passing_offense:'passing_defense',passing_defense:'passing_offense',rushing_offense:'rushing_defense',rushing_defense:'rushing_offense',pass_rush:'pass_protection',pass_protection:'pass_rush'};
+      const keys=Object.keys(opposing), teams=['252','2116'];
+      const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+      const fmt=(v,n=3)=>v===null||v===undefined?'Unavailable':Number(v).toFixed(n);
+      const date=v=>new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',month:'short',day:'numeric'}).format(new Date(v));
+      const time=v=>new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'}).format(new Date(v));
+      const isSack=k=>k==='pass_rush'||k==='pass_protection';
+      const higher=k=>k==='passing_offense'||k==='rushing_offense'||k==='pass_rush';
+      const unit=k=>isSack(k)?(k==='pass_rush'?'sacks/game':'sacks allowed/game'):(k.startsWith('passing')?'EPA/pass play':'EPA/rush play');
+      const metric=(team,key)=>data.variants[state.scope].teams[team].categories[key];
+      const persist=()=>{if(window.openai?.setWidgetState)window.openai.setWidgetState({modelContent:{scope:state.scope,mode:state.mode},privateContent:null}).catch(()=>{});};
+      root.querySelectorAll('[data-logo]').forEach(img=>img.src=data.logos[img.dataset.logo]);
+      root.querySelector('[data-quote]').textContent=Math.round(Number(data.market.selected_contract.yes_ask_dollars)*100)+'¢';
+      root.querySelector('[data-quote-time]').textContent='Quote snapshot · '+time(data.market.sources.event.retrieved_at);
+      function supportLabel(key,cat){
+        const net=cat.startsWith('passing');
+        return {yards_per_game:net?'Net passing yards/game':'Rushing yards/game',yards_per_attempt:'Net passing yards/attempt',yards_per_carry:'Yards/carry',completion_fraction:'Completion rate',interceptions:'Interceptions',touchdowns:'Touchdowns',positive_epa_success_fraction:'Positive-EPA success'}[key]||key;
+      }
+      function supportValue(s,key){return s?.value==null?'Unavailable':key.endsWith('fraction')?(100*s.value).toFixed(1)+'%':fmt(s.value,key==='interceptions'?0:1);}
+      function render(){
+        root.querySelector('[data-scope]').value=state.scope;
+        root.querySelectorAll('[data-mode]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.mode===state.mode)));
+        const count=data.variants[state.scope].teams['252'].games_expected;
+        root.querySelector('[data-scope-note]').textContent=`138 source-classified FBS teams · ${count} games per team in this matchup · click a rank for its game log`;
+        root.querySelector('[data-cards]').innerHTML=keys.map(key=>{
+          const pair=teams.map((team,i)=>{const k=i&&state.mode==='opposing'?opposing[key]:key;return {team,key:k,m:metric(team,k)};});
+          const rankTiles=pair.map(({team,key:k,m})=>`<button type="button" class="deck-rank cursor-interaction" data-team="${team}" data-key="${k}" aria-label="${esc(data.names[team])} ${esc(m.label)} rank ${m.rank}, open game log"><span class="deck-team">${esc(data.names[team])}</span><strong>#${m.rank}</strong><span>${esc(m.label)}</span><span class="deck-metric">${fmt(m.value,isSack(k)?1:3)} <span class="deck-unit">${unit(k)}</span></span><small>Mean ${fmt(m.league.mean,isSack(k)?1:3)} · median ${fmt(m.league.median,isSack(k)?1:3)}</small><small>${higher(k)?'Higher':'Lower'} is better · ${m.games_used}/${m.games_expected} games</small></button>`).join('');
+          const context=pair.map(({team,key:k,m})=>{const oc=m.schedule_context,ok=oc.opponent_category,other=metric(team,ok);return `<div><small>${esc(other.label)} faced</small><strong>${fmt(oc.average_opponent_metric,isSack(ok)?1:3)} ${unit(ok)}</strong><small>FBS mean ${fmt(other.league.mean,isSack(ok)?1:3)}</small><small>${oc.opponents_used}/${oc.games_expected} opponents · ${higher(ok)?'higher':'lower'} means stronger</small></div>`;}).join('');
+          const supportKeys=[...new Set(pair.flatMap(p=>Object.keys(p.m.supporting)))];
+          const support=supportKeys.map(sk=>pair.map(p=>`<div><small>${esc(supportLabel(sk,p.key))}</small><b>${supportValue(p.m.supporting[sk],sk)}</b></div>`).join('')).join('');
+          return `<article class="deck-card"><div class="deck-pair">${rankTiles}</div><details data-opponent-context ${state.context?'open':''}><summary class="cursor-interaction">Strength of opponents faced</summary><div class="deck-pair deck-context">${context}</div></details>${support?`<details><summary class="cursor-interaction">Supporting stats</summary><div class="deck-support">${support}</div></details>`:''}</article>`;
+        }).join('');
+      }
+      function openLog(team,key){
+        const m=metric(team,key),o=m.schedule_context;
+        root.querySelector('#deck-log-title').textContent=data.names[team]+' · '+m.label;
+        root.querySelector('[data-log-unit]').textContent=unit(key)+(isSack(key)?'':' · rounded source EPA');
+        root.querySelector('[data-log-context]').textContent='Opposing unit: '+metric(team,o.opponent_category).label+' · '+o.opponents_used+' FBS opponents';
+        root.querySelector('[data-log-caption]').textContent=(state.scope==='fbs_only'?'FBS opponents only':'Including FCS performances')+' · results through October 17';
+        root.querySelector('[data-log-rows]').innerHTML=m.games.map(g=>`<tr><td>${date(g.date)}</td><td>${g.venue_side==='away'?'at ':''}${esc(g.opponent)}${g.opponent_is_fbs?'':' (FCS)'}</td><td class="deck-numeric">${fmt(g.value,isSack(key)?0:2)}</td><td class="deck-numeric">${g.opponent_current_rank==null?'Not provided':'#'+g.opponent_current_rank}</td><td class="deck-numeric">${g.opponent_current_metric==null?'Not provided':fmt(g.opponent_current_metric,isSack(key)?1:3)}</td></tr>`).join('');
+        root.querySelector('dialog').showModal();
+      }
+      root.addEventListener('click',ev=>{const b=ev.target.closest('button');if(!b)return;if(b.dataset.mode){state.mode=b.dataset.mode;render();persist();}else if(b.dataset.team)openLog(b.dataset.team,b.dataset.key);else if(b.hasAttribute('data-close'))root.querySelector('dialog').close();});
+      root.querySelector('[data-scope]').addEventListener('change',ev=>{state.scope=ev.target.value;render();persist();});
+      window.addEventListener('openai:set_globals',ev=>{const s=ev.detail?.globals?.widgetState?.modelContent;if(s&&data.variants[s.scope]){state.scope=s.scope;state.mode=s.mode==='same'?'same':'opposing';render();}});
+      render();
+      function drawHistory(){
+        const svg=root.querySelector('.deck-chart'),w=svg.getBoundingClientRect().width;if(w<=0)return;
+        const points=data.market.history.points,left=30,right=w-8,top=10,bottom=74;
+        const min=1792253163,max=1792857963,x=t=>left+(t-min)/(max-min)*(right-left),y=v=>bottom-v*(bottom-top);
+        let d='',previous=null;points.forEach(p=>{if(p.midpoint==null){previous=null;return;}d+=(previous===null||p.timestamp-previous>3600?'M':'L')+x(p.timestamp).toFixed(2)+','+y(p.midpoint).toFixed(2);previous=p.timestamp;});
+        svg.setAttribute('viewBox',`0 0 ${w} 100`);
+        svg.innerHTML=`<title>BYU −7.5 hourly closing Yes bid/ask midpoint</title><desc>Seven-day window, fixed zero to one hundred percent scale. Missing or invalid quotes remain gaps.</desc><line x1="${left}" y1="${y(.5)}" x2="${right}" y2="${y(.5)}" stroke="var(--deck-line)"/><text x="0" y="${y(1)+4}" fill="var(--deck-muted)" font-size="11">100</text><text x="9" y="${y(0)+4}" fill="var(--deck-muted)" font-size="11">0</text><path d="${d}" stroke="var(--deck-blue)" stroke-width="1.8" fill="none"/><text x="${left}" y="96" fill="var(--deck-muted)" font-size="11">Oct 17</text><text x="${right}" y="96" text-anchor="end" fill="var(--deck-muted)" font-size="11">Oct 24 · midpoint %</text>`;
+      }
+      new ResizeObserver(drawHistory).observe(root.querySelector('.deck-chart'));drawHistory();
+      if(globalThis.Tweak){const tweak=new Tweak({container:root,onChange:render});tweak.addToggle(state,'context',{label:'Expand opponent context'});}
+    })();
+  </script>
+</div>

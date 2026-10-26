@@ -39,13 +39,15 @@ export function loadSpreadHistory(tickers: string[]) {
       const controller = new AbortController()
       const timeout = setTimeout(() => controller.abort(), 35000)
       try {
-        const response = await fetch(`/api/markets/KXNFLSPREAD/${encodeURIComponent(ticker)}/history?start=${start}&end=${end}&interval=60`, { signal: controller.signal })
+        const series = ticker.split('-')[0]
+        if (!['KXNFLSPREAD', 'KXNCAAFSPREAD'].includes(series)) throw new Error('Unsupported spread history series.')
+        const response = await fetch(`/api/markets/${series}/${encodeURIComponent(ticker)}/history?start=${start}&end=${end}&interval=60`, { signal: controller.signal })
         if (!response.ok) {
           const body = await response.json().catch(() => null)
           throw new Error(typeof body?.detail === 'string' ? body.detail : `History unavailable (HTTP ${response.status}).`)
         }
         const data = await response.json() as HistoryData
-        if (data.context.ticker !== ticker || data.context.series !== 'KXNFLSPREAD' || data.context.start_ts !== start || data.context.end_ts !== end
+        if (data.context.ticker !== ticker || data.context.series !== series || data.context.start_ts !== start || data.context.end_ts !== end
           || data.context.interval_minutes !== 60 || !Array.isArray(data.points)
           || data.points.some(point => !Number.isInteger(point.timestamp) || point.timestamp % 3600 !== 0
             || point.timestamp < start || point.timestamp > end

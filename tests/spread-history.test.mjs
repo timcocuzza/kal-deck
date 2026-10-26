@@ -97,3 +97,31 @@ test('automatic history deduplicates mounts, runs sequentially, and permits expl
     globalThis.fetch = originalFetch
   }
 })
+
+test('college history uses its own series, rejects mismatches, and preserves valid prior data', async () => {
+  const originalFetch = globalThis.fetch
+  const ticker = 'KXNCAAFSPREAD-26OCT24BYUUCF-BYU8'
+  const calls = []
+  let wrongSeries = false
+  globalThis.fetch = async url => {
+    calls.push(url)
+    const parsed = new URL(url, 'http://localhost')
+    assert.equal(parsed.pathname, `/api/markets/KXNCAAFSPREAD/${ticker}/history`)
+    const result = data()
+    result.context = { ...result.context, ticker, series: wrongSeries ? 'KXNFLSPREAD' : 'KXNCAAFSPREAD',
+      start_ts: Number(parsed.searchParams.get('start')), end_ts: Number(parsed.searchParams.get('end')) }
+    return new Response(JSON.stringify(result))
+  }
+  try {
+    await ensureSpreadHistory([ticker, ticker])
+    assert.equal(calls.length, 1)
+    const saved = historySnapshot()[ticker].data
+    assert.equal(saved.context.series, 'KXNCAAFSPREAD')
+    wrongSeries = true
+    await loadSpreadHistory([ticker])
+    assert.equal(historySnapshot()[ticker].data, saved)
+    assert.match(historySnapshot()[ticker].error, /does not match/)
+    await ensureSpreadHistory([ticker])
+    assert.equal(calls.length, 2)
+  } finally { globalThis.fetch = originalFetch }
+})

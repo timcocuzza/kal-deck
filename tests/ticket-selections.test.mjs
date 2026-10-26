@@ -46,3 +46,13 @@ test('notes and leg limits reject the whole transfer instead of truncating data'
   assert.equal(ticketSelections(picks).legs.length, 100)
   assert.throws(() => ticketSelections([...picks, prop]), /100 legs/)
 })
+
+test('college picks retain exact IDs and notes in single and mixed NFL/CFB tickets', () => {
+  const college = { leg: { description: 'BYU vs UCF · BYU −7.5', selection: 'No', market_ticker: 'KXNCAAFSPREAD-26OCT24BYUUCF-BYU8', game_id: '401868100' }, notes: 'Opponent strength matters.' }
+  assert.deepEqual(ticketSelections([college]), { kind: 'single', legs: [college.leg], notes: college.notes })
+  const mixed = ticketSelections([spread, college])
+  assert.equal(mixed.kind, 'combo')
+  assert.deepEqual(mixed.legs, [spread.leg, college.leg])
+  assert.ok(mixed.notes.includes(college.notes))
+  assert.throws(() => ticketSelections([college, college]), /already on this ticket/)
+})

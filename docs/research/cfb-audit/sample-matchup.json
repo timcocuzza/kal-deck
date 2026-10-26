@@ -1,0 +1,2865 @@
+{
+  "matchup": {
+    "game_id": "401856835",
+    "season": "2026",
+    "week": "8",
+    "season_type": "regular",
+    "season_type_id": "2",
+    "start_date": "2026-10-24T04:00:00.000Z",
+    "start_time_tbd": "true",
+    "completed": "false",
+    "neutral_site": "false",
+    "conference_game": "true",
+    "conference_competition": "",
+    "attendance": "",
+    "venue_id": "3652",
+    "venue": "FBC Mortgage Stadium",
+    "status": "",
+    "home_id": "2116",
+    "home_team": "UCF",
+    "home_abbreviation": "",
+    "home_division": "fbs",
+    "home_conference": "Big 12",
+    "home_points": "",
+    "home_winner": "",
+    "away_id": "252",
+    "away_team": "BYU",
+    "away_abbreviation": "",
+    "away_division": "fbs",
+    "away_conference": "Big 12",
+    "away_points": "",
+    "away_winner": "",
+    "fbs_game": "true",
+    "fbs_participant": "true",
+    "highlights": "",
+    "notes": "",
+    "playoff_competition": "",
+    "playoff_format": "",
+    "playoff_round": "",
+    "playoff_round_name": "",
+    "playoff_bracket_slot": "",
+    "playoff_home_seed": "",
+    "playoff_away_seed": "",
+    "playoff_bowl_name": "",
+    "home_rank": "",
+    "away_rank": "8"
+  },
+  "sources": {
+    "schedule": {
+      "url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/cfb_schedules/cfb_schedules_2026.csv.gz",
+      "release_url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/tag/cfb_schedules",
+      "asset_updated_at": "2026-10-18T10:51:29Z",
+      "downloaded_at": "2026-10-24T15:56:57.090345+00:00",
+      "bytes": 83110,
+      "sha256": "31ef4731014670b960fb2a270734c20c1409876d7c816e850daaba30254ba167",
+      "path": "/tmp/deck-cfb-audit/cfb_schedules_2026.csv.gz",
+      "rows": 3679,
+      "columns": [
+        "game_id",
+        "season",
+        "week",
+        "season_type",
+        "season_type_id",
+        "start_date",
+        "start_time_tbd",
+        "completed",
+        "neutral_site",
+        "conference_game",
+        "conference_competition",
+        "attendance",
+        "venue_id",
+        "venue",
+        "status",
+        "home_id",
+        "home_team",
+        "home_abbreviation",
+        "home_division",
+        "home_conference",
+        "home_points",
+        "home_winner",
+        "away_id",
+        "away_team",
+        "away_abbreviation",
+        "away_division",
+        "away_conference",
+        "away_points",
+        "away_winner",
+        "fbs_game",
+        "fbs_participant",
+        "highlights",
+        "notes",
+        "playoff_competition",
+        "playoff_format",
+        "playoff_round",
+        "playoff_round_name",
+        "playoff_bracket_slot",
+        "playoff_home_seed",
+        "playoff_away_seed",
+        "playoff_bowl_name",
+        "home_rank",
+        "away_rank"
+      ]
+    },
+    "team_box": {
+      "url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/espn_cfb_team_box/team_box_2026.csv",
+      "release_url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/tag/espn_cfb_team_box",
+      "asset_updated_at": "2026-10-18T11:24:34Z",
+      "downloaded_at": "2026-10-24T15:56:57.853702+00:00",
+      "bytes": 108796,
+      "sha256": "463efbd41947a71d56c4ef03c02c16527f9417195ac8710a79da2c9596778ae1",
+      "path": "/tmp/deck-cfb-audit/team_box_2026.csv",
+      "rows": 1020,
+      "columns": [
+        "firstDowns",
+        "thirdDownEff",
+        "fourthDownEff",
+        "totalYards",
+        "netPassingYards",
+        "completionAttempts",
+        "yardsPerPass",
+        "rushingYards",
+        "rushingAttempts",
+        "yardsPerRushAttempt",
+        "totalPenaltiesYards",
+        "turnovers",
+        "fumblesLost",
+        "interceptions",
+        "possessionTime",
+        "team_id",
+        "team_abbreviation",
+        "team_name",
+        "home_away",
+        "game_id",
+        "season"
+      ]
+    },
+    "adv_team": {
+      "url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/espn_cfb_adv_team/adv_team_2026.csv",
+      "release_url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/tag/espn_cfb_adv_team",
+      "asset_updated_at": "2026-10-18T11:31:16Z",
+      "downloaded_at": "2026-10-24T15:56:58.656307+00:00",
+      "bytes": 579923,
+      "sha256": "828805641d9da0f3d9133ab494051a583fcaec948e980226486ddee5cac8d333",
+      "path": "/tmp/deck-cfb-audit/adv_team_2026.csv",
+      "rows": 1020,
+      "columns": [
+        "pos_team_id",
+        "pos_team",
+        "rushing_highlight_yards_per_opp",
+        "total_pen_yards",
+        "EPA_penalty",
+        "penalty_first_downs_created",
+        "penalty_first_downs_created_rate",
+        "penalties",
+        "penalty_yards",
+        "special_teams_plays",
+        "EPA_sp",
+        "EPA_special_teams",
+        "field_goals",
+        "EPA_fg",
+        "punt_plays",
+        "EPA_punt",
+        "kickoff_plays",
+        "EPA_kickoff",
+        "rushes",
+        "rush_yards",
+        "yards_per_rush",
+        "rushing_power_rate",
+        "rushing_first_downs_created",
+        "rushing_first_downs_created_rate",
+        "EPA_rushing_overall",
+        "EPA_rushing_per_play",
+        "EPA_explosive_rushing",
+        "EPA_explosive_rushing_rate",
+        "EPA_non_explosive_rushing",
+        "EPA_non_explosive_rushing_per_play",
+        "passes",
+        "pass_yards",
+        "yards_per_pass",
+        "sack_yards",
+        "passing_first_downs_created",
+        "passing_first_downs_created_rate",
+        "EPA_passing_overall",
+        "EPA_passing_per_play",
+        "EPA_explosive_passing",
+        "EPA_explosive_passing_rate",
+        "EPA_non_explosive_passing",
+        "EPA_non_explosive_passing_per_play",
+        "scrimmage_plays",
+        "EPA_overall_off",
+        "EPA_overall_offense",
+        "EPA_per_play",
+        "EPA_non_explosive",
+        "EPA_non_explosive_per_play",
+        "EPA_explosive",
+        "EPA_explosive_rate",
+        "passes_rate",
+        "off_yards",
+        "total_off_yards",
+        "yards_per_play",
+        "EPA_plays",
+        "total_yards",
+        "EPA_overall_total",
+        "rushes_rate",
+        "first_downs_created",
+        "first_downs_created_rate",
+        "EPA_rushing_power",
+        "EPA_rushing_power_per_play",
+        "rushing_power_success",
+        "rushing_power_success_rate",
+        "rushing_power",
+        "rushing_stuff",
+        "rushing_stuff_rate",
+        "rushing_stopped",
+        "rushing_stopped_rate",
+        "rushing_opportunity",
+        "rushing_opportunity_rate",
+        "rushing_highlight",
+        "rushing_highlight_rate",
+        "rushing_highlight_yards",
+        "line_yards",
+        "line_yards_per_carry",
+        "second_level_yards",
+        "open_field_yards",
+        "game_id",
+        "season",
+        "week"
+      ]
+    },
+    "adv_defensive": {
+      "url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/espn_cfb_adv_defensive/adv_defensive_2026.csv",
+      "release_url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/tag/espn_cfb_adv_defensive",
+      "asset_updated_at": "2026-10-18T11:34:13Z",
+      "downloaded_at": "2026-10-24T15:56:59.407727+00:00",
+      "bytes": 144141,
+      "sha256": "7258b656ab936d4699f066c6b311a0ba32f4ac9676530285507e629f353bdf73",
+      "path": "/tmp/deck-cfb-audit/adv_defensive_2026.csv",
+      "rows": 1020,
+      "columns": [
+        "def_pos_team_id",
+        "def_pos_team",
+        "scrimmage_plays",
+        "TFL",
+        "TFL_pass",
+        "TFL_rush",
+        "havoc_total",
+        "havoc_total_rate",
+        "fumbles",
+        "def_int",
+        "drive_stopped_rate",
+        "num_pass_plays",
+        "havoc_total_pass",
+        "havoc_total_pass_rate",
+        "sacks",
+        "sacks_rate",
+        "pass_breakups",
+        "havoc_total_rush",
+        "havoc_total_rush_rate",
+        "game_id",
+        "season",
+        "week"
+      ]
+    },
+    "adv_situational": {
+      "url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/espn_cfb_adv_situational/adv_situational_2026.csv",
+      "release_url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/tag/espn_cfb_adv_situational",
+      "asset_updated_at": "2026-10-18T11:36:29Z",
+      "downloaded_at": "2026-10-24T15:57:00.396018+00:00",
+      "bytes": 558939,
+      "sha256": "42329fa0a71ccd193e8313c331f6297c7105e914f3347f194ec45af04a9b822f",
+      "path": "/tmp/deck-cfb-audit/adv_situational_2026.csv",
+      "rows": 1020,
+      "columns": [
+        "pos_team_id",
+        "pos_team",
+        "EPA_success",
+        "EPA_success_rate",
+        "EPA_success_pass",
+        "EPA_success_pass_rate",
+        "EPA_success_rush",
+        "EPA_success_rush_rate",
+        "EPA_success_rz",
+        "EPA_success_rate_rz",
+        "EPA_success_third",
+        "EPA_success_rate_third",
+        "EPA_success_early_down",
+        "EPA_success_early_down_rate",
+        "early_downs",
+        "early_down_pass_rate",
+        "early_down_rush_rate",
+        "EPA_early_down",
+        "EPA_early_down_per_play",
+        "early_down_first_down",
+        "early_down_first_down_rate",
+        "early_down_pass",
+        "EPA_early_down_pass",
+        "EPA_early_down_pass_per_play",
+        "EPA_success_early_down_pass",
+        "EPA_success_early_down_pass_rate",
+        "early_down_rush",
+        "EPA_early_down_rush",
+        "EPA_early_down_rush_per_play",
+        "EPA_success_early_down_rush",
+        "EPA_success_early_down_rush_rate",
+        "middle_8",
+        "middle_8_pass_rate",
+        "middle_8_rush_rate",
+        "EPA_middle_8",
+        "EPA_middle_8_per_play",
+        "EPA_middle_8_success",
+        "EPA_middle_8_success_rate",
+        "middle_8_pass",
+        "EPA_middle_8_pass",
+        "EPA_middle_8_pass_per_play",
+        "EPA_middle_8_success_pass",
+        "EPA_middle_8_success_pass_rate",
+        "middle_8_rush",
+        "EPA_middle_8_rush",
+        "EPA_middle_8_rush_per_play",
+        "EPA_middle_8_success_rush",
+        "EPA_middle_8_success_rush_rate",
+        "EPA_success_late_down",
+        "EPA_success_late_down_pass",
+        "EPA_success_late_down_rush",
+        "late_downs",
+        "late_down_pass",
+        "late_down_rush",
+        "EPA_late_down",
+        "EPA_late_down_per_play",
+        "EPA_success_late_down_rate",
+        "EPA_success_late_down_pass_rate",
+        "EPA_success_late_down_rush_rate",
+        "late_down_pass_rate",
+        "late_down_rush_rate",
+        "EPA_success_standard_down",
+        "EPA_success_standard_down_rate",
+        "EPA_standard_down",
+        "EPA_standard_down_per_play",
+        "standard_downs",
+        "EPA_success_passing_down",
+        "EPA_success_passing_down_rate",
+        "EPA_passing_down",
+        "EPA_passing_down_per_play",
+        "passing_downs",
+        "game_id",
+        "season",
+        "week"
+      ]
+    }
+  },
+  "methodology": {
+    "cutoff": "2026-10-24T00:00:00.000Z",
+    "cutoff_note": "Conservative start-of-day cutoff; sample schedule kickoff is TBD. Market linkage must be independently verified.",
+    "epa": "Equal-weight mean of source-published per-game EPA/play values, already rounded to two decimals. These are candidate research ranks, not the approved NFL exact metric.",
+    "nfl_parity_blockers": [
+      "No scramble flag: scrambles remain runs; NFL defines them as dropbacks.",
+      "Published game EPA is rounded; exact unrounded play aggregation not audited.",
+      "Upstream play inclusion/penalty and garbage-time handling not independently reproduced in this CSV audit."
+    ],
+    "support": "Source team-box NET passing yardage and completion/attempt values; season ratios divide totals. Net passing yards/attempt is not asserted equivalent to the NFL passing-yard metric. Rushing positive-EPA success averages per-game fractions equally. Passing/rushing TD totals unavailable in audited tables. See independent-review.json for one upstream net-yardage/attempt discrepancy.",
+    "ranking": "FBS teams only, higher/lower as existing NFL categories; competition ties using exact rational representations of published values. No minimum sample threshold.",
+    "fcs": "Two sensitivity variants; no standalone FCS rankings or opponent season metrics. The inclusion variant includes FBS offensive and defensive performance against FCS opponents. This does not approve either product behavior.",
+    "schedule_context": "Mean current opposing-unit metric per meeting, with FCS opponents omitted; includes head-to-head performances, matching existing NFL sack-context convention."
+  },
+  "results_through": "2026-10-18T03:00:00.000Z",
+  "variants": {
+    "fbs_only": {
+      "games_used": 388,
+      "teams": {
+        "252": {
+          "team_id": "252",
+          "name": "BYU",
+          "categories": {
+            "passing_offense": {
+              "label": "Passing offense",
+              "unit": "Published pass EPA / play",
+              "value": 0.168,
+              "rank": 46,
+              "games_used": 5,
+              "games_expected": 5,
+              "missing_game_ids": [],
+              "supporting": {
+                "yards_per_game": {
+                  "value": 214.8,
+                  "games_used": 5,
+                  "games_expected": 5,
+                  "label": "Net passing yards / game"
+                },
+                "yards_per_attempt": {
+                  "value": 8.014925373134329,
+                  "games_used": 5,
+                  "games_expected": 5,
+                  "label": "Net passing yards / attempt"
+                },
+                "completion_fraction": {
+                  "value": 0.6343283582089553,
+                  "games_used": 5,
+                  "games_expected": 5
+                },
+                "interceptions": {
+                  "value": 3.0
+                },
+                "touchdowns": {
+                  "value": null,
+                  "reason": "Not supplied by audited team-box dataset"
+                }
+              },
+              "games": [
+                {
+                  "game_id": "401856810",
+                  "date": "2026-09-12T19:30:00.000Z",
+                  "opponent_id": "12",
+                  "opponent": "Arizona",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": 0.3,
+                  "opponent_current_rank": 63,
+                  "opponent_current_metric": 0.046
+                },
+                {
+                  "game_id": "401856795",
+                  "date": "2026-09-19T23:30:00.000Z",
+                  "opponent_id": "36",
+                  "opponent": "Colorado State",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": 0.37,
+                  "opponent_current_rank": 136,
+                  "opponent_current_metric": 0.42
+                },
+                {
+                  "game_id": "401856818",
+                  "date": "2026-10-03T23:00:00.000Z",
+                  "opponent_id": "2628",
+                  "opponent": "TCU",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": -0.33,
+                  "opponent_current_rank": 16,
+                  "opponent_current_metric": -0.14
+                },
+                {
+                  "game_id": "401856826",
+                  "date": "2026-10-10T02:15:00.000Z",
+                  "opponent_id": "66",
+                  "opponent": "Iowa State",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": 0.37,
+                  "opponent_current_rank": 78,
+                  "opponent_current_metric": 0.106
+                },
+                {
+                  "game_id": "401856809",
+                  "date": "2026-10-17T23:30:00.000Z",
+                  "opponent_id": "87",
+                  "opponent": "Notre Dame",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": 0.13,
+                  "opponent_current_rank": 14,
+                  "opponent_current_metric": -0.14714285714285713
+                }
+              ],
+              "exact_nfl_metric_parity": "blocked",
+              "candidate_metric_status": "source-rounded game means",
+              "league": {
+                "mean": 0.07874672187715666,
+                "median": 0.07083333333333333,
+                "teams_ranked": 138,
+                "teams_expected": 138
+              },
+              "schedule_context": {
+                "opponent_category": "passing_defense",
+                "average_opponent_metric": 0.05697142857142857,
+                "opponents_used": 5,
+                "games_expected": 5,
+                "method": "Equal weight per meeting; current season opposing-unit averages include head-to-head games. FCS opponent metrics omitted. Not a recursive or adjusted SoS rating."
+              }
+            },
+            "passing_defense": {
+              "label": "Passing defense",
+              "unit": "Published pass EPA allowed / play",
+              "value": -0.026,
+              "rank": 41,
+              "games_used": 5,
+              "games_expected": 5,
+              "missing_game_ids": [],
+              "supporting": {
+                "yards_per_game": {
+                  "value": 199.2,
+                  "games_used": 5,
+                  "games_expected": 5,
+                  "label": "Net passing yards / game"
+                },
+                "yards_per_attempt": {
+                  "value": 5.691428571428571,
+                  "games_used": 5,
+                  "games_expected": 5,
+                  "label": "Net passing yards / attempt"
+                },
+                "completion_fraction": {
+                  "value": 0.6228571428571429,
+                  "games_used": 5,
+                  "games_expected": 5
+                },
+                "interceptions": {
+                  "value": 3.0
+                },
+                "touchdowns": {
+                  "value": null,
+                  "reason": "Not supplied by audited team-box dataset"
+                }
+              },
+              "games": [
+                {
+                  "game_id": "401856810",
+                  "date": "2026-09-12T19:30:00.000Z",
+                  "opponent_id": "12",
+                  "opponent": "Arizona",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": 0.02,
+                  "opponent_current_rank": 13,
+                  "opponent_current_metric": 0.336
+                },
+                {
+                  "game_id": "401856795",
+                  "date": "2026-09-19T23:30:00.000Z",
+                  "opponent_id": "36",
+                  "opponent": "Colorado State",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": 0.08,
+                  "opponent_current_rank": 44,
+                  "opponent_current_metric": 0.176
+                },
+                {
+                  "game_id": "401856818",
+                  "date": "2026-10-03T23:00:00.000Z",
+                  "opponent_id": "2628",
+                  "opponent": "TCU",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": -0.08,
+                  "opponent_current_rank": 52,
+                  "opponent_current_metric": 0.144
+                },
+                {
+                  "game_id": "401856826",
+                  "date": "2026-10-10T02:15:00.000Z",
+                  "opponent_id": "66",
+                  "opponent": "Iowa State",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": -0.34,
+                  "opponent_current_rank": 80,
+                  "opponent_current_metric": 0.04
+                },
+                {
+                  "game_id": "401856809",
+                  "date": "2026-10-17T23:30:00.000Z",
+                  "opponent_id": "87",
+                  "opponent": "Notre Dame",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": 0.19,
+                  "opponent_current_rank": 9,
+                  "opponent_current_metric": 0.37142857142857144
+                }
+              ],
+              "exact_nfl_metric_parity": "blocked",
+              "candidate_metric_status": "source-rounded game means",
+              "league": {
+                "mean": 0.08035472739820566,
+                "median": 0.0685,
+                "teams_ranked": 138,
+                "teams_expected": 138
+              },
+              "schedule_context": {
+                "opponent_category": "passing_offense",
+                "average_opponent_metric": 0.21348571428571428,
+                "opponents_used": 5,
+                "games_expected": 5,
+                "method": "Equal weight per meeting; current season opposing-unit averages include head-to-head games. FCS opponent metrics omitted. Not a recursive or adjusted SoS rating."
+              }
+            },
+            "rushing_offense": {
+              "label": "Rushing offense",
+              "unit": "Published rush EPA / play",
+              "value": 0.178,
+              "rank": 10,
+              "games_used": 5,
+              "games_expected": 5,
+              "missing_game_ids": [],
+              "supporting": {
+                "yards_per_game": {
+                  "value": 186.4,
+                  "games_used": 5,
+                  "games_expected": 5
+                },
+                "yards_per_carry": {
+                  "value": 5.482352941176471,
+                  "games_used": 5,
+                  "games_expected": 5
+                },
+                "touchdowns": {
+                  "value": null,
+                  "reason": "Not supplied by audited team-box dataset"
+                },
+                "positive_epa_success_fraction": {
+                  "value": 0.5086169446605019,
+                  "games_used": 5,
+                  "games_expected": 5
+                }
+              },
+              "games": [
+                {
+                  "game_id": "401856810",
+                  "date": "2026-09-12T19:30:00.000Z",
+                  "opponent_id": "12",
+                  "opponent": "Arizona",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": 0.35,
+                  "opponent_current_rank": 104,
+                  "opponent_current_metric": 0.084
+                },
+                {
+                  "game_id": "401856795",
+                  "date": "2026-09-19T23:30:00.000Z",
+                  "opponent_id": "36",
+                  "opponent": "Colorado State",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": 0.32,
+                  "opponent_current_rank": 138,
+                  "opponent_current_metric": 0.312
+                },
+                {
+                  "game_id": "401856818",
+                  "date": "2026-10-03T23:00:00.000Z",
+                  "opponent_id": "2628",
+                  "opponent": "TCU",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": 0.13,
+                  "opponent_current_rank": 22,
+                  "opponent_current_metric": -0.112
+                },
+                {
+                  "game_id": "401856826",
+                  "date": "2026-10-10T02:15:00.000Z",
+                  "opponent_id": "66",
+                  "opponent": "Iowa State",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": 0.03,
+                  "opponent_current_rank": 85,
+                  "opponent_current_metric": 0.05
+                },
+                {
+                  "game_id": "401856809",
+                  "date": "2026-10-17T23:30:00.000Z",
+                  "opponent_id": "87",
+                  "opponent": "Notre Dame",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": 0.06,
+                  "opponent_current_rank": 26,
+                  "opponent_current_metric": -0.09142857142857143
+                }
+              ],
+              "exact_nfl_metric_parity": "blocked",
+              "candidate_metric_status": "source-rounded game means",
+              "league": {
+                "mean": 0.010277087646652864,
+                "median": 0.012666666666666666,
+                "teams_ranked": 138,
+                "teams_expected": 138
+              },
+              "schedule_context": {
+                "opponent_category": "rushing_defense",
+                "average_opponent_metric": 0.04851428571428571,
+                "opponents_used": 5,
+                "games_expected": 5,
+                "method": "Equal weight per meeting; current season opposing-unit averages include head-to-head games. FCS opponent metrics omitted. Not a recursive or adjusted SoS rating."
+              }
+            },
+            "rushing_defense": {
+              "label": "Rushing defense",
+              "unit": "Published rush EPA allowed / play",
+              "value": 0.012,
+              "rank": 67,
+              "games_used": 5,
+              "games_expected": 5,
+              "missing_game_ids": [],
+              "supporting": {
+                "yards_per_game": {
+                  "value": 93.6,
+                  "games_used": 5,
+                  "games_expected": 5
+                },
+                "yards_per_carry": {
+                  "value": 3.295774647887324,
+                  "games_used": 5,
+                  "games_expected": 5
+                },
+                "touchdowns": {
+                  "value": null,
+                  "reason": "Not supplied by audited team-box dataset"
+                },
+                "positive_epa_success_fraction": {
+                  "value": 0.3943956043956044,
+                  "games_used": 5,
+                  "games_expected": 5
+                }
+              },
+              "games": [
+                {
+                  "game_id": "401856810",
+                  "date": "2026-09-12T19:30:00.000Z",
+                  "opponent_id": "12",
+                  "opponent": "Arizona",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": 0.23,
+                  "opponent_current_rank": 41,
+                  "opponent_current_metric": 0.088
+                },
+                {
+                  "game_id": "401856795",
+                  "date": "2026-09-19T23:30:00.000Z",
+                  "opponent_id": "36",
+                  "opponent": "Colorado State",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": 0.09,
+                  "opponent_current_rank": 2,
+                  "opponent_current_metric": 0.236
+                },
+                {
+                  "game_id": "401856818",
+                  "date": "2026-10-03T23:00:00.000Z",
+                  "opponent_id": "2628",
+                  "opponent": "TCU",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": -0.33,
+                  "opponent_current_rank": 138,
+                  "opponent_current_metric": -0.292
+                },
+                {
+                  "game_id": "401856826",
+                  "date": "2026-10-10T02:15:00.000Z",
+                  "opponent_id": "66",
+                  "opponent": "Iowa State",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": 0.14,
+                  "opponent_current_rank": 64,
+                  "opponent_current_metric": 0.026
+                },
+                {
+                  "game_id": "401856809",
+                  "date": "2026-10-17T23:30:00.000Z",
+                  "opponent_id": "87",
+                  "opponent": "Notre Dame",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": -0.07,
+                  "opponent_current_rank": 29,
+                  "opponent_current_metric": 0.11285714285714285
+                }
+              ],
+              "exact_nfl_metric_parity": "blocked",
+              "candidate_metric_status": "source-rounded game means",
+              "league": {
+                "mean": 0.011421325051759834,
+                "median": 0.019,
+                "teams_ranked": 138,
+                "teams_expected": 138
+              },
+              "schedule_context": {
+                "opponent_category": "rushing_offense",
+                "average_opponent_metric": 0.034171428571428575,
+                "opponents_used": 5,
+                "games_expected": 5,
+                "method": "Equal weight per meeting; current season opposing-unit averages include head-to-head games. FCS opponent metrics omitted. Not a recursive or adjusted SoS rating."
+              }
+            },
+            "pass_rush": {
+              "label": "Pass rush",
+              "unit": "Sacks / game",
+              "value": 2.0,
+              "rank": 59,
+              "games_used": 5,
+              "games_expected": 5,
+              "missing_game_ids": [],
+              "supporting": {},
+              "games": [
+                {
+                  "game_id": "401856810",
+                  "date": "2026-09-12T19:30:00.000Z",
+                  "opponent_id": "12",
+                  "opponent": "Arizona",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": 3.0,
+                  "opponent_current_rank": 112,
+                  "opponent_current_metric": 2.8
+                },
+                {
+                  "game_id": "401856795",
+                  "date": "2026-09-19T23:30:00.000Z",
+                  "opponent_id": "36",
+                  "opponent": "Colorado State",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": 0.0,
+                  "opponent_current_rank": 3,
+                  "opponent_current_metric": 0.4
+                },
+                {
+                  "game_id": "401856818",
+                  "date": "2026-10-03T23:00:00.000Z",
+                  "opponent_id": "2628",
+                  "opponent": "TCU",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": 4.0,
+                  "opponent_current_rank": 127,
+                  "opponent_current_metric": 3.2
+                },
+                {
+                  "game_id": "401856826",
+                  "date": "2026-10-10T02:15:00.000Z",
+                  "opponent_id": "66",
+                  "opponent": "Iowa State",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": 3.0,
+                  "opponent_current_rank": 40,
+                  "opponent_current_metric": 1.4
+                },
+                {
+                  "game_id": "401856809",
+                  "date": "2026-10-17T23:30:00.000Z",
+                  "opponent_id": "87",
+                  "opponent": "Notre Dame",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": 0.0,
+                  "opponent_current_rank": 1,
+                  "opponent_current_metric": 0.2857142857142857
+                }
+              ],
+              "exact_nfl_metric_parity": "same headline definition; upstream count validation still limited",
+              "candidate_metric_status": "integer counts averaged exactly",
+              "league": {
+                "mean": 1.9590752242926155,
+                "median": 2.0,
+                "teams_ranked": 138,
+                "teams_expected": 138
+              },
+              "schedule_context": {
+                "opponent_category": "pass_protection",
+                "average_opponent_metric": 1.6171428571428572,
+                "opponents_used": 5,
+                "games_expected": 5,
+                "method": "Equal weight per meeting; current season opposing-unit averages include head-to-head games. FCS opponent metrics omitted. Not a recursive or adjusted SoS rating."
+              }
+            },
+            "pass_protection": {
+              "label": "Pass protection",
+              "unit": "Sacks allowed / game",
+              "value": 0.4,
+              "rank": 3,
+              "games_used": 5,
+              "games_expected": 5,
+              "missing_game_ids": [],
+              "supporting": {},
+              "games": [
+                {
+                  "game_id": "401856810",
+                  "date": "2026-09-12T19:30:00.000Z",
+                  "opponent_id": "12",
+                  "opponent": "Arizona",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": 1.0,
+                  "opponent_current_rank": 59,
+                  "opponent_current_metric": 2.0
+                },
+                {
+                  "game_id": "401856795",
+                  "date": "2026-09-19T23:30:00.000Z",
+                  "opponent_id": "36",
+                  "opponent": "Colorado State",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": 0.0,
+                  "opponent_current_rank": 128,
+                  "opponent_current_metric": 0.8
+                },
+                {
+                  "game_id": "401856818",
+                  "date": "2026-10-03T23:00:00.000Z",
+                  "opponent_id": "2628",
+                  "opponent": "TCU",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": 1.0,
+                  "opponent_current_rank": 39,
+                  "opponent_current_metric": 2.4
+                },
+                {
+                  "game_id": "401856826",
+                  "date": "2026-10-10T02:15:00.000Z",
+                  "opponent_id": "66",
+                  "opponent": "Iowa State",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": 0.0,
+                  "opponent_current_rank": 134,
+                  "opponent_current_metric": 0.6
+                },
+                {
+                  "game_id": "401856809",
+                  "date": "2026-10-17T23:30:00.000Z",
+                  "opponent_id": "87",
+                  "opponent": "Notre Dame",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": 0.0,
+                  "opponent_current_rank": 58,
+                  "opponent_current_metric": 2.142857142857143
+                }
+              ],
+              "exact_nfl_metric_parity": "same headline definition; upstream count validation still limited",
+              "candidate_metric_status": "integer counts averaged exactly",
+              "league": {
+                "mean": 1.9499654934437542,
+                "median": 1.9285714285714286,
+                "teams_ranked": 138,
+                "teams_expected": 138
+              },
+              "schedule_context": {
+                "opponent_category": "pass_rush",
+                "average_opponent_metric": 1.5885714285714285,
+                "opponents_used": 5,
+                "games_expected": 5,
+                "method": "Equal weight per meeting; current season opposing-unit averages include head-to-head games. FCS opponent metrics omitted. Not a recursive or adjusted SoS rating."
+              }
+            }
+          },
+          "games_expected": 5
+        },
+        "2116": {
+          "team_id": "2116",
+          "name": "UCF",
+          "categories": {
+            "passing_offense": {
+              "label": "Passing offense",
+              "unit": "Published pass EPA / play",
+              "value": 0.018,
+              "rank": 87,
+              "games_used": 5,
+              "games_expected": 5,
+              "missing_game_ids": [],
+              "supporting": {
+                "yards_per_game": {
+                  "value": 191.2,
+                  "games_used": 5,
+                  "games_expected": 5,
+                  "label": "Net passing yards / game"
+                },
+                "yards_per_attempt": {
+                  "value": 6.45945945945946,
+                  "games_used": 5,
+                  "games_expected": 5,
+                  "label": "Net passing yards / attempt"
+                },
+                "completion_fraction": {
+                  "value": 0.6824324324324325,
+                  "games_used": 5,
+                  "games_expected": 5
+                },
+                "interceptions": {
+                  "value": 3.0
+                },
+                "touchdowns": {
+                  "value": null,
+                  "reason": "Not supplied by audited team-box dataset"
+                }
+              },
+              "games": [
+                {
+                  "game_id": "401856790",
+                  "date": "2026-09-12T19:30:00.000Z",
+                  "opponent_id": "221",
+                  "opponent": "Pittsburgh",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": -0.17,
+                  "opponent_current_rank": 70,
+                  "opponent_current_metric": 0.075
+                },
+                {
+                  "game_id": "401856800",
+                  "date": "2026-09-19T23:00:00.000Z",
+                  "opponent_id": "2247",
+                  "opponent": "Georgia State",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": -0.24,
+                  "opponent_current_rank": 33,
+                  "opponent_current_metric": -0.044
+                },
+                {
+                  "game_id": "401856815",
+                  "date": "2026-09-26T19:30:00.000Z",
+                  "opponent_id": "2628",
+                  "opponent": "TCU",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": 0.22,
+                  "opponent_current_rank": 16,
+                  "opponent_current_metric": -0.14
+                },
+                {
+                  "game_id": "401856819",
+                  "date": "2026-10-03T16:00:00.000Z",
+                  "opponent_id": "248",
+                  "opponent": "Houston",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": -0.2,
+                  "opponent_current_rank": 111,
+                  "opponent_current_metric": 0.26166666666666666
+                },
+                {
+                  "game_id": "401856824",
+                  "date": "2026-10-10T16:00:00.000Z",
+                  "opponent_id": "197",
+                  "opponent": "Oklahoma State",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": 0.48,
+                  "opponent_current_rank": 87,
+                  "opponent_current_metric": 0.128
+                }
+              ],
+              "exact_nfl_metric_parity": "blocked",
+              "candidate_metric_status": "source-rounded game means",
+              "league": {
+                "mean": 0.07874672187715666,
+                "median": 0.07083333333333333,
+                "teams_ranked": 138,
+                "teams_expected": 138
+              },
+              "schedule_context": {
+                "opponent_category": "passing_defense",
+                "average_opponent_metric": 0.056133333333333334,
+                "opponents_used": 5,
+                "games_expected": 5,
+                "method": "Equal weight per meeting; current season opposing-unit averages include head-to-head games. FCS opponent metrics omitted. Not a recursive or adjusted SoS rating."
+              }
+            },
+            "passing_defense": {
+              "label": "Passing defense",
+              "unit": "Published pass EPA allowed / play",
+              "value": 0.162,
+              "rank": 97,
+              "games_used": 5,
+              "games_expected": 5,
+              "missing_game_ids": [],
+              "supporting": {
+                "yards_per_game": {
+                  "value": 269.4,
+                  "games_used": 5,
+                  "games_expected": 5,
+                  "label": "Net passing yards / game"
+                },
+                "yards_per_attempt": {
+                  "value": 7.5251396648044695,
+                  "games_used": 5,
+                  "games_expected": 5,
+                  "label": "Net passing yards / attempt"
+                },
+                "completion_fraction": {
+                  "value": 0.6145251396648045,
+                  "games_used": 5,
+                  "games_expected": 5
+                },
+                "interceptions": {
+                  "value": 5.0
+                },
+                "touchdowns": {
+                  "value": null,
+                  "reason": "Not supplied by audited team-box dataset"
+                }
+              },
+              "games": [
+                {
+                  "game_id": "401856790",
+                  "date": "2026-09-12T19:30:00.000Z",
+                  "opponent_id": "221",
+                  "opponent": "Pittsburgh",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": 0.1,
+                  "opponent_current_rank": 76,
+                  "opponent_current_metric": 0.051666666666666666
+                },
+                {
+                  "game_id": "401856800",
+                  "date": "2026-09-19T23:00:00.000Z",
+                  "opponent_id": "2247",
+                  "opponent": "Georgia State",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": 0.03,
+                  "opponent_current_rank": 18,
+                  "opponent_current_metric": 0.316
+                },
+                {
+                  "game_id": "401856815",
+                  "date": "2026-09-26T19:30:00.000Z",
+                  "opponent_id": "2628",
+                  "opponent": "TCU",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": 0.11,
+                  "opponent_current_rank": 52,
+                  "opponent_current_metric": 0.144
+                },
+                {
+                  "game_id": "401856819",
+                  "date": "2026-10-03T16:00:00.000Z",
+                  "opponent_id": "248",
+                  "opponent": "Houston",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": -0.03,
+                  "opponent_current_rank": 4,
+                  "opponent_current_metric": 0.435
+                },
+                {
+                  "game_id": "401856824",
+                  "date": "2026-10-10T16:00:00.000Z",
+                  "opponent_id": "197",
+                  "opponent": "Oklahoma State",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": 0.6,
+                  "opponent_current_rank": 14,
+                  "opponent_current_metric": 0.332
+                }
+              ],
+              "exact_nfl_metric_parity": "blocked",
+              "candidate_metric_status": "source-rounded game means",
+              "league": {
+                "mean": 0.08035472739820566,
+                "median": 0.0685,
+                "teams_ranked": 138,
+                "teams_expected": 138
+              },
+              "schedule_context": {
+                "opponent_category": "passing_offense",
+                "average_opponent_metric": 0.2557333333333333,
+                "opponents_used": 5,
+                "games_expected": 5,
+                "method": "Equal weight per meeting; current season opposing-unit averages include head-to-head games. FCS opponent metrics omitted. Not a recursive or adjusted SoS rating."
+              }
+            },
+            "rushing_offense": {
+              "label": "Rushing offense",
+              "unit": "Published rush EPA / play",
+              "value": -0.14,
+              "rank": 125,
+              "games_used": 5,
+              "games_expected": 5,
+              "missing_game_ids": [],
+              "supporting": {
+                "yards_per_game": {
+                  "value": 122.6,
+                  "games_used": 5,
+                  "games_expected": 5
+                },
+                "yards_per_carry": {
+                  "value": 3.9044585987261144,
+                  "games_used": 5,
+                  "games_expected": 5
+                },
+                "touchdowns": {
+                  "value": null,
+                  "reason": "Not supplied by audited team-box dataset"
+                },
+                "positive_epa_success_fraction": {
+                  "value": 0.3825657894736842,
+                  "games_used": 5,
+                  "games_expected": 5
+                }
+              },
+              "games": [
+                {
+                  "game_id": "401856790",
+                  "date": "2026-09-12T19:30:00.000Z",
+                  "opponent_id": "221",
+                  "opponent": "Pittsburgh",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": -0.47,
+                  "opponent_current_rank": 4,
+                  "opponent_current_metric": -0.22333333333333333
+                },
+                {
+                  "game_id": "401856800",
+                  "date": "2026-09-19T23:00:00.000Z",
+                  "opponent_id": "2247",
+                  "opponent": "Georgia State",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": 0.42,
+                  "opponent_current_rank": 116,
+                  "opponent_current_metric": 0.122
+                },
+                {
+                  "game_id": "401856815",
+                  "date": "2026-09-26T19:30:00.000Z",
+                  "opponent_id": "2628",
+                  "opponent": "TCU",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": -0.21,
+                  "opponent_current_rank": 22,
+                  "opponent_current_metric": -0.112
+                },
+                {
+                  "game_id": "401856819",
+                  "date": "2026-10-03T16:00:00.000Z",
+                  "opponent_id": "248",
+                  "opponent": "Houston",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": -0.05,
+                  "opponent_current_rank": 54,
+                  "opponent_current_metric": -0.018333333333333333
+                },
+                {
+                  "game_id": "401856824",
+                  "date": "2026-10-10T16:00:00.000Z",
+                  "opponent_id": "197",
+                  "opponent": "Oklahoma State",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": -0.39,
+                  "opponent_current_rank": 42,
+                  "opponent_current_metric": -0.046
+                }
+              ],
+              "exact_nfl_metric_parity": "blocked",
+              "candidate_metric_status": "source-rounded game means",
+              "league": {
+                "mean": 0.010277087646652864,
+                "median": 0.012666666666666666,
+                "teams_ranked": 138,
+                "teams_expected": 138
+              },
+              "schedule_context": {
+                "opponent_category": "rushing_defense",
+                "average_opponent_metric": -0.05553333333333333,
+                "opponents_used": 5,
+                "games_expected": 5,
+                "method": "Equal weight per meeting; current season opposing-unit averages include head-to-head games. FCS opponent metrics omitted. Not a recursive or adjusted SoS rating."
+              }
+            },
+            "rushing_defense": {
+              "label": "Rushing defense",
+              "unit": "Published rush EPA allowed / play",
+              "value": -0.092,
+              "rank": 25,
+              "games_used": 5,
+              "games_expected": 5,
+              "missing_game_ids": [],
+              "supporting": {
+                "yards_per_game": {
+                  "value": 120.6,
+                  "games_used": 5,
+                  "games_expected": 5
+                },
+                "yards_per_carry": {
+                  "value": 3.3314917127071824,
+                  "games_used": 5,
+                  "games_expected": 5
+                },
+                "touchdowns": {
+                  "value": null,
+                  "reason": "Not supplied by audited team-box dataset"
+                },
+                "positive_epa_success_fraction": {
+                  "value": 0.39856162144491664,
+                  "games_used": 5,
+                  "games_expected": 5
+                }
+              },
+              "games": [
+                {
+                  "game_id": "401856790",
+                  "date": "2026-09-12T19:30:00.000Z",
+                  "opponent_id": "221",
+                  "opponent": "Pittsburgh",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": -0.26,
+                  "opponent_current_rank": 74,
+                  "opponent_current_metric": 0.0
+                },
+                {
+                  "game_id": "401856800",
+                  "date": "2026-09-19T23:00:00.000Z",
+                  "opponent_id": "2247",
+                  "opponent": "Georgia State",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": 0.02,
+                  "opponent_current_rank": 90,
+                  "opponent_current_metric": -0.034
+                },
+                {
+                  "game_id": "401856815",
+                  "date": "2026-09-26T19:30:00.000Z",
+                  "opponent_id": "2628",
+                  "opponent": "TCU",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": -0.24,
+                  "opponent_current_rank": 138,
+                  "opponent_current_metric": -0.292
+                },
+                {
+                  "game_id": "401856819",
+                  "date": "2026-10-03T16:00:00.000Z",
+                  "opponent_id": "248",
+                  "opponent": "Houston",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": 0.05,
+                  "opponent_current_rank": 26,
+                  "opponent_current_metric": 0.115
+                },
+                {
+                  "game_id": "401856824",
+                  "date": "2026-10-10T16:00:00.000Z",
+                  "opponent_id": "197",
+                  "opponent": "Oklahoma State",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": -0.03,
+                  "opponent_current_rank": 65,
+                  "opponent_current_metric": 0.024
+                }
+              ],
+              "exact_nfl_metric_parity": "blocked",
+              "candidate_metric_status": "source-rounded game means",
+              "league": {
+                "mean": 0.011421325051759834,
+                "median": 0.019,
+                "teams_ranked": 138,
+                "teams_expected": 138
+              },
+              "schedule_context": {
+                "opponent_category": "rushing_offense",
+                "average_opponent_metric": -0.0374,
+                "opponents_used": 5,
+                "games_expected": 5,
+                "method": "Equal weight per meeting; current season opposing-unit averages include head-to-head games. FCS opponent metrics omitted. Not a recursive or adjusted SoS rating."
+              }
+            },
+            "pass_rush": {
+              "label": "Pass rush",
+              "unit": "Sacks / game",
+              "value": 1.8,
+              "rank": 79,
+              "games_used": 5,
+              "games_expected": 5,
+              "missing_game_ids": [],
+              "supporting": {},
+              "games": [
+                {
+                  "game_id": "401856790",
+                  "date": "2026-09-12T19:30:00.000Z",
+                  "opponent_id": "221",
+                  "opponent": "Pittsburgh",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": 1.0,
+                  "opponent_current_rank": 33,
+                  "opponent_current_metric": 1.3333333333333333
+                },
+                {
+                  "game_id": "401856800",
+                  "date": "2026-09-19T23:00:00.000Z",
+                  "opponent_id": "2247",
+                  "opponent": "Georgia State",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": 2.0,
+                  "opponent_current_rank": 16,
+                  "opponent_current_metric": 1.0
+                },
+                {
+                  "game_id": "401856815",
+                  "date": "2026-09-26T19:30:00.000Z",
+                  "opponent_id": "2628",
+                  "opponent": "TCU",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": 4.0,
+                  "opponent_current_rank": 127,
+                  "opponent_current_metric": 3.2
+                },
+                {
+                  "game_id": "401856819",
+                  "date": "2026-10-03T16:00:00.000Z",
+                  "opponent_id": "248",
+                  "opponent": "Houston",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": 1.0,
+                  "opponent_current_rank": 23,
+                  "opponent_current_metric": 1.1666666666666667
+                },
+                {
+                  "game_id": "401856824",
+                  "date": "2026-10-10T16:00:00.000Z",
+                  "opponent_id": "197",
+                  "opponent": "Oklahoma State",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": 1.0,
+                  "opponent_current_rank": 10,
+                  "opponent_current_metric": 0.8
+                }
+              ],
+              "exact_nfl_metric_parity": "same headline definition; upstream count validation still limited",
+              "candidate_metric_status": "integer counts averaged exactly",
+              "league": {
+                "mean": 1.9590752242926155,
+                "median": 2.0,
+                "teams_ranked": 138,
+                "teams_expected": 138
+              },
+              "schedule_context": {
+                "opponent_category": "pass_protection",
+                "average_opponent_metric": 1.5,
+                "opponents_used": 5,
+                "games_expected": 5,
+                "method": "Equal weight per meeting; current season opposing-unit averages include head-to-head games. FCS opponent metrics omitted. Not a recursive or adjusted SoS rating."
+              }
+            },
+            "pass_protection": {
+              "label": "Pass protection",
+              "unit": "Sacks allowed / game",
+              "value": 1.4,
+              "rank": 40,
+              "games_used": 5,
+              "games_expected": 5,
+              "missing_game_ids": [],
+              "supporting": {},
+              "games": [
+                {
+                  "game_id": "401856790",
+                  "date": "2026-09-12T19:30:00.000Z",
+                  "opponent_id": "221",
+                  "opponent": "Pittsburgh",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": 2.0,
+                  "opponent_current_rank": 52,
+                  "opponent_current_metric": 2.1666666666666665
+                },
+                {
+                  "game_id": "401856800",
+                  "date": "2026-09-19T23:00:00.000Z",
+                  "opponent_id": "2247",
+                  "opponent": "Georgia State",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": 0.0,
+                  "opponent_current_rank": 18,
+                  "opponent_current_metric": 2.8
+                },
+                {
+                  "game_id": "401856815",
+                  "date": "2026-09-26T19:30:00.000Z",
+                  "opponent_id": "2628",
+                  "opponent": "TCU",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": 2.0,
+                  "opponent_current_rank": 39,
+                  "opponent_current_metric": 2.4
+                },
+                {
+                  "game_id": "401856819",
+                  "date": "2026-10-03T16:00:00.000Z",
+                  "opponent_id": "248",
+                  "opponent": "Houston",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": 2.0,
+                  "opponent_current_rank": 59,
+                  "opponent_current_metric": 2.0
+                },
+                {
+                  "game_id": "401856824",
+                  "date": "2026-10-10T16:00:00.000Z",
+                  "opponent_id": "197",
+                  "opponent": "Oklahoma State",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": 1.0,
+                  "opponent_current_rank": 46,
+                  "opponent_current_metric": 2.2
+                }
+              ],
+              "exact_nfl_metric_parity": "same headline definition; upstream count validation still limited",
+              "candidate_metric_status": "integer counts averaged exactly",
+              "league": {
+                "mean": 1.9499654934437542,
+                "median": 1.9285714285714286,
+                "teams_ranked": 138,
+                "teams_expected": 138
+              },
+              "schedule_context": {
+                "opponent_category": "pass_rush",
+                "average_opponent_metric": 2.3133333333333335,
+                "opponents_used": 5,
+                "games_expected": 5,
+                "method": "Equal weight per meeting; current season opposing-unit averages include head-to-head games. FCS opponent metrics omitted. Not a recursive or adjusted SoS rating."
+              }
+            }
+          },
+          "games_expected": 5
+        }
+      }
+    },
+    "including_fcs_performances": {
+      "games_used": 510,
+      "teams": {
+        "252": {
+          "team_id": "252",
+          "name": "BYU",
+          "categories": {
+            "passing_offense": {
+              "label": "Passing offense",
+              "unit": "Published pass EPA / play",
+              "value": 0.20333333333333334,
+              "rank": 41,
+              "games_used": 6,
+              "games_expected": 6,
+              "missing_game_ids": [],
+              "supporting": {
+                "yards_per_game": {
+                  "value": 214.5,
+                  "games_used": 6,
+                  "games_expected": 6,
+                  "label": "Net passing yards / game"
+                },
+                "yards_per_attempt": {
+                  "value": 8.25,
+                  "games_used": 6,
+                  "games_expected": 6,
+                  "label": "Net passing yards / attempt"
+                },
+                "completion_fraction": {
+                  "value": 0.6538461538461539,
+                  "games_used": 6,
+                  "games_expected": 6
+                },
+                "interceptions": {
+                  "value": 3.0
+                },
+                "touchdowns": {
+                  "value": null,
+                  "reason": "Not supplied by audited team-box dataset"
+                }
+              },
+              "games": [
+                {
+                  "game_id": "401856775",
+                  "date": "2026-09-06T00:00:00.000Z",
+                  "opponent_id": "3101",
+                  "opponent": "Utah Tech",
+                  "opponent_is_fbs": false,
+                  "venue_side": "home",
+                  "value": 0.38,
+                  "opponent_current_rank": null,
+                  "opponent_current_metric": null
+                },
+                {
+                  "game_id": "401856810",
+                  "date": "2026-09-12T19:30:00.000Z",
+                  "opponent_id": "12",
+                  "opponent": "Arizona",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": 0.3,
+                  "opponent_current_rank": 51,
+                  "opponent_current_metric": -0.01
+                },
+                {
+                  "game_id": "401856795",
+                  "date": "2026-09-19T23:30:00.000Z",
+                  "opponent_id": "36",
+                  "opponent": "Colorado State",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": 0.37,
+                  "opponent_current_rank": 134,
+                  "opponent_current_metric": 0.34
+                },
+                {
+                  "game_id": "401856818",
+                  "date": "2026-10-03T23:00:00.000Z",
+                  "opponent_id": "2628",
+                  "opponent": "TCU",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": -0.33,
+                  "opponent_current_rank": 20,
+                  "opponent_current_metric": -0.12666666666666668
+                },
+                {
+                  "game_id": "401856826",
+                  "date": "2026-10-10T02:15:00.000Z",
+                  "opponent_id": "66",
+                  "opponent": "Iowa State",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": 0.37,
+                  "opponent_current_rank": 73,
+                  "opponent_current_metric": 0.028333333333333332
+                },
+                {
+                  "game_id": "401856809",
+                  "date": "2026-10-17T23:30:00.000Z",
+                  "opponent_id": "87",
+                  "opponent": "Notre Dame",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": 0.13,
+                  "opponent_current_rank": 19,
+                  "opponent_current_metric": -0.14714285714285713
+                }
+              ],
+              "exact_nfl_metric_parity": "blocked",
+              "candidate_metric_status": "source-rounded game means",
+              "league": {
+                "mean": 0.10929347826086956,
+                "median": 0.10583333333333333,
+                "teams_ranked": 138,
+                "teams_expected": 138
+              },
+              "schedule_context": {
+                "opponent_category": "passing_defense",
+                "average_opponent_metric": 0.016904761904761905,
+                "opponents_used": 5,
+                "games_expected": 6,
+                "method": "Equal weight per meeting; current season opposing-unit averages include head-to-head games. FCS opponent metrics omitted. Not a recursive or adjusted SoS rating."
+              }
+            },
+            "passing_defense": {
+              "label": "Passing defense",
+              "unit": "Published pass EPA allowed / play",
+              "value": -0.07,
+              "rank": 34,
+              "games_used": 6,
+              "games_expected": 6,
+              "missing_game_ids": [],
+              "supporting": {
+                "yards_per_game": {
+                  "value": 188.5,
+                  "games_used": 6,
+                  "games_expected": 6,
+                  "label": "Net passing yards / game"
+                },
+                "yards_per_attempt": {
+                  "value": 5.490291262135922,
+                  "games_used": 6,
+                  "games_expected": 6,
+                  "label": "Net passing yards / attempt"
+                },
+                "completion_fraction": {
+                  "value": 0.6019417475728155,
+                  "games_used": 6,
+                  "games_expected": 6
+                },
+                "interceptions": {
+                  "value": 6.0
+                },
+                "touchdowns": {
+                  "value": null,
+                  "reason": "Not supplied by audited team-box dataset"
+                }
+              },
+              "games": [
+                {
+                  "game_id": "401856775",
+                  "date": "2026-09-06T00:00:00.000Z",
+                  "opponent_id": "3101",
+                  "opponent": "Utah Tech",
+                  "opponent_is_fbs": false,
+                  "venue_side": "home",
+                  "value": -0.29,
+                  "opponent_current_rank": null,
+                  "opponent_current_metric": null
+                },
+                {
+                  "game_id": "401856810",
+                  "date": "2026-09-12T19:30:00.000Z",
+                  "opponent_id": "12",
+                  "opponent": "Arizona",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": 0.02,
+                  "opponent_current_rank": 30,
+                  "opponent_current_metric": 0.24833333333333332
+                },
+                {
+                  "game_id": "401856795",
+                  "date": "2026-09-19T23:30:00.000Z",
+                  "opponent_id": "36",
+                  "opponent": "Colorado State",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": 0.08,
+                  "opponent_current_rank": 41,
+                  "opponent_current_metric": 0.20333333333333334
+                },
+                {
+                  "game_id": "401856818",
+                  "date": "2026-10-03T23:00:00.000Z",
+                  "opponent_id": "2628",
+                  "opponent": "TCU",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": -0.08,
+                  "opponent_current_rank": 50,
+                  "opponent_current_metric": 0.17
+                },
+                {
+                  "game_id": "401856826",
+                  "date": "2026-10-10T02:15:00.000Z",
+                  "opponent_id": "66",
+                  "opponent": "Iowa State",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": -0.34,
+                  "opponent_current_rank": 78,
+                  "opponent_current_metric": 0.06833333333333333
+                },
+                {
+                  "game_id": "401856809",
+                  "date": "2026-10-17T23:30:00.000Z",
+                  "opponent_id": "87",
+                  "opponent": "Notre Dame",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": 0.19,
+                  "opponent_current_rank": 12,
+                  "opponent_current_metric": 0.37142857142857144
+                }
+              ],
+              "exact_nfl_metric_parity": "blocked",
+              "candidate_metric_status": "source-rounded game means",
+              "league": {
+                "mean": 0.03773593857832988,
+                "median": 0.017142857142857144,
+                "teams_ranked": 138,
+                "teams_expected": 138
+              },
+              "schedule_context": {
+                "opponent_category": "passing_offense",
+                "average_opponent_metric": 0.21228571428571427,
+                "opponents_used": 5,
+                "games_expected": 6,
+                "method": "Equal weight per meeting; current season opposing-unit averages include head-to-head games. FCS opponent metrics omitted. Not a recursive or adjusted SoS rating."
+              }
+            },
+            "rushing_offense": {
+              "label": "Rushing offense",
+              "unit": "Published rush EPA / play",
+              "value": 0.22,
+              "rank": 4,
+              "games_used": 6,
+              "games_expected": 6,
+              "missing_game_ids": [],
+              "supporting": {
+                "yards_per_game": {
+                  "value": 206.66666666666666,
+                  "games_used": 6,
+                  "games_expected": 6
+                },
+                "yards_per_carry": {
+                  "value": 5.7407407407407405,
+                  "games_used": 6,
+                  "games_expected": 6
+                },
+                "touchdowns": {
+                  "value": null,
+                  "reason": "Not supplied by audited team-box dataset"
+                },
+                "positive_epa_success_fraction": {
+                  "value": 0.5362505546589453,
+                  "games_used": 6,
+                  "games_expected": 6
+                }
+              },
+              "games": [
+                {
+                  "game_id": "401856775",
+                  "date": "2026-09-06T00:00:00.000Z",
+                  "opponent_id": "3101",
+                  "opponent": "Utah Tech",
+                  "opponent_is_fbs": false,
+                  "venue_side": "home",
+                  "value": 0.43,
+                  "opponent_current_rank": null,
+                  "opponent_current_metric": null
+                },
+                {
+                  "game_id": "401856810",
+                  "date": "2026-09-12T19:30:00.000Z",
+                  "opponent_id": "12",
+                  "opponent": "Arizona",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": 0.35,
+                  "opponent_current_rank": 60,
+                  "opponent_current_metric": -0.035
+                },
+                {
+                  "game_id": "401856795",
+                  "date": "2026-09-19T23:30:00.000Z",
+                  "opponent_id": "36",
+                  "opponent": "Colorado State",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": 0.32,
+                  "opponent_current_rank": 138,
+                  "opponent_current_metric": 0.295
+                },
+                {
+                  "game_id": "401856818",
+                  "date": "2026-10-03T23:00:00.000Z",
+                  "opponent_id": "2628",
+                  "opponent": "TCU",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": 0.13,
+                  "opponent_current_rank": 9,
+                  "opponent_current_metric": -0.175
+                },
+                {
+                  "game_id": "401856826",
+                  "date": "2026-10-10T02:15:00.000Z",
+                  "opponent_id": "66",
+                  "opponent": "Iowa State",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": 0.03,
+                  "opponent_current_rank": 82,
+                  "opponent_current_metric": 0.015
+                },
+                {
+                  "game_id": "401856809",
+                  "date": "2026-10-17T23:30:00.000Z",
+                  "opponent_id": "87",
+                  "opponent": "Notre Dame",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": 0.06,
+                  "opponent_current_rank": 28,
+                  "opponent_current_metric": -0.09142857142857143
+                }
+              ],
+              "exact_nfl_metric_parity": "blocked",
+              "candidate_metric_status": "source-rounded game means",
+              "league": {
+                "mean": 0.03635955831608006,
+                "median": 0.03666666666666667,
+                "teams_ranked": 138,
+                "teams_expected": 138
+              },
+              "schedule_context": {
+                "opponent_category": "rushing_defense",
+                "average_opponent_metric": 0.0017142857142857142,
+                "opponents_used": 5,
+                "games_expected": 6,
+                "method": "Equal weight per meeting; current season opposing-unit averages include head-to-head games. FCS opponent metrics omitted. Not a recursive or adjusted SoS rating."
+              }
+            },
+            "rushing_defense": {
+              "label": "Rushing defense",
+              "unit": "Published rush EPA allowed / play",
+              "value": -0.006666666666666667,
+              "rank": 72,
+              "games_used": 6,
+              "games_expected": 6,
+              "missing_game_ids": [],
+              "supporting": {
+                "yards_per_game": {
+                  "value": 86.16666666666667,
+                  "games_used": 6,
+                  "games_expected": 6
+                },
+                "yards_per_carry": {
+                  "value": 3.095808383233533,
+                  "games_used": 6,
+                  "games_expected": 6
+                },
+                "touchdowns": {
+                  "value": null,
+                  "reason": "Not supplied by audited team-box dataset"
+                },
+                "positive_epa_success_fraction": {
+                  "value": 0.38421855921855924,
+                  "games_used": 6,
+                  "games_expected": 6
+                }
+              },
+              "games": [
+                {
+                  "game_id": "401856775",
+                  "date": "2026-09-06T00:00:00.000Z",
+                  "opponent_id": "3101",
+                  "opponent": "Utah Tech",
+                  "opponent_is_fbs": false,
+                  "venue_side": "home",
+                  "value": -0.1,
+                  "opponent_current_rank": null,
+                  "opponent_current_metric": null
+                },
+                {
+                  "game_id": "401856810",
+                  "date": "2026-09-12T19:30:00.000Z",
+                  "opponent_id": "12",
+                  "opponent": "Arizona",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": 0.23,
+                  "opponent_current_rank": 41,
+                  "opponent_current_metric": 0.09
+                },
+                {
+                  "game_id": "401856795",
+                  "date": "2026-09-19T23:30:00.000Z",
+                  "opponent_id": "36",
+                  "opponent": "Colorado State",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": 0.09,
+                  "opponent_current_rank": 2,
+                  "opponent_current_metric": 0.285
+                },
+                {
+                  "game_id": "401856818",
+                  "date": "2026-10-03T23:00:00.000Z",
+                  "opponent_id": "2628",
+                  "opponent": "TCU",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": -0.33,
+                  "opponent_current_rank": 134,
+                  "opponent_current_metric": -0.18
+                },
+                {
+                  "game_id": "401856826",
+                  "date": "2026-10-10T02:15:00.000Z",
+                  "opponent_id": "66",
+                  "opponent": "Iowa State",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": 0.14,
+                  "opponent_current_rank": 79,
+                  "opponent_current_metric": 0.023333333333333334
+                },
+                {
+                  "game_id": "401856809",
+                  "date": "2026-10-17T23:30:00.000Z",
+                  "opponent_id": "87",
+                  "opponent": "Notre Dame",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": -0.07,
+                  "opponent_current_rank": 34,
+                  "opponent_current_metric": 0.11285714285714285
+                }
+              ],
+              "exact_nfl_metric_parity": "blocked",
+              "candidate_metric_status": "source-rounded game means",
+              "league": {
+                "mean": -0.011901742581090407,
+                "median": -0.010833333333333334,
+                "teams_ranked": 138,
+                "teams_expected": 138
+              },
+              "schedule_context": {
+                "opponent_category": "rushing_offense",
+                "average_opponent_metric": 0.06623809523809523,
+                "opponents_used": 5,
+                "games_expected": 6,
+                "method": "Equal weight per meeting; current season opposing-unit averages include head-to-head games. FCS opponent metrics omitted. Not a recursive or adjusted SoS rating."
+              }
+            },
+            "pass_rush": {
+              "label": "Pass rush",
+              "unit": "Sacks / game",
+              "value": 1.8333333333333333,
+              "rank": 83,
+              "games_used": 6,
+              "games_expected": 6,
+              "missing_game_ids": [],
+              "supporting": {},
+              "games": [
+                {
+                  "game_id": "401856775",
+                  "date": "2026-09-06T00:00:00.000Z",
+                  "opponent_id": "3101",
+                  "opponent": "Utah Tech",
+                  "opponent_is_fbs": false,
+                  "venue_side": "home",
+                  "value": 1.0,
+                  "opponent_current_rank": null,
+                  "opponent_current_metric": null
+                },
+                {
+                  "game_id": "401856810",
+                  "date": "2026-09-12T19:30:00.000Z",
+                  "opponent_id": "12",
+                  "opponent": "Arizona",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": 3.0,
+                  "opponent_current_rank": 115,
+                  "opponent_current_metric": 2.6666666666666665
+                },
+                {
+                  "game_id": "401856795",
+                  "date": "2026-09-19T23:30:00.000Z",
+                  "opponent_id": "36",
+                  "opponent": "Colorado State",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": 0.0,
+                  "opponent_current_rank": 5,
+                  "opponent_current_metric": 0.5
+                },
+                {
+                  "game_id": "401856818",
+                  "date": "2026-10-03T23:00:00.000Z",
+                  "opponent_id": "2628",
+                  "opponent": "TCU",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": 4.0,
+                  "opponent_current_rank": 122,
+                  "opponent_current_metric": 2.8333333333333335
+                },
+                {
+                  "game_id": "401856826",
+                  "date": "2026-10-10T02:15:00.000Z",
+                  "opponent_id": "66",
+                  "opponent": "Iowa State",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": 3.0,
+                  "opponent_current_rank": 43,
+                  "opponent_current_metric": 1.3333333333333333
+                },
+                {
+                  "game_id": "401856809",
+                  "date": "2026-10-17T23:30:00.000Z",
+                  "opponent_id": "87",
+                  "opponent": "Notre Dame",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": 0.0,
+                  "opponent_current_rank": 1,
+                  "opponent_current_metric": 0.2857142857142857
+                }
+              ],
+              "exact_nfl_metric_parity": "same headline definition; upstream count validation still limited",
+              "candidate_metric_status": "integer counts averaged exactly",
+              "league": {
+                "mean": 2.0239820565907523,
+                "median": 2.0,
+                "teams_ranked": 138,
+                "teams_expected": 138
+              },
+              "schedule_context": {
+                "opponent_category": "pass_protection",
+                "average_opponent_metric": 1.5238095238095237,
+                "opponents_used": 5,
+                "games_expected": 6,
+                "method": "Equal weight per meeting; current season opposing-unit averages include head-to-head games. FCS opponent metrics omitted. Not a recursive or adjusted SoS rating."
+              }
+            },
+            "pass_protection": {
+              "label": "Pass protection",
+              "unit": "Sacks allowed / game",
+              "value": 0.5,
+              "rank": 5,
+              "games_used": 6,
+              "games_expected": 6,
+              "missing_game_ids": [],
+              "supporting": {},
+              "games": [
+                {
+                  "game_id": "401856775",
+                  "date": "2026-09-06T00:00:00.000Z",
+                  "opponent_id": "3101",
+                  "opponent": "Utah Tech",
+                  "opponent_is_fbs": false,
+                  "venue_side": "home",
+                  "value": 1.0,
+                  "opponent_current_rank": null,
+                  "opponent_current_metric": null
+                },
+                {
+                  "game_id": "401856810",
+                  "date": "2026-09-12T19:30:00.000Z",
+                  "opponent_id": "12",
+                  "opponent": "Arizona",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": 1.0,
+                  "opponent_current_rank": 31,
+                  "opponent_current_metric": 2.5
+                },
+                {
+                  "game_id": "401856795",
+                  "date": "2026-09-19T23:30:00.000Z",
+                  "opponent_id": "36",
+                  "opponent": "Colorado State",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": 0.0,
+                  "opponent_current_rank": 121,
+                  "opponent_current_metric": 1.1666666666666667
+                },
+                {
+                  "game_id": "401856818",
+                  "date": "2026-10-03T23:00:00.000Z",
+                  "opponent_id": "2628",
+                  "opponent": "TCU",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": 1.0,
+                  "opponent_current_rank": 41,
+                  "opponent_current_metric": 2.3333333333333335
+                },
+                {
+                  "game_id": "401856826",
+                  "date": "2026-10-10T02:15:00.000Z",
+                  "opponent_id": "66",
+                  "opponent": "Iowa State",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": 0.0,
+                  "opponent_current_rank": 100,
+                  "opponent_current_metric": 1.5
+                },
+                {
+                  "game_id": "401856809",
+                  "date": "2026-10-17T23:30:00.000Z",
+                  "opponent_id": "87",
+                  "opponent": "Notre Dame",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": 0.0,
+                  "opponent_current_rank": 59,
+                  "opponent_current_metric": 2.142857142857143
+                }
+              ],
+              "exact_nfl_metric_parity": "same headline definition; upstream count validation still limited",
+              "candidate_metric_status": "integer counts averaged exactly",
+              "league": {
+                "mean": 1.8218599033816425,
+                "median": 1.7916666666666667,
+                "teams_ranked": 138,
+                "teams_expected": 138
+              },
+              "schedule_context": {
+                "opponent_category": "pass_rush",
+                "average_opponent_metric": 1.9285714285714286,
+                "opponents_used": 5,
+                "games_expected": 6,
+                "method": "Equal weight per meeting; current season opposing-unit averages include head-to-head games. FCS opponent metrics omitted. Not a recursive or adjusted SoS rating."
+              }
+            }
+          },
+          "games_expected": 6
+        },
+        "2116": {
+          "team_id": "2116",
+          "name": "UCF",
+          "categories": {
+            "passing_offense": {
+              "label": "Passing offense",
+              "unit": "Published pass EPA / play",
+              "value": 0.041666666666666664,
+              "rank": 85,
+              "games_used": 6,
+              "games_expected": 6,
+              "missing_game_ids": [],
+              "supporting": {
+                "yards_per_game": {
+                  "value": 192.66666666666666,
+                  "games_used": 6,
+                  "games_expected": 6,
+                  "label": "Net passing yards / game"
+                },
+                "yards_per_attempt": {
+                  "value": 6.8,
+                  "games_used": 6,
+                  "games_expected": 6,
+                  "label": "Net passing yards / attempt"
+                },
+                "completion_fraction": {
+                  "value": 0.6823529411764706,
+                  "games_used": 6,
+                  "games_expected": 6
+                },
+                "interceptions": {
+                  "value": 4.0
+                },
+                "touchdowns": {
+                  "value": null,
+                  "reason": "Not supplied by audited team-box dataset"
+                }
+              },
+              "games": [
+                {
+                  "game_id": "401856767",
+                  "date": "2026-09-03T23:00:00.000Z",
+                  "opponent_id": "2065",
+                  "opponent": "Bethune-Cookman",
+                  "opponent_is_fbs": false,
+                  "venue_side": "home",
+                  "value": 0.16,
+                  "opponent_current_rank": null,
+                  "opponent_current_metric": null
+                },
+                {
+                  "game_id": "401856790",
+                  "date": "2026-09-12T19:30:00.000Z",
+                  "opponent_id": "221",
+                  "opponent": "Pittsburgh",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": -0.17,
+                  "opponent_current_rank": 61,
+                  "opponent_current_metric": 0.007142857142857143
+                },
+                {
+                  "game_id": "401856800",
+                  "date": "2026-09-19T23:00:00.000Z",
+                  "opponent_id": "2247",
+                  "opponent": "Georgia State",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": -0.24,
+                  "opponent_current_rank": 39,
+                  "opponent_current_metric": -0.06
+                },
+                {
+                  "game_id": "401856815",
+                  "date": "2026-09-26T19:30:00.000Z",
+                  "opponent_id": "2628",
+                  "opponent": "TCU",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": 0.22,
+                  "opponent_current_rank": 20,
+                  "opponent_current_metric": -0.12666666666666668
+                },
+                {
+                  "game_id": "401856819",
+                  "date": "2026-10-03T16:00:00.000Z",
+                  "opponent_id": "248",
+                  "opponent": "Houston",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": -0.2,
+                  "opponent_current_rank": 111,
+                  "opponent_current_metric": 0.18857142857142858
+                },
+                {
+                  "game_id": "401856824",
+                  "date": "2026-10-10T16:00:00.000Z",
+                  "opponent_id": "197",
+                  "opponent": "Oklahoma State",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": 0.48,
+                  "opponent_current_rank": 77,
+                  "opponent_current_metric": 0.04833333333333333
+                }
+              ],
+              "exact_nfl_metric_parity": "blocked",
+              "candidate_metric_status": "source-rounded game means",
+              "league": {
+                "mean": 0.10929347826086956,
+                "median": 0.10583333333333333,
+                "teams_ranked": 138,
+                "teams_expected": 138
+              },
+              "schedule_context": {
+                "opponent_category": "passing_defense",
+                "average_opponent_metric": 0.011476190476190477,
+                "opponents_used": 5,
+                "games_expected": 6,
+                "method": "Equal weight per meeting; current season opposing-unit averages include head-to-head games. FCS opponent metrics omitted. Not a recursive or adjusted SoS rating."
+              }
+            },
+            "passing_defense": {
+              "label": "Passing defense",
+              "unit": "Published pass EPA allowed / play",
+              "value": 0.1,
+              "rank": 92,
+              "games_used": 6,
+              "games_expected": 6,
+              "missing_game_ids": [],
+              "supporting": {
+                "yards_per_game": {
+                  "value": 236.83333333333334,
+                  "games_used": 6,
+                  "games_expected": 6,
+                  "label": "Net passing yards / game"
+                },
+                "yards_per_attempt": {
+                  "value": 7.14070351758794,
+                  "games_used": 6,
+                  "games_expected": 6,
+                  "label": "Net passing yards / attempt"
+                },
+                "completion_fraction": {
+                  "value": 0.6030150753768844,
+                  "games_used": 6,
+                  "games_expected": 6
+                },
+                "interceptions": {
+                  "value": 6.0
+                },
+                "touchdowns": {
+                  "value": null,
+                  "reason": "Not supplied by audited team-box dataset"
+                }
+              },
+              "games": [
+                {
+                  "game_id": "401856767",
+                  "date": "2026-09-03T23:00:00.000Z",
+                  "opponent_id": "2065",
+                  "opponent": "Bethune-Cookman",
+                  "opponent_is_fbs": false,
+                  "venue_side": "home",
+                  "value": -0.21,
+                  "opponent_current_rank": null,
+                  "opponent_current_metric": null
+                },
+                {
+                  "game_id": "401856790",
+                  "date": "2026-09-12T19:30:00.000Z",
+                  "opponent_id": "221",
+                  "opponent": "Pittsburgh",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": 0.1,
+                  "opponent_current_rank": 63,
+                  "opponent_current_metric": 0.12857142857142856
+                },
+                {
+                  "game_id": "401856800",
+                  "date": "2026-09-19T23:00:00.000Z",
+                  "opponent_id": "2247",
+                  "opponent": "Georgia State",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": 0.03,
+                  "opponent_current_rank": 15,
+                  "opponent_current_metric": 0.34
+                },
+                {
+                  "game_id": "401856815",
+                  "date": "2026-09-26T19:30:00.000Z",
+                  "opponent_id": "2628",
+                  "opponent": "TCU",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": 0.11,
+                  "opponent_current_rank": 50,
+                  "opponent_current_metric": 0.17
+                },
+                {
+                  "game_id": "401856819",
+                  "date": "2026-10-03T16:00:00.000Z",
+                  "opponent_id": "248",
+                  "opponent": "Houston",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": -0.03,
+                  "opponent_current_rank": 3,
+                  "opponent_current_metric": 0.4928571428571429
+                },
+                {
+                  "game_id": "401856824",
+                  "date": "2026-10-10T16:00:00.000Z",
+                  "opponent_id": "197",
+                  "opponent": "Oklahoma State",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": 0.6,
+                  "opponent_current_rank": 9,
+                  "opponent_current_metric": 0.4083333333333333
+                }
+              ],
+              "exact_nfl_metric_parity": "blocked",
+              "candidate_metric_status": "source-rounded game means",
+              "league": {
+                "mean": 0.03773593857832988,
+                "median": 0.017142857142857144,
+                "teams_ranked": 138,
+                "teams_expected": 138
+              },
+              "schedule_context": {
+                "opponent_category": "passing_offense",
+                "average_opponent_metric": 0.307952380952381,
+                "opponents_used": 5,
+                "games_expected": 6,
+                "method": "Equal weight per meeting; current season opposing-unit averages include head-to-head games. FCS opponent metrics omitted. Not a recursive or adjusted SoS rating."
+              }
+            },
+            "rushing_offense": {
+              "label": "Rushing offense",
+              "unit": "Published rush EPA / play",
+              "value": -0.023333333333333334,
+              "rank": 100,
+              "games_used": 6,
+              "games_expected": 6,
+              "missing_game_ids": [],
+              "supporting": {
+                "yards_per_game": {
+                  "value": 162.16666666666666,
+                  "games_used": 6,
+                  "games_expected": 6
+                },
+                "yards_per_carry": {
+                  "value": 4.98974358974359,
+                  "games_used": 6,
+                  "games_expected": 6
+                },
+                "touchdowns": {
+                  "value": null,
+                  "reason": "Not supplied by audited team-box dataset"
+                },
+                "positive_epa_success_fraction": {
+                  "value": 0.4088949146514936,
+                  "games_used": 6,
+                  "games_expected": 6
+                }
+              },
+              "games": [
+                {
+                  "game_id": "401856767",
+                  "date": "2026-09-03T23:00:00.000Z",
+                  "opponent_id": "2065",
+                  "opponent": "Bethune-Cookman",
+                  "opponent_is_fbs": false,
+                  "venue_side": "home",
+                  "value": 0.56,
+                  "opponent_current_rank": null,
+                  "opponent_current_metric": null
+                },
+                {
+                  "game_id": "401856790",
+                  "date": "2026-09-12T19:30:00.000Z",
+                  "opponent_id": "221",
+                  "opponent": "Pittsburgh",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": -0.47,
+                  "opponent_current_rank": 3,
+                  "opponent_current_metric": -0.22285714285714286
+                },
+                {
+                  "game_id": "401856800",
+                  "date": "2026-09-19T23:00:00.000Z",
+                  "opponent_id": "2247",
+                  "opponent": "Georgia State",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": 0.42,
+                  "opponent_current_rank": 117,
+                  "opponent_current_metric": 0.09666666666666666
+                },
+                {
+                  "game_id": "401856815",
+                  "date": "2026-09-26T19:30:00.000Z",
+                  "opponent_id": "2628",
+                  "opponent": "TCU",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": -0.21,
+                  "opponent_current_rank": 9,
+                  "opponent_current_metric": -0.175
+                },
+                {
+                  "game_id": "401856819",
+                  "date": "2026-10-03T16:00:00.000Z",
+                  "opponent_id": "248",
+                  "opponent": "Houston",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": -0.05,
+                  "opponent_current_rank": 38,
+                  "opponent_current_metric": -0.08
+                },
+                {
+                  "game_id": "401856824",
+                  "date": "2026-10-10T16:00:00.000Z",
+                  "opponent_id": "197",
+                  "opponent": "Oklahoma State",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": -0.39,
+                  "opponent_current_rank": 42,
+                  "opponent_current_metric": -0.07
+                }
+              ],
+              "exact_nfl_metric_parity": "blocked",
+              "candidate_metric_status": "source-rounded game means",
+              "league": {
+                "mean": 0.03635955831608006,
+                "median": 0.03666666666666667,
+                "teams_ranked": 138,
+                "teams_expected": 138
+              },
+              "schedule_context": {
+                "opponent_category": "rushing_defense",
+                "average_opponent_metric": -0.09023809523809524,
+                "opponents_used": 5,
+                "games_expected": 6,
+                "method": "Equal weight per meeting; current season opposing-unit averages include head-to-head games. FCS opponent metrics omitted. Not a recursive or adjusted SoS rating."
+              }
+            },
+            "rushing_defense": {
+              "label": "Rushing defense",
+              "unit": "Published rush EPA allowed / play",
+              "value": -0.115,
+              "rank": 24,
+              "games_used": 6,
+              "games_expected": 6,
+              "missing_game_ids": [],
+              "supporting": {
+                "yards_per_game": {
+                  "value": 118.33333333333333,
+                  "games_used": 6,
+                  "games_expected": 6
+                },
+                "yards_per_carry": {
+                  "value": 3.2126696832579187,
+                  "games_used": 6,
+                  "games_expected": 6
+                },
+                "touchdowns": {
+                  "value": null,
+                  "reason": "Not supplied by audited team-box dataset"
+                },
+                "positive_epa_success_fraction": {
+                  "value": 0.37599433366023755,
+                  "games_used": 6,
+                  "games_expected": 6
+                }
+              },
+              "games": [
+                {
+                  "game_id": "401856767",
+                  "date": "2026-09-03T23:00:00.000Z",
+                  "opponent_id": "2065",
+                  "opponent": "Bethune-Cookman",
+                  "opponent_is_fbs": false,
+                  "venue_side": "home",
+                  "value": -0.23,
+                  "opponent_current_rank": null,
+                  "opponent_current_metric": null
+                },
+                {
+                  "game_id": "401856790",
+                  "date": "2026-09-12T19:30:00.000Z",
+                  "opponent_id": "221",
+                  "opponent": "Pittsburgh",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": -0.26,
+                  "opponent_current_rank": 94,
+                  "opponent_current_metric": -0.01
+                },
+                {
+                  "game_id": "401856800",
+                  "date": "2026-09-19T23:00:00.000Z",
+                  "opponent_id": "2247",
+                  "opponent": "Georgia State",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": 0.02,
+                  "opponent_current_rank": 73,
+                  "opponent_current_metric": 0.03333333333333333
+                },
+                {
+                  "game_id": "401856815",
+                  "date": "2026-09-26T19:30:00.000Z",
+                  "opponent_id": "2628",
+                  "opponent": "TCU",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": -0.24,
+                  "opponent_current_rank": 134,
+                  "opponent_current_metric": -0.18
+                },
+                {
+                  "game_id": "401856819",
+                  "date": "2026-10-03T16:00:00.000Z",
+                  "opponent_id": "248",
+                  "opponent": "Houston",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": 0.05,
+                  "opponent_current_rank": 21,
+                  "opponent_current_metric": 0.15714285714285714
+                },
+                {
+                  "game_id": "401856824",
+                  "date": "2026-10-10T16:00:00.000Z",
+                  "opponent_id": "197",
+                  "opponent": "Oklahoma State",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": -0.03,
+                  "opponent_current_rank": 68,
+                  "opponent_current_metric": 0.03666666666666667
+                }
+              ],
+              "exact_nfl_metric_parity": "blocked",
+              "candidate_metric_status": "source-rounded game means",
+              "league": {
+                "mean": -0.011901742581090407,
+                "median": -0.010833333333333334,
+                "teams_ranked": 138,
+                "teams_expected": 138
+              },
+              "schedule_context": {
+                "opponent_category": "rushing_offense",
+                "average_opponent_metric": 0.0074285714285714285,
+                "opponents_used": 5,
+                "games_expected": 6,
+                "method": "Equal weight per meeting; current season opposing-unit averages include head-to-head games. FCS opponent metrics omitted. Not a recursive or adjusted SoS rating."
+              }
+            },
+            "pass_rush": {
+              "label": "Pass rush",
+              "unit": "Sacks / game",
+              "value": 2.0,
+              "rank": 65,
+              "games_used": 6,
+              "games_expected": 6,
+              "missing_game_ids": [],
+              "supporting": {},
+              "games": [
+                {
+                  "game_id": "401856767",
+                  "date": "2026-09-03T23:00:00.000Z",
+                  "opponent_id": "2065",
+                  "opponent": "Bethune-Cookman",
+                  "opponent_is_fbs": false,
+                  "venue_side": "home",
+                  "value": 3.0,
+                  "opponent_current_rank": null,
+                  "opponent_current_metric": null
+                },
+                {
+                  "game_id": "401856790",
+                  "date": "2026-09-12T19:30:00.000Z",
+                  "opponent_id": "221",
+                  "opponent": "Pittsburgh",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": 1.0,
+                  "opponent_current_rank": 28,
+                  "opponent_current_metric": 1.1428571428571428
+                },
+                {
+                  "game_id": "401856800",
+                  "date": "2026-09-19T23:00:00.000Z",
+                  "opponent_id": "2247",
+                  "opponent": "Georgia State",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": 2.0,
+                  "opponent_current_rank": 10,
+                  "opponent_current_metric": 0.8333333333333334
+                },
+                {
+                  "game_id": "401856815",
+                  "date": "2026-09-26T19:30:00.000Z",
+                  "opponent_id": "2628",
+                  "opponent": "TCU",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": 4.0,
+                  "opponent_current_rank": 122,
+                  "opponent_current_metric": 2.8333333333333335
+                },
+                {
+                  "game_id": "401856819",
+                  "date": "2026-10-03T16:00:00.000Z",
+                  "opponent_id": "248",
+                  "opponent": "Houston",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": 1.0,
+                  "opponent_current_rank": 16,
+                  "opponent_current_metric": 1.0
+                },
+                {
+                  "game_id": "401856824",
+                  "date": "2026-10-10T16:00:00.000Z",
+                  "opponent_id": "197",
+                  "opponent": "Oklahoma State",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": 1.0,
+                  "opponent_current_rank": 10,
+                  "opponent_current_metric": 0.8333333333333334
+                }
+              ],
+              "exact_nfl_metric_parity": "same headline definition; upstream count validation still limited",
+              "candidate_metric_status": "integer counts averaged exactly",
+              "league": {
+                "mean": 2.0239820565907523,
+                "median": 2.0,
+                "teams_ranked": 138,
+                "teams_expected": 138
+              },
+              "schedule_context": {
+                "opponent_category": "pass_protection",
+                "average_opponent_metric": 1.3285714285714285,
+                "opponents_used": 5,
+                "games_expected": 6,
+                "method": "Equal weight per meeting; current season opposing-unit averages include head-to-head games. FCS opponent metrics omitted. Not a recursive or adjusted SoS rating."
+              }
+            },
+            "pass_protection": {
+              "label": "Pass protection",
+              "unit": "Sacks allowed / game",
+              "value": 1.3333333333333333,
+              "rank": 43,
+              "games_used": 6,
+              "games_expected": 6,
+              "missing_game_ids": [],
+              "supporting": {},
+              "games": [
+                {
+                  "game_id": "401856767",
+                  "date": "2026-09-03T23:00:00.000Z",
+                  "opponent_id": "2065",
+                  "opponent": "Bethune-Cookman",
+                  "opponent_is_fbs": false,
+                  "venue_side": "home",
+                  "value": 1.0,
+                  "opponent_current_rank": null,
+                  "opponent_current_metric": null
+                },
+                {
+                  "game_id": "401856790",
+                  "date": "2026-09-12T19:30:00.000Z",
+                  "opponent_id": "221",
+                  "opponent": "Pittsburgh",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": 2.0,
+                  "opponent_current_rank": 65,
+                  "opponent_current_metric": 2.0
+                },
+                {
+                  "game_id": "401856800",
+                  "date": "2026-09-19T23:00:00.000Z",
+                  "opponent_id": "2247",
+                  "opponent": "Georgia State",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": 0.0,
+                  "opponent_current_rank": 6,
+                  "opponent_current_metric": 3.1666666666666665
+                },
+                {
+                  "game_id": "401856815",
+                  "date": "2026-09-26T19:30:00.000Z",
+                  "opponent_id": "2628",
+                  "opponent": "TCU",
+                  "opponent_is_fbs": true,
+                  "venue_side": "home",
+                  "value": 2.0,
+                  "opponent_current_rank": 41,
+                  "opponent_current_metric": 2.3333333333333335
+                },
+                {
+                  "game_id": "401856819",
+                  "date": "2026-10-03T16:00:00.000Z",
+                  "opponent_id": "248",
+                  "opponent": "Houston",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": 2.0,
+                  "opponent_current_rank": 78,
+                  "opponent_current_metric": 1.8571428571428572
+                },
+                {
+                  "game_id": "401856824",
+                  "date": "2026-10-10T16:00:00.000Z",
+                  "opponent_id": "197",
+                  "opponent": "Oklahoma State",
+                  "opponent_is_fbs": true,
+                  "venue_side": "away",
+                  "value": 1.0,
+                  "opponent_current_rank": 83,
+                  "opponent_current_metric": 1.8333333333333333
+                }
+              ],
+              "exact_nfl_metric_parity": "same headline definition; upstream count validation still limited",
+              "candidate_metric_status": "integer counts averaged exactly",
+              "league": {
+                "mean": 1.8218599033816425,
+                "median": 1.7916666666666667,
+                "teams_ranked": 138,
+                "teams_expected": 138
+              },
+              "schedule_context": {
+                "opponent_category": "pass_rush",
+                "average_opponent_metric": 2.238095238095238,
+                "opponents_used": 5,
+                "games_expected": 6,
+                "method": "Equal weight per meeting; current season opposing-unit averages include head-to-head games. FCS opponent metrics omitted. Not a recursive or adjusted SoS rating."
+              }
+            }
+          },
+          "games_expected": 6
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,244 @@
+{
+  "checked_at": "2026-10-24T17:56:29.347373+00:00",
+  "checks": [
+    {
+      "season": 2012,
+      "team_id": "149",
+      "team_name": "Montana Grizzlies",
+      "sources": [
+        {
+          "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/teams/149/schedule?season=2012&seasontype=2",
+          "sha256": "1b0e406d5177905f75d73b97ce5b5ca1007a3faf61cbd743af8e711b2b69afaf",
+          "bytes": 462746
+        }
+      ],
+      "espn_total_events": 11,
+      "matched_d1_results": 2,
+      "missing_from_bulk": [
+        {
+          "game_id": "322590149",
+          "name": "Liberty Flames at Montana Grizzlies",
+          "date": "2012-09-15T19:30Z"
+        },
+        {
+          "game_id": "322660149",
+          "name": "Northern Arizona Lumberjacks at Montana Grizzlies",
+          "date": "2012-09-22T19:30Z"
+        },
+        {
+          "game_id": "322730331",
+          "name": "Montana Grizzlies at Eastern Washington Eagles",
+          "date": "2012-09-29T23:15Z"
+        },
+        {
+          "game_id": "322802458",
+          "name": "Montana Grizzlies at Northern Colorado Bears",
+          "date": "2012-10-06T19:35Z"
+        },
+        {
+          "game_id": "322870149",
+          "name": "Southern Utah Thunderbirds at Montana Grizzlies",
+          "date": "2012-10-13T19:30Z"
+        },
+        {
+          "game_id": "322940155",
+          "name": "Montana Grizzlies at North Dakota ",
+          "date": "2012-10-20T19:30Z"
+        },
+        {
+          "game_id": "323010149",
+          "name": "Idaho State Bengals at Montana Grizzlies",
+          "date": "2012-10-27T19:30Z"
+        },
+        {
+          "game_id": "323082692",
+          "name": "Montana Grizzlies at Weber State Wildcats",
+          "date": "2012-11-03T19:30Z"
+        },
+        {
+          "game_id": "323220149",
+          "name": "Montana State Bobcats at Montana Grizzlies",
+          "date": "2012-11-17T20:30Z"
+        }
+      ],
+      "bulk_d1_ids_absent_from_espn": [],
+      "conflicts": [],
+      "omitted": {},
+      "metadata_notices": [
+        "Top-level season metadata is current, not requested historical season; validate each event season instead."
+      ]
+    },
+    {
+      "season": 2014,
+      "team_id": "2449",
+      "team_name": "North Dakota State Bison",
+      "sources": [
+        {
+          "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/teams/2449/schedule?season=2014&seasontype=2",
+          "sha256": "ba33a7fc79cb60d60c446e6570be289270397f46fe2273886ee99df3185402ac",
+          "bytes": 601753
+        },
+        {
+          "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/teams/2449/schedule?season=2014&seasontype=3",
+          "sha256": "51a5c6bd07dfd2b6057ce9a21025cc602c94af9991f4a72edc05d70b5f08b21e",
+          "bytes": 86624
+        }
+      ],
+      "espn_total_events": 16,
+      "matched_d1_results": 16,
+      "missing_from_bulk": [],
+      "bulk_d1_ids_absent_from_espn": [],
+      "conflicts": [],
+      "omitted": {},
+      "metadata_notices": [
+        "Top-level season metadata is current, not requested historical season; validate each event season instead."
+      ]
+    },
+    {
+      "season": 2015,
+      "team_id": "2449",
+      "team_name": "North Dakota State Bison",
+      "sources": [
+        {
+          "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/teams/2449/schedule?season=2015&seasontype=2",
+          "sha256": "9dc955503771684ad553ec3a6c2f632902a2f27c791ac6a609d1b236a228831c",
+          "bytes": 560266
+        },
+        {
+          "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/teams/2449/schedule?season=2015&seasontype=3",
+          "sha256": "e5c2c4728298ee1ffcb94ac9a933d9edc962995d3ecf68fa3c1ced761e1e6190",
+          "bytes": 88159
+        }
+      ],
+      "espn_total_events": 15,
+      "matched_d1_results": 14,
+      "missing_from_bulk": [],
+      "bulk_d1_ids_absent_from_espn": [],
+      "conflicts": [
+        {
+          "game_id": "400795729",
+          "reason": "Score, identity or neutral-site discrepancy"
+        }
+      ],
+      "omitted": {},
+      "metadata_notices": [
+        "Top-level season metadata is current, not requested historical season; validate each event season instead."
+      ]
+    },
+    {
+      "season": 2018,
+      "team_id": "2453",
+      "team_name": "North Alabama Lions",
+      "sources": [
+        {
+          "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/teams/2453/schedule?season=2018&seasontype=2",
+          "sha256": "2b07ca674a9a45030fd030da2ae987627747f9129f7644184a9d87901546b4ae",
+          "bytes": 424586
+        },
+        {
+          "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/teams/2453/schedule?season=2018&seasontype=3",
+          "sha256": "b46c0f6d8e8db3ca18e178f4f505be315a8972842e3cacc6191e7e5dc7ccf3d7",
+          "bytes": 577
+        }
+      ],
+      "espn_total_events": 10,
+      "matched_d1_results": 5,
+      "missing_from_bulk": [],
+      "bulk_d1_ids_absent_from_espn": [],
+      "conflicts": [],
+      "omitted": {
+        "outside_d1_or_not_classified_in_bulk": 5
+      },
+      "metadata_notices": [
+        "Top-level season metadata is current, not requested historical season; validate each event season instead."
+      ]
+    },
+    {
+      "season": 2018,
+      "team_id": "2261",
+      "team_name": "Hampton Pirates",
+      "sources": [
+        {
+          "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/teams/2261/schedule?season=2018&seasontype=2",
+          "sha256": "61a63c4617a0b05dee6f69db874b0b5dcb4b8a8cc05c0f0c38464469bb3beedd",
+          "bytes": 437139
+        },
+        {
+          "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/teams/2261/schedule?season=2018&seasontype=3",
+          "sha256": "3ead4b961223bf6a97dd45fb611922a82a4e49011fb7a7796bdd4cde803377ba",
+          "bytes": 566
+        }
+      ],
+      "espn_total_events": 11,
+      "matched_d1_results": 5,
+      "missing_from_bulk": [],
+      "bulk_d1_ids_absent_from_espn": [],
+      "conflicts": [],
+      "omitted": {
+        "outside_d1_or_not_classified_in_bulk": 5,
+        "nonfinal": 1
+      },
+      "metadata_notices": [
+        "Top-level season metadata is current, not requested historical season; validate each event season instead."
+      ]
+    },
+    {
+      "season": 2023,
+      "team_id": "338",
+      "team_name": "Kennesaw State Owls",
+      "sources": [
+        {
+          "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/teams/338/schedule?season=2023&seasontype=2",
+          "sha256": "38fd94e79c8144caee4b6213de498ed28eef1f92ad8414bd114c1da05a3a9f5f",
+          "bytes": 405644
+        },
+        {
+          "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/teams/338/schedule?season=2023&seasontype=3",
+          "sha256": "498a4123b17be067e903b66df51a4795fd7477c9b8cc1283607cdf67c864974f",
+          "bytes": 575
+        }
+      ],
+      "espn_total_events": 9,
+      "matched_d1_results": 6,
+      "missing_from_bulk": [],
+      "bulk_d1_ids_absent_from_espn": [],
+      "conflicts": [],
+      "omitted": {
+        "outside_d1_or_not_classified_in_bulk": 3
+      },
+      "metadata_notices": [
+        "Top-level season metadata is current, not requested historical season; validate each event season instead."
+      ]
+    },
+    {
+      "season": 2025,
+      "team_id": "149",
+      "team_name": "Montana Grizzlies",
+      "sources": [
+        {
+          "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/teams/149/schedule?season=2025&seasontype=2",
+          "sha256": "345468028f4ce720db14937936f13518cf6000600520f7eb7c20bfcaf61c29a3",
+          "bytes": 632813
+        },
+        {
+          "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/teams/149/schedule?season=2025&seasontype=3",
+          "sha256": "f200aa2bb407691304493252924b85d1cdf9efcf5be8e0d23d414383d671dcdd",
+          "bytes": 99267
+        }
+      ],
+      "espn_total_events": 15,
+      "matched_d1_results": 14,
+      "missing_from_bulk": [],
+      "bulk_d1_ids_absent_from_espn": [],
+      "conflicts": [],
+      "omitted": {
+        "outside_d1_or_not_classified_in_bulk": 1
+      },
+      "metadata_notices": [
+        "Top-level season metadata is current, not requested historical season; validate each event season instead."
+      ]
+    }
+  ],
+  "scope": "Seven targeted team-season checks, not an exhaustive completeness proof. Providers may share upstream data.",
+  "finding": "2012 Montana has nine known missing bulk games; later checked cases must be assessed individually."
+}

@@ -1,0 +1,845 @@
+{
+  "checked_at_utc": "2026-10-24T16:05:43.188481+00:00",
+  "scope": "Read-only anonymous ESPN schedule/result feasibility checks; no installed package, account, CFBD key or application integration.",
+  "authentication_used": false,
+  "documentation": [
+    "https://py.sportsdataverse.org/docs/cfb/reference/additional/highlights",
+    "https://cfbfastr.sportsdataverse.org/reference/espn_cfb_scoreboard.html",
+    "https://github.com/sportsdataverse/cfbfastR-cfb-data/blob/main/DATASETS.md"
+  ],
+  "requests": {
+    "daily_oct23": {
+      "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=20261023&groups=80&limit=1000",
+      "http_status": 200,
+      "retrieved_at_utc_from_file_mtime": "2026-10-24T16:02:48.620083+00:00",
+      "bytes": 86067,
+      "sha256": "de84d084220612e40e411d9d837785a998931201e96157bfd2ac7cef5f6270d5",
+      "event_count": 5,
+      "temporary_payload_path": "/tmp/cfb-espn-scoreboard-20261023.json"
+    },
+    "daily_oct24_limit1000": {
+      "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=20261024&groups=80&limit=1000",
+      "http_status": 200,
+      "retrieved_at_utc_from_file_mtime": "2026-10-24T15:59:17.589658+00:00",
+      "bytes": 476269,
+      "sha256": "3c7d6c2ece32996207c3884efdaffc894104665fe06b6cf931600ec6ca0bdd82",
+      "event_count": 25,
+      "temporary_payload_path": "/tmp/cfb-espn-scoreboard-20261024.json"
+    },
+    "daily_oct24_limit500": {
+      "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=20261024&groups=80&limit=500",
+      "http_status": 200,
+      "retrieved_at_utc_from_file_mtime": "2026-10-24T16:04:14.364745+00:00",
+      "bytes": 803613,
+      "sha256": "6ecedd05466f81ebb51764e253f2a84439fa1d7efccd6af3e2fb8adec5a9e542",
+      "event_count": 44,
+      "temporary_payload_path": "/tmp/cfb-espn-scoreboard-20261024-limit500.json"
+    },
+    "daily_oct24_limit100_offset25": {
+      "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=20261024&groups=80&limit=100&offset=25",
+      "http_status": 200,
+      "retrieved_at_utc_from_file_mtime": "2026-10-24T16:04:11.525839+00:00",
+      "bytes": 834845,
+      "sha256": "88adb1068cc20533e4511c8398018de9f89b9463a26ccb23a7f2fdc47df92237",
+      "event_count": 44,
+      "temporary_payload_path": "/tmp/cfb-espn-scoreboard-20261024-offset25.json"
+    },
+    "week8_limit500": {
+      "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=2026&week=8&seasontype=2&groups=80&limit=500",
+      "http_status": 200,
+      "retrieved_at_utc_from_file_mtime": "2026-10-24T16:04:14.893298+00:00",
+      "bytes": 994654,
+      "sha256": "13f25a0241cdcb714ae49000bd28cbbfb8078be170f65710ca0a53f517b06112",
+      "event_count": 56,
+      "temporary_payload_path": "/tmp/cfb-espn-scoreboard-week8.json"
+    },
+    "week9_limit1000": {
+      "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=2026&week=9&seasontype=2&groups=80&limit=1000",
+      "http_status": 200,
+      "retrieved_at_utc_from_file_mtime": "2026-10-24T16:02:47.867251+00:00",
+      "bytes": 317218,
+      "sha256": "501237f392a61efb28c32f25e16955037543f6e374e01c43f0867f1e85354eaf",
+      "event_count": 25,
+      "temporary_payload_path": "/tmp/cfb-espn-scoreboard-week9.json"
+    },
+    "byu_season": {
+      "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/teams/252/schedule?season=2026&seasontype=2",
+      "http_status": 200,
+      "retrieved_at_utc_from_file_mtime": "2026-10-24T16:04:13.977422+00:00",
+      "bytes": 348401,
+      "sha256": "cd6933e3d8e7b5039f167e0fc8f25620e46bd02d05579526ee1e23a0bc07bf76",
+      "event_count": 12,
+      "temporary_payload_path": "/tmp/cfb-espn-byu-schedule.json"
+    }
+  },
+  "failed_probe": {
+    "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=20261020-20261024&groups=80&limit=1000",
+    "http_status": 400,
+    "note": "Use documented season/week or individual date form; date-range support not established."
+  },
+  "week8_reconciliation": {
+    "espn_games": 56,
+    "sdv_fbs_participant_games": 56,
+    "espn_game_ids_absent_from_sdv_week8": [],
+    "sdv_game_ids_absent_from_espn_week8": [],
+    "home_away_team_id_conflicts": [],
+    "status_counts": {
+      "STATUS_SCHEDULED": 41,
+      "STATUS_IN_PROGRESS": 3,
+      "STATUS_FINAL": 12
+    },
+    "all_56_game_ids_and_home_away_ids_agree": true,
+    "note": "Reconciles this one week against an independently downloaded SDV snapshot, not independent NCAA all-season completeness."
+  },
+  "sample_matchup": {
+    "game_id": "401856835",
+    "name": "BYU Cougars at UCF Knights",
+    "start_date": "2026-10-24T19:30Z",
+    "week": {
+      "number": 8
+    },
+    "season": {
+      "year": 2026,
+      "type": 2,
+      "slug": "regular-season"
+    },
+    "time_valid": true,
+    "date_valid": true,
+    "neutral_site": false,
+    "status": {
+      "id": "1",
+      "name": "STATUS_SCHEDULED",
+      "state": "pre",
+      "completed": false,
+      "description": "Scheduled",
+      "detail": "Sat, October 24th at 3:30 PM EDT",
+      "shortDetail": "10/24 - 3:30 PM EDT"
+    },
+    "teams": {
+      "home": {
+        "id": "2116",
+        "abbreviation": "UCF",
+        "name": "UCF Knights",
+        "score": "0"
+      },
+      "away": {
+        "id": "252",
+        "abbreviation": "BYU",
+        "name": "BYU Cougars",
+        "score": "0"
+      }
+    },
+    "sdv_previous": {
+      "start_date": "2026-10-24T04:00:00.000Z",
+      "start_time_tbd": "true",
+      "home_id": "2116",
+      "away_id": "252",
+      "status": "",
+      "completed": "false",
+      "venue": "FBC Mortgage Stadium"
+    },
+    "team_schedule_agrees": true
+  },
+  "latest_completed_games_since_sdv_cutoff": [
+    {
+      "game_id": "401871055",
+      "name": "Middle Tennessee Blue Raiders at Florida International Panthers",
+      "start_date": "2026-10-20T23:00Z",
+      "week": {
+        "number": 8
+      },
+      "season": {
+        "year": 2026,
+        "type": 2,
+        "slug": "regular-season"
+      },
+      "time_valid": true,
+      "date_valid": true,
+      "neutral_site": false,
+      "status": {
+        "id": "3",
+        "name": "STATUS_FINAL",
+        "state": "post",
+        "completed": true,
+        "description": "Final",
+        "detail": "Final",
+        "shortDetail": "Final"
+      },
+      "teams": {
+        "home": {
+          "id": "2229",
+          "abbreviation": "FIU",
+          "name": "Florida International Panthers",
+          "score": "23"
+        },
+        "away": {
+          "id": "2393",
+          "abbreviation": "MTSU",
+          "name": "Middle Tennessee Blue Raiders",
+          "score": "26"
+        }
+      },
+      "sdv_previous_completed": "false",
+      "sdv_previous_status": "",
+      "sdv_previous_scores": {
+        "home": "",
+        "away": ""
+      }
+    },
+    {
+      "game_id": "401871069",
+      "name": "Missouri State Bears at Delaware Blue Hens",
+      "start_date": "2026-10-20T23:00Z",
+      "week": {
+        "number": 8
+      },
+      "season": {
+        "year": 2026,
+        "type": 2,
+        "slug": "regular-season"
+      },
+      "time_valid": true,
+      "date_valid": true,
+      "neutral_site": false,
+      "status": {
+        "id": "3",
+        "name": "STATUS_FINAL",
+        "state": "post",
+        "completed": true,
+        "description": "Final",
+        "detail": "Final",
+        "shortDetail": "Final"
+      },
+      "teams": {
+        "home": {
+          "id": "48",
+          "abbreviation": "DEL",
+          "name": "Delaware Blue Hens",
+          "score": "61"
+        },
+        "away": {
+          "id": "2623",
+          "abbreviation": "MOST",
+          "name": "Missouri State Bears",
+          "score": "38"
+        }
+      },
+      "sdv_previous_completed": "false",
+      "sdv_previous_status": "",
+      "sdv_previous_scores": {
+        "home": "",
+        "away": ""
+      }
+    },
+    {
+      "game_id": "401871092",
+      "name": "South Alabama Jaguars at Marshall Thundering Herd",
+      "start_date": "2026-10-20T23:30Z",
+      "week": {
+        "number": 8
+      },
+      "season": {
+        "year": 2026,
+        "type": 2,
+        "slug": "regular-season"
+      },
+      "time_valid": true,
+      "date_valid": true,
+      "neutral_site": false,
+      "status": {
+        "id": "3",
+        "name": "STATUS_FINAL",
+        "state": "post",
+        "completed": true,
+        "description": "Final",
+        "detail": "Final",
+        "shortDetail": "Final"
+      },
+      "teams": {
+        "home": {
+          "id": "276",
+          "abbreviation": "MRSH",
+          "name": "Marshall Thundering Herd",
+          "score": "20"
+        },
+        "away": {
+          "id": "6",
+          "abbreviation": "USA",
+          "name": "South Alabama Jaguars",
+          "score": "13"
+        }
+      },
+      "sdv_previous_completed": "false",
+      "sdv_previous_status": "",
+      "sdv_previous_scores": {
+        "home": "",
+        "away": ""
+      }
+    },
+    {
+      "game_id": "401871070",
+      "name": "New Mexico State Aggies at Sam Houston Bearkats",
+      "start_date": "2026-10-22T00:00Z",
+      "week": {
+        "number": 8
+      },
+      "season": {
+        "year": 2026,
+        "type": 2,
+        "slug": "regular-season"
+      },
+      "time_valid": true,
+      "date_valid": true,
+      "neutral_site": false,
+      "status": {
+        "id": "3",
+        "name": "STATUS_FINAL",
+        "state": "post",
+        "completed": true,
+        "description": "Final",
+        "detail": "Final",
+        "shortDetail": "Final"
+      },
+      "teams": {
+        "home": {
+          "id": "2534",
+          "abbreviation": "SHSU",
+          "name": "Sam Houston Bearkats",
+          "score": "24"
+        },
+        "away": {
+          "id": "166",
+          "abbreviation": "NMSU",
+          "name": "New Mexico State Aggies",
+          "score": "30"
+        }
+      },
+      "sdv_previous_completed": "false",
+      "sdv_previous_status": "",
+      "sdv_previous_scores": {
+        "home": "",
+        "away": ""
+      }
+    },
+    {
+      "game_id": "401869845",
+      "name": "James Madison Dukes at App State Mountaineers",
+      "start_date": "2026-10-22T23:00Z",
+      "week": {
+        "number": 8
+      },
+      "season": {
+        "year": 2026,
+        "type": 2,
+        "slug": "regular-season"
+      },
+      "time_valid": true,
+      "date_valid": true,
+      "neutral_site": false,
+      "status": {
+        "id": "3",
+        "name": "STATUS_FINAL",
+        "state": "post",
+        "completed": true,
+        "description": "Final",
+        "detail": "Final/OT",
+        "shortDetail": "Final/OT",
+        "altDetail": "OT"
+      },
+      "teams": {
+        "home": {
+          "id": "2026",
+          "abbreviation": "APP",
+          "name": "App State Mountaineers",
+          "score": "34"
+        },
+        "away": {
+          "id": "256",
+          "abbreviation": "JMU",
+          "name": "James Madison Dukes",
+          "score": "31"
+        }
+      },
+      "sdv_previous_completed": "false",
+      "sdv_previous_status": "",
+      "sdv_previous_scores": {
+        "home": "",
+        "away": ""
+      }
+    },
+    {
+      "game_id": "401871056",
+      "name": "Liberty Flames at Kennesaw State Owls",
+      "start_date": "2026-10-22T23:00Z",
+      "week": {
+        "number": 8
+      },
+      "season": {
+        "year": 2026,
+        "type": 2,
+        "slug": "regular-season"
+      },
+      "time_valid": true,
+      "date_valid": true,
+      "neutral_site": false,
+      "status": {
+        "id": "3",
+        "name": "STATUS_FINAL",
+        "state": "post",
+        "completed": true,
+        "description": "Final",
+        "detail": "Final",
+        "shortDetail": "Final"
+      },
+      "teams": {
+        "home": {
+          "id": "338",
+          "abbreviation": "KENN",
+          "name": "Kennesaw State Owls",
+          "score": "6"
+        },
+        "away": {
+          "id": "2335",
+          "abbreviation": "LIB",
+          "name": "Liberty Flames",
+          "score": "34"
+        }
+      },
+      "sdv_previous_completed": "false",
+      "sdv_previous_status": "",
+      "sdv_previous_scores": {
+        "home": "",
+        "away": ""
+      }
+    },
+    {
+      "game_id": "401862807",
+      "name": "East Carolina Pirates at Memphis Tigers",
+      "start_date": "2026-10-22T23:30Z",
+      "week": {
+        "number": 8
+      },
+      "season": {
+        "year": 2026,
+        "type": 2,
+        "slug": "regular-season"
+      },
+      "time_valid": true,
+      "date_valid": true,
+      "neutral_site": false,
+      "status": {
+        "id": "3",
+        "name": "STATUS_FINAL",
+        "state": "post",
+        "completed": true,
+        "description": "Final",
+        "detail": "Final/OT",
+        "shortDetail": "Final/OT",
+        "altDetail": "OT"
+      },
+      "teams": {
+        "home": {
+          "id": "235",
+          "abbreviation": "MEM",
+          "name": "Memphis Tigers",
+          "score": "41"
+        },
+        "away": {
+          "id": "151",
+          "abbreviation": "ECU",
+          "name": "East Carolina Pirates",
+          "score": "34"
+        }
+      },
+      "sdv_previous_completed": "false",
+      "sdv_previous_status": "",
+      "sdv_previous_scores": {
+        "home": "",
+        "away": ""
+      }
+    },
+    {
+      "game_id": "401858271",
+      "name": "Duke Blue Devils at Virginia Cavaliers",
+      "start_date": "2026-10-23T23:00Z",
+      "week": {
+        "number": 8
+      },
+      "season": {
+        "year": 2026,
+        "type": 2,
+        "slug": "regular-season"
+      },
+      "time_valid": true,
+      "date_valid": true,
+      "neutral_site": false,
+      "status": {
+        "id": "3",
+        "name": "STATUS_FINAL",
+        "state": "post",
+        "completed": true,
+        "description": "Final",
+        "detail": "Final",
+        "shortDetail": "Final"
+      },
+      "teams": {
+        "home": {
+          "id": "258",
+          "abbreviation": "UVA",
+          "name": "Virginia Cavaliers",
+          "score": "16"
+        },
+        "away": {
+          "id": "150",
+          "abbreviation": "DUKE",
+          "name": "Duke Blue Devils",
+          "score": "19"
+        }
+      },
+      "sdv_previous_completed": "false",
+      "sdv_previous_status": "",
+      "sdv_previous_scores": {
+        "home": "",
+        "away": ""
+      }
+    },
+    {
+      "game_id": "401861965",
+      "name": "Massachusetts Minutemen at UConn Huskies",
+      "start_date": "2026-10-23T23:00Z",
+      "week": {
+        "number": 8
+      },
+      "season": {
+        "year": 2026,
+        "type": 2,
+        "slug": "regular-season"
+      },
+      "time_valid": true,
+      "date_valid": true,
+      "neutral_site": false,
+      "status": {
+        "id": "3",
+        "name": "STATUS_FINAL",
+        "state": "post",
+        "completed": true,
+        "description": "Final",
+        "detail": "Final",
+        "shortDetail": "Final"
+      },
+      "teams": {
+        "home": {
+          "id": "41",
+          "abbreviation": "CONN",
+          "name": "UConn Huskies",
+          "score": "35"
+        },
+        "away": {
+          "id": "113",
+          "abbreviation": "MASS",
+          "name": "Massachusetts Minutemen",
+          "score": "16"
+        }
+      },
+      "sdv_previous_completed": "false",
+      "sdv_previous_status": "",
+      "sdv_previous_scores": {
+        "home": "",
+        "away": ""
+      }
+    },
+    {
+      "game_id": "401862808",
+      "name": "Army Black Knights at Tulsa Golden Hurricane",
+      "start_date": "2026-10-24T00:30Z",
+      "week": {
+        "number": 8
+      },
+      "season": {
+        "year": 2026,
+        "type": 2,
+        "slug": "regular-season"
+      },
+      "time_valid": true,
+      "date_valid": true,
+      "neutral_site": false,
+      "status": {
+        "id": "3",
+        "name": "STATUS_FINAL",
+        "state": "post",
+        "completed": true,
+        "description": "Final",
+        "detail": "Final",
+        "shortDetail": "Final"
+      },
+      "teams": {
+        "home": {
+          "id": "202",
+          "abbreviation": "TLSA",
+          "name": "Tulsa Golden Hurricane",
+          "score": "35"
+        },
+        "away": {
+          "id": "349",
+          "abbreviation": "ARMY",
+          "name": "Army Black Knights",
+          "score": "38"
+        }
+      },
+      "sdv_previous_completed": "false",
+      "sdv_previous_status": "",
+      "sdv_previous_scores": {
+        "home": "",
+        "away": ""
+      }
+    },
+    {
+      "game_id": "401864525",
+      "name": "Air Force Falcons at Wyoming Cowboys",
+      "start_date": "2026-10-24T01:00Z",
+      "week": {
+        "number": 8
+      },
+      "season": {
+        "year": 2026,
+        "type": 2,
+        "slug": "regular-season"
+      },
+      "time_valid": true,
+      "date_valid": true,
+      "neutral_site": false,
+      "status": {
+        "id": "3",
+        "name": "STATUS_FINAL",
+        "state": "post",
+        "completed": true,
+        "description": "Final",
+        "detail": "Final",
+        "shortDetail": "Final"
+      },
+      "teams": {
+        "home": {
+          "id": "2751",
+          "abbreviation": "WYO",
+          "name": "Wyoming Cowboys",
+          "score": "28"
+        },
+        "away": {
+          "id": "2005",
+          "abbreviation": "AFA",
+          "name": "Air Force Falcons",
+          "score": "14"
+        }
+      },
+      "sdv_previous_completed": "false",
+      "sdv_previous_status": "",
+      "sdv_previous_scores": {
+        "home": "",
+        "away": ""
+      }
+    },
+    {
+      "game_id": "401858272",
+      "name": "NC State Wolfpack at Stanford Cardinal",
+      "start_date": "2026-10-24T02:30Z",
+      "week": {
+        "number": 8
+      },
+      "season": {
+        "year": 2026,
+        "type": 2,
+        "slug": "regular-season"
+      },
+      "time_valid": true,
+      "date_valid": true,
+      "neutral_site": false,
+      "status": {
+        "id": "3",
+        "name": "STATUS_FINAL",
+        "state": "post",
+        "completed": true,
+        "description": "Final",
+        "detail": "Final",
+        "shortDetail": "Final"
+      },
+      "teams": {
+        "home": {
+          "id": "24",
+          "abbreviation": "STAN",
+          "name": "Stanford Cardinal",
+          "score": "31"
+        },
+        "away": {
+          "id": "152",
+          "abbreviation": "NCSU",
+          "name": "NC State Wolfpack",
+          "score": "28"
+        }
+      },
+      "sdv_previous_completed": "false",
+      "sdv_previous_status": "",
+      "sdv_previous_scores": {
+        "home": "",
+        "away": ""
+      }
+    }
+  ],
+  "fbs_fcs_and_tbd_examples": {
+    "401856775": {
+      "game_id": "401856775",
+      "name": "Utah Tech Trailblazers at BYU Cougars",
+      "start_date": "2026-09-06T00:00Z",
+      "week": {
+        "number": 1,
+        "text": "Week 1"
+      },
+      "season": {
+        "year": 2026,
+        "displayName": "2026"
+      },
+      "time_valid": true,
+      "date_valid": null,
+      "neutral_site": false,
+      "status": {
+        "id": "3",
+        "name": "STATUS_FINAL",
+        "state": "post",
+        "completed": true,
+        "description": "Final",
+        "detail": "Final",
+        "shortDetail": "Final"
+      },
+      "teams": {
+        "home": {
+          "id": "252",
+          "abbreviation": "BYU",
+          "name": "BYU Cougars",
+          "score": {
+            "value": 63.0,
+            "displayValue": "63"
+          }
+        },
+        "away": {
+          "id": "3101",
+          "abbreviation": "UTU",
+          "name": "Utah Tech Trailblazers",
+          "score": {
+            "value": 7.0,
+            "displayValue": "7"
+          }
+        }
+      },
+      "sdv_classification": {
+        "home_division": "fbs",
+        "away_division": "fcs",
+        "fbs_game": "false",
+        "fbs_participant": "true",
+        "start_time_tbd": "false"
+      }
+    },
+    "401856849": {
+      "game_id": "401856849",
+      "name": "BYU Cougars at Utah Utes",
+      "start_date": "2026-11-07T05:00Z",
+      "week": {
+        "number": 10,
+        "text": "Week 10"
+      },
+      "season": {
+        "year": 2026,
+        "displayName": "2026"
+      },
+      "time_valid": false,
+      "date_valid": null,
+      "neutral_site": false,
+      "status": {
+        "id": "1",
+        "name": "STATUS_SCHEDULED",
+        "state": "pre",
+        "completed": false,
+        "description": "Scheduled",
+        "detail": "11/7 - TBD",
+        "shortDetail": "TBD"
+      },
+      "teams": {
+        "home": {
+          "id": "254",
+          "abbreviation": "UTAH",
+          "name": "Utah Utes",
+          "score": null
+        },
+        "away": {
+          "id": "252",
+          "abbreviation": "BYU",
+          "name": "BYU Cougars",
+          "score": null
+        }
+      },
+      "sdv_classification": {
+        "home_division": "fbs",
+        "away_division": "fbs",
+        "fbs_game": "true",
+        "fbs_participant": "true",
+        "start_time_tbd": "true"
+      }
+    }
+  },
+  "neutral_site_examples": [
+    {
+      "game_id": "401859185",
+      "name": "Notre Dame Fighting Irish at Navy Midshipmen",
+      "start_date": "2026-10-31T16:00Z",
+      "week": {
+        "number": 9
+      },
+      "season": {
+        "year": 2026,
+        "type": 2,
+        "slug": "regular-season"
+      },
+      "time_valid": true,
+      "date_valid": true,
+      "neutral_site": true,
+      "status": {
+        "id": "1",
+        "name": "STATUS_SCHEDULED",
+        "state": "pre",
+        "completed": false,
+        "description": "Scheduled",
+        "detail": "Sat, October 31st at 12:00 PM EDT",
+        "shortDetail": "10/31 - 12:00 PM EDT"
+      },
+      "teams": {
+        "home": {
+          "id": "2426",
+          "abbreviation": "NAVY",
+          "name": "Navy Midshipmen",
+          "score": "0"
+        },
+        "away": {
+          "id": "87",
+          "abbreviation": "ND",
+          "name": "Notre Dame Fighting Irish",
+          "score": "0"
+        }
+      }
+    }
+  ],
+  "pagination_observation": {
+    "oct24_limit1000": 25,
+    "oct24_limit500": 44,
+    "oct24_limit100_offset25": 44,
+    "limit500_and_limit100_offset25_ids_equal": true,
+    "interpretation": "Observed larger limit did not reliably mean more games. offset=25 did not skip the first25 in this sample. Prefer documented500 limit per bounded week and reconcile counts/IDs; do not assume offset pagination or all-season completeness."
+  },
+  "limitations": [
+    "ESPN endpoint is anonymously reachable and used/documented by SportsDataverse; no official supported ESPN developer contract or SLA verified.",
+    "Different URL variants returned different in-progress states during sampling; source/cache timing can differ. Only status.type.completed=true plus valid matching scores should be treated as final.",
+    "Scheduled games carry string zero scores; they are not completed0-0 games.",
+    "timeValid=false and TBD status must prevent placeholder midnight dates from being used as known kickoff.",
+    "Group80 is documented FBS; participant classification should still use season-specific team membership or verified SDV fbs_participant, not names/current conferences.",
+    "Verified BYU team schedule includes FCS Utah Tech. No week8 FBS-FCS case was independently classified by direct ESPN team membership in this audit.",
+    "The138-team FBS universe was not independently reconciled to all season team schedules.",
+    "Fresh schedule/results do not make the older play-by-play/statistics fresh; metric coverage must follow each statistics source cutoff."
+  ]
+}

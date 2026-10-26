@@ -173,3 +173,28 @@ details[open]>:not(summary){animation:reveal 160ms ease-out}
 .leaderboard-support{padding:4px 16px 12px;border-top:1px solid var(--border)}
 .leaderboard-support .supporting-stats{margin:12px 0}
 @media(max-width:620px){.leaderboard-heading,.leaderboard-team>summary{grid-template-columns:35px 48px minmax(0,1fr) 16px;gap:8px;padding:12px 10px}.leaderboard-name{padding-left:6px}.leaderboard-value .metric-note{font-size:10px}}
+.college-opponents{padding:12px 16px;border-top:1px solid var(--border)}
+.college-opponents h3{font-size:12px;margin:0 0 10px}.college-opponents dl{margin:0;min-width:0}
+.college-opponents dt,.college-opponents small{font-size:11px;color:var(--muted)}
+.college-opponents dd{margin:5px 0}.college-opponents dd small{display:block;margin-top:5px}.college-view .compare-head span{overflow-wrap:anywhere}
+.college-rules{white-space:pre-line}
+.sport-nav.segmented{flex:none}.sport-nav.segmented button{font-size:12px;padding:5px 12px}
+.shared-nav{border-left:1px solid var(--border);padding-left:20px}
+.cfb-standing-team{border-left:3px solid var(--team-color);padding-left:10px}
+.college-view .team-label{min-width:0}.college-view .team-label>span{min-width:0;overflow-wrap:anywhere}
+@media(max-width:900px){.app-nav.shared-nav{margin-left:0}}
+@media(max-width:620px){.app-nav.shared-nav{width:auto;order:4;padding-left:0;border-left:0;border-top:1px solid var(--border);padding-top:8px;flex-basis:100%}.cfb-standing-team{padding-left:6px}}
+.college-ratings{max-width:1040px}.cfb-rating-toolbar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:22px}
+.cfb-team-search{flex:1 1 180px;max-width:300px}.cfb-team-search input{width:100%;font-size:12px;min-height:34px}.cfb-team-search input::placeholder{color:var(--muted)}
+.cfb-board-caption{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:11px;color:var(--muted);margin-bottom:8px}
+.cfb-standing-grid,.cfb-standing>summary{display:grid;grid-template-columns:46px minmax(0,1fr) 84px 84px 76px 18px;align-items:center;gap:16px;padding:13px 18px}
+.cfb-standing-heading{font-size:11px;color:var(--muted)}.cfb-standing-heading>span:nth-child(n+3){text-align:right}
+.cfb-standing-team{display:flex;align-items:center;gap:12px;min-width:0;font-weight:500}.cfb-standing-team img{flex:none;object-fit:contain}.cfb-standing-team>span{min-width:0;overflow-wrap:anywhere}.cfb-standing-team small{display:block;font-size:10px;margin-top:2px;font-weight:400}
+.cfb-standing-value,.cfb-standing-schedule,.cfb-last-change{text-align:right;font-variant-numeric:tabular-nums}.cfb-standing-value{font-size:16px;font-weight:500}.cfb-standing-schedule{font-size:13px}.cfb-last-change{font-size:12px;color:var(--muted)}
+.cfb-standing .leaderboard-support{padding:4px 18px 14px;background:#16171b}.cfb-standing .supporting-stats{gap:15px 30px}.cfb-standing .supporting-stats>div{min-width:85px}
+.cfb-summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;padding-bottom:20px;border-bottom:1px solid var(--border)}.cfb-summary>div{min-width:0}.cfb-summary dd{font-size:22px;letter-spacing:-.4px}.cfb-summary dd>small{display:block;font-size:10px;letter-spacing:0;margin-top:4px}.cfb-summary>div:first-child dd>small{display:inline;font-size:13px;margin-left:5px}
+.cfb-resume{margin:16px 0}.cfb-resume>summary{justify-content:flex-start}.cfb-resume>summary>small{margin-left:auto}.cfb-resume>summary:after{margin-left:8px}
+.college-evidence{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;padding:6px 0}.college-evidence h3{font-size:12px;margin-bottom:12px}.college-evidence p{font-size:12px;display:flex;justify-content:space-between;gap:12px}.college-evidence p>small{flex:none;font-size:10px}
+.cfb-score{white-space:nowrap}.cfb-evidence-dialog .table-scroll{margin-top:22px}.cfb-strength-card .elo-team{--team-color:var(--away-color,#7e8fa9)}.cfb-strength-card .elo-team:last-child{--team-color:var(--home-color,#8b96a7)}.cfb-strength-card .elo-team>span{overflow-wrap:anywhere}.cfb-strength-card .elo-team>strong small{font-weight:400}
+@media(max-width:620px){.sport-nav.segmented button{padding:5px 10px}.cfb-rating-toolbar{gap:10px;margin-bottom:18px}.cfb-team-search{max-width:none;flex-basis:100%}.cfb-rating-toolbar>.controls{justify-content:space-between;width:100%}.cfb-standing-grid,.cfb-standing>summary{grid-template-columns:30px minmax(0,1fr) 52px 52px 12px;gap:8px;padding:12px 10px}.cfb-standing-team{gap:7px;font-size:12px}.cfb-standing-team img{width:22px;height:22px}.cfb-standing-value{font-size:14px}.cfb-standing .cfb-last-change,.cfb-standing-heading .cfb-last-change{display:none}.cfb-standing-heading{font-size:10px}.cfb-standing .leaderboard-rank{font-size:11px}.cfb-summary{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.college-evidence{grid-template-columns:minmax(0,1fr);gap:16px}.cfb-resume>summary{flex-wrap:wrap;gap:8px}.cfb-resume>summary>small{font-size:10px}}
+@media(max-width:620px){.app-nav{flex-wrap:wrap;justify-content:flex-start;gap:4px 12px}}

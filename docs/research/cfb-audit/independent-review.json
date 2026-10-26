@@ -1,0 +1,84 @@
+{
+  "review_date": "2026-10-24",
+  "review_scope": "Read-only independent recomputation from cached CSV inputs; no application changes or independent upstream play reconstruction.",
+  "inputs_directory": "/tmp/deck-cfb-audit",
+  "reviewed_artifacts": [
+    "audit_stats.py",
+    "stats-audit.json",
+    "rankings.json",
+    "sample-matchup.json"
+  ],
+  "source_identity_checks": {
+    "source_classified_fbs_team_ids": 138,
+    "conflicting_division_labels_for_fbs_ids": 0,
+    "schedule_seasons": [2026],
+    "completed_fbs_participant_games_before_cutoff": 510,
+    "rows_per_stat_table": 1020,
+    "stat_tables": ["team_box", "adv_team", "adv_defensive", "adv_situational"],
+    "qualification": "The 138-team count follows this cached schedule's division classifications; it is not independent certification of official FBS membership. Missing/extra-key checks reconcile against the saved schedule, not an independent schedule."
+  },
+  "independent_recomputation": {
+    "fbs_only": {
+      "teams_checked": 138,
+      "game_category_values_checked": 4656,
+      "headline_means_checked": 828,
+      "competition_ranks_checked": 828,
+      "passing_support_ratios_checked": 276,
+      "sample_team_records_compared": 2,
+      "mismatches": 0
+    },
+    "including_fcs_performances": {
+      "teams_checked": 138,
+      "game_category_values_checked": 5388,
+      "headline_means_checked": 828,
+      "competition_ranks_checked": 828,
+      "passing_support_ratios_checked": 276,
+      "sample_team_records_compared": 2,
+      "mismatches": 0
+    },
+    "method": "Rebuilt eligible game sets from the schedule. Read offensive EPA from own team rows, defensive EPA from opponent offensive rows, sacks from own defensive rows, and sacks allowed from opponent defensive rows. Recomputed game-weighted headline means and ranks using exact rational arithmetic; pooled passing ratios divide summed net passing yards by summed parsed attempts. Compared sample team objects with full ranking objects.",
+    "rank_rule": "One plus the number of strictly better values, with direction determined by category; exact ties share competition rank.",
+    "sack_count_noninteger_rows": 0
+  },
+  "fcs_display_checks": {
+    "fbs_only_non_fbs_opponent_rank_or_current_metric_leaks": 0,
+    "including_fcs_non_fbs_opponent_rank_or_current_metric_leaks": 0,
+    "checked_fields": ["opponent_current_rank", "opponent_current_metric"],
+    "scope": "No standalone FCS team ranking objects or FCS opponent season metrics are published. The inclusion variant does display FBS performance against FCS opponents, including opponent offensive production expressed as FBS defensive performance. This does not mean that all statistics originating from FCS game participants are absent."
+  },
+  "passing_box_ratio_reconciliation": {
+    "rows_checked": 1020,
+    "formula": "netPassingYards / attempts parsed from completionAttempts",
+    "comparison_field": "yardsPerPass",
+    "absolute_difference_threshold": 0.051,
+    "rows_within_one_decimal_rounding_tolerance": 1019,
+    "rows_outside_tolerance": 1,
+    "discrepancies": [
+      {
+        "source_file": "team_box_2026.csv",
+        "game_id": "401864516",
+        "team_id": "2005",
+        "team_name": "Air Force Falcons",
+        "raw_fields": {
+          "netPassingYards": "-6",
+          "completionAttempts": "0/1",
+          "yardsPerPass": "0.0"
+        },
+        "parsed_attempts": 1,
+        "computed_net_passing_yards_per_attempt": -6.0,
+        "published_yards_per_pass": 0.0,
+        "absolute_difference": 6.0,
+        "resolution": "Unresolved source-field discrepancy. Preserve the raw values and identify the computed metric explicitly; do not silently replace it with the published ratio."
+      }
+    ],
+    "required_labels": ["Net passing yards / game", "Net passing yards / attempt"],
+    "qualification": "Arithmetic reconciliation does not establish equivalence to the NFL app's passing-yardage definitions."
+  },
+  "limitations": [
+    "Source-rounded game EPA supports candidate research ranks, not exact NFL metric parity.",
+    "Upstream play eligibility, scramble classification, penalties, garbage time and sack-count accuracy were not independently reconstructed.",
+    "The cached sources cover completed games through the latest saved kickoff of 2026-10-18T03:00:00.000Z; the audit's later cutoff does not make the source current through that date.",
+    "Schedule context is current-season opposing-unit averages, includes head-to-head performance, and is not a recursive or opponent-adjusted strength-of-schedule model.",
+    "This review did not authorize either FCS inclusion policy, certify market linkage, or establish predictive or betting performance."
+  ]
+}

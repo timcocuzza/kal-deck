@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "status": "Declared before parameter comparisons; offline research only",
+  "history_audited": [2001, 2025],
+  "warmup_seasons": [2014, 2016],
+  "selection_seasons": [2017, 2021],
+  "held_out_seasons": [2022, 2025],
+  "current_season_excluded": 2026,
+  "history_window_reason": "2001-2002 omit FCS-only games. Older files also have incomplete FCS coverage: ESPN Montana's 2012 schedule contains 11 games versus two in the bulk file. Use 2014 onward for this exploratory experiment; this is not a completeness certification.",
+  "eligible_games": "Completed games with both participants classified FBS/FCS in that season; all regular, postseason and spring phases. Exclude canceled/unplayed games and opponents below Division I. Do not infer final scores from zero placeholders.",
+  "chronology": "Order by actual UTC date; predict all games on a date before applying any result that day. Preserve source season labels for spring 2021 games assigned to 2020. Offseason regression occurs once per source season, before its first game, never at January 1.",
+  "performance_rating": {
+    "units": "Internal points of strength; not conventional 400-scale Elo or a calibrated probability",
+    "benchmark": "home strength - away strength + home advantage (zero at neutral sites)",
+    "residual": "actual home scoring margin - benchmark",
+    "updates": "Add alpha * bounded residual to home strength and subtract it from away strength",
+    "families": ["tanh", "clip"],
+    "alpha": [0.1, 0.2, 0.3, 0.4],
+    "home_advantage_points": [0, 2, 4],
+    "residual_cap_points": [14, 21, 28],
+    "offseason_retention": [0, 0.15, 0.25, 0.4],
+    "tanh": "cap * tanh(residual / cap)",
+    "clip": "max(-cap, min(cap, residual))",
+    "offseason": "Shrink toward the prior season's mean rating for each team's LAST observed division. Division means use only past active teams, frozen before the new season. New teams start at the observed division's past mean; first warmup starts both divisions at zero. Returning teams regress for each missed season. Reclassification never directly boosts a returning team's rating.",
+    "overtime": "Use published final margins consistently; historical regulation/OT breakdown is not established. Diagnose this limitation rather than infer regulation scores."
+  },
+  "primary_selection": "Lowest mean absolute pregame margin error on FBS-versus-FBS games in 2017-2021; deterministic tie break by family, alpha, home advantage, cap, retention. No held-out game selects settings.",
+  "baselines": [
+    "Unbounded margin-residual update, tuned on the same training window",
+    "Win-only Elo, tuned on training; a training-only no-intercept least-squares conversion of rating difference to scoring margin permits common MAE evaluation",
+    "Existing NFL settings (K=20, HFA=50, retention=2/3, FiveThirtyEight margin multiplier), with college team lifecycle and division centers; training-only Elo-to-margin conversion",
+    "Division-and-venue only, fitted on training results without team-specific strength"
+  ],
+  "win_elo_grid": {"k": [20, 40, 60], "home_advantage": [0, 50, 100], "offseason_retention": [0, 0.25, 0.4]},
+  "predeclared_sensitivities": [
+    "Best performance configuration at each allowed retention, selected using training only",
+    "67% retention diagnostic: selected performance family/alpha/home/cap fixed; not eligible to silently override the user's light-carryover preference",
+    "Replay selected model without any FCS games; compare the same FBS-FBS games",
+    "Replay selected model with independent result order within a UTC day; predictions must remain identical"
+  ],
+  "validation": "Freeze all selected settings and conversions before scoring 2022-2025. Ratings may learn from earlier held-out results chronologically. Report MAE, RMSE, winner direction accuracy, error bias, season and matchup-type breakdowns, first three team games, 90th-percentile error and winner-rating-decrease frequency. Do not interpret performance scores as win or cover probabilities.",
+  "comparison_uncertainty": "Paired resampling of held-out season-week blocks, fixed seed 1729, 2000 draws; report a descriptive 95% interval for MAE difference. Blocks cannot remove all dependence; four held-out seasons do not establish universal superiority.",
+  "production_gate": "No live rating or NFL change in this experiment. Unverified membership/completeness, corrected retrospective sources, overtime detail and limited historical evaluation remain explicit constraints. No betting lines, recruiting ranks, player data or paid dependencies enter ratings."
+}

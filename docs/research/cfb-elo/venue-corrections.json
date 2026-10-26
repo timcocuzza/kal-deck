@@ -1,0 +1,19 @@
+{
+  "status": "Evidence-backed sensitivity only; raw inputs and initial experiment retained",
+  "corrections": [
+    {
+      "game_id": "400795729",
+      "season": 2015,
+      "home_id": "2571",
+      "away_id": "2449",
+      "home_score": 7,
+      "away_score": 28,
+      "date": "2015-10-03",
+      "bulk_neutral": true,
+      "verified_neutral": false,
+      "explanation": "South Dakota State hosted North Dakota State in Brookings. Bulk neutral_site=true conflicts with the ESPN event and the host university's Home designation.",
+      "primary_confirmation": "https://gojacks.com/sports/football/opponent-history/north-dakota-state/130",
+      "event_confirmation": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/teams/2449/schedule?season=2015&seasontype=2"
+    }
+  ]
+}

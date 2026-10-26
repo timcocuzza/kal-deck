@@ -82,7 +82,7 @@ def load_players(fetch=fetch_public):
     return data
 
 
-def load_games(season, event_tickers, fetch=fetch_public):
+def load_games(season, event_tickers, fetch=fetch_public, *, league='NFL'):
     # Resolve the exact cached events. Broad competition queries can return empty
     # even when the corresponding per-event milestone is available.
     from .common import utc_now
@@ -105,18 +105,21 @@ def load_games(season, event_tickers, fetch=fetch_public):
         if not isinstance(details, dict) or not isinstance(details.get('season'), dict):
             raise SourceError('Kalshi game season metadata is missing.')
         phase = details['season']
-        if str(phase.get('year')) != str(season) or phase.get('type') != 'REG':
+        if str(phase.get('year')) != str(season) or phase.get('type') not in (('REG', 'PST') if league == 'NCAAFB' else ('REG',)):
             continue
-        if (game.get('type') != 'football_game' or details.get('league') != 'NFL'
+        if (game.get('type') != 'football_game' or details.get('league') != league
+                or (league == 'NCAAFB' and details.get('division') not in
+                    (('FBS', 'FCS', 'D2', None) if phase['type'] == 'PST' else ('FBS', 'FCS', 'D2')))
                 or not timestamp(game.get('start_date'))
                 or not all(uuid_valid(details.get(key)) for key in ('home_team_id', 'away_team_id'))
                 or details['home_team_id'] == details['away_team_id']
-                or not isinstance(phase.get('week'), int) or not 1 <= phase['week'] <= 18):
+                or (phase['type'] == 'REG' and (type(phase.get('week')) is not int
+                    or not 1 <= phase['week'] <= (30 if league == 'NCAAFB' else 18)))):
             raise SourceError('Kalshi supplied incomplete or conflicting game identity data.')
         for key in ('primary_event_tickers', 'related_event_tickers'):
             if not isinstance(game.get(key), list) or any(not isinstance(t, str) for t in game[key]):
                 raise SourceError('Kalshi game event links are missing or malformed.')
         selected.append(game)
     data.rows = selected
-    data.context = {'season': season, 'phase': 'REG', 'requested_events': events}
+    data.context = {'season': season, 'phase': 'REG/PST' if league == 'NCAAFB' else 'REG', 'requested_events': events}
     return data

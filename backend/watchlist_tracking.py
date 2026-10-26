@@ -23,14 +23,24 @@ def sync_saved_quotes(path):
         return cache[key]
 
     for entry in entries:
-        schedule = read(f"schedule:{entry['season']}")
+        college = entry.get('sport', 'nfl') == 'cfb'
+        schedule = read(f"{'cfb_schedule' if college else 'schedule'}:{entry['season']}")
         games = [game for game in schedule.rows if game.get('game_id') == entry['game_id']
                  and str(game.get('season')) == str(entry['season'])
-                 and str(game.get('week')) == str(entry['week'])] if schedule else []
-        start = kickoff(games[0]) if len(games) == 1 else None
+                 and str(game.get('week')) == str(entry['week'])
+                 and (not college or game.get('season_type') == entry.get('season_type', 'regular'))] if schedule else []
+        start = None
+        if len(games) == 1:
+            game = games[0]
+            if college:
+                if game.get('schedule_verified') and game.get('start_time_tbd') == 'false' and game.get('status') != 'STATUS_POSTPONED':
+                    start = timestamp(game.get('start_date'))
+            else:
+                start = kickoff(game)
         source = 'spreads' if entry['kind'] == 'spread' else SERIES_TYPES.get(entry['ticker'].split('-')[0])
-        snapshot = read(source) if source else None
-        markets = [row for row in snapshot.rows if row.get('ticker') == entry['ticker']] if snapshot else []
+        snapshot = read(f"cfb_markets:{entry['season']}" if college else source) if source else None
+        rows = snapshot.rows[0].get('markets', []) if college and snapshot and snapshot.rows else snapshot.rows if snapshot else []
+        markets = [row for row in rows if row.get('ticker') == entry['ticker']]
         if start or len(markets) == 1:
             bookmarks.observe(entry['ticker'], kickoff=start.isoformat() if start else None,
                               market=markets[0] if len(markets) == 1 else None,

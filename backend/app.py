@@ -7,12 +7,16 @@ import logging
 import json
 import os
 import sqlite3
+from typing import Literal
 
 from fastapi import FastAPI, HTTPException, Query, Request, Depends
 from fastapi.responses import Response
 from fastapi.staticfiles import StaticFiles
 
-from .catalog import BY_NAME, SOURCES, RefreshService
+from .catalog import BY_NAME, SOURCES, CFB_SOURCES, RefreshService
+from .college import college_matchups, college_rankings, reconcile_college_schedule
+from .college_markets import attach_college_markets
+from .college_strength import calculate_strength
 from .sources.common import SourceError
 from .sources.kalshi import load_history, history_points, quote_midpoint, select_default_spread
 from .storage import SnapshotStore
@@ -85,8 +89,43 @@ def health() -> dict[str, str]:
 
 
 @app.get("/api/sources")
-def sources(season: int = Query(ge=1999, le=2100)):
-    return {"sources": [refresh_service.status(source.name, season) for source in SOURCES]}
+def sources(season: int = Query(ge=1999, le=2100), sport: Literal['nfl', 'cfb'] = 'nfl'):
+    return {"sources": [refresh_service.status(source.name, season) for source in (CFB_SOURCES if sport == 'cfb' else SOURCES)]}
+
+
+def college_report(season, operation, **kwargs):
+    snapshot = store.read(BY_NAME['cfb_research'].key(season))
+    source = refresh_service.status('cfb_research', season)
+    if snapshot is None:
+        return {'available': False, 'season': season, 'sources': [source],
+                'warnings': ['College data has not been downloaded for this season.']}
+    try:
+        current = store.read(BY_NAME['cfb_schedule'].key(season))
+        bundle, warnings = reconcile_college_schedule(snapshot.rows[0], current.rows if current else [])
+        result = operation(bundle, season, **kwargs)
+        result['warnings'].extend(warnings)
+        if operation is college_matchups:
+            markets = store.read(BY_NAME['cfb_markets'].key(season))
+            attach_college_markets(result, bundle['schedule'], markets.rows[0] if markets else {}, season)
+    except SourceError as error:
+        raise HTTPException(status_code=422, detail=str(error)) from error
+    names = ['cfb_schedule'] + (['cfb_markets'] if operation is college_matchups else [])
+    statuses = [source] + [refresh_service.status(name, season) for name in names]
+    if current is None:
+        result['warnings'].append('Current college schedule is unavailable; bulk kickoff times cannot verify spreads.')
+    return {**result, 'available': True, 'sources': statuses}
+
+
+@app.get('/api/cfb/matchups')
+def cfb_matchups(season: int = Query(ge=1999, le=2100), week: int | None = Query(default=None, ge=0, le=30),
+                 season_type: Literal['regular', 'postseason'] | None = None):
+    return college_report(season, college_matchups, week=week, season_type=season_type)
+
+
+@app.get('/api/cfb/rankings')
+def cfb_rankings(season: int = Query(ge=1999, le=2100), include_fcs: bool = False,
+                 game_id: str | None = Query(default=None, pattern=r'^\d{1,12}$')):
+    return college_report(season, college_rankings, include_fcs=include_fcs, game_id=game_id)
 
 
 @app.post("/api/sources/{name}/refresh")
@@ -97,6 +136,21 @@ def refresh_source(name: str, season: int = Query(ge=1999, le=2100)):
         return refresh_service.refresh(name, season)
     except SourceError as error:
         raise HTTPException(status_code=409, detail=str(error)) from error
+
+
+@app.get('/api/cfb/strength')
+def cfb_strength(season: int = Query(ge=2014, le=2100)):
+    snapshot = store.read(f'cfb_strength:{season}')
+    source = refresh_service.status('cfb_strength', season)
+    if snapshot is None:
+        return {'available': False, 'season': season, 'sources': [source],
+                'warnings': ['Refresh college strength history to load ratings.']}
+    try:
+        result = calculate_strength(snapshot.rows[0], season)
+    except (SourceError, ValueError, KeyError, TypeError) as error:
+        raise HTTPException(status_code=422, detail='Saved college strength history needs review.') from error
+    result['sources'] = [source]
+    return result
 
 
 @app.get("/api/spreads")

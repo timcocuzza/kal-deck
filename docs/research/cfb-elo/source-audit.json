@@ -1,0 +1,2807 @@
+{
+  "checked_at": "2026-10-24T17:55:06.879616+00:00",
+  "seasons": [
+    {
+      "season": 2001,
+      "source_rows": 709,
+      "completed_d1_games": 708,
+      "matchup_counts": {
+        "fbs-fbs": 652,
+        "fbs-fcs": 56
+      },
+      "division_team_counts": {
+        "fbs": 117,
+        "fcs": 41
+      },
+      "phases": {
+        "regular": 683,
+        "postseason": 25
+      },
+      "exclusions_and_notices": {
+        "included_without_status_name": 708,
+        "outside_division_i": 1
+      },
+      "game_notices": [],
+      "graph_components": [
+        158
+      ],
+      "teams_with_fewer_than_seven_d1_results": [
+        {
+          "id": "113",
+          "name": "Massachusetts",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "147",
+          "name": "Montana State",
+          "division": "fcs",
+          "games": 2
+        },
+        {
+          "id": "149",
+          "name": "Montana",
+          "division": "fcs",
+          "games": 2
+        },
+        {
+          "id": "2026",
+          "name": "App State",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2083",
+          "name": "Bucknell",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2193",
+          "name": "East Tennessee State",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2197",
+          "name": "Eastern Illinois",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2198",
+          "name": "Eastern Kentucky",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2287",
+          "name": "Illinois State",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "231",
+          "name": "Furman",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2335",
+          "name": "Liberty",
+          "division": "fcs",
+          "games": 2
+        },
+        {
+          "id": "236",
+          "name": "Chattanooga",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2377",
+          "name": "McNeese",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2447",
+          "name": "Nicholls",
+          "division": "fcs",
+          "games": 3
+        },
+        {
+          "id": "2460",
+          "name": "Northern Iowa",
+          "division": "fcs",
+          "games": 2
+        },
+        {
+          "id": "2464",
+          "name": "Northern Arizona",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2466",
+          "name": "Northwestern State",
+          "division": "fcs",
+          "games": 2
+        },
+        {
+          "id": "253",
+          "name": "Southern Utah",
+          "division": "fcs",
+          "games": 2
+        },
+        {
+          "id": "2534",
+          "name": "Sam Houston",
+          "division": "fcs",
+          "games": 2
+        },
+        {
+          "id": "2546",
+          "name": "Southeast Missouri State",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "257",
+          "name": "Richmond",
+          "division": "fcs",
+          "games": 2
+        },
+        {
+          "id": "2582",
+          "name": "Southern",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2617",
+          "name": "Stephen F. Austin",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2623",
+          "name": "Missouri State",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2635",
+          "name": "Tennessee Tech",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2640",
+          "name": "Texas Southern",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2643",
+          "name": "The Citadel",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2692",
+          "name": "Weber State",
+          "division": "fcs",
+          "games": 2
+        },
+        {
+          "id": "2710",
+          "name": "Western Illinois",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2717",
+          "name": "Western Carolina",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2729",
+          "name": "William & Mary",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2747",
+          "name": "Wofford",
+          "division": "fcs",
+          "games": 2
+        },
+        {
+          "id": "2754",
+          "name": "Youngstown State",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "282",
+          "name": "Indiana State",
+          "division": "fcs",
+          "games": 2
+        },
+        {
+          "id": "304",
+          "name": "Idaho State",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "326",
+          "name": "Texas State",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "331",
+          "name": "Eastern Washington",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "55",
+          "name": "Jacksonville State",
+          "division": "fcs",
+          "games": 2
+        },
+        {
+          "id": "79",
+          "name": "Southern Illinois",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "93",
+          "name": "Murray State",
+          "division": "fcs",
+          "games": 2
+        },
+        {
+          "id": "98",
+          "name": "Western Kentucky",
+          "division": "fcs",
+          "games": 1
+        }
+      ],
+      "date_range": [
+        "2001-08-23",
+        "2002-01-04"
+      ],
+      "coverage_note": "Internal checks do not establish completeness. Below-DI games are intentionally excluded; low counts can also reflect transitions or the pandemic.",
+      "url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/cfb_schedules/cfb_schedules_2001.csv.gz",
+      "sha256": "e84013ca64a2415c718a9c28cd6fd47e5c5bff945ecd66b929edfb966a2b938b",
+      "bytes": 18786
+    },
+    {
+      "season": 2002,
+      "source_rows": 772,
+      "completed_d1_games": 771,
+      "matchup_counts": {
+        "fbs-fbs": 707,
+        "fbs-fcs": 64
+      },
+      "division_team_counts": {
+        "fbs": 117,
+        "fcs": 52
+      },
+      "phases": {
+        "regular": 743,
+        "postseason": 28
+      },
+      "exclusions_and_notices": {
+        "included_without_status_name": 771,
+        "outside_division_i": 1
+      },
+      "game_notices": [],
+      "graph_components": [
+        169
+      ],
+      "teams_with_fewer_than_seven_d1_results": [
+        {
+          "id": "107",
+          "name": "Holy Cross",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "113",
+          "name": "Massachusetts",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "13",
+          "name": "Cal Poly",
+          "division": "fcs",
+          "games": 2
+        },
+        {
+          "id": "147",
+          "name": "Montana State",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "149",
+          "name": "Montana",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "16",
+          "name": "Sacramento State",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "160",
+          "name": "New Hampshire",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2026",
+          "name": "App State",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2046",
+          "name": "Austin Peay",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2127",
+          "name": "Charleston Southern",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2193",
+          "name": "East Tennessee State",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2197",
+          "name": "Eastern Illinois",
+          "division": "fcs",
+          "games": 2
+        },
+        {
+          "id": "2198",
+          "name": "Eastern Kentucky",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "222",
+          "name": "Villanova",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2226",
+          "name": "Florida Atlantic",
+          "division": "fcs",
+          "games": 3
+        },
+        {
+          "id": "227",
+          "name": "Rhode Island",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2287",
+          "name": "Illinois State",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2296",
+          "name": "Jackson State",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "231",
+          "name": "Furman",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2329",
+          "name": "Lehigh",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2335",
+          "name": "Liberty",
+          "division": "fcs",
+          "games": 2
+        },
+        {
+          "id": "236",
+          "name": "Chattanooga",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2377",
+          "name": "McNeese",
+          "division": "fcs",
+          "games": 2
+        },
+        {
+          "id": "2447",
+          "name": "Nicholls",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2460",
+          "name": "Northern Iowa",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2464",
+          "name": "Northern Arizona",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2466",
+          "name": "Northwestern State",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2502",
+          "name": "Portland State",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "253",
+          "name": "Southern Utah",
+          "division": "fcs",
+          "games": 2
+        },
+        {
+          "id": "2534",
+          "name": "Sam Houston",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2535",
+          "name": "Samford",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2546",
+          "name": "Southeast Missouri State",
+          "division": "fcs",
+          "games": 2
+        },
+        {
+          "id": "257",
+          "name": "Richmond",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2582",
+          "name": "Southern",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2623",
+          "name": "Missouri State",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2630",
+          "name": "UT Martin",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2635",
+          "name": "Tennessee Tech",
+          "division": "fcs",
+          "games": 2
+        },
+        {
+          "id": "2643",
+          "name": "The Citadel",
+          "division": "fcs",
+          "games": 2
+        },
+        {
+          "id": "2692",
+          "name": "Weber State",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2710",
+          "name": "Western Illinois",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2717",
+          "name": "Western Carolina",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2729",
+          "name": "William & Mary",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2747",
+          "name": "Wofford",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "282",
+          "name": "Indiana State",
+          "division": "fcs",
+          "games": 2
+        },
+        {
+          "id": "304",
+          "name": "Idaho State",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "326",
+          "name": "Texas State",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "331",
+          "name": "Eastern Washington",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "50",
+          "name": "Florida A&M",
+          "division": "fcs",
+          "games": 2
+        },
+        {
+          "id": "55",
+          "name": "Jacksonville State",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "79",
+          "name": "Southern Illinois",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "93",
+          "name": "Murray State",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "98",
+          "name": "Western Kentucky",
+          "division": "fcs",
+          "games": 1
+        }
+      ],
+      "date_range": [
+        "2002-08-22",
+        "2003-01-04"
+      ],
+      "coverage_note": "Internal checks do not establish completeness. Below-DI games are intentionally excluded; low counts can also reflect transitions or the pandemic.",
+      "url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/cfb_schedules/cfb_schedules_2002.csv.gz",
+      "sha256": "aae990c3108e5367bebcf16d3ee1f2fde7ccd412d09385df74b553af19fd9d51",
+      "bytes": 20649
+    },
+    {
+      "season": 2003,
+      "source_rows": 1338,
+      "completed_d1_games": 1268,
+      "matchup_counts": {
+        "fbs-fcs": 71,
+        "fbs-fbs": 699,
+        "fcs-fcs": 498
+      },
+      "division_team_counts": {
+        "fbs": 117,
+        "fcs": 121
+      },
+      "phases": {
+        "regular": 1240,
+        "postseason": 28
+      },
+      "exclusions_and_notices": {
+        "included_without_status_name": 1268,
+        "outside_division_i": 70
+      },
+      "game_notices": [],
+      "graph_components": [
+        238
+      ],
+      "teams_with_fewer_than_seven_d1_results": [
+        {
+          "id": "147",
+          "name": "Montana State",
+          "division": "fcs",
+          "games": 5
+        },
+        {
+          "id": "149",
+          "name": "Montana",
+          "division": "fcs",
+          "games": 4
+        },
+        {
+          "id": "16",
+          "name": "Sacramento State",
+          "division": "fcs",
+          "games": 2
+        },
+        {
+          "id": "2010",
+          "name": "Alabama A&M",
+          "division": "fcs",
+          "games": 3
+        },
+        {
+          "id": "2011",
+          "name": "Alabama State",
+          "division": "fcs",
+          "games": 2
+        },
+        {
+          "id": "2016",
+          "name": "Alcorn State",
+          "division": "fcs",
+          "games": 2
+        },
+        {
+          "id": "2046",
+          "name": "Austin Peay",
+          "division": "fcs",
+          "games": 2
+        },
+        {
+          "id": "2086",
+          "name": "Butler",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2166",
+          "name": "Davidson",
+          "division": "fcs",
+          "games": 3
+        },
+        {
+          "id": "2168",
+          "name": "Dayton",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2181",
+          "name": "Drake",
+          "division": "fcs",
+          "games": 2
+        },
+        {
+          "id": "2296",
+          "name": "Jackson State",
+          "division": "fcs",
+          "games": 4
+        },
+        {
+          "id": "2413",
+          "name": "Morehead State",
+          "division": "fcs",
+          "games": 3
+        },
+        {
+          "id": "2458",
+          "name": "Northern Colorado",
+          "division": "fcs",
+          "games": 5
+        },
+        {
+          "id": "2464",
+          "name": "Northern Arizona",
+          "division": "fcs",
+          "games": 4
+        },
+        {
+          "id": "2502",
+          "name": "Portland State",
+          "division": "fcs",
+          "games": 3
+        },
+        {
+          "id": "2504",
+          "name": "Prairie View A&M",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2582",
+          "name": "Southern",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2640",
+          "name": "Texas Southern",
+          "division": "fcs",
+          "games": 2
+        },
+        {
+          "id": "2674",
+          "name": "Valparaiso",
+          "division": "fcs",
+          "games": 2
+        },
+        {
+          "id": "2692",
+          "name": "Weber State",
+          "division": "fcs",
+          "games": 2
+        },
+        {
+          "id": "2755",
+          "name": "Grambling",
+          "division": "fcs",
+          "games": 3
+        },
+        {
+          "id": "294",
+          "name": "Jacksonville",
+          "division": "fcs",
+          "games": 3
+        },
+        {
+          "id": "301",
+          "name": "San Diego",
+          "division": "fcs",
+          "games": 2
+        },
+        {
+          "id": "302",
+          "name": "UC Davis",
+          "division": "fcs",
+          "games": 4
+        },
+        {
+          "id": "304",
+          "name": "Idaho State",
+          "division": "fcs",
+          "games": 4
+        },
+        {
+          "id": "331",
+          "name": "Eastern Washington",
+          "division": "fcs",
+          "games": 3
+        }
+      ],
+      "date_range": [
+        "2003-08-23",
+        "2004-01-05"
+      ],
+      "coverage_note": "Internal checks do not establish completeness. Below-DI games are intentionally excluded; low counts can also reflect transitions or the pandemic.",
+      "url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/cfb_schedules/cfb_schedules_2003.csv.gz",
+      "sha256": "63080e5be4477c170e31fe1fba9861d067792d6f18e24c301df3eec89e083d6b",
+      "bytes": 41200
+    },
+    {
+      "season": 2004,
+      "source_rows": 1307,
+      "raw_d1_rows": 1235,
+      "validation_error": "Team plays twice on same UTC date",
+      "excluded_from_replay": true,
+      "team_date_conflicts": [
+        {
+          "team_id": "2754",
+          "date": "2004-09-11",
+          "game_ids": [
+            "63826",
+            "242552754"
+          ]
+        },
+        {
+          "team_id": "2229",
+          "date": "2004-09-11",
+          "game_ids": [
+            "63826",
+            "242552754"
+          ]
+        },
+        {
+          "team_id": "50",
+          "date": "2004-09-25",
+          "game_ids": [
+            "63827",
+            "242690050"
+          ]
+        },
+        {
+          "team_id": "2634",
+          "date": "2004-09-25",
+          "game_ids": [
+            "63827",
+            "242690050"
+          ]
+        },
+        {
+          "team_id": "326",
+          "date": "2004-10-09",
+          "game_ids": [
+            "63829",
+            "242830326"
+          ]
+        },
+        {
+          "team_id": "2226",
+          "date": "2004-10-09",
+          "game_ids": [
+            "63829",
+            "242830326"
+          ]
+        },
+        {
+          "team_id": "50",
+          "date": "2004-10-09",
+          "game_ids": [
+            "63831",
+            "242830050"
+          ]
+        },
+        {
+          "team_id": "2447",
+          "date": "2004-10-09",
+          "game_ids": [
+            "63831",
+            "242830050"
+          ]
+        },
+        {
+          "team_id": "2458",
+          "date": "2004-10-16",
+          "game_ids": [
+            "63832",
+            "242902458"
+          ]
+        },
+        {
+          "team_id": "2226",
+          "date": "2004-10-16",
+          "game_ids": [
+            "63832",
+            "242902458"
+          ]
+        },
+        {
+          "team_id": "50",
+          "date": "2004-10-23",
+          "game_ids": [
+            "63833",
+            "242970050"
+          ]
+        },
+        {
+          "team_id": "2542",
+          "date": "2004-10-23",
+          "game_ids": [
+            "63833",
+            "242970050"
+          ]
+        },
+        {
+          "team_id": "2229",
+          "date": "2004-10-23",
+          "game_ids": [
+            "63834",
+            "242972229"
+          ]
+        },
+        {
+          "team_id": "2377",
+          "date": "2004-10-23",
+          "game_ids": [
+            "63834",
+            "242972229"
+          ]
+        },
+        {
+          "team_id": "50",
+          "date": "2004-10-30",
+          "game_ids": [
+            "63835",
+            "243040050"
+          ]
+        },
+        {
+          "team_id": "2226",
+          "date": "2004-10-30",
+          "game_ids": [
+            "63835",
+            "243040050"
+          ]
+        },
+        {
+          "team_id": "2229",
+          "date": "2004-11-13",
+          "game_ids": [
+            "63836",
+            "243182229"
+          ]
+        },
+        {
+          "team_id": "290",
+          "date": "2004-11-13",
+          "game_ids": [
+            "63836",
+            "243182229"
+          ]
+        },
+        {
+          "team_id": "2065",
+          "date": "2004-11-20",
+          "game_ids": [
+            "63837",
+            "243252065"
+          ]
+        },
+        {
+          "team_id": "50",
+          "date": "2004-11-20",
+          "game_ids": [
+            "63837",
+            "243252065"
+          ]
+        },
+        {
+          "team_id": "2226",
+          "date": "2004-11-20",
+          "game_ids": [
+            "63838",
+            "243252226"
+          ]
+        },
+        {
+          "team_id": "2287",
+          "date": "2004-11-20",
+          "game_ids": [
+            "63838",
+            "243252226"
+          ]
+        },
+        {
+          "team_id": "2229",
+          "date": "2004-11-20",
+          "game_ids": [
+            "63839",
+            "243252229"
+          ]
+        },
+        {
+          "team_id": "98",
+          "date": "2004-11-20",
+          "game_ids": [
+            "63839",
+            "243252229"
+          ]
+        },
+        {
+          "team_id": "2229",
+          "date": "2004-11-27",
+          "game_ids": [
+            "63841",
+            "243322229"
+          ]
+        },
+        {
+          "team_id": "50",
+          "date": "2004-11-27",
+          "game_ids": [
+            "63841",
+            "243322229"
+          ]
+        }
+      ],
+      "url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/cfb_schedules/cfb_schedules_2004.csv.gz",
+      "sha256": "59c351c0909f9a0c2df63a2936d67ab3a389427ba822e389999ced718adc826c",
+      "bytes": 39877
+    },
+    {
+      "season": 2005,
+      "source_rows": 1337,
+      "completed_d1_games": 1246,
+      "matchup_counts": {
+        "fbs-fbs": 664,
+        "fcs-fcs": 528,
+        "fbs-fcs": 54
+      },
+      "division_team_counts": {
+        "fbs": 119,
+        "fcs": 115
+      },
+      "phases": {
+        "regular": 1218,
+        "postseason": 28
+      },
+      "exclusions_and_notices": {
+        "included_without_status_name": 528,
+        "outside_division_i": 91
+      },
+      "game_notices": [],
+      "graph_components": [
+        234
+      ],
+      "teams_with_fewer_than_seven_d1_results": [
+        {
+          "id": "2016",
+          "name": "Alcorn State",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2296",
+          "name": "Jackson State",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2400",
+          "name": "Mississippi Valley State",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2640",
+          "name": "Texas Southern",
+          "division": "fcs",
+          "games": 2
+        },
+        {
+          "id": "2755",
+          "name": "Grambling",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "294",
+          "name": "Jacksonville",
+          "division": "fcs",
+          "games": 6
+        }
+      ],
+      "date_range": [
+        "2005-09-01",
+        "2006-01-05"
+      ],
+      "coverage_note": "Internal checks do not establish completeness. Below-DI games are intentionally excluded; low counts can also reflect transitions or the pandemic.",
+      "url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/cfb_schedules/cfb_schedules_2005.csv.gz",
+      "sha256": "77ec103f3ea0854f1ef32de938cf5011557d0b70892d90dda4eaf8d523618495",
+      "bytes": 42005
+    },
+    {
+      "season": 2006,
+      "source_rows": 1405,
+      "completed_d1_games": 1317,
+      "matchup_counts": {
+        "fbs-fbs": 714,
+        "fbs-fcs": 78,
+        "fcs-fcs": 525
+      },
+      "division_team_counts": {
+        "fbs": 119,
+        "fcs": 120
+      },
+      "phases": {
+        "regular": 1285,
+        "postseason": 32
+      },
+      "exclusions_and_notices": {
+        "included_without_status_name": 529,
+        "outside_division_i": 88
+      },
+      "game_notices": [],
+      "graph_components": [
+        239
+      ],
+      "teams_with_fewer_than_seven_d1_results": [
+        {
+          "id": "13",
+          "name": "Cal Poly",
+          "division": "fcs",
+          "games": 6
+        },
+        {
+          "id": "2010",
+          "name": "Alabama A&M",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2011",
+          "name": "Alabama State",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2016",
+          "name": "Alcorn State",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2029",
+          "name": "Arkansas-Pine Bluff",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2046",
+          "name": "Austin Peay",
+          "division": "fcs",
+          "games": 6
+        },
+        {
+          "id": "2296",
+          "name": "Jackson State",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2325",
+          "name": "La Salle",
+          "division": "fcs",
+          "games": 5
+        },
+        {
+          "id": "2449",
+          "name": "North Dakota State",
+          "division": "fcs",
+          "games": 5
+        },
+        {
+          "id": "253",
+          "name": "Southern Utah",
+          "division": "fcs",
+          "games": 5
+        },
+        {
+          "id": "2542",
+          "name": "Savannah State",
+          "division": "fcs",
+          "games": 6
+        },
+        {
+          "id": "2571",
+          "name": "South Dakota State",
+          "division": "fcs",
+          "games": 5
+        },
+        {
+          "id": "2582",
+          "name": "Southern",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2640",
+          "name": "Texas Southern",
+          "division": "fcs",
+          "games": 2
+        },
+        {
+          "id": "2755",
+          "name": "Grambling",
+          "division": "fcs",
+          "games": 2
+        },
+        {
+          "id": "314",
+          "name": "Iona",
+          "division": "fcs",
+          "games": 6
+        }
+      ],
+      "date_range": [
+        "2006-08-31",
+        "2007-01-09"
+      ],
+      "coverage_note": "Internal checks do not establish completeness. Below-DI games are intentionally excluded; low counts can also reflect transitions or the pandemic.",
+      "url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/cfb_schedules/cfb_schedules_2006.csv.gz",
+      "sha256": "32a8ae2d50cd99d4f01e464278e90a16396cadfc5b80b9f2e0d698d01879211f",
+      "bytes": 46728
+    },
+    {
+      "season": 2007,
+      "source_rows": 1471,
+      "completed_d1_games": 1376,
+      "matchup_counts": {
+        "fbs-fbs": 712,
+        "fbs-fcs": 80,
+        "fcs-fcs": 584
+      },
+      "division_team_counts": {
+        "fbs": 119,
+        "fcs": 123
+      },
+      "phases": {
+        "regular": 1344,
+        "postseason": 32
+      },
+      "exclusions_and_notices": {
+        "outside_division_i": 95,
+        "included_without_status_name": 579
+      },
+      "game_notices": [],
+      "graph_components": [
+        242
+      ],
+      "teams_with_fewer_than_seven_d1_results": [
+        {
+          "id": "2325",
+          "name": "La Salle",
+          "division": "fcs",
+          "games": 6
+        },
+        {
+          "id": "2428",
+          "name": "North Carolina Central",
+          "division": "fcs",
+          "games": 5
+        },
+        {
+          "id": "2542",
+          "name": "Savannah State",
+          "division": "fcs",
+          "games": 6
+        }
+      ],
+      "date_range": [
+        "2007-08-30",
+        "2008-01-08"
+      ],
+      "coverage_note": "Internal checks do not establish completeness. Below-DI games are intentionally excluded; low counts can also reflect transitions or the pandemic.",
+      "url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/cfb_schedules/cfb_schedules_2007.csv.gz",
+      "sha256": "aba5effdf9cd4576534c33bb6d966dec6b620bc4b99d621d09d359553fb3ac00",
+      "bytes": 49375
+    },
+    {
+      "season": 2008,
+      "source_rows": 1486,
+      "raw_d1_rows": 1384,
+      "validation_error": "Team plays twice on same UTC date",
+      "excluded_from_replay": true,
+      "team_date_conflicts": [
+        {
+          "team_id": "99",
+          "date": "2008-08-30",
+          "game_ids": [
+            "282430099",
+            "400361387"
+          ]
+        },
+        {
+          "team_id": "2026",
+          "date": "2008-08-30",
+          "game_ids": [
+            "282430099",
+            "400361387"
+          ]
+        }
+      ],
+      "url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/cfb_schedules/cfb_schedules_2008.csv.gz",
+      "sha256": "ea67e22a2358445bed79cc6cb0dcd2869b8e4ab1cb16300e2558e2456671c6fa",
+      "bytes": 50931
+    },
+    {
+      "season": 2009,
+      "source_rows": 1470,
+      "completed_d1_games": 1394,
+      "matchup_counts": {
+        "fbs-fcs": 94,
+        "fbs-fbs": 714,
+        "fcs-fcs": 586
+      },
+      "division_team_counts": {
+        "fbs": 120,
+        "fcs": 125
+      },
+      "phases": {
+        "regular": 1360,
+        "postseason": 34
+      },
+      "exclusions_and_notices": {
+        "outside_division_i": 76,
+        "included_without_status_name": 586
+      },
+      "game_notices": [],
+      "graph_components": [
+        245
+      ],
+      "teams_with_fewer_than_seven_d1_results": [
+        {
+          "id": "2542",
+          "name": "Savannah State",
+          "division": "fcs",
+          "games": 6
+        },
+        {
+          "id": "93",
+          "name": "Murray State",
+          "division": "fcs",
+          "games": 6
+        }
+      ],
+      "date_range": [
+        "2009-09-03",
+        "2010-01-08"
+      ],
+      "coverage_note": "Internal checks do not establish completeness. Below-DI games are intentionally excluded; low counts can also reflect transitions or the pandemic.",
+      "url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/cfb_schedules/cfb_schedules_2009.csv.gz",
+      "sha256": "7555b30fbeae3e5f41d241f2fd3ed72b19285613cff15a74581f72dbd7d0e9d7",
+      "bytes": 46605
+    },
+    {
+      "season": 2010,
+      "source_rows": 1464,
+      "completed_d1_games": 1391,
+      "matchup_counts": {
+        "fbs-fbs": 718,
+        "fbs-fcs": 90,
+        "fcs-fcs": 583
+      },
+      "division_team_counts": {
+        "fbs": 120,
+        "fcs": 124
+      },
+      "phases": {
+        "regular": 1356,
+        "postseason": 35
+      },
+      "exclusions_and_notices": {
+        "outside_division_i": 73,
+        "included_without_status_name": 583
+      },
+      "game_notices": [],
+      "graph_components": [
+        244
+      ],
+      "teams_with_fewer_than_seven_d1_results": [
+        {
+          "id": "2320",
+          "name": "Lamar",
+          "division": "fcs",
+          "games": 6
+        }
+      ],
+      "date_range": [
+        "2010-09-02",
+        "2011-01-11"
+      ],
+      "coverage_note": "Internal checks do not establish completeness. Below-DI games are intentionally excluded; low counts can also reflect transitions or the pandemic.",
+      "url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/cfb_schedules/cfb_schedules_2010.csv.gz",
+      "sha256": "0dfd018a3c5971d8cfc3ee562c0c864fc6eb77fdec8c3c071ac321a7f5505d40",
+      "bytes": 47430
+    },
+    {
+      "season": 2011,
+      "source_rows": 1503,
+      "completed_d1_games": 1419,
+      "matchup_counts": {
+        "fbs-fcs": 97,
+        "fcs-fcs": 607,
+        "fbs-fbs": 715
+      },
+      "division_team_counts": {
+        "fbs": 120,
+        "fcs": 126
+      },
+      "phases": {
+        "regular": 1384,
+        "postseason": 35
+      },
+      "exclusions_and_notices": {
+        "outside_division_i": 84,
+        "included_without_status_name": 607
+      },
+      "game_notices": [],
+      "graph_components": [
+        246
+      ],
+      "teams_with_fewer_than_seven_d1_results": [
+        {
+          "id": "2636",
+          "name": "UTSA",
+          "division": "fcs",
+          "games": 6
+        }
+      ],
+      "date_range": [
+        "2011-09-01",
+        "2012-01-10"
+      ],
+      "coverage_note": "Internal checks do not establish completeness. Below-DI games are intentionally excluded; low counts can also reflect transitions or the pandemic.",
+      "url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/cfb_schedules/cfb_schedules_2011.csv.gz",
+      "sha256": "8c978328d52976d2c74d1de778db7bab58cc70d3a87a8d66165f24eb9e73326e",
+      "bytes": 48117
+    },
+    {
+      "season": 2012,
+      "source_rows": 1391,
+      "completed_d1_games": 1338,
+      "matchup_counts": {
+        "fbs-fcs": 106,
+        "fbs-fbs": 732,
+        "fcs-fcs": 500
+      },
+      "division_team_counts": {
+        "fbs": 124,
+        "fcs": 122
+      },
+      "phases": {
+        "regular": 1303,
+        "postseason": 35
+      },
+      "exclusions_and_notices": {
+        "included_without_status_name": 500,
+        "outside_division_i": 53
+      },
+      "game_notices": [],
+      "graph_components": [
+        246
+      ],
+      "teams_with_fewer_than_seven_d1_results": [
+        {
+          "id": "13",
+          "name": "Cal Poly",
+          "division": "fcs",
+          "games": 3
+        },
+        {
+          "id": "147",
+          "name": "Montana State",
+          "division": "fcs",
+          "games": 2
+        },
+        {
+          "id": "149",
+          "name": "Montana",
+          "division": "fcs",
+          "games": 2
+        },
+        {
+          "id": "155",
+          "name": "North Dakota",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "16",
+          "name": "Sacramento State",
+          "division": "fcs",
+          "games": 2
+        },
+        {
+          "id": "2127",
+          "name": "Charleston Southern",
+          "division": "fcs",
+          "games": 3
+        },
+        {
+          "id": "2241",
+          "name": "Gardner-Webb",
+          "division": "fcs",
+          "games": 3
+        },
+        {
+          "id": "2335",
+          "name": "Liberty",
+          "division": "fcs",
+          "games": 3
+        },
+        {
+          "id": "2458",
+          "name": "Northern Colorado",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2464",
+          "name": "Northern Arizona",
+          "division": "fcs",
+          "games": 2
+        },
+        {
+          "id": "2502",
+          "name": "Portland State",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2506",
+          "name": "Presbyterian",
+          "division": "fcs",
+          "games": 4
+        },
+        {
+          "id": "253",
+          "name": "Southern Utah",
+          "division": "fcs",
+          "games": 2
+        },
+        {
+          "id": "2619",
+          "name": "Stony Brook",
+          "division": "fcs",
+          "games": 5
+        },
+        {
+          "id": "2678",
+          "name": "VMI",
+          "division": "fcs",
+          "games": 3
+        },
+        {
+          "id": "2692",
+          "name": "Weber State",
+          "division": "fcs",
+          "games": 3
+        },
+        {
+          "id": "302",
+          "name": "UC Davis",
+          "division": "fcs",
+          "games": 2
+        },
+        {
+          "id": "304",
+          "name": "Idaho State",
+          "division": "fcs",
+          "games": 2
+        },
+        {
+          "id": "331",
+          "name": "Eastern Washington",
+          "division": "fcs",
+          "games": 3
+        }
+      ],
+      "date_range": [
+        "2012-08-30",
+        "2013-01-08"
+      ],
+      "coverage_note": "Internal checks do not establish completeness. Below-DI games are intentionally excluded; low counts can also reflect transitions or the pandemic.",
+      "url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/cfb_schedules/cfb_schedules_2012.csv.gz",
+      "sha256": "ef745905d1536ea167364c59059648e3141d8164fb09f5820fc667b0ada17867",
+      "bytes": 48673
+    },
+    {
+      "season": 2013,
+      "source_rows": 1540,
+      "completed_d1_games": 1444,
+      "matchup_counts": {
+        "fbs-fcs": 111,
+        "fcs-fcs": 596,
+        "fbs-fbs": 737
+      },
+      "division_team_counts": {
+        "fbs": 125,
+        "fcs": 127
+      },
+      "phases": {
+        "regular": 1406,
+        "postseason": 38
+      },
+      "exclusions_and_notices": {
+        "included_without_status_name": 589,
+        "outside_division_i": 96
+      },
+      "game_notices": [],
+      "graph_components": [
+        252
+      ],
+      "teams_with_fewer_than_seven_d1_results": [
+        {
+          "id": "2000",
+          "name": "Abilene Christian",
+          "division": "fcs",
+          "games": 6
+        },
+        {
+          "id": "2046",
+          "name": "Austin Peay",
+          "division": "fcs",
+          "games": 4
+        },
+        {
+          "id": "2197",
+          "name": "Eastern Illinois",
+          "division": "fcs",
+          "games": 4
+        },
+        {
+          "id": "2198",
+          "name": "Eastern Kentucky",
+          "division": "fcs",
+          "games": 4
+        },
+        {
+          "id": "2277",
+          "name": "Houston Christian",
+          "division": "fcs",
+          "games": 3
+        },
+        {
+          "id": "2546",
+          "name": "Southeast Missouri State",
+          "division": "fcs",
+          "games": 3
+        },
+        {
+          "id": "2630",
+          "name": "UT Martin",
+          "division": "fcs",
+          "games": 4
+        },
+        {
+          "id": "2634",
+          "name": "Tennessee State",
+          "division": "fcs",
+          "games": 4
+        },
+        {
+          "id": "2635",
+          "name": "Tennessee Tech",
+          "division": "fcs",
+          "games": 3
+        },
+        {
+          "id": "2916",
+          "name": "Incarnate Word",
+          "division": "fcs",
+          "games": 6
+        },
+        {
+          "id": "55",
+          "name": "Jacksonville State",
+          "division": "fcs",
+          "games": 3
+        },
+        {
+          "id": "93",
+          "name": "Murray State",
+          "division": "fcs",
+          "games": 3
+        }
+      ],
+      "date_range": [
+        "2013-08-29",
+        "2014-01-07"
+      ],
+      "coverage_note": "Internal checks do not establish completeness. Below-DI games are intentionally excluded; low counts can also reflect transitions or the pandemic.",
+      "url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/cfb_schedules/cfb_schedules_2013.csv.gz",
+      "sha256": "e5f82c6718fca28b2664005c7f65c1e9d24fd726148e1b4c0d2a69f87ff143e3",
+      "bytes": 54175
+    },
+    {
+      "season": 2014,
+      "source_rows": 1592,
+      "completed_d1_games": 1507,
+      "matchup_counts": {
+        "fbs-fbs": 760,
+        "fbs-fcs": 108,
+        "fcs-fcs": 639
+      },
+      "division_team_counts": {
+        "fbs": 128,
+        "fcs": 124
+      },
+      "phases": {
+        "regular": 1465,
+        "postseason": 42
+      },
+      "exclusions_and_notices": {
+        "included_without_status_name": 640,
+        "outside_division_i": 85
+      },
+      "game_notices": [],
+      "graph_components": [
+        252
+      ],
+      "teams_with_fewer_than_seven_d1_results": [],
+      "date_range": [
+        "2014-08-23",
+        "2015-01-13"
+      ],
+      "coverage_note": "Internal checks do not establish completeness. Below-DI games are intentionally excluded; low counts can also reflect transitions or the pandemic.",
+      "url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/cfb_schedules/cfb_schedules_2014.csv.gz",
+      "sha256": "abb8046bdeb55c965827ee478653e19b0f18f85655ac212c8328f1f923545b16",
+      "bytes": 43140
+    },
+    {
+      "season": 2015,
+      "source_rows": 1544,
+      "completed_d1_games": 1481,
+      "matchup_counts": {
+        "fbs-fbs": 765,
+        "fbs-fcs": 105,
+        "fcs-fcs": 611
+      },
+      "division_team_counts": {
+        "fbs": 128,
+        "fcs": 125
+      },
+      "phases": {
+        "regular": 1436,
+        "postseason": 45
+      },
+      "exclusions_and_notices": {
+        "outside_division_i": 63,
+        "included_without_status_name": 611
+      },
+      "game_notices": [],
+      "graph_components": [
+        253
+      ],
+      "teams_with_fewer_than_seven_d1_results": [],
+      "date_range": [
+        "2015-08-29",
+        "2016-01-12"
+      ],
+      "coverage_note": "Internal checks do not establish completeness. Below-DI games are intentionally excluded; low counts can also reflect transitions or the pandemic.",
+      "url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/cfb_schedules/cfb_schedules_2015.csv.gz",
+      "sha256": "f57efe966a969ef49f99e0e7ab4acdc84281aade4b78542717a4c0fdbb29bacf",
+      "bytes": 42409
+    },
+    {
+      "season": 2016,
+      "source_rows": 1555,
+      "completed_d1_games": 1493,
+      "matchup_counts": {
+        "fbs-fcs": 113,
+        "fbs-fbs": 760,
+        "fcs-fcs": 620
+      },
+      "division_team_counts": {
+        "fbs": 128,
+        "fcs": 125
+      },
+      "phases": {
+        "regular": 1448,
+        "postseason": 45
+      },
+      "exclusions_and_notices": {
+        "included_without_status_name": 620,
+        "outside_division_i": 62
+      },
+      "game_notices": [],
+      "graph_components": [
+        253
+      ],
+      "teams_with_fewer_than_seven_d1_results": [],
+      "date_range": [
+        "2016-08-27",
+        "2017-01-10"
+      ],
+      "coverage_note": "Internal checks do not establish completeness. Below-DI games are intentionally excluded; low counts can also reflect transitions or the pandemic.",
+      "url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/cfb_schedules/cfb_schedules_2016.csv.gz",
+      "sha256": "2056538fd20724e3ae890bda0101e442ea832a14e16d93ed69e2a4182f74490d",
+      "bytes": 51136
+    },
+    {
+      "season": 2017,
+      "source_rows": 1567,
+      "completed_d1_games": 1503,
+      "matchup_counts": {
+        "fbs-fbs": 776,
+        "fbs-fcs": 98,
+        "fcs-fcs": 629
+      },
+      "division_team_counts": {
+        "fbs": 130,
+        "fcs": 124
+      },
+      "phases": {
+        "regular": 1459,
+        "postseason": 44
+      },
+      "exclusions_and_notices": {
+        "outside_division_i": 64,
+        "included_without_status_name": 629
+      },
+      "game_notices": [],
+      "graph_components": [
+        254
+      ],
+      "teams_with_fewer_than_seven_d1_results": [],
+      "date_range": [
+        "2017-08-26",
+        "2018-01-09"
+      ],
+      "coverage_note": "Internal checks do not establish completeness. Below-DI games are intentionally excluded; low counts can also reflect transitions or the pandemic.",
+      "url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/cfb_schedules/cfb_schedules_2017.csv.gz",
+      "sha256": "12672e78ef0dde8f73b8bcc59bd1d2779722fc2a99d47d65f1bf1b331caf89e7",
+      "bytes": 51444
+    },
+    {
+      "season": 2018,
+      "source_rows": 1570,
+      "completed_d1_games": 1495,
+      "matchup_counts": {
+        "fbs-fbs": 772,
+        "fbs-fcs": 112,
+        "fcs-fcs": 611
+      },
+      "division_team_counts": {
+        "fbs": 130,
+        "fcs": 125
+      },
+      "phases": {
+        "regular": 1452,
+        "postseason": 43
+      },
+      "exclusions_and_notices": {
+        "outside_division_i": 75,
+        "included_without_status_name": 611
+      },
+      "game_notices": [],
+      "graph_components": [
+        255
+      ],
+      "teams_with_fewer_than_seven_d1_results": [
+        {
+          "id": "2261",
+          "name": "Hampton",
+          "division": "fcs",
+          "games": 5
+        },
+        {
+          "id": "2453",
+          "name": "North Alabama",
+          "division": "fcs",
+          "games": 5
+        }
+      ],
+      "date_range": [
+        "2018-08-25",
+        "2019-01-08"
+      ],
+      "coverage_note": "Internal checks do not establish completeness. Below-DI games are intentionally excluded; low counts can also reflect transitions or the pandemic.",
+      "url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/cfb_schedules/cfb_schedules_2018.csv.gz",
+      "sha256": "8c26cf436983115a1ca834ba6d2bd32bd6feb26731ecdfadd8350f07fa227082",
+      "bytes": 53148
+    },
+    {
+      "season": 2019,
+      "source_rows": 1627,
+      "completed_d1_games": 1554,
+      "matchup_counts": {
+        "fbs-fbs": 774,
+        "fbs-fcs": 114,
+        "fcs-fcs": 666
+      },
+      "division_team_counts": {
+        "fbs": 130,
+        "fcs": 126
+      },
+      "phases": {
+        "regular": 1510,
+        "postseason": 44
+      },
+      "exclusions_and_notices": {
+        "outside_division_i": 73,
+        "included_without_status_name": 666
+      },
+      "game_notices": [],
+      "graph_components": [
+        256
+      ],
+      "teams_with_fewer_than_seven_d1_results": [],
+      "date_range": [
+        "2019-08-24",
+        "2020-01-14"
+      ],
+      "coverage_note": "Internal checks do not establish completeness. Below-DI games are intentionally excluded; low counts can also reflect transitions or the pandemic.",
+      "url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/cfb_schedules/cfb_schedules_2019.csv.gz",
+      "sha256": "6fa2c202943b95fea0ae4d69880fb55e90dcc1c664e8a869c662ef3d8ad0a234",
+      "bytes": 53563
+    },
+    {
+      "season": 2020,
+      "source_rows": 1247,
+      "completed_d1_games": 829,
+      "matchup_counts": {
+        "fbs-fcs": 36,
+        "fbs-fbs": 534,
+        "fcs-fcs": 259
+      },
+      "division_team_counts": {
+        "fbs": 128,
+        "fcs": 101
+      },
+      "phases": {
+        "regular": 557,
+        "postseason": 30,
+        "spring_regular": 230,
+        "spring_postseason": 12
+      },
+      "exclusions_and_notices": {
+        "outside_division_i": 418,
+        "included_without_status_name": 259
+      },
+      "game_notices": [],
+      "graph_components": [
+        227,
+        2
+      ],
+      "teams_with_fewer_than_seven_d1_results": [
+        {
+          "id": "107",
+          "name": "Holy Cross",
+          "division": "fcs",
+          "games": 4
+        },
+        {
+          "id": "113",
+          "name": "Massachusetts",
+          "division": "fbs",
+          "games": 4
+        },
+        {
+          "id": "12",
+          "name": "Arizona",
+          "division": "fbs",
+          "games": 5
+        },
+        {
+          "id": "120",
+          "name": "Maryland",
+          "division": "fbs",
+          "games": 5
+        },
+        {
+          "id": "13",
+          "name": "Cal Poly",
+          "division": "fcs",
+          "games": 3
+        },
+        {
+          "id": "130",
+          "name": "Michigan",
+          "division": "fbs",
+          "games": 6
+        },
+        {
+          "id": "149",
+          "name": "Montana",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "160",
+          "name": "New Hampshire",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "166",
+          "name": "New Mexico State",
+          "division": "fbs",
+          "games": 2
+        },
+        {
+          "id": "189",
+          "name": "Bowling Green",
+          "division": "fbs",
+          "games": 5
+        },
+        {
+          "id": "193",
+          "name": "Miami (OH)",
+          "division": "fbs",
+          "games": 3
+        },
+        {
+          "id": "195",
+          "name": "Ohio",
+          "division": "fbs",
+          "games": 3
+        },
+        {
+          "id": "2000",
+          "name": "Abilene Christian",
+          "division": "fcs",
+          "games": 5
+        },
+        {
+          "id": "2005",
+          "name": "Air Force",
+          "division": "fbs",
+          "games": 6
+        },
+        {
+          "id": "2006",
+          "name": "Akron",
+          "division": "fbs",
+          "games": 6
+        },
+        {
+          "id": "2010",
+          "name": "Alabama A&M",
+          "division": "fcs",
+          "games": 4
+        },
+        {
+          "id": "2011",
+          "name": "Alabama State",
+          "division": "fcs",
+          "games": 5
+        },
+        {
+          "id": "2029",
+          "name": "Arkansas-Pine Bluff",
+          "division": "fcs",
+          "games": 5
+        },
+        {
+          "id": "2083",
+          "name": "Bucknell",
+          "division": "fcs",
+          "games": 4
+        },
+        {
+          "id": "2086",
+          "name": "Butler",
+          "division": "fcs",
+          "games": 6
+        },
+        {
+          "id": "2097",
+          "name": "Campbell",
+          "division": "fcs",
+          "games": 4
+        },
+        {
+          "id": "2117",
+          "name": "Central Michigan",
+          "division": "fbs",
+          "games": 6
+        },
+        {
+          "id": "2127",
+          "name": "Charleston Southern",
+          "division": "fcs",
+          "games": 4
+        },
+        {
+          "id": "2142",
+          "name": "Colgate",
+          "division": "fcs",
+          "games": 2
+        },
+        {
+          "id": "2169",
+          "name": "Delaware State",
+          "division": "fcs",
+          "games": 5
+        },
+        {
+          "id": "2181",
+          "name": "Drake",
+          "division": "fcs",
+          "games": 5
+        },
+        {
+          "id": "2184",
+          "name": "Duquesne",
+          "division": "fcs",
+          "games": 4
+        },
+        {
+          "id": "2193",
+          "name": "East Tennessee State",
+          "division": "fcs",
+          "games": 6
+        },
+        {
+          "id": "2197",
+          "name": "Eastern Illinois",
+          "division": "fcs",
+          "games": 6
+        },
+        {
+          "id": "2199",
+          "name": "Eastern Michigan",
+          "division": "fbs",
+          "games": 6
+        },
+        {
+          "id": "2210",
+          "name": "Elon",
+          "division": "fcs",
+          "games": 6
+        },
+        {
+          "id": "222",
+          "name": "Villanova",
+          "division": "fcs",
+          "games": 4
+        },
+        {
+          "id": "2229",
+          "name": "Florida International",
+          "division": "fbs",
+          "games": 5
+        },
+        {
+          "id": "2230",
+          "name": "Fordham",
+          "division": "fcs",
+          "games": 3
+        },
+        {
+          "id": "2241",
+          "name": "Gardner-Webb",
+          "division": "fcs",
+          "games": 4
+        },
+        {
+          "id": "227",
+          "name": "Rhode Island",
+          "division": "fcs",
+          "games": 3
+        },
+        {
+          "id": "2277",
+          "name": "Houston Christian",
+          "division": "fcs",
+          "games": 4
+        },
+        {
+          "id": "2287",
+          "name": "Illinois State",
+          "division": "fcs",
+          "games": 4
+        },
+        {
+          "id": "2296",
+          "name": "Jackson State",
+          "division": "fcs",
+          "games": 5
+        },
+        {
+          "id": "2309",
+          "name": "Kent State",
+          "division": "fbs",
+          "games": 4
+        },
+        {
+          "id": "2320",
+          "name": "Lamar",
+          "division": "fcs",
+          "games": 6
+        },
+        {
+          "id": "2329",
+          "name": "Lehigh",
+          "division": "fcs",
+          "games": 3
+        },
+        {
+          "id": "233",
+          "name": "South Dakota",
+          "division": "fcs",
+          "games": 4
+        },
+        {
+          "id": "2341",
+          "name": "Long Island University",
+          "division": "fcs",
+          "games": 4
+        },
+        {
+          "id": "236",
+          "name": "Chattanooga",
+          "division": "fcs",
+          "games": 5
+        },
+        {
+          "id": "24",
+          "name": "Stanford",
+          "division": "fbs",
+          "games": 6
+        },
+        {
+          "id": "2400",
+          "name": "Mississippi Valley State",
+          "division": "fcs",
+          "games": 3
+        },
+        {
+          "id": "2405",
+          "name": "Monmouth",
+          "division": "fcs",
+          "games": 4
+        },
+        {
+          "id": "242",
+          "name": "Rice",
+          "division": "fbs",
+          "games": 5
+        },
+        {
+          "id": "2429",
+          "name": "Charlotte",
+          "division": "fbs",
+          "games": 6
+        },
+        {
+          "id": "2439",
+          "name": "UNLV",
+          "division": "fbs",
+          "games": 6
+        },
+        {
+          "id": "2447",
+          "name": "Nicholls",
+          "division": "fcs",
+          "games": 6
+        },
+        {
+          "id": "2453",
+          "name": "North Alabama",
+          "division": "fcs",
+          "games": 4
+        },
+        {
+          "id": "2459",
+          "name": "Northern Illinois",
+          "division": "fbs",
+          "games": 6
+        },
+        {
+          "id": "2464",
+          "name": "Northern Arizona",
+          "division": "fcs",
+          "games": 5
+        },
+        {
+          "id": "2466",
+          "name": "Northwestern State",
+          "division": "fcs",
+          "games": 6
+        },
+        {
+          "id": "25",
+          "name": "California",
+          "division": "fbs",
+          "games": 4
+        },
+        {
+          "id": "2502",
+          "name": "Portland State",
+          "division": "fcs",
+          "games": 1
+        },
+        {
+          "id": "2504",
+          "name": "Prairie View A&M",
+          "division": "fcs",
+          "games": 3
+        },
+        {
+          "id": "2509",
+          "name": "Purdue",
+          "division": "fbs",
+          "games": 6
+        },
+        {
+          "id": "2523",
+          "name": "Robert Morris",
+          "division": "fcs",
+          "games": 3
+        },
+        {
+          "id": "2529",
+          "name": "Sacred Heart",
+          "division": "fcs",
+          "games": 4
+        },
+        {
+          "id": "253",
+          "name": "Southern Utah",
+          "division": "fcs",
+          "games": 6
+        },
+        {
+          "id": "254",
+          "name": "Utah",
+          "division": "fbs",
+          "games": 5
+        },
+        {
+          "id": "2569",
+          "name": "South Carolina State",
+          "division": "fcs",
+          "games": 4
+        },
+        {
+          "id": "257",
+          "name": "Richmond",
+          "division": "fcs",
+          "games": 4
+        },
+        {
+          "id": "2582",
+          "name": "Southern",
+          "division": "fcs",
+          "games": 5
+        },
+        {
+          "id": "2617",
+          "name": "Stephen F. Austin",
+          "division": "fcs",
+          "games": 6
+        },
+        {
+          "id": "2619",
+          "name": "Stony Brook",
+          "division": "fcs",
+          "games": 4
+        },
+        {
+          "id": "2627",
+          "name": "Tarleton State",
+          "division": "fcs",
+          "games": 4
+        },
+        {
+          "id": "264",
+          "name": "Washington",
+          "division": "fbs",
+          "games": 4
+        },
+        {
+          "id": "2640",
+          "name": "Texas Southern",
+          "division": "fcs",
+          "games": 2
+        },
+        {
+          "id": "2649",
+          "name": "Toledo",
+          "division": "fbs",
+          "games": 6
+        },
+        {
+          "id": "265",
+          "name": "Washington State",
+          "division": "fbs",
+          "games": 4
+        },
+        {
+          "id": "2674",
+          "name": "Valparaiso",
+          "division": "fcs",
+          "games": 6
+        },
+        {
+          "id": "2681",
+          "name": "Wagner",
+          "division": "fcs",
+          "games": 2
+        },
+        {
+          "id": "2692",
+          "name": "Weber State",
+          "division": "fcs",
+          "games": 6
+        },
+        {
+          "id": "2710",
+          "name": "Western Illinois",
+          "division": "fcs",
+          "games": 6
+        },
+        {
+          "id": "2711",
+          "name": "Western Michigan",
+          "division": "fbs",
+          "games": 6
+        },
+        {
+          "id": "2729",
+          "name": "William & Mary",
+          "division": "fcs",
+          "games": 3
+        },
+        {
+          "id": "2747",
+          "name": "Wofford",
+          "division": "fcs",
+          "games": 5
+        },
+        {
+          "id": "2751",
+          "name": "Wyoming",
+          "division": "fbs",
+          "games": 6
+        },
+        {
+          "id": "2755",
+          "name": "Grambling",
+          "division": "fcs",
+          "games": 4
+        },
+        {
+          "id": "2771",
+          "name": "Merrimack",
+          "division": "fcs",
+          "games": 3
+        },
+        {
+          "id": "278",
+          "name": "Fresno State",
+          "division": "fbs",
+          "games": 6
+        },
+        {
+          "id": "2803",
+          "name": "Bryant",
+          "division": "fcs",
+          "games": 4
+        },
+        {
+          "id": "2916",
+          "name": "Incarnate Word",
+          "division": "fcs",
+          "games": 6
+        },
+        {
+          "id": "30",
+          "name": "USC",
+          "division": "fbs",
+          "games": 6
+        },
+        {
+          "id": "301",
+          "name": "San Diego",
+          "division": "fcs",
+          "games": 6
+        },
+        {
+          "id": "302",
+          "name": "UC Davis",
+          "division": "fcs",
+          "games": 5
+        },
+        {
+          "id": "304",
+          "name": "Idaho State",
+          "division": "fcs",
+          "games": 6
+        },
+        {
+          "id": "3101",
+          "name": "Utah Tech",
+          "division": "fcs",
+          "games": 4
+        },
+        {
+          "id": "311",
+          "name": "Maine",
+          "division": "fcs",
+          "games": 4
+        },
+        {
+          "id": "322",
+          "name": "Lafayette",
+          "division": "fcs",
+          "games": 3
+        },
+        {
+          "id": "328",
+          "name": "Utah State",
+          "division": "fbs",
+          "games": 6
+        },
+        {
+          "id": "338",
+          "name": "Kennesaw State",
+          "division": "fcs",
+          "games": 4
+        },
+        {
+          "id": "36",
+          "name": "Colorado State",
+          "division": "fbs",
+          "games": 4
+        },
+        {
+          "id": "38",
+          "name": "Colorado",
+          "division": "fbs",
+          "games": 6
+        },
+        {
+          "id": "399",
+          "name": "UAlbany",
+          "division": "fcs",
+          "games": 4
+        },
+        {
+          "id": "47",
+          "name": "Howard",
+          "division": "fcs",
+          "games": 2
+        },
+        {
+          "id": "56",
+          "name": "Stetson",
+          "division": "fcs",
+          "games": 4
+        },
+        {
+          "id": "70",
+          "name": "Idaho",
+          "division": "fcs",
+          "games": 6
+        },
+        {
+          "id": "9",
+          "name": "Arizona State",
+          "division": "fbs",
+          "games": 4
+        }
+      ],
+      "date_range": [
+        "2020-08-30",
+        "2021-05-16"
+      ],
+      "coverage_note": "Internal checks do not establish completeness. Below-DI games are intentionally excluded; low counts can also reflect transitions or the pandemic.",
+      "url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/cfb_schedules/cfb_schedules_2020.csv.gz",
+      "sha256": "53b33a0042f97553dcd6746cd721a6818b350f43065d374e38723ccba7aa90b1",
+      "bytes": 45201
+    },
+    {
+      "season": 2021,
+      "source_rows": 2462,
+      "completed_d1_games": 1522,
+      "matchup_counts": {
+        "fbs-fbs": 770,
+        "fbs-fcs": 117,
+        "fcs-fcs": 635
+      },
+      "division_team_counts": {
+        "fbs": 130,
+        "fcs": 128
+      },
+      "phases": {
+        "regular": 1478,
+        "postseason": 44
+      },
+      "exclusions_and_notices": {
+        "outside_division_i": 940,
+        "included_without_status_name": 635
+      },
+      "game_notices": [],
+      "graph_components": [
+        258
+      ],
+      "teams_with_fewer_than_seven_d1_results": [],
+      "date_range": [
+        "2021-08-28",
+        "2022-01-11"
+      ],
+      "coverage_note": "Internal checks do not establish completeness. Below-DI games are intentionally excluded; low counts can also reflect transitions or the pandemic.",
+      "url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/cfb_schedules/cfb_schedules_2021.csv.gz",
+      "sha256": "933747ab408c89e31f46376a06c33b27fc739e776feeba6b5abf7b5f4c2e958e",
+      "bytes": 64278
+    },
+    {
+      "season": 2022,
+      "source_rows": 3713,
+      "completed_d1_games": 1541,
+      "matchup_counts": {
+        "fbs-fbs": 776,
+        "fbs-fcs": 120,
+        "fcs-fcs": 645
+      },
+      "division_team_counts": {
+        "fbs": 131,
+        "fcs": 130
+      },
+      "phases": {
+        "regular": 1495,
+        "postseason": 46
+      },
+      "exclusions_and_notices": {
+        "outside_division_i": 2172,
+        "included_without_status_name": 645
+      },
+      "game_notices": [],
+      "graph_components": [
+        261
+      ],
+      "teams_with_fewer_than_seven_d1_results": [],
+      "date_range": [
+        "2022-08-27",
+        "2023-01-10"
+      ],
+      "coverage_note": "Internal checks do not establish completeness. Below-DI games are intentionally excluded; low counts can also reflect transitions or the pandemic.",
+      "url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/cfb_schedules/cfb_schedules_2022.csv.gz",
+      "sha256": "05fe546e76ed8b8386a33f471a81a96fed4f1e3bde13082c45968721d1aa5b21",
+      "bytes": 99843
+    },
+    {
+      "season": 2023,
+      "source_rows": 3734,
+      "completed_d1_games": 1545,
+      "matchup_counts": {
+        "fbs-fbs": 792,
+        "fbs-fcs": 118,
+        "fcs-fcs": 635
+      },
+      "division_team_counts": {
+        "fbs": 133,
+        "fcs": 128
+      },
+      "phases": {
+        "regular": 1478,
+        "postseason": 67
+      },
+      "exclusions_and_notices": {
+        "outside_division_i": 2189,
+        "included_without_status_name": 634
+      },
+      "game_notices": [],
+      "graph_components": [
+        261
+      ],
+      "teams_with_fewer_than_seven_d1_results": [
+        {
+          "id": "338",
+          "name": "Kennesaw State",
+          "division": "fcs",
+          "games": 6
+        }
+      ],
+      "date_range": [
+        "2023-08-26",
+        "2024-01-09"
+      ],
+      "coverage_note": "Internal checks do not establish completeness. Below-DI games are intentionally excluded; low counts can also reflect transitions or the pandemic.",
+      "url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/cfb_schedules/cfb_schedules_2023.csv.gz",
+      "sha256": "068147a76f874567d69fc2bb012144df8b8085cf5ca46a4fc1c7b7a6206b232d",
+      "bytes": 99978
+    },
+    {
+      "season": 2024,
+      "source_rows": 3801,
+      "completed_d1_games": 1611,
+      "matchup_counts": {
+        "fbs-fbs": 798,
+        "fbs-fcs": 121,
+        "fcs-fcs": 692
+      },
+      "division_team_counts": {
+        "fbs": 134,
+        "fcs": 129
+      },
+      "phases": {
+        "regular": 1561,
+        "postseason": 50
+      },
+      "exclusions_and_notices": {
+        "included_without_status_name": 646,
+        "outside_division_i": 2189,
+        "canceled": 1
+      },
+      "game_notices": [
+        {
+          "game_id": "401640992",
+          "reason": "Canceled; no rating update"
+        }
+      ],
+      "graph_components": [
+        263
+      ],
+      "teams_with_fewer_than_seven_d1_results": [],
+      "date_range": [
+        "2024-08-24",
+        "2025-01-21"
+      ],
+      "coverage_note": "Internal checks do not establish completeness. Below-DI games are intentionally excluded; low counts can also reflect transitions or the pandemic.",
+      "url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/cfb_schedules/cfb_schedules_2024.csv.gz",
+      "sha256": "2b9f86d67f592b9ec0e3941391afb82394666fbc6463863b58d001de3e044d53",
+      "bytes": 102645
+    },
+    {
+      "season": 2025,
+      "source_rows": 3831,
+      "completed_d1_games": 1625,
+      "matchup_counts": {
+        "fbs-fbs": 808,
+        "fbs-fcs": 126,
+        "fcs-fcs": 691
+      },
+      "division_team_counts": {
+        "fbs": 136,
+        "fcs": 129
+      },
+      "phases": {
+        "regular": 1575,
+        "postseason": 50
+      },
+      "exclusions_and_notices": {
+        "outside_division_i": 2206,
+        "included_without_status_name": 667
+      },
+      "game_notices": [],
+      "graph_components": [
+        265
+      ],
+      "teams_with_fewer_than_seven_d1_results": [],
+      "date_range": [
+        "2025-08-23",
+        "2026-01-20"
+      ],
+      "coverage_note": "Internal checks do not establish completeness. Below-DI games are intentionally excluded; low counts can also reflect transitions or the pandemic.",
+      "url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/cfb_schedules/cfb_schedules_2025.csv.gz",
+      "sha256": "2f1e178b15aa1469398d88e58a66a4702a7190d939735a324f188b7559a3a749",
+      "bytes": 99819
+    }
+  ],
+  "validated_completed_d1_games_in_nonrejected_files": 31378,
+  "excluded_from_replay_years": [
+    2001,
+    2013
+  ],
+  "limitations": [
+    "Source-season membership has not been independently certified against NCAA lists.",
+    "Internal consistency is not proof that every game is present.",
+    "Older FCS records are incomplete; see coverage-checks.json for endpoint spot checks.",
+    "Retrospectively corrected snapshots are used; historical publication-time versions are unavailable.",
+    "Final score margin includes overtime; no consistent regulation breakdown established."
+  ]
+}

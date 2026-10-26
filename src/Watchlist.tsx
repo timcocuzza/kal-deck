@@ -3,13 +3,14 @@ import type { ReactNode } from 'react'
 import { useReport } from './useReport'
 import { askPrice, Modal } from './ui'
 import { teamStyle } from './teamColors'
+import { collegeTeamStyle } from './collegeColors'
 import type { BetSelection } from './TrackerView'
 import { ticketSelections } from './ticketSelections'
 import type { NotedSelection } from './ticketSelections'
 import { watchAsk, watchOutcome } from './watchlistStatus'
 import type { WatchTracking } from './watchlistStatus'
 
-type WatchReference = { ticker: string; kind: 'prop' | 'spread'; season: number; week: number; game_id: string; label: string }
+type WatchReference = { sport?: 'nfl' | 'cfb'; season_type?: 'regular' | 'postseason'; ticker: string; kind: 'prop' | 'spread'; season: number; week: number; game_id: string; label: string }
 type WatchDetails = { side: '' | 'Yes' | 'No'; notes: string; revision: number }
 export type WatchEntry = WatchReference & WatchDetails & { tracking?: WatchTracking }
 type WatchState = {
@@ -59,11 +60,11 @@ export function WatchlistProvider({ children }: { children: ReactNode }) {
     return () => window.clearInterval(timer)
   }, [])
   const toggle = (entry: WatchReference) => {
-    const { ticker, kind, season, week, game_id, label } = entry
+    const { ticker, kind, season, week, game_id, label, sport, season_type } = entry
     const removing = entries.some(item => item.ticker === ticker)
     void run(() => removing
       ? request(`/api/watchlist/${encodeURIComponent(ticker)}`, 'DELETE')
-      : request('/api/watchlist', 'PUT', { ticker, kind, season, week, game_id, label }))
+      : request('/api/watchlist', 'PUT', { ticker, kind, season, week, game_id, label, ...(sport ? { sport } : {}), ...(season_type ? { season_type } : {}) }))
       .then(saved => {
         if (!saved) return
         setDraft(ticker, null)
@@ -132,8 +133,8 @@ type QuoteReport = {
   games?: { game_id: string; kickoff: string | null; away: WatchTeam; home: WatchTeam; markets: WatchMarket[] }[]
   sources: { name: string; fetched_at: string | null; error: string | null }[]
 }
-type WatchMarket = { ticker: string; label: string; team?: string; yes_ask_dollars: string | null; no_ask_dollars: string | null }
-type WatchTeam = { code: string; name: string; logo: string | null }
+type WatchMarket = { ticker: string; label: string; team?: string; team_id?: string; yes_ask_dollars: string | null; no_ask_dollars: string | null }
+type WatchTeam = { code?: string; id?: string; name: string; logo: string | null }
 function WatchCard({ entry, revision, onOpen, onRecord, choosing, selected, onSelect }: {
   entry: WatchEntry; revision: number; onOpen: (entry: WatchEntry) => void; onRecord: (selection: BetSelection) => void
   choosing: boolean; selected: boolean; onSelect: () => void
@@ -141,7 +142,8 @@ function WatchCard({ entry, revision, onOpen, onRecord, choosing, selected, onSe
   const { busy, drafts, openEditor, toggle } = useWatchlist()
   const draft = drafts[entry.ticker]
   const dirty = draft != null && (draft.side !== entry.side || draft.notes !== entry.notes)
-  const matchupUrl = `/api/matchups?season=${entry.season}&week=${entry.week}`
+  const college = entry.sport === 'cfb'
+  const matchupUrl = `/api/${college ? 'cfb/' : ''}matchups?season=${entry.season}&week=${entry.week}${college ? `&season_type=${entry.season_type ?? 'regular'}` : ''}`
   const matchups = useReport<QuoteReport>(matchupUrl, revision)
   const { data, error, loading } = useReport<QuoteReport>(entry.kind === 'prop'
     ? `/api/matchups/${encodeURIComponent(entry.game_id)}/props?season=${entry.season}`
@@ -161,7 +163,7 @@ function WatchCard({ entry, revision, onOpen, onRecord, choosing, selected, onSe
   const contract = markets?.find(market => market.ticker === entry.ticker)
   const market = !started ? contract : undefined
   const group = data?.groups?.find(group => group.markets.some(market => market.ticker === entry.ticker))
-  const source = data?.sources.find(source => source.name === (entry.kind === 'spread' ? 'spreads' : group?.category))
+  const source = data?.sources.find(source => source.name === (entry.kind === 'spread' ? college ? 'cfb_markets' : 'spreads' : group?.category))
   const savedAsk = watchAsk(entry.side, entry.tracking)
   const currentAsk = entry.side === 'No' ? market?.no_ask_dollars : market?.yes_ask_dollars
   const useCurrent = !!currentAsk && (!savedAsk || (source?.fetched_at != null
@@ -170,13 +172,13 @@ function WatchCard({ entry, revision, onOpen, onRecord, choosing, selected, onSe
   const quoteTime = useCurrent ? source?.fetched_at : savedAsk?.fetched_at
   const outcome = watchOutcome(entry.side, entry.tracking)
   const teamCode = group?.player.team ?? contract?.team ?? ''
-  const team = [game?.away, game?.home].find(team => team?.code === teamCode)
-  const matchup = entry.game_id.split('_').slice(2).join(' vs ')
+  const team = [game?.away, game?.home].find(team => team && (college ? team.id === contract?.team_id : team.code === teamCode))
+  const matchup = college ? game ? `${game.away.name} vs ${game.home.name}` : entry.label.split(' · ')[0] : entry.game_id.split('_').slice(2).join(' vs ')
   const savedLabel = entry.label.split(' · ')
   const title = entry.kind === 'prop' ? group?.player.name ?? savedLabel[0] : team?.name ?? matchup
   const statistic = entry.kind === 'prop' ? group?.label ?? (savedLabel.slice(1, -1).join(' · ') || 'Player prop') : 'Spread'
   const threshold = contract?.label ?? (entry.kind === 'prop' ? savedLabel.at(-1) : entry.label)
-  return <article className={`prop-card watch-card${outcome ? ` watch-${outcome.tone}` : ''}${selected ? ' combo-selected' : ''}`} style={teamStyle(teamCode)}>
+  return <article className={`prop-card watch-card${outcome ? ` watch-${outcome.tone}` : ''}${selected ? ' combo-selected' : ''}`} style={college ? collegeTeamStyle(team?.id ?? '') : teamStyle(teamCode)}>
     {choosing && <label className="watch-combo-pick"><input type="checkbox" checked={selected}
       disabled={busy || (!selected && (dirty || !entry.side))} onChange={onSelect} aria-label={`Include in combo: ${entry.label}`} />
       {dirty ? 'Save edits to include' : !entry.side ? 'Choose a side to include' : selected ? 'Selected for combo' : 'Include in combo'}
@@ -193,7 +195,7 @@ function WatchCard({ entry, revision, onOpen, onRecord, choosing, selected, onSe
       <div className="prop-ask"><small>{entry.side || 'Yes'} {started ? 'last pregame ask' : 'ask'}</small><strong>{loading && !data && !price ? 'Loading…' : askPrice(price)}</strong></div>
     </div>
     <div className="opponent-context watch-context">
-      <small>{matchup} · Week {entry.week} · {entry.season}</small>
+      <small>{college ? 'CFB' : 'NFL'} · {matchup} · {entry.season_type === 'postseason' ? 'Postseason' : `Week ${entry.week}`} · {entry.season}</small>
       <div className="watch-side"><span>Your side</span><strong>{entry.side || 'Not chosen'}</strong></div>
       {outcome && <div className={`watch-outcome ${outcome.tone}`} role="status" title={`Kalshi result: ${entry.tracking?.result}`}>
         {outcome.label}
@@ -231,7 +233,7 @@ export function WatchlistView({ revision, onOpen, onRecord, onCombo }: {
   const needsDetails = picks.some(entry => !entry.side || (drafts[entry.ticker]
     && (drafts[entry.ticker].side !== entry.side || drafts[entry.ticker].notes !== entry.notes)))
   return <section className="research-page" aria-label="Watchlist"><div className="page-heading"><div><h1>Watchlist</h1>
-    <p>Your saved spreads and player props across games.</p></div>
+    <p>Your saved NFL and college spreads, plus NFL player props.</p></div>
     {!choosing && entries.length > 1 && <button disabled={busy} onClick={() => setChoosing(true)}>Build combo</button>}</div>
     {choosing && <div className="watch-combo-bar" role="region" aria-label="Build a combo">
       <span role="status">{picks.length ? `${picks.length} selected` : 'Select at least 2 picks'}</span>

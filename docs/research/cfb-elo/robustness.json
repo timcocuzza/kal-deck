@@ -1,0 +1,538 @@
+{
+  "status": "Frozen settings; diagnostic comparisons do not select a replacement",
+  "selection_lock_sha256": "91d81bd7a0cdf1a6129e4476007a97dd462867a58fc9cdf9f161fed77dd979ef",
+  "retention_and_fcs_comparisons": {
+    "0": {
+      "variant_minus_selected": {
+        "candidate_minus_baseline_mae": 0.6133649784561653,
+        "descriptive_95_percent_block_interval": [
+          0.40646794904290817,
+          0.8421859969207999
+        ],
+        "blocks": 66,
+        "draws": 2000,
+        "seed": 1729
+      },
+      "early_season_on_identical_game_ids": {
+        "games": 633,
+        "mae": 17.326224547848522,
+        "rmse": 21.918831417495706,
+        "bias_predicted_minus_actual": -6.466022853761822,
+        "median_absolute_error": 14.399999999999999,
+        "p90_absolute_error": 36.0,
+        "winner_direction_accuracy": 0.6856240126382307,
+        "winner_rating_decreases": 60,
+        "non_tied_games": 633
+      }
+    },
+    "0.15": {
+      "variant_minus_selected": {
+        "candidate_minus_baseline_mae": 0.35660385067650685,
+        "descriptive_95_percent_block_interval": [
+          0.22829617712518038,
+          0.4934898830857225
+        ],
+        "blocks": 66,
+        "draws": 2000,
+        "seed": 1729
+      },
+      "early_season_on_identical_game_ids": {
+        "games": 633,
+        "mae": 16.47427103094822,
+        "rmse": 20.766923625470483,
+        "bias_predicted_minus_actual": -5.91733200319587,
+        "median_absolute_error": 13.69708273854084,
+        "p90_absolute_error": 33.90751679942132,
+        "winner_direction_accuracy": 0.7235387045813586,
+        "winner_rating_decreases": 66,
+        "non_tied_games": 633
+      }
+    },
+    "0.25": {
+      "variant_minus_selected": {
+        "candidate_minus_baseline_mae": 0.20261767810711345,
+        "descriptive_95_percent_block_interval": [
+          0.1267415036348359,
+          0.2828759272201366
+        ],
+        "blocks": 66,
+        "draws": 2000,
+        "seed": 1729
+      },
+      "early_season_on_identical_game_ids": {
+        "games": 633,
+        "mae": 15.936055871348861,
+        "rmse": 20.05085722727219,
+        "bias_predicted_minus_actual": -5.525122135802013,
+        "median_absolute_error": 13.673072896716121,
+        "p90_absolute_error": 32.59147008577813,
+        "winner_direction_accuracy": 0.731437598736177,
+        "winner_rating_decreases": 70,
+        "non_tied_games": 633
+      }
+    },
+    "0.4": {
+      "variant_minus_selected": {
+        "candidate_minus_baseline_mae": 0.0,
+        "descriptive_95_percent_block_interval": [
+          0.0,
+          0.0
+        ],
+        "blocks": 66,
+        "draws": 2000,
+        "seed": 1729
+      },
+      "early_season_on_identical_game_ids": {
+        "games": 633,
+        "mae": 15.188868536823573,
+        "rmse": 19.06155780372013,
+        "bias_predicted_minus_actual": -4.875110553697627,
+        "median_absolute_error": 12.81666563094755,
+        "p90_absolute_error": 31.233280321697094,
+        "winner_direction_accuracy": 0.7235387045813586,
+        "winner_rating_decreases": 85,
+        "non_tied_games": 633
+      }
+    },
+    "without_fcs": {
+      "variant_minus_selected": {
+        "candidate_minus_baseline_mae": 0.0837538062062874,
+        "descriptive_95_percent_block_interval": [
+          -0.015931102177186747,
+          0.1862254551235757
+        ],
+        "blocks": 66,
+        "draws": 2000,
+        "seed": 1729
+      },
+      "early_season_on_identical_game_ids": {
+        "games": 633,
+        "mae": 15.643676869409484,
+        "rmse": 19.748932291038187,
+        "bias_predicted_minus_actual": -5.135626866641809,
+        "median_absolute_error": 13.324422096859523,
+        "p90_absolute_error": 31.914090816857982,
+        "winner_direction_accuracy": 0.7156398104265402,
+        "winner_rating_decreases": 70,
+        "non_tied_games": 633
+      }
+    },
+    "high_carryover_diagnostic": {
+      "variant_minus_selected": {
+        "candidate_minus_baseline_mae": -0.25870903182185623,
+        "descriptive_95_percent_block_interval": [
+          -0.39470822602098743,
+          -0.13573938286760776
+        ],
+        "blocks": 66,
+        "draws": 2000,
+        "seed": 1729
+      },
+      "early_season_on_identical_game_ids": {
+        "games": 633,
+        "mae": 14.118775855180496,
+        "rmse": 17.690141820359326,
+        "bias_predicted_minus_actual": -3.5010565093290893,
+        "median_absolute_error": 12.01220498851453,
+        "p90_absolute_error": 28.444753899343223,
+        "winner_direction_accuracy": 0.731437598736177,
+        "winner_rating_decreases": 112,
+        "non_tied_games": 633
+      }
+    }
+  },
+  "venue_correction": {
+    "corrections_sha256": "3cb84dbac557a91a481832dea5b4351b0d7af52c873d65f0698fe2a7547175c5",
+    "results": {
+      "selected": {
+        "metrics": {
+          "fbs_fbs": {
+            "games": 3174,
+            "mae": 13.17404253515151,
+            "rmse": 16.63050784425774,
+            "bias_predicted_minus_actual": -1.6275992934698365,
+            "median_absolute_error": 11.147158174722174,
+            "p90_absolute_error": 26.93391659145841,
+            "winner_direction_accuracy": 0.7000630119722747,
+            "winner_rating_decreases": 674,
+            "non_tied_games": 3174
+          },
+          "fbs_fcs": {
+            "games": 485,
+            "mae": 13.764168528879317,
+            "rmse": 17.069209714821824,
+            "bias_predicted_minus_actual": -3.9238633562626073,
+            "median_absolute_error": 11.448911099532019,
+            "p90_absolute_error": 27.729410450954507,
+            "winner_direction_accuracy": 0.9567010309278351,
+            "winner_rating_decreases": 177,
+            "non_tied_games": 485
+          },
+          "fcs_fcs": {
+            "games": 2663,
+            "mae": 12.777558389046321,
+            "rmse": 16.367922609295665,
+            "bias_predicted_minus_actual": -1.2375301027006111,
+            "median_absolute_error": 10.342811435944743,
+            "p90_absolute_error": 27.240359520750857,
+            "winner_direction_accuracy": 0.7298720842738902,
+            "winner_rating_decreases": 573,
+            "non_tied_games": 2658
+          },
+          "by_season": {
+            "2022": {
+              "games": 776,
+              "mae": 13.25902487493842,
+              "rmse": 16.824987679077967,
+              "bias_predicted_minus_actual": -0.8896737651678827,
+              "median_absolute_error": 11.151930194615007,
+              "p90_absolute_error": 26.846042262535754,
+              "winner_direction_accuracy": 0.6894329896907216,
+              "winner_rating_decreases": 178,
+              "non_tied_games": 776
+            },
+            "2023": {
+              "games": 792,
+              "mae": 13.37946901297165,
+              "rmse": 16.741724913658842,
+              "bias_predicted_minus_actual": -1.3139083410370662,
+              "median_absolute_error": 11.470377818840605,
+              "p90_absolute_error": 26.476138944796833,
+              "winner_direction_accuracy": 0.7184343434343434,
+              "winner_rating_decreases": 174,
+              "non_tied_games": 792
+            },
+            "2024": {
+              "games": 798,
+              "mae": 13.136042467274212,
+              "rmse": 16.549312165686832,
+              "bias_predicted_minus_actual": -1.8500166848135216,
+              "median_absolute_error": 11.063104921770773,
+              "p90_absolute_error": 27.37406713625437,
+              "winner_direction_accuracy": 0.6904761904761905,
+              "winner_rating_decreases": 165,
+              "non_tied_games": 798
+            },
+            "2025": {
+              "games": 808,
+              "mae": 12.928596975817216,
+              "rmse": 16.411815924278134,
+              "bias_predicted_minus_actual": -2.424114597921333,
+              "median_absolute_error": 10.516109322853538,
+              "p90_absolute_error": 27.355898964465194,
+              "winner_direction_accuracy": 0.7017326732673267,
+              "winner_rating_decreases": 157,
+              "non_tied_games": 808
+            }
+          },
+          "early_season_fbs_fbs": {
+            "games": 633,
+            "mae": 15.188868530294839,
+            "rmse": 19.06155779885622,
+            "bias_predicted_minus_actual": -4.875110513214678,
+            "median_absolute_error": 12.816666351442048,
+            "p90_absolute_error": 31.233279395609493,
+            "winner_direction_accuracy": 0.7235387045813586,
+            "winner_rating_decreases": 85,
+            "non_tied_games": 633
+          }
+        },
+        "mae_change": -1.9809185403119045e-09,
+        "max_held_out_benchmark_change": 4.138335771841639e-06
+      },
+      "linear": {
+        "metrics": {
+          "fbs_fbs": {
+            "games": 3174,
+            "mae": 13.173206716403863,
+            "rmse": 16.640740991549205,
+            "bias_predicted_minus_actual": -1.5777755267347267,
+            "median_absolute_error": 11.024552432969433,
+            "p90_absolute_error": 26.77225884068718,
+            "winner_direction_accuracy": 0.699747952110901,
+            "winner_rating_decreases": 708,
+            "non_tied_games": 3174
+          },
+          "fbs_fcs": {
+            "games": 485,
+            "mae": 13.626842058080614,
+            "rmse": 16.859417128356483,
+            "bias_predicted_minus_actual": -3.2370965314279965,
+            "median_absolute_error": 11.39920632394751,
+            "p90_absolute_error": 27.33490645834822,
+            "winner_direction_accuracy": 0.9567010309278351,
+            "winner_rating_decreases": 179,
+            "non_tied_games": 485
+          },
+          "fcs_fcs": {
+            "games": 2663,
+            "mae": 12.733304572763418,
+            "rmse": 16.341462546895357,
+            "bias_predicted_minus_actual": -1.211577659052526,
+            "median_absolute_error": 10.293510964864616,
+            "p90_absolute_error": 27.42937758603722,
+            "winner_direction_accuracy": 0.7246049661399548,
+            "winner_rating_decreases": 610,
+            "non_tied_games": 2658
+          },
+          "by_season": {
+            "2022": {
+              "games": 776,
+              "mae": 13.299209543492994,
+              "rmse": 16.870329979028586,
+              "bias_predicted_minus_actual": -0.8253296156083867,
+              "median_absolute_error": 11.044975041432206,
+              "p90_absolute_error": 26.499012960543034,
+              "winner_direction_accuracy": 0.6881443298969072,
+              "winner_rating_decreases": 185,
+              "non_tied_games": 776
+            },
+            "2023": {
+              "games": 792,
+              "mae": 13.419042446854947,
+              "rmse": 16.79721749716938,
+              "bias_predicted_minus_actual": -1.2620389059577153,
+              "median_absolute_error": 11.6223981929996,
+              "p90_absolute_error": 27.216706406337664,
+              "winner_direction_accuracy": 0.7133838383838383,
+              "winner_rating_decreases": 180,
+              "non_tied_games": 792
+            },
+            "2024": {
+              "games": 798,
+              "mae": 13.11507916762065,
+              "rmse": 16.532197254730086,
+              "bias_predicted_minus_actual": -1.8199423327148059,
+              "median_absolute_error": 10.86792258480283,
+              "p90_absolute_error": 26.764361952937605,
+              "winner_direction_accuracy": 0.6942355889724311,
+              "winner_rating_decreases": 178,
+              "non_tied_games": 798
+            },
+            "2025": {
+              "games": 808,
+              "mae": 12.868634552530816,
+              "rmse": 16.36926074251042,
+              "bias_predicted_minus_actual": -2.37073631821657,
+              "median_absolute_error": 10.579065711667843,
+              "p90_absolute_error": 27.053721750188085,
+              "winner_direction_accuracy": 0.7029702970297029,
+              "winner_rating_decreases": 165,
+              "non_tied_games": 808
+            }
+          },
+          "early_season_fbs_fbs": {
+            "games": 633,
+            "mae": 14.98604234855572,
+            "rmse": 18.857366171989554,
+            "bias_predicted_minus_actual": -4.735742413924993,
+            "median_absolute_error": 12.61140319488771,
+            "p90_absolute_error": 30.415333078855166,
+            "winner_direction_accuracy": 0.7282780410742496,
+            "winner_rating_decreases": 91,
+            "non_tied_games": 633
+          }
+        },
+        "mae_change": -6.773248628633155e-11,
+        "max_held_out_benchmark_change": 2.1140398498431523e-06
+      },
+      "win_elo": {
+        "metrics": {
+          "fbs_fbs": {
+            "games": 3174,
+            "mae": 13.834589060402017,
+            "rmse": 17.50808267707367,
+            "bias_predicted_minus_actual": 0.5719667341857888,
+            "median_absolute_error": 11.454487995645193,
+            "p90_absolute_error": 28.894899306289616,
+            "winner_direction_accuracy": 0.6783238815374921,
+            "winner_rating_decreases": 0,
+            "non_tied_games": 3174
+          },
+          "fbs_fcs": {
+            "games": 485,
+            "mae": 15.28123990253578,
+            "rmse": 19.035836706683092,
+            "bias_predicted_minus_actual": -7.667802961820005,
+            "median_absolute_error": 12.81468004897569,
+            "p90_absolute_error": 30.69321920255925,
+            "winner_direction_accuracy": 0.954639175257732,
+            "winner_rating_decreases": 0,
+            "non_tied_games": 485
+          },
+          "fcs_fcs": {
+            "games": 2663,
+            "mae": 13.372899966219496,
+            "rmse": 17.08103712163175,
+            "bias_predicted_minus_actual": 1.2335259215777634,
+            "median_absolute_error": 10.826325376419907,
+            "p90_absolute_error": 28.524206700542216,
+            "winner_direction_accuracy": 0.7129420617005268,
+            "winner_rating_decreases": 0,
+            "non_tied_games": 2658
+          },
+          "by_season": {
+            "2022": {
+              "games": 776,
+              "mae": 13.731781550020292,
+              "rmse": 17.636521078948277,
+              "bias_predicted_minus_actual": 1.4665512608001015,
+              "median_absolute_error": 11.15868623031678,
+              "p90_absolute_error": 28.465840917647824,
+              "winner_direction_accuracy": 0.6675257731958762,
+              "winner_rating_decreases": 0,
+              "non_tied_games": 776
+            },
+            "2023": {
+              "games": 792,
+              "mae": 13.866741215823415,
+              "rmse": 17.53293969985914,
+              "bias_predicted_minus_actual": 0.949162375444766,
+              "median_absolute_error": 11.808978218906201,
+              "p90_absolute_error": 28.537672504292395,
+              "winner_direction_accuracy": 0.6994949494949495,
+              "winner_rating_decreases": 0,
+              "non_tied_games": 792
+            },
+            "2024": {
+              "games": 798,
+              "mae": 14.113366735539273,
+              "rmse": 17.60680204545919,
+              "bias_predicted_minus_actual": 0.3437939564439931,
+              "median_absolute_error": 11.738565000410645,
+              "p90_absolute_error": 29.427120484802764,
+              "winner_direction_accuracy": 0.6591478696741855,
+              "winner_rating_decreases": 0,
+              "non_tied_games": 798
+            },
+            "2025": {
+              "games": 808,
+              "mae": 13.62648205075219,
+              "rmse": 17.260371572800135,
+              "bias_predicted_minus_actual": -0.4315662656803791,
+              "median_absolute_error": 11.37620705794117,
+              "p90_absolute_error": 29.586758855698914,
+              "winner_direction_accuracy": 0.6868811881188119,
+              "winner_rating_decreases": 0,
+              "non_tied_games": 808
+            }
+          },
+          "early_season_fbs_fbs": {
+            "games": 633,
+            "mae": 16.084869492082625,
+            "rmse": 20.100888864212926,
+            "bias_predicted_minus_actual": -2.997947941894119,
+            "median_absolute_error": 13.315167056629281,
+            "p90_absolute_error": 32.94918820352427,
+            "winner_direction_accuracy": 0.6824644549763034,
+            "winner_rating_decreases": 0,
+            "non_tied_games": 633
+          }
+        },
+        "mae_change": 5.995526031199461e-08,
+        "max_held_out_benchmark_change": 1.5520661093226806e-05
+      },
+      "nfl_margin": {
+        "metrics": {
+          "fbs_fbs": {
+            "games": 3174,
+            "mae": 13.325167946557894,
+            "rmse": 16.820880580865293,
+            "bias_predicted_minus_actual": 0.41110262898079897,
+            "median_absolute_error": 11.218081236320675,
+            "p90_absolute_error": 27.638717234450784,
+            "winner_direction_accuracy": 0.6947069943289225,
+            "winner_rating_decreases": 0,
+            "non_tied_games": 3174
+          },
+          "fbs_fcs": {
+            "games": 485,
+            "mae": 15.430192202027419,
+            "rmse": 19.147714357654884,
+            "bias_predicted_minus_actual": -8.923800326105193,
+            "median_absolute_error": 12.961152545716075,
+            "p90_absolute_error": 31.62661121701378,
+            "winner_direction_accuracy": 0.9505154639175257,
+            "winner_rating_decreases": 0,
+            "non_tied_games": 485
+          },
+          "fcs_fcs": {
+            "games": 2663,
+            "mae": 13.013210444349415,
+            "rmse": 16.52582016608532,
+            "bias_predicted_minus_actual": 0.9711860559127166,
+            "median_absolute_error": 10.651447146348236,
+            "p90_absolute_error": 27.67215507265404,
+            "winner_direction_accuracy": 0.7155756207674944,
+            "winner_rating_decreases": 0,
+            "non_tied_games": 2658
+          },
+          "by_season": {
+            "2022": {
+              "games": 776,
+              "mae": 13.255409884806577,
+              "rmse": 16.930689916919977,
+              "bias_predicted_minus_actual": 1.3103987258507659,
+              "median_absolute_error": 10.960695974339842,
+              "p90_absolute_error": 27.30822173414277,
+              "winner_direction_accuracy": 0.6817010309278351,
+              "winner_rating_decreases": 0,
+              "non_tied_games": 776
+            },
+            "2023": {
+              "games": 792,
+              "mae": 13.279061710959166,
+              "rmse": 16.77883426246862,
+              "bias_predicted_minus_actual": 0.714279034881013,
+              "median_absolute_error": 11.398435898394844,
+              "p90_absolute_error": 26.64387580995701,
+              "winner_direction_accuracy": 0.7058080808080808,
+              "winner_rating_decreases": 0,
+              "non_tied_games": 792
+            },
+            "2024": {
+              "games": 798,
+              "mae": 13.672828100515597,
+              "rmse": 17.03811022528441,
+              "bias_predicted_minus_actual": 0.2246438538423203,
+              "median_absolute_error": 11.929853050819116,
+              "p90_absolute_error": 27.69468595417452,
+              "winner_direction_accuracy": 0.681704260651629,
+              "winner_rating_decreases": 0,
+              "non_tied_games": 798
+            },
+            "2025": {
+              "games": 808,
+              "mae": 13.093999124348693,
+              "rmse": 16.537931844896868,
+              "bias_predicted_minus_actual": -0.5655995765681586,
+              "median_absolute_error": 10.898178930505278,
+              "p90_absolute_error": 28.37561752546382,
+              "winner_direction_accuracy": 0.7091584158415841,
+              "winner_rating_decreases": 0,
+              "non_tied_games": 808
+            }
+          },
+          "early_season_fbs_fbs": {
+            "games": 633,
+            "mae": 15.065710856487199,
+            "rmse": 18.817624836180883,
+            "bias_predicted_minus_actual": -2.336791981402238,
+            "median_absolute_error": 12.739803650957153,
+            "p90_absolute_error": 30.86743727297939,
+            "winner_direction_accuracy": 0.7093206951026856,
+            "winner_rating_decreases": 0,
+            "non_tied_games": 633
+          }
+        },
+        "mae_change": 4.464010139315633e-08,
+        "max_held_out_benchmark_change": 4.601327153164192e-05
+      }
+    }
+  },
+  "notes": [
+    "Early-season sensitivity comparisons use identical game IDs from the full replay.",
+    "Repeated use of this holdout for further tuning would make it development data, not independent validation.",
+    "The stronger-carryover diagnostic is not authorization to change the user preference."
+  ]
+}

@@ -9,6 +9,7 @@ import type { BetSelection, PendingSelection } from './TrackerView'
 import { navigate, useHash } from './ui'
 import { WatchlistProvider, WatchlistStatus, WatchlistView, useWatchlist } from './Watchlist'
 import { InstallApp } from './InstallApp'
+import { CollegeView } from './CollegeView'
 
 type Source = {
   name: string
@@ -47,7 +48,14 @@ function App() {
   const [refreshing, setRefreshing] = useState<string | null>(null)
   const [revision, setRevision] = useState(0)
   const hash = useHash()
-  const view = ['rankings', 'sources', 'tracker', 'watchlist'].includes(hash) ? hash : 'matchups'
+  const [researchSport, setResearchSport] = useState<'nfl' | 'cfb'>('nfl')
+  const sharedView = hash === 'watchlist' || hash === 'tracker'
+  const sport = sharedView ? researchSport : hash.startsWith('cfb') ? 'cfb' : 'nfl'
+  const view = sharedView ? hash : hash === 'cfb/sources' ? 'sources' : sport === 'cfb' ? 'college' : ['rankings', 'sources'].includes(hash) ? hash : 'matchups'
+  useEffect(() => { if (!sharedView) setResearchSport(sport) }, [sport, sharedView])
+  const scope = `${sport}:${season}`
+  const activeScope = useRef(scope)
+  activeScope.current = scope
   const autoOpened = useRef(new Set<string>())
   const [pendingSelection, setPendingSelection] = useState<PendingSelection | null>(null)
   const refreshLock = useRef(false)
@@ -63,14 +71,10 @@ function App() {
     const timeout = window.setTimeout(() => controller.abort(), 5000)
     setLoading(true)
     setError('')
-    void request<{ sources: Source[] }>(`/api/sources?season=${season}`, { signal: controller.signal })
+    void request<{ sources: Source[] }>(`/api/sources?season=${season}&sport=${sport}`, { signal: controller.signal })
       .then(data => {
         if (disposed) return
         setSources(data.sources)
-        if (!autoOpened.current.has(season)) {
-          autoOpened.current.add(season)
-          void refresh(data.sources)
-        }
       })
       .catch(() => {
         if (!disposed) setError('Unable to load saved data. Make sure Deck is running, then reload this page.')
@@ -85,7 +89,14 @@ function App() {
       controller.abort()
       window.clearTimeout(timeout)
     }
-  }, [season, validSeason])
+  }, [season, sport, validSeason])
+
+  useEffect(() => {
+    if (loading || !validSeason || !sources.length || refreshLock.current || autoOpened.current.has(scope)) return
+    if (sources.some(source => source.name.startsWith('cfb_') !== (sport === 'cfb'))) return
+    autoOpened.current.add(scope)
+    void refresh(sources)
+  }, [loading, validSeason, sources, scope, refreshing])
 
   async function refresh(selected: Source[]) {
     if (refreshLock.current) return
@@ -93,12 +104,16 @@ function App() {
     setError('')
     try {
       for (const source of selected) {
+        if (activeScope.current !== scope) {
+          autoOpened.current.delete(scope)
+          break
+        }
         setRefreshing(source.name)
         try {
           const updated = await request<Source>(`/api/sources/${source.name}/refresh?season=${season}`, { method: 'POST' })
-          setSources(current => current.map(item => item.name === updated.name ? updated : item))
+          if (activeScope.current === scope) setSources(current => current.map(item => item.name === updated.name ? updated : item))
         } catch {
-          setError(`Could not confirm the refresh of ${source.label}. Reload to check the saved status.`)
+          if (activeScope.current === scope) setError(`Could not confirm the refresh of ${source.label}. Reload to check the saved status.`)
           // Continue other independent sources; saved snapshots remain intact.
         }
       }
@@ -117,13 +132,24 @@ function App() {
 
   return (
     <div className="app-shell">
-      <header className="app-header"><button className="brand" onClick={() => navigate('games')}><img className="brand-logo" src="/icons/deck-logo.webp" alt="Deck" width="112" height="40" /></button>
-        <nav className="app-nav" aria-label="Research views">
+      <header className="app-header"><button className="brand" onClick={() => navigate(sport === 'cfb' ? 'cfb' : 'games')}><img className="brand-logo" src="/icons/deck-logo.webp" alt="Deck" width="112" height="40" /></button>
+        <nav className="sport-nav segmented" aria-label="Sport">
+          <button aria-pressed={sport === 'nfl'} onClick={() => navigate('games')}>NFL</button>
+          <button aria-pressed={sport === 'cfb'} onClick={() => navigate('cfb')}>CFB</button>
+        </nav>
+        <nav className="app-nav" aria-label={`${sport === 'cfb' ? 'CFB' : 'NFL'} sections`}>
+          {sport === 'cfb' ? <>
+            <button aria-current={view === 'college' && hash.split('?')[0] !== 'cfb/ratings' ? 'page' : undefined} onClick={() => navigate('cfb')}>Games</button>
+            <button aria-current={hash.split('?')[0] === 'cfb/ratings' ? 'page' : undefined} onClick={() => navigate('cfb/ratings')}>Ratings</button>
+          </> : <>
           <button aria-current={view === 'matchups' ? 'page' : undefined} onClick={() => navigate('games')}>Games</button>
           <button aria-current={view === 'rankings' ? 'page' : undefined} onClick={() => navigate('rankings')}>Rankings</button>
+          </>}
+          <button aria-current={view === 'sources' ? 'page' : undefined} onClick={() => navigate(sport === 'cfb' ? 'cfb/sources' : 'sources')}>Data</button>
+        </nav>
+        <nav className="app-nav shared-nav" aria-label="Shared tools">
           <button aria-current={view === 'watchlist' ? 'page' : undefined} onClick={() => navigate('watchlist')}>Watchlist</button>
           <button aria-current={view === 'tracker' ? 'page' : undefined} onClick={() => navigate('tracker')}>Bet tracker</button>
-          <button aria-current={view === 'sources' ? 'page' : undefined} onClick={() => navigate('sources')}>Data</button>
         </nav>
         <div className="app-actions">
           <button disabled={loading || refreshing !== null || !validSeason || sources.length === 0} onClick={() => void refresh(sources)}>
@@ -140,15 +166,22 @@ function App() {
           navigate('tracker')
         }} onOpen={entry => {
           setSeason(String(entry.season))
+          if (entry.sport === 'cfb') {
+            setResearchSport('cfb')
+            navigate(`cfb/game/${entry.game_id}?week=${entry.week}&season_type=${entry.season_type ?? 'regular'}&market=${encodeURIComponent(entry.ticker)}`)
+            return
+          }
+          setResearchSport('nfl')
           navigate(`game/${encodeURIComponent(entry.game_id)}?week=${entry.week}&tab=${entry.kind === 'prop' ? 'props' : 'stats'}&market=${encodeURIComponent(entry.ticker)}`)
         }} />}
-        <div hidden={view !== 'matchups'}>{validSeason && <MatchupsView key={season} season={season} revision={revision} refreshing={refreshing !== null} onRecord={recordSelection} />}</div>
+        <div hidden={view !== 'matchups'}>{validSeason && sport === 'nfl' && <MatchupsView key={season} season={season} revision={revision} refreshing={refreshing !== null} onRecord={recordSelection} />}</div>
+        {view === 'college' && validSeason && <CollegeView key={season} season={season} revision={revision} onSeason={setSeason} onRecord={recordSelection} />}
         <TrackerView visible={view === 'tracker'} pending={pendingSelection} consumePending={() => setPendingSelection(null)} />
         {validSeason && view === 'rankings' && <div className="research-page"><RankingsView key={season} season={season} revision={revision} refreshing={refreshing !== null} />
           <details className="research-expand"><summary>Defense by player position</summary><PositionDefenseView key={`position-${season}`} season={season} revision={revision} refreshing={refreshing !== null} /></details></div>}
       <div hidden={view !== 'sources'}><InstallApp /></div>
       {view === 'sources' && <div className="research-page"><h1>Data sources</h1>
-      <p className="source-note">Season applies to nflverse data and game identities. Markets, coverage and injury reports use current published data. Sources refresh once on opening; spread lines load automatically when shown. Watched contracts check quotes near kickoff and results afterward while Deck is running.</p>
+      <p className="source-note">{sport === 'cfb' ? 'College statistics, current schedules, and verified spread identities have separate saved snapshots. Refresh failures retain previous data. Current results may still lack statistics; coverage is shown beside each metric. Spread histories load independently when displayed.' : 'Season applies to nflverse data and game identities. Markets, coverage and injury reports use current published data. Sources refresh once on opening; spread lines load automatically when shown. Watched contracts check quotes near kickoff and results afterward while Deck is running.'}</p>
       <ul className="sources">
         {sources.map(source => (
           <li key={source.name}>

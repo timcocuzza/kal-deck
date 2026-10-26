@@ -1,0 +1,906 @@
+{
+  "checked_at": "2026-10-24T16:08:25.826021+00:00",
+  "sources": {
+    "event": {
+      "url": "https://external-api.kalshi.com/trade-api/v2/events/KXNCAAFSPREAD-26OCT24BYUUCF",
+      "bytes": 65721,
+      "sha256": "c2812988407186926e52897c8d776274b6e23803ed8437f036e9c38634884bbc",
+      "retrieved_at": "2026-10-24T16:02:46.583745+00:00"
+    },
+    "milestone": {
+      "url": "https://external-api.kalshi.com/trade-api/v2/milestones?limit=100&related_event_ticker=KXNCAAFSPREAD-26OCT24BYUUCF",
+      "bytes": 1600,
+      "sha256": "4cead8588262c31a43367c45614c69853e35c209fc7f3aeffdb892b65d60aac8",
+      "retrieved_at": "2026-10-24T15:59:18.694104+00:00"
+    },
+    "byu": {
+      "url": "https://external-api.kalshi.com/trade-api/v2/structured_targets/155b8f85-a763-46c9-a6d2-82dfea5a7cdc",
+      "bytes": 1065,
+      "sha256": "c65e08a04562eb9798a57df38606500c165650d87d8daecdf1fb1093225ac653",
+      "retrieved_at": "2026-10-24T16:04:12.082809+00:00"
+    },
+    "ucf": {
+      "url": "https://external-api.kalshi.com/trade-api/v2/structured_targets/12f48f09-feae-4074-9ff1-2e5bae9c33fe",
+      "bytes": 1054,
+      "sha256": "33ef805e0121f4dfd30f145953a5c162e69dfb058fab456fd87074c2806d89ae",
+      "retrieved_at": "2026-10-24T16:04:11.787066+00:00"
+    },
+    "history": {
+      "url": "https://external-api.kalshi.com/trade-api/v2/series/KXNCAAFSPREAD/markets/KXNCAAFSPREAD-26OCT24BYUUCF-BYU8/candlesticks?start_ts=1792253163&end_ts=1792857963&period_interval=60",
+      "bytes": 55780,
+      "sha256": "13c490ce4132cf647c379ee12dccd7058ba37a2a823f39d74f1ea848b55ac44e",
+      "retrieved_at": "2026-10-24T16:07:23.085139+00:00"
+    }
+  },
+  "checks": {
+    "single_unpaginated_milestone": true,
+    "event_series": true,
+    "event_linked_to_milestone": true,
+    "league": true,
+    "season_week": true,
+    "valid_schedule_time": true,
+    "kickoff_matches": true,
+    "away_identity": true,
+    "home_identity": true,
+    "team_types": true,
+    "selected_contract_wording": true,
+    "selected_threshold": true,
+    "history_ticker_matches_selection": true,
+    "unique_history_times": true,
+    "history_window": true
+  },
+  "sample_match_verified": true,
+  "identity_method": "Explicit manually checked BYU/UCF alias-to-numeric-ID mapping; no general college crosswalk claimed.",
+  "selection_method": "Existing backend select_default_spread function: midpoint closest to 50%, then gap, volume and ticker.",
+  "quote_function_source_sha256": "6a55c3bece1a8c01ade9f594a1433d0b3ae70c5ba13a6480a4c43ad34f5ff578",
+  "contracts_returned": 31,
+  "contracts_with_valid_midpoints": 31,
+  "selected_contract": {
+    "ticker": "KXNCAAFSPREAD-26OCT24BYUUCF-BYU8",
+    "title": "BYU wins by over 7.5 points",
+    "status": "active",
+    "floor_strike": 7.5,
+    "yes_bid_dollars": "0.4700",
+    "yes_ask_dollars": "0.4800",
+    "no_ask_dollars": "0.5300",
+    "rules_primary": "If BYU wins by more than 7.5 points in the BYU vs UCF college football game originally scheduled for Oct 24, 2026, then the market resolves to Yes.",
+    "rules_secondary": "If the game is postponed but begins within 48 hours of its originally scheduled start time, the market will remain open and resolve based on the official final result. If the game is not started within 48 hours, the market will resolve to a fair price.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the NCAA. All trademarks, logos, and brand names are the property of their respective owners."
+  },
+  "selected_midpoint": 0.475,
+  "kickoff": "2026-10-24T19:30:00Z",
+  "game_id": "401856835",
+  "history": {
+    "candles": 137,
+    "valid_midpoints": 137,
+    "missing_interior_hours": 1,
+    "points": [
+      {
+        "timestamp": 1792364400,
+        "midpoint": 0.45,
+        "bid": "0.4200",
+        "ask": "0.4800"
+      },
+      {
+        "timestamp": 1792368000,
+        "midpoint": 0.45,
+        "bid": "0.4300",
+        "ask": "0.4700"
+      },
+      {
+        "timestamp": 1792371600,
+        "midpoint": 0.46,
+        "bid": "0.4400",
+        "ask": "0.4800"
+      },
+      {
+        "timestamp": 1792375200,
+        "midpoint": 0.44,
+        "bid": "0.4200",
+        "ask": "0.4600"
+      },
+      {
+        "timestamp": 1792378800,
+        "midpoint": 0.44,
+        "bid": "0.4200",
+        "ask": "0.4600"
+      },
+      {
+        "timestamp": 1792382400,
+        "midpoint": 0.44,
+        "bid": "0.4200",
+        "ask": "0.4600"
+      },
+      {
+        "timestamp": 1792386000,
+        "midpoint": 0.44,
+        "bid": "0.4300",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792389600,
+        "midpoint": 0.445,
+        "bid": "0.4300",
+        "ask": "0.4600"
+      },
+      {
+        "timestamp": 1792393200,
+        "midpoint": 0.445,
+        "bid": "0.4300",
+        "ask": "0.4600"
+      },
+      {
+        "timestamp": 1792396800,
+        "midpoint": 0.44,
+        "bid": "0.4300",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792400400,
+        "midpoint": 0.445,
+        "bid": "0.4300",
+        "ask": "0.4600"
+      },
+      {
+        "timestamp": 1792404000,
+        "midpoint": 0.43,
+        "bid": "0.4200",
+        "ask": "0.4400"
+      },
+      {
+        "timestamp": 1792407600,
+        "midpoint": 0.44,
+        "bid": "0.4300",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792411200,
+        "midpoint": 0.43,
+        "bid": "0.4200",
+        "ask": "0.4400"
+      },
+      {
+        "timestamp": 1792414800,
+        "midpoint": 0.43,
+        "bid": "0.4200",
+        "ask": "0.4400"
+      },
+      {
+        "timestamp": 1792418400,
+        "midpoint": 0.43,
+        "bid": "0.4200",
+        "ask": "0.4400"
+      },
+      {
+        "timestamp": 1792422000,
+        "midpoint": 0.43,
+        "bid": "0.4200",
+        "ask": "0.4400"
+      },
+      {
+        "timestamp": 1792425600,
+        "midpoint": 0.43,
+        "bid": "0.4200",
+        "ask": "0.4400"
+      },
+      {
+        "timestamp": 1792429200,
+        "midpoint": 0.43,
+        "bid": "0.4200",
+        "ask": "0.4400"
+      },
+      {
+        "timestamp": 1792432800,
+        "midpoint": 0.43,
+        "bid": "0.4200",
+        "ask": "0.4400"
+      },
+      {
+        "timestamp": 1792436400,
+        "midpoint": 0.435,
+        "bid": "0.4300",
+        "ask": "0.4400"
+      },
+      {
+        "timestamp": 1792440000,
+        "midpoint": 0.435,
+        "bid": "0.4300",
+        "ask": "0.4400"
+      },
+      {
+        "timestamp": 1792443600,
+        "midpoint": 0.435,
+        "bid": "0.4300",
+        "ask": "0.4400"
+      },
+      {
+        "timestamp": 1792447200,
+        "midpoint": 0.45,
+        "bid": "0.4400",
+        "ask": "0.4600"
+      },
+      {
+        "timestamp": 1792450800,
+        "midpoint": 0.44,
+        "bid": "0.4300",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792454400,
+        "midpoint": 0.445,
+        "bid": "0.4400",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792458000,
+        "midpoint": 0.445,
+        "bid": "0.4400",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792461600,
+        "midpoint": 0.445,
+        "bid": "0.4400",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792465200,
+        "midpoint": 0.445,
+        "bid": "0.4400",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792468800,
+        "midpoint": 0.445,
+        "bid": "0.4400",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792472400,
+        "midpoint": 0.445,
+        "bid": "0.4400",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792476000,
+        "midpoint": 0.445,
+        "bid": "0.4400",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792479600,
+        "midpoint": 0.445,
+        "bid": "0.4400",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792483200,
+        "midpoint": 0.445,
+        "bid": "0.4400",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792486800,
+        "midpoint": 0.445,
+        "bid": "0.4400",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792490400,
+        "midpoint": 0.445,
+        "bid": "0.4400",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792494000,
+        "midpoint": 0.445,
+        "bid": "0.4400",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792497600,
+        "midpoint": 0.445,
+        "bid": "0.4400",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792501200,
+        "midpoint": 0.445,
+        "bid": "0.4400",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792504800,
+        "midpoint": 0.445,
+        "bid": "0.4400",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792508400,
+        "midpoint": 0.445,
+        "bid": "0.4400",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792512000,
+        "midpoint": 0.445,
+        "bid": "0.4400",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792515600,
+        "midpoint": 0.445,
+        "bid": "0.4400",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792519200,
+        "midpoint": 0.445,
+        "bid": "0.4400",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792522800,
+        "midpoint": 0.445,
+        "bid": "0.4400",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792526400,
+        "midpoint": 0.445,
+        "bid": "0.4400",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792530000,
+        "midpoint": 0.445,
+        "bid": "0.4400",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792533600,
+        "midpoint": 0.445,
+        "bid": "0.4400",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792537200,
+        "midpoint": 0.445,
+        "bid": "0.4400",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792540800,
+        "midpoint": 0.445,
+        "bid": "0.4400",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792544400,
+        "midpoint": 0.445,
+        "bid": "0.4400",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792548000,
+        "midpoint": 0.445,
+        "bid": "0.4400",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792551600,
+        "midpoint": 0.445,
+        "bid": "0.4400",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792555200,
+        "midpoint": 0.445,
+        "bid": "0.4400",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792558800,
+        "midpoint": 0.445,
+        "bid": "0.4400",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792562400,
+        "midpoint": 0.445,
+        "bid": "0.4400",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792566000,
+        "midpoint": 0.445,
+        "bid": "0.4400",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792569600,
+        "midpoint": 0.445,
+        "bid": "0.4400",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792573200,
+        "midpoint": 0.445,
+        "bid": "0.4400",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792576800,
+        "midpoint": 0.445,
+        "bid": "0.4400",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792580400,
+        "midpoint": 0.445,
+        "bid": "0.4400",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792584000,
+        "midpoint": 0.44,
+        "bid": "0.4300",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792587600,
+        "midpoint": 0.445,
+        "bid": "0.4400",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792591200,
+        "midpoint": 0.445,
+        "bid": "0.4400",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792594800,
+        "midpoint": 0.445,
+        "bid": "0.4400",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792598400,
+        "midpoint": 0.445,
+        "bid": "0.4400",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792602000,
+        "midpoint": 0.445,
+        "bid": "0.4400",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792605600,
+        "midpoint": 0.445,
+        "bid": "0.4400",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792609200,
+        "midpoint": 0.435,
+        "bid": "0.4300",
+        "ask": "0.4400"
+      },
+      {
+        "timestamp": 1792612800,
+        "midpoint": 0.435,
+        "bid": "0.4300",
+        "ask": "0.4400"
+      },
+      {
+        "timestamp": 1792616400,
+        "midpoint": 0.435,
+        "bid": "0.4300",
+        "ask": "0.4400"
+      },
+      {
+        "timestamp": 1792620000,
+        "midpoint": 0.435,
+        "bid": "0.4300",
+        "ask": "0.4400"
+      },
+      {
+        "timestamp": 1792623600,
+        "midpoint": 0.435,
+        "bid": "0.4300",
+        "ask": "0.4400"
+      },
+      {
+        "timestamp": 1792627200,
+        "midpoint": 0.435,
+        "bid": "0.4300",
+        "ask": "0.4400"
+      },
+      {
+        "timestamp": 1792630800,
+        "midpoint": 0.435,
+        "bid": "0.4300",
+        "ask": "0.4400"
+      },
+      {
+        "timestamp": 1792634400,
+        "midpoint": 0.435,
+        "bid": "0.4300",
+        "ask": "0.4400"
+      },
+      {
+        "timestamp": 1792638000,
+        "midpoint": 0.435,
+        "bid": "0.4300",
+        "ask": "0.4400"
+      },
+      {
+        "timestamp": 1792641600,
+        "midpoint": 0.44,
+        "bid": "0.4300",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792645200,
+        "midpoint": 0.44,
+        "bid": "0.4300",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792648800,
+        "midpoint": 0.445,
+        "bid": "0.4400",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792652400,
+        "midpoint": 0.445,
+        "bid": "0.4400",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792656000,
+        "midpoint": 0.45,
+        "bid": "0.4400",
+        "ask": "0.4600"
+      },
+      {
+        "timestamp": 1792663200,
+        "midpoint": 0.445,
+        "bid": "0.4400",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792666800,
+        "midpoint": 0.445,
+        "bid": "0.4400",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792670400,
+        "midpoint": 0.445,
+        "bid": "0.4400",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792674000,
+        "midpoint": 0.445,
+        "bid": "0.4400",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792677600,
+        "midpoint": 0.445,
+        "bid": "0.4400",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792681200,
+        "midpoint": 0.445,
+        "bid": "0.4400",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792684800,
+        "midpoint": 0.445,
+        "bid": "0.4400",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792688400,
+        "midpoint": 0.445,
+        "bid": "0.4400",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792692000,
+        "midpoint": 0.445,
+        "bid": "0.4400",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792695600,
+        "midpoint": 0.445,
+        "bid": "0.4400",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792699200,
+        "midpoint": 0.445,
+        "bid": "0.4400",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792702800,
+        "midpoint": 0.445,
+        "bid": "0.4400",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792706400,
+        "midpoint": 0.445,
+        "bid": "0.4400",
+        "ask": "0.4500"
+      },
+      {
+        "timestamp": 1792710000,
+        "midpoint": 0.455,
+        "bid": "0.4500",
+        "ask": "0.4600"
+      },
+      {
+        "timestamp": 1792713600,
+        "midpoint": 0.455,
+        "bid": "0.4500",
+        "ask": "0.4600"
+      },
+      {
+        "timestamp": 1792717200,
+        "midpoint": 0.455,
+        "bid": "0.4500",
+        "ask": "0.4600"
+      },
+      {
+        "timestamp": 1792720800,
+        "midpoint": 0.455,
+        "bid": "0.4500",
+        "ask": "0.4600"
+      },
+      {
+        "timestamp": 1792724400,
+        "midpoint": 0.455,
+        "bid": "0.4500",
+        "ask": "0.4600"
+      },
+      {
+        "timestamp": 1792728000,
+        "midpoint": 0.455,
+        "bid": "0.4500",
+        "ask": "0.4600"
+      },
+      {
+        "timestamp": 1792731600,
+        "midpoint": 0.455,
+        "bid": "0.4500",
+        "ask": "0.4600"
+      },
+      {
+        "timestamp": 1792735200,
+        "midpoint": 0.455,
+        "bid": "0.4500",
+        "ask": "0.4600"
+      },
+      {
+        "timestamp": 1792738800,
+        "midpoint": 0.455,
+        "bid": "0.4500",
+        "ask": "0.4600"
+      },
+      {
+        "timestamp": 1792742400,
+        "midpoint": 0.455,
+        "bid": "0.4500",
+        "ask": "0.4600"
+      },
+      {
+        "timestamp": 1792746000,
+        "midpoint": 0.455,
+        "bid": "0.4500",
+        "ask": "0.4600"
+      },
+      {
+        "timestamp": 1792749600,
+        "midpoint": 0.455,
+        "bid": "0.4500",
+        "ask": "0.4600"
+      },
+      {
+        "timestamp": 1792753200,
+        "midpoint": 0.455,
+        "bid": "0.4500",
+        "ask": "0.4600"
+      },
+      {
+        "timestamp": 1792756800,
+        "midpoint": 0.455,
+        "bid": "0.4500",
+        "ask": "0.4600"
+      },
+      {
+        "timestamp": 1792760400,
+        "midpoint": 0.455,
+        "bid": "0.4500",
+        "ask": "0.4600"
+      },
+      {
+        "timestamp": 1792764000,
+        "midpoint": 0.455,
+        "bid": "0.4500",
+        "ask": "0.4600"
+      },
+      {
+        "timestamp": 1792767600,
+        "midpoint": 0.455,
+        "bid": "0.4500",
+        "ask": "0.4600"
+      },
+      {
+        "timestamp": 1792771200,
+        "midpoint": 0.455,
+        "bid": "0.4500",
+        "ask": "0.4600"
+      },
+      {
+        "timestamp": 1792774800,
+        "midpoint": 0.455,
+        "bid": "0.4500",
+        "ask": "0.4600"
+      },
+      {
+        "timestamp": 1792778400,
+        "midpoint": 0.475,
+        "bid": "0.4700",
+        "ask": "0.4800"
+      },
+      {
+        "timestamp": 1792782000,
+        "midpoint": 0.475,
+        "bid": "0.4700",
+        "ask": "0.4800"
+      },
+      {
+        "timestamp": 1792785600,
+        "midpoint": 0.485,
+        "bid": "0.4800",
+        "ask": "0.4900"
+      },
+      {
+        "timestamp": 1792789200,
+        "midpoint": 0.485,
+        "bid": "0.4800",
+        "ask": "0.4900"
+      },
+      {
+        "timestamp": 1792792800,
+        "midpoint": 0.485,
+        "bid": "0.4800",
+        "ask": "0.4900"
+      },
+      {
+        "timestamp": 1792796400,
+        "midpoint": 0.485,
+        "bid": "0.4800",
+        "ask": "0.4900"
+      },
+      {
+        "timestamp": 1792800000,
+        "midpoint": 0.485,
+        "bid": "0.4800",
+        "ask": "0.4900"
+      },
+      {
+        "timestamp": 1792803600,
+        "midpoint": 0.48,
+        "bid": "0.4700",
+        "ask": "0.4900"
+      },
+      {
+        "timestamp": 1792807200,
+        "midpoint": 0.475,
+        "bid": "0.4700",
+        "ask": "0.4800"
+      },
+      {
+        "timestamp": 1792810800,
+        "midpoint": 0.475,
+        "bid": "0.4700",
+        "ask": "0.4800"
+      },
+      {
+        "timestamp": 1792814400,
+        "midpoint": 0.485,
+        "bid": "0.4800",
+        "ask": "0.4900"
+      },
+      {
+        "timestamp": 1792818000,
+        "midpoint": 0.485,
+        "bid": "0.4800",
+        "ask": "0.4900"
+      },
+      {
+        "timestamp": 1792821600,
+        "midpoint": 0.485,
+        "bid": "0.4800",
+        "ask": "0.4900"
+      },
+      {
+        "timestamp": 1792825200,
+        "midpoint": 0.485,
+        "bid": "0.4800",
+        "ask": "0.4900"
+      },
+      {
+        "timestamp": 1792828800,
+        "midpoint": 0.485,
+        "bid": "0.4800",
+        "ask": "0.4900"
+      },
+      {
+        "timestamp": 1792832400,
+        "midpoint": 0.485,
+        "bid": "0.4800",
+        "ask": "0.4900"
+      },
+      {
+        "timestamp": 1792836000,
+        "midpoint": 0.485,
+        "bid": "0.4800",
+        "ask": "0.4900"
+      },
+      {
+        "timestamp": 1792839600,
+        "midpoint": 0.485,
+        "bid": "0.4800",
+        "ask": "0.4900"
+      },
+      {
+        "timestamp": 1792843200,
+        "midpoint": 0.485,
+        "bid": "0.4800",
+        "ask": "0.4900"
+      },
+      {
+        "timestamp": 1792846800,
+        "midpoint": 0.485,
+        "bid": "0.4800",
+        "ask": "0.4900"
+      },
+      {
+        "timestamp": 1792850400,
+        "midpoint": 0.475,
+        "bid": "0.4700",
+        "ask": "0.4800"
+      },
+      {
+        "timestamp": 1792854000,
+        "midpoint": 0.475,
+        "bid": "0.4700",
+        "ask": "0.4800"
+      },
+      {
+        "timestamp": 1792857600,
+        "midpoint": 0.475,
+        "bid": "0.4700",
+        "ask": "0.4800"
+      }
+    ]
+  },
+  "limitations": [
+    "One event/selected-contract audit; no all-FBS market coverage or generic matching parser verified.",
+    "Quotes are saved snapshots, not live prices or executable fill guarantees.",
+    "Fresh schedule results do not update the older statistical snapshot."
+  ]
+}

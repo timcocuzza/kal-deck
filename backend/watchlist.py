@@ -33,11 +33,16 @@ def with_details(entry):
 
 
 def validate_entry(entry):
-    if set(entry) != {'ticker', 'kind', 'season', 'week', 'game_id', 'label'}:
+    required = {'ticker', 'kind', 'season', 'week', 'game_id', 'label'}
+    if not required <= set(entry) or set(entry) - required - {'sport', 'season_type'}:
         raise ValueError('Supply a contract, game, season, week, kind and label.')
+    sport = entry.get('sport', 'nfl')
+    phase = entry.get('season_type', 'regular')
+    if sport not in ('nfl', 'cfb') or phase not in ('regular', 'postseason') or (sport == 'nfl' and phase != 'regular'):
+        raise ValueError('Invalid sport or season phase.')
     if entry['kind'] not in ('prop', 'spread'):
         raise ValueError('Unknown watchlist kind.')
-    for field, low, high in [('season', 1999, 2100), ('week', 1, 18)]:
+    for field, low, high in [('season', 1999, 2100), ('week', 0 if sport == 'cfb' else 1, 30 if sport == 'cfb' else 18)]:
         if type(entry[field]) is not int or not low <= entry[field] <= high:
             raise ValueError(f'Invalid {field}.')
     for field, limit in [('ticker', 200), ('game_id', 100), ('label', 300)]:
@@ -46,7 +51,11 @@ def validate_entry(entry):
             raise ValueError(f'Invalid {field}.')
     if not re.fullmatch(r'[A-Za-z0-9_-]+', entry['ticker']):
         raise ValueError('Invalid contract ticker.')
-    if not entry['game_id'].startswith(f"{entry['season']}_{entry['week']:02d}_"):
+    if sport == 'cfb':
+        if (entry['kind'] != 'spread' or not re.fullmatch(r'[0-9]+', entry['game_id'])
+                or not entry['ticker'].startswith('KXNCAAFSPREAD-')):
+            raise ValueError('Supply a college spread and ESPN game ID.')
+    elif not entry['game_id'].startswith(f"{entry['season']}_{entry['week']:02d}_"):
         raise ValueError('Game must agree with the season and week.')
     return entry
 

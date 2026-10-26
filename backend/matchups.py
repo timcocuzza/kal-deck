@@ -43,7 +43,7 @@ def valid_target(target):
     return target.get('type') == 'football_team' and details.get('league') == 'NFL' and code in TEAM_NAMES
 
 
-def contract_view(market, milestone, targets):
+def contract_view(market, milestone, targets, *, league='NFL'):
     details = milestone['details']
     target = targets.get(market.get('custom_strike', {}).get('football_team'))
     if not target or target['id'] not in (details['home_team_id'], details['away_team_id']):
@@ -67,7 +67,8 @@ def contract_view(market, milestone, targets):
             matches = False
         if not matches:
             raise ValueError('Contract wording disagrees with its participant or threshold.')
-    rules = re.fullmatch(r'If (.+) wins by more than ([0-9.]+) points in the (.+) vs (.+) Pro Football game originally scheduled for (.+), then the market resolves to Yes\.',
+    competition = 'college football' if league == 'NCAAFB' else 'Pro Football'
+    rules = re.fullmatch(r'If (.+) wins by more than ([0-9.]+) points in the (.+) vs (.+) ' + competition + r' game originally scheduled for (.+), then the market resolves to Yes\.',
                          market.get('rules_primary', ''))
     try:
         game_date = timestamp(milestone['start_date']).astimezone(ZoneInfo('America/New_York')).date()
@@ -87,10 +88,11 @@ def contract_view(market, milestone, targets):
             quotes[field] = str(quote) if quote.is_finite() and 0 < quote < 1 else None
         except InvalidOperation:
             quotes[field] = None
+    label_team = target['name'] if league == 'NCAAFB' else canonical(target['details']['abbreviation'])
     return {
         'ticker': market['ticker'], 'event_ticker': market['event_ticker'],
-        'team': canonical(target['details']['abbreviation']), 'spread': -float(strike),
-        'label': f"{canonical(target['details']['abbreviation'])} −{strike}",
+        'team': label_team, 'spread': -float(strike),
+        'label': f"{label_team} −{strike}",
         'wording': market['yes_sub_title'], 'rules': market['rules_primary'],
         'midpoint': float(midpoint) if midpoint is not None else None, **quotes,
     }
