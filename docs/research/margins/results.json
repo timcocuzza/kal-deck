@@ -1,0 +1,258 @@
+{
+  "source_sha256": {
+    "nfl-games.csv": "b3a2dbf1471e3cb87f5295343b16976a287e495fed2279048a6f07dfd2015929",
+    "cfb_schedules_2014.csv.gz": "abb8046bdeb55c965827ee478653e19b0f18f85655ac212c8328f1f923545b16",
+    "cfb_schedules_2015.csv.gz": "f57efe966a969ef49f99e0e7ab4acdc84281aade4b78542717a4c0fdbb29bacf",
+    "cfb_schedules_2016.csv.gz": "2056538fd20724e3ae890bda0101e442ea832a14e16d93ed69e2a4182f74490d",
+    "cfb_schedules_2017.csv.gz": "12672e78ef0dde8f73b8bcc59bd1d2779722fc2a99d47d65f1bf1b331caf89e7",
+    "cfb_schedules_2018.csv.gz": "8c26cf436983115a1ca834ba6d2bd32bd6feb26731ecdfadd8350f07fa227082",
+    "cfb_schedules_2019.csv.gz": "6fa2c202943b95fea0ae4d69880fb55e90dcc1c664e8a869c662ef3d8ad0a234",
+    "cfb_schedules_2020.csv.gz": "53b33a0042f97553dcd6746cd721a6818b350f43065d374e38723ccba7aa90b1",
+    "cfb_schedules_2021.csv.gz": "933747ab408c89e31f46376a06c33b27fc739e776feeba6b5abf7b5f4c2e958e",
+    "cfb_schedules_2022.csv.gz": "05fe546e76ed8b8386a33f471a81a96fed4f1e3bde13082c45968721d1aa5b21",
+    "cfb_schedules_2023.csv.gz": "068147a76f874567d69fc2bb012144df8b8085cf5ca46a4fc1c7b7a6206b232d",
+    "cfb_schedules_2024.csv.gz": "2b9f86d67f592b9ec0e3941391afb82394666fbc6463863b58d001de3e044d53",
+    "cfb_schedules_2025.csv.gz": "2f1e178b15aa1469398d88e58a66a4702a7190d939735a324f188b7559a3a749"
+  },
+  "nfl_final_fit": {
+    "points_per_elo": 0.041642688046645365,
+    "training_games": 5164,
+    "training_cutoff": "2026-02-08T23:30:00+00:00",
+    "training_start_season": 2007,
+    "formula": "beta * (home Elo - away Elo + venue Elo); OLS through origin"
+  },
+  "prospective_cutoff": "2026-10-28T00:00:00+00:00",
+  "protocol": "Daily frozen predictions, a 24-hour result embargo, and expanding past-only NFL OLS. College CONFIG unchanged. 2022\u20132025 already inspected: development evidence, not untouched validation.",
+  "results": {
+    "nfl": {
+      "development_2022_2025": {
+        "strength": {
+          "games": 1139,
+          "mae": 9.969944374257087,
+          "rmse": 12.898525201336,
+          "bias_prediction_minus_actual": -0.1763419864094721
+        },
+        "home_only": {
+          "games": 1139,
+          "mae": 10.71167785078174,
+          "rmse": 13.871051204331692,
+          "bias_prediction_minus_actual": -0.15137231578482466
+        },
+        "zero": {
+          "games": 1139,
+          "mae": 10.864793678665496,
+          "rmse": 14.063289778817227,
+          "bias_prediction_minus_actual": -2.3292361720807726
+        }
+      },
+      "by_season": {
+        "2022": {
+          "strength": {
+            "games": 284,
+            "mae": 9.102700282433782,
+            "rmse": 11.873684682646834,
+            "bias_prediction_minus_actual": 0.09672453731382223
+          },
+          "home_only": {
+            "games": 284,
+            "mae": 9.554236836783671,
+            "rmse": 12.376004285013138,
+            "bias_prediction_minus_actual": 0.06270277515307761
+          },
+          "zero": {
+            "games": 284,
+            "mae": 9.77112676056338,
+            "rmse": 12.572185933835435,
+            "bias_prediction_minus_actual": -2.0880281690140845
+          }
+        },
+        "2023": {
+          "strength": {
+            "games": 285,
+            "mae": 10.50022970673977,
+            "rmse": 13.678467564779352,
+            "bias_prediction_minus_actual": -0.7187673687104298
+          },
+          "home_only": {
+            "games": 285,
+            "mae": 11.081911877428617,
+            "rmse": 14.397441033543386,
+            "bias_prediction_minus_actual": -0.7454547542439155
+          },
+          "zero": {
+            "games": 285,
+            "mae": 11.294736842105262,
+            "rmse": 14.672925299411336,
+            "bias_prediction_minus_actual": -2.92280701754386
+          }
+        },
+        "2024": {
+          "strength": {
+            "games": 285,
+            "mae": 10.118839738895689,
+            "rmse": 13.115240838099714,
+            "bias_prediction_minus_actual": -0.05914295541997496
+          },
+          "home_only": {
+            "games": 285,
+            "mae": 11.198944441162928,
+            "rmse": 14.485914222336405,
+            "bias_prediction_minus_actual": -0.09655670637728749
+          },
+          "zero": {
+            "games": 285,
+            "mae": 11.301754385964912,
+            "rmse": 14.62046150902365,
+            "bias_prediction_minus_actual": -2.2771929824561403
+          }
+        },
+        "2025": {
+          "strength": {
+            "games": 285,
+            "mae": 10.154964807233412,
+            "rmse": 12.857072963920354,
+            "bias_prediction_minus_actual": -0.023224030667890836
+          },
+          "home_only": {
+            "games": 285,
+            "mae": 11.007557051211398,
+            "rmse": 14.113577100620883,
+            "bias_prediction_minus_actual": 0.17457056299878426
+          },
+          "zero": {
+            "games": 285,
+            "mae": 11.087719298245615,
+            "rmse": 14.277696998428961,
+            "bias_prediction_minus_actual": -2.0280701754385966
+          }
+        }
+      }
+    },
+    "cfb": {
+      "development_2022_2025": {
+        "strength": {
+          "games": 3174,
+          "mae": 13.17404253515151,
+          "rmse": 16.63050784425774,
+          "bias_prediction_minus_actual": -1.6275992934698362
+        },
+        "home_only": {
+          "games": 3174,
+          "mae": 15.65726337255941,
+          "rmse": 20.083020271164852,
+          "bias_prediction_minus_actual": -0.5584014871357854
+        },
+        "zero": {
+          "games": 3174,
+          "mae": 16.075614366729678,
+          "rmse": 20.5768879469258,
+          "bias_prediction_minus_actual": -4.36231884057971
+        }
+      },
+      "by_season": {
+        "2022": {
+          "strength": {
+            "games": 776,
+            "mae": 13.25902487493842,
+            "rmse": 16.824987679077967,
+            "bias_prediction_minus_actual": -0.8896737651678825
+          },
+          "home_only": {
+            "games": 776,
+            "mae": 15.256308279838537,
+            "rmse": 19.88955566336761,
+            "bias_prediction_minus_actual": 0.06638376579941244
+          },
+          "zero": {
+            "games": 776,
+            "mae": 15.609536082474227,
+            "rmse": 20.289686832294315,
+            "bias_prediction_minus_actual": -3.725515463917526
+          }
+        },
+        "2023": {
+          "strength": {
+            "games": 792,
+            "mae": 13.379469012971649,
+            "rmse": 16.741724913658842,
+            "bias_prediction_minus_actual": -1.3139083410370662
+          },
+          "home_only": {
+            "games": 792,
+            "mae": 15.794747351962215,
+            "rmse": 20.185084484169938,
+            "bias_prediction_minus_actual": -0.05569733106177878
+          },
+          "zero": {
+            "games": 792,
+            "mae": 16.17929292929293,
+            "rmse": 20.557200316397292,
+            "bias_prediction_minus_actual": -3.8156565656565657
+          }
+        },
+        "2024": {
+          "strength": {
+            "games": 798,
+            "mae": 13.13604246727421,
+            "rmse": 16.549312165686832,
+            "bias_prediction_minus_actual": -1.8500166848135216
+          },
+          "home_only": {
+            "games": 798,
+            "mae": 15.64256111574741,
+            "rmse": 20.01661706373296,
+            "bias_prediction_minus_actual": -1.0510312292613084
+          },
+          "zero": {
+            "games": 798,
+            "mae": 16.114035087719298,
+            "rmse": 20.62661856639884,
+            "bias_prediction_minus_actual": -4.775689223057644
+          }
+        },
+        "2025": {
+          "strength": {
+            "games": 808,
+            "mae": 12.928596975817216,
+            "rmse": 16.411815924278134,
+            "bias_prediction_minus_actual": -2.424114597921333
+          },
+          "home_only": {
+            "games": 808,
+            "mae": 15.92209782949054,
+            "rmse": 20.232546938771502,
+            "bias_prediction_minus_actual": -1.1646595486112299
+          },
+          "zero": {
+            "games": 808,
+            "mae": 16.383663366336634,
+            "rmse": 20.81947393786656,
+            "bias_prediction_minus_actual": -5.101485148514851
+          }
+        }
+      }
+    }
+  },
+  "market_comparison": {
+    "input_rows": 0,
+    "joined_games": 0,
+    "rejected": {},
+    "forecast_games": 11708,
+    "sports": {
+      "nfl": {
+        "paired_training_games": 0,
+        "paired_evaluation_games": 0,
+        "eligible_evaluation_games": 1139,
+        "unavailable_reason": "Need at least 256 timestamp-verified earlier training games and evaluation coverage."
+      },
+      "cfb": {
+        "paired_training_games": 0,
+        "paired_evaluation_games": 0,
+        "eligible_evaluation_games": 3174,
+        "unavailable_reason": "Need at least 256 timestamp-verified earlier training games and evaluation coverage."
+      }
+    },
+    "status": "Development evidence only; optional models are not shipped.",
+    "blocker": "No timestamp-verified historical line file supplied. Untimestamped/closing lines cannot represent earlier availability."
+  }
+}

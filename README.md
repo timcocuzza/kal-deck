@@ -257,6 +257,13 @@ origin without a trailing slash and enforces it for API mutations. These setting
 do not add user authentication. New tracker exports use the `deck-tracker` format
 and continue to accept older `kalshi-deck-tracker` backups.
 
+## Strength-only margin forecasts
+
+NFL and college matchup cards and spread details show predicted margins and the
+selected contract’s threshold difference. College remains experimental. Forecasts
+require verified context and fresh saved inputs; neither estimate is a cover
+probability or proven betting edge. See [methodology, development backtest, and limitations](docs/margin-forecasts.md).
+
 ## Development
 
 Build the interface once with `npm run build`, then start the backend:

@@ -10,6 +10,7 @@ from dataclasses import asdict, dataclass
 from datetime import datetime, timezone
 import math
 from statistics import median
+from itertools import groupby
 
 from .matchups import TEAM_NAMES, canonical, kickoff
 from .rankings import number
@@ -116,35 +117,39 @@ def prepare_elo_history(rows, start_season=2002, end_season=2025, *, as_of=None)
     return sorted(result, key=lambda game: (game['season'], game['kickoff'], game['game_id']))
 
 
-def replay_elo(games, config, *, teams=None):
-    """Replay validated games once; predictions always precede each result update."""
+def replay_elo(games, config, *, teams=None, freeze_dates=False):
+    """Replay the approved model; optional UTC date batches freeze margin forecasts."""
     teams = sorted(teams if teams is not None else {game[key] for game in games for key in ('home_team', 'away_team')})
     ratings = dict.fromkeys(teams, CENTER)
     season, logs, openings = None, [], {}
-    for game in games:
+    for _, batch in groupby(games, key=lambda g: (g['season'], g['kickoff'][:10]) if freeze_dates else g['game_id']):
+        batch = list(batch)
+        game = batch[0]
         if game['season'] != season:
             if season is not None:
                 ratings = {team: CENTER + (rating - CENTER) * config.offseason_retention
                            for team, rating in ratings.items()}
             season = game['season']
             openings[season] = ratings.copy()
-        home, away = game['home_team'], game['away_team']
-        home_before, away_before = ratings[home], ratings[away]
-        advantage = 0.0 if game['neutral'] else config.home_advantage
-        difference = home_before - away_before + advantage
-        expectation = expected_score(difference)
-        actual = 1.0 if game['home_score'] > game['away_score'] else 0.0 if game['home_score'] < game['away_score'] else 0.5
-        multiplier = margin_multiplier(game['home_score'], game['away_score'], difference)
-        change = config.k * multiplier * (actual - expectation)
-        ratings[home] += change
-        ratings[away] -= change
-        if not all(math.isfinite(rating) for rating in (ratings[home], ratings[away])):
-            raise SourceError('Elo replay produced non-finite ratings; settings require review.')
-        logs.append({**game, 'home_rating_before': home_before, 'away_rating_before': away_before,
-                     'home_advantage': advantage, 'home_expected_score': expectation,
-                     'away_expected_score': 1 - expectation, 'home_result': actual,
-                     'margin_multiplier': multiplier, 'home_change': change, 'away_change': -change,
-                     'home_rating_after': ratings[home], 'away_rating_after': ratings[away]})
+        frozen = ratings.copy()
+        for game in batch:
+            home, away = game['home_team'], game['away_team']
+            home_before, away_before = frozen[home], frozen[away]
+            advantage = 0.0 if game['neutral'] else config.home_advantage
+            difference = home_before - away_before + advantage
+            expectation = expected_score(difference)
+            actual = 1.0 if game['home_score'] > game['away_score'] else 0.0 if game['home_score'] < game['away_score'] else 0.5
+            multiplier = margin_multiplier(game['home_score'], game['away_score'], difference)
+            change = config.k * multiplier * (actual - expectation)
+            ratings[home] += change
+            ratings[away] -= change
+            if not all(math.isfinite(rating) for rating in (ratings[home], ratings[away])):
+                raise SourceError('Elo replay produced non-finite ratings; settings require review.')
+            logs.append({**game, 'home_rating_before': home_before, 'away_rating_before': away_before,
+                         'home_advantage': advantage, 'home_expected_score': expectation,
+                         'away_expected_score': 1 - expectation, 'home_result': actual,
+                         'margin_multiplier': multiplier, 'home_change': change, 'away_change': -change,
+                         'home_rating_after': ratings[home], 'away_rating_after': ratings[away]})
     return {'config': asdict(config), 'ratings': ratings, 'season_openings': openings, 'games': logs,
             'probability_note': 'Elo expected score: P(win) + 0.5 × P(tie). No separate tie model or spread-cover probability.'}
 

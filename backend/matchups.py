@@ -92,6 +92,8 @@ def contract_view(market, milestone, targets, *, league='NFL'):
     return {
         'ticker': market['ticker'], 'event_ticker': market['event_ticker'],
         'team': label_team, 'spread': -float(strike),
+        'team_id': canonical(target['details']['abbreviation']) if league == 'NFL' else target['id'],
+        'threshold': float(strike), 'operator': 'gt', 'no_push': True,
         'label': f"{label_team} −{strike}",
         'wording': market['yes_sub_title'], 'rules': market['rules_primary'],
         'midpoint': float(midpoint) if midpoint is not None else None, **quotes,
@@ -181,7 +183,7 @@ def build_matchups(season, schedule, markets, milestones, team_targets, week=Non
             'game_id': game['game_id'], 'week': selected_week,
             'kickoff': start.isoformat() if start else None, 'date': game['gameday'],
             'home': team(game['home_team']), 'away': team(game['away_team']),
-            'neutral': game.get('location') == 'Neutral', 'stadium': game.get('stadium'),
+            'neutral': game.get('location') == 'Neutral', 'venue_verified': game.get('location') in ('Home', 'Neutral'), 'stadium': game.get('stadium'),
             'markets': sorted(views, key=lambda v: (v['team'], v['spread'])),
             'default_market_ticker': default['ticker'] if default else None,
             'spread_status': 'available' if default else 'No valid two-sided quote' if views else 'Spread unavailable',
