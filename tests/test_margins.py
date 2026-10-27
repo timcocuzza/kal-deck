@@ -30,6 +30,23 @@ def nfl_fixture():
 
 
 class MarginsTests(unittest.TestCase):
+    def test_saved_sources_age_across_boundary_on_repeated_api_builds(self):
+        for attach, fixture in ((attach_nfl_margins, nfl_fixture), (attach_college_margins, cfb_fixture)):
+            report, data = fixture()
+            boundary = NOW + timedelta(hours=24)
+            attach(report, data, SOURCES, now=boundary)
+            before = deepcopy(report['games'][0]['margin_forecast'])
+            self.assertTrue(before['available'], before)
+            self.assertEqual(before['freshness_policy']['max_source_age_hours'], 24)
+            attach(report, data, SOURCES, now=boundary + timedelta(milliseconds=1))
+            after = report['games'][0]['margin_forecast']
+            self.assertFalse(after['available'])
+            self.assertIsNone(after['home_margin'])
+            self.assertIn('older than 24 hours', after['unavailable_reason'])
+            self.assertEqual(before['training_cutoff'], after['training_cutoff'])
+            self.assertEqual(before['source_freshness'][0]['fetched_at'], after['source_freshness'][0]['fetched_at'])
+            self.assertNotEqual(before['prediction_as_of'], after['prediction_as_of'])
+
     def test_fit_learns_points_from_results_not_probabilities(self):
         fit = PointsFit()
         for i in range(256):

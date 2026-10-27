@@ -1,0 +1,58 @@
+[
+  {
+    "file": "college-away-contract.jpg",
+    "captured_at": "2026-10-27T20:24:31.638427+00:00",
+    "sha256": "c57ef71831c01a20e486265edd1bff9d0719f72444d5e475633f95e18b2e6132",
+    "data": "Real provider snapshots in the normal production app; no injected fixtures or clock changes",
+    "width": 2940,
+    "height": 1602
+  },
+  {
+    "file": "college-cards.jpg",
+    "captured_at": "2026-10-27T20:23:18.729392+00:00",
+    "sha256": "a08a9ee6d2fccd5495a99d57a37c6b285f0e3b396f30b43b5ec8c4031115e32d",
+    "data": "Real provider snapshots in the normal production app; no injected fixtures or clock changes",
+    "width": 2940,
+    "height": 1602
+  },
+  {
+    "file": "college-fcs-unavailable.jpg",
+    "captured_at": "2026-10-27T20:25:28.366935+00:00",
+    "sha256": "6f48b1104e7d81a9e5fb2facfddbaaaf234789e8823d145f92b9478ed4bf157b",
+    "data": "Real provider snapshots in the normal production app; no injected fixtures or clock changes",
+    "width": 2940,
+    "height": 1602
+  },
+  {
+    "file": "college-source-details.jpg",
+    "captured_at": "2026-10-27T20:24:47.082054+00:00",
+    "sha256": "c0d2085e9c78ce084b29b5ab23e6e79b8c664f41e7e1446e9e74c4f3c0aec99e",
+    "data": "Real provider snapshots in the normal production app; no injected fixtures or clock changes",
+    "width": 2940,
+    "height": 1602
+  },
+  {
+    "file": "nfl-away-contract.jpg",
+    "captured_at": "2026-10-27T20:27:46.264655+00:00",
+    "sha256": "6a043e27a54f588eb601a9fa3e7ebf355e26aedc5f05895a55b471262381de7b",
+    "data": "Real provider snapshots in the normal production app; no injected fixtures or clock changes",
+    "width": 2940,
+    "height": 1602
+  },
+  {
+    "file": "nfl-cards.jpg",
+    "captured_at": "2026-10-27T20:26:19.993703+00:00",
+    "sha256": "49fa64d67b1df3422cb294159379e843f16618fa4f7b6ab7bb495519d7587718",
+    "data": "Real provider snapshots in the normal production app; no injected fixtures or clock changes",
+    "width": 2940,
+    "height": 1602
+  },
+  {
+    "file": "nfl-source-details.jpg",
+    "captured_at": "2026-10-27T20:28:59.203990+00:00",
+    "sha256": "7a0e13b6fdf0374ab5c412e719de1f622ff72f7686b0f806f309976f8178d029",
+    "data": "Real provider snapshots in the normal production app; no injected fixtures or clock changes",
+    "width": 2940,
+    "height": 1602
+  }
+]

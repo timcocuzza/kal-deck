@@ -114,6 +114,7 @@ def envelope(game, season, sport, sources, now):
             'experimental': sport == 'cfb', 'home_margin': None,
             'prediction_as_of': now.isoformat(), 'ratings_as_of': (now.replace(hour=0, minute=0, second=0, microsecond=0) - timedelta(hours=24)).isoformat(),
             'training_cutoff': None, 'source_freshness': freshness(sources, now),
+            'freshness_policy': {'max_source_age_hours': MAX_SOURCE_AGE_HOURS},
             'available': False, 'unavailable_reason': None, 'notices': [],
             'result_embargo_hours': 24,
             'basis': 'strength_only', 'margin_convention': 'home_score_minus_away_score'}
