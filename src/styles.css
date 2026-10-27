@@ -48,6 +48,13 @@ details[open]>:not(summary){animation:reveal 160ms ease-out}
 .game-market{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:15px;min-height:48px}
 .game-spread{padding:0;border:0;background:none;text-align:left}.game-spread:hover{background:none}
 .spread-quote{font-variant-numeric:tabular-nums;font-size:13px}.spread-quote>strong{margin-left:8px;font-size:16px}.spread-quote small{display:block;font-size:11px;margin-top:3px;color:var(--muted)}
+.college-card-market{display:grid;grid-template-rows:40px 34px;gap:8px;align-items:center;justify-content:stretch;min-height:82px}
+.college-card-market>.game-spread{width:100%;min-width:0}
+.card-spread-quote{display:grid;grid-template-columns:minmax(0,1fr) max-content max-content;align-items:baseline;column-gap:8px;row-gap:3px;font-size:13px;font-variant-numeric:tabular-nums;line-height:20px}
+.card-spread-team{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.card-spread-line,.card-spread-price{white-space:nowrap}.card-spread-price{font-size:16px;font-weight:500}
+.card-spread-quote>small{grid-column:1/-1;font-size:11px;line-height:16px;color:var(--muted)}
+.card-market-tools{display:flex;align-items:center;justify-content:space-between;gap:10px;height:34px}.card-market-tools>.watch-button{flex:none;margin:0}
 .sparkline{width:106px;height:34px;flex:none}.sparkline svg{display:block;width:100%;height:100%;overflow:visible}.sparkline path{fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .home-foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:11px;color:var(--muted);margin:26px 0 12px}
 .elo-card{margin-top:14px;padding-top:12px;border-top:1px solid var(--border)}
