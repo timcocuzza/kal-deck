@@ -48,6 +48,13 @@ details[open]>:not(summary){animation:reveal 160ms ease-out}
 .game-market{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:15px;min-height:48px}
 .game-spread{padding:0;border:0;background:none;text-align:left}.game-spread:hover{background:none}
 .spread-quote{font-variant-numeric:tabular-nums;font-size:13px}.spread-quote>strong{margin-left:8px;font-size:16px}.spread-quote small{display:block;font-size:11px;margin-top:3px;color:var(--muted)}
+.college-card-market{display:grid;grid-template-rows:40px 34px;gap:8px;align-items:center;justify-content:stretch;min-height:82px}
+.college-card-market>.game-spread{width:100%;min-width:0}
+.card-spread-quote{display:grid;grid-template-columns:minmax(0,1fr) max-content max-content;align-items:baseline;column-gap:8px;row-gap:3px;font-size:13px;font-variant-numeric:tabular-nums;line-height:20px}
+.card-spread-team{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.card-spread-line,.card-spread-price{white-space:nowrap}.card-spread-price{font-size:16px;font-weight:500}
+.card-spread-quote>small{grid-column:1/-1;font-size:11px;line-height:16px;color:var(--muted)}
+.card-market-tools{display:flex;align-items:center;justify-content:space-between;gap:10px;height:34px}.card-market-tools>.watch-button{flex:none;margin:0}
 .sparkline{width:106px;height:34px;flex:none}.sparkline svg{display:block;width:100%;height:100%;overflow:visible}.sparkline path{fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .home-foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:11px;color:var(--muted);margin:26px 0 12px}
 .elo-card{margin-top:14px;padding-top:12px;border-top:1px solid var(--border)}
@@ -198,3 +205,8 @@ details[open]>:not(summary){animation:reveal 160ms ease-out}
 .cfb-score{white-space:nowrap}.cfb-evidence-dialog .table-scroll{margin-top:22px}.cfb-strength-card .elo-team{--team-color:var(--away-color,#7e8fa9)}.cfb-strength-card .elo-team:last-child{--team-color:var(--home-color,#8b96a7)}.cfb-strength-card .elo-team>span{overflow-wrap:anywhere}.cfb-strength-card .elo-team>strong small{font-weight:400}
 @media(max-width:620px){.sport-nav.segmented button{padding:5px 10px}.cfb-rating-toolbar{gap:10px;margin-bottom:18px}.cfb-team-search{max-width:none;flex-basis:100%}.cfb-rating-toolbar>.controls{justify-content:space-between;width:100%}.cfb-standing-grid,.cfb-standing>summary{grid-template-columns:30px minmax(0,1fr) 52px 52px 12px;gap:8px;padding:12px 10px}.cfb-standing-team{gap:7px;font-size:12px}.cfb-standing-team img{width:22px;height:22px}.cfb-standing-value{font-size:14px}.cfb-standing .cfb-last-change,.cfb-standing-heading .cfb-last-change{display:none}.cfb-standing-heading{font-size:10px}.cfb-standing .leaderboard-rank{font-size:11px}.cfb-summary{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.college-evidence{grid-template-columns:minmax(0,1fr);gap:16px}.cfb-resume>summary{flex-wrap:wrap;gap:8px}.cfb-resume>summary>small{font-size:10px}}
 @media(max-width:620px){.app-nav{flex-wrap:wrap;justify-content:flex-start;gap:4px 12px}}
+
+.margin-forecast{margin:14px 0;padding:14px 16px;background:#191b20;border:1px solid var(--border);border-radius:8px;line-height:1.5;font-variant-numeric:tabular-nums}
+.margin-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;color:#b9c5d2;font-size:11px;margin-bottom:5px}.margin-heading>small{border:1px solid #626052;border-radius:4px;padding:1px 6px;color:#d4caa5}
+.margin-forecast>strong{display:block;font-size:17px;font-weight:600}.margin-forecast>small{display:block;font-size:11px;color:#a8b0bd;margin-top:8px}.margin-forecast p{font-size:12px;margin:6px 0;overflow-wrap:anywhere}.margin-contract{border-top:1px solid #39414a;margin-top:10px;padding-top:5px}.margin-contract b{font-weight:500;color:#d1dce7}.margin-forecast .margin-notice{font-size:11px;color:#d4caa5}.margin-forecast.compact{padding:10px 12px;margin-bottom:0}.margin-forecast.compact>strong{font-size:14px}
+.margin-forecast .provenance{margin:10px 0 0;border:0;padding:0}.margin-forecast .provenance summary{font-size:11px;color:var(--muted);padding:4px 0}.margin-forecast .provenance p{font-size:11px;color:var(--muted)}

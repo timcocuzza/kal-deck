@@ -26,6 +26,7 @@ from .props import PROP_TYPES, build_props, build_player_log
 from .position_defense import calculate_position_defense, position_rank_context
 from .tracker import TrackerStore, TrackerError, TrackerConflict
 from .elo import calculate_elo
+from .margins import attach_nfl_margins, attach_college_margins
 from .watchlist import WatchlistStore, WatchlistConflict
 from .watchlist_tracking import WatchlistMonitor, sync_saved_quotes
 from .security import DesktopAccess, PrivateAPIResponses, allowed_origins, validate_write_origin
@@ -107,9 +108,12 @@ def college_report(season, operation, **kwargs):
         if operation is college_matchups:
             markets = store.read(BY_NAME['cfb_markets'].key(season))
             attach_college_markets(result, bundle['schedule'], markets.rows[0] if markets else {}, season)
+            history = store.read(BY_NAME['cfb_strength'].key(season))
+            attach_college_margins(result, history.rows[0] if history else None,
+                                  [refresh_service.status(name, season) for name in ('cfb_schedule', 'cfb_strength')])
     except SourceError as error:
         raise HTTPException(status_code=422, detail=str(error)) from error
-    names = ['cfb_schedule'] + (['cfb_markets'] if operation is college_matchups else [])
+    names = ['cfb_schedule'] + (['cfb_markets', 'cfb_strength'] if operation is college_matchups else [])
     statuses = [source] + [refresh_service.status(name, season) for name in names]
     if current is None:
         result['warnings'].append('Current college schedule is unavailable; bulk kickoff times cannot verify spreads.')
@@ -223,6 +227,9 @@ def matchups(season: int = Query(ge=1999, le=2100), week: int | None = Query(def
         snapshots[name].rows if snapshots[name] else []
         for name in ("schedule", "spreads", "kalshi_games", "kalshi_teams")
     ], week=week)
+    history = store.read(BY_NAME['elo_history'].key(season))
+    attach_nfl_margins(result, history.rows if history else None,
+                       [refresh_service.status(name, season) for name in ('schedule', 'elo_history')])
     for game in result["games"]:
         for side in ("away", "home"):
             game[side]["research"] = research_for_team(

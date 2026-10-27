@@ -1,3 +1,5 @@
+import { MarginForecast } from './MarginForecast'
+import type { MarginContract, MarginForecast as Forecast } from './margins'
 import { useEffect, useRef, useState } from 'react'
 import { matchupStyle, teamStyle } from './teamColors'
 import { useReport } from './useReport'
@@ -20,12 +22,12 @@ type Research = {
   depth_date: string | null
 }
 type Team = { code: string; name: string; logo: string | null; research: Research }
-type Market = {
+type Market = MarginContract & {
   ticker: string; label: string; midpoint: number | null; wording: string; rules: string
   yes_bid_dollars: string | null; yes_ask_dollars: string | null
   no_bid_dollars: string | null; no_ask_dollars: string | null
 }
-type Game = {
+type Game = { margin_forecast?: Forecast;
   game_id: string; kickoff: string | null; date: string; week: number; home: Team; away: Team
   neutral: boolean; stadium: string | null; markets: Market[]; default_market_ticker: string | null; spread_status: string
 }
@@ -180,6 +182,7 @@ export function MatchupsView({ season, revision, refreshing, onRecord }: {
             <div className="game-market">{defaultMarket ? <><button className="game-spread" onClick={() => openGame(item.game_id)}><Quote market={defaultMarket} /></button>
               <SpreadHistory key={defaultMarket.ticker} ticker={defaultMarket.ticker} label={defaultMarket.label} compact /></> : <small>{item.spread_status}</small>}</div>
             {defaultMarket && <WatchButton entry={watchEntry(item, defaultMarket)} />}
+            <MarginForecast forecast={item.margin_forecast} home={item.home.name} away={item.away.name} contract={defaultMarket} compact />
             <EloCard data={elo.data} game={item} onTeam={openElo} />
           </article>
         })}</div>
@@ -204,6 +207,7 @@ export function MatchupsView({ season, revision, refreshing, onRecord }: {
             onChange={value => { setSelectedMarket(current => ({ ...current, [game.game_id]: value }));
               navigate(`game/${encodeURIComponent(game.game_id)}?week=${game.week}&tab=stats&market=${encodeURIComponent(value)}`, true) }} />
             {market && <Quote market={market} />}</div>
+            <MarginForecast forecast={game.margin_forecast} home={game.home.name} away={game.away.name} contract={market} />
             {market ? <><WatchButton entry={watchEntry(game, market)} /><SpreadHistory key={market.ticker} ticker={market.ticker} label={market.label} />
               <details className="provenance"><summary>Contract wording & quotes</summary><p>{market.wording}</p><p>{market.rules}</p><p>No ask: {askPrice(market.no_ask_dollars)} · before fees</p><small>{market.ticker}</small></details>
               <button onClick={() => onRecord({ description: `${game.away.name} vs ${game.home.name}: ${market.wording}`, selection: '', market_ticker: market.ticker, game_id: game.game_id })}>Record a bet on this spread</button></> : <p>{game.spread_status}</p>}

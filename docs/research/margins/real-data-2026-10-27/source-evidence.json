@@ -1,0 +1,785 @@
+{
+  "verified_at": "2026-10-27T20:29:44.259691+00:00",
+  "checked_forecasts": 162,
+  "neutral_games": [
+    {
+      "sport": "nfl",
+      "game_id": "2026_09_CIN_ATL",
+      "venue": "Bernabeu",
+      "home_margin": -3.174175398001566,
+      "home_advantage": 0
+    },
+    {
+      "sport": "cfb",
+      "game_id": "401859185",
+      "venue": "Gillette Stadium",
+      "home_margin": -25.369968654366374,
+      "home_advantage": 0
+    },
+    {
+      "sport": "cfb",
+      "game_id": "401856734",
+      "venue": "Mercedes-Benz Stadium",
+      "home_margin": 12.361937195309185,
+      "home_advantage": 0
+    },
+    {
+      "sport": "cfb",
+      "game_id": "401866456",
+      "venue": "Ford Field",
+      "home_margin": -0.24997168903767397,
+      "home_advantage": 0
+    }
+  ],
+  "sources": {
+    "schedule:2026": {
+      "url": "https://raw.githubusercontent.com/nflverse/nfldata/master/data/games.csv",
+      "fetched_at": "2026-10-27T20:27:29.806808+00:00",
+      "source_updated_at": null,
+      "row_count": 272,
+      "context": {
+        "season": 2026,
+        "dataset": "schedule"
+      },
+      "warnings": [],
+      "payload_sha256": "96bd5b88d50e6991f3432a5e4103e8b702165413888dead9132fbd46027c6e60"
+    },
+    "elo_history:2026": {
+      "url": "https://raw.githubusercontent.com/nflverse/nfldata/master/data/games.csv",
+      "fetched_at": "2026-10-27T20:27:30.260851+00:00",
+      "source_updated_at": null,
+      "row_count": 6771,
+      "context": {
+        "season": 2026,
+        "dataset": "elo_history",
+        "start_season": 2002
+      },
+      "warnings": [
+        "Completion follows published nflverse scores after kickoff; the source has no explicit final-status field. Games without both scores do not update Elo."
+      ],
+      "payload_sha256": "473463a3a42c942d02dd87fd8833131eddd8f9bd22141135905434b0562c52e2"
+    },
+    "kalshi_teams": {
+      "url": "https://external-api.kalshi.com/trade-api/v2/structured_targets?type=football_team&competition=NFL&page_size=100",
+      "fetched_at": "2026-10-27T20:27:43.187129+00:00",
+      "source_updated_at": null,
+      "row_count": 32,
+      "context": {
+        "league": "NFL"
+      },
+      "warnings": [
+        "Kalshi\u2019s Retires / No Team placeholder is excluded from game matching."
+      ],
+      "payload_sha256": "4030eb6cba6e3bd661c7bb091a356d9a758388a3aa46a96f6425727825e18bce"
+    },
+    "spreads": {
+      "url": "https://external-api.kalshi.com/trade-api/v2/markets?series_ticker=KXNFLSPREAD&status=open&limit=1000",
+      "fetched_at": "2026-10-27T20:27:43.488489+00:00",
+      "source_updated_at": null,
+      "row_count": 356,
+      "context": {
+        "series": "KXNFLSPREAD"
+      },
+      "warnings": [],
+      "payload_sha256": "d045c67c030217831ec982b77c2053a64d5f945c59b2c827bb8cf17a2d8b1db9"
+    },
+    "kalshi_games:2026": {
+      "url": "https://external-api.kalshi.com/trade-api/v2/milestones",
+      "fetched_at": "2026-10-27T20:27:45.573720+00:00",
+      "source_updated_at": null,
+      "row_count": 14,
+      "context": {
+        "season": 2026,
+        "phase": "REG",
+        "requested_events": [
+          "KXNFLSPREAD-26NOV01ARIDAL",
+          "KXNFLSPREAD-26NOV01ATLTB",
+          "KXNFLSPREAD-26NOV01BALBUF",
+          "KXNFLSPREAD-26NOV01CLEPIT",
+          "KXNFLSPREAD-26NOV01INDJAC",
+          "KXNFLSPREAD-26NOV01KCDEN",
+          "KXNFLSPREAD-26NOV01LACLAR",
+          "KXNFLSPREAD-26NOV01LVNYJ",
+          "KXNFLSPREAD-26NOV01MINDET",
+          "KXNFLSPREAD-26NOV01NEMIA",
+          "KXNFLSPREAD-26NOV01PHIWAS",
+          "KXNFLSPREAD-26NOV01TENCIN",
+          "KXNFLSPREAD-26NOV02CHISEA",
+          "KXNFLSPREAD-26OCT29CARGB"
+        ]
+      },
+      "warnings": [],
+      "payload_sha256": "131349b64e0d27902c8d99f365f2d336f7b2af549f4671868c9f27da3a23642e"
+    },
+    "cfb_research:2026": {
+      "url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/cfb_schedules/cfb_schedules_2026.csv.gz",
+      "fetched_at": "2026-10-27T20:24:09.857231+00:00",
+      "source_updated_at": null,
+      "row_count": 1,
+      "context": {
+        "season": 2026,
+        "resources": [
+          {
+            "dataset": "schedule",
+            "url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/cfb_schedules/cfb_schedules_2026.csv.gz",
+            "fetched_at": "2026-10-27T20:24:08.050726+00:00",
+            "source_updated_at": "Tue, 27 Oct 2026 10:48:45 GMT",
+            "sha256": "c45b85f93379641566cd156a144e79ffcf7490050ce06e8c66e7b79446ccc745"
+          },
+          {
+            "dataset": "team_box",
+            "url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/espn_cfb_team_box/team_box_2026.csv",
+            "fetched_at": "2026-10-27T20:24:08.451549+00:00",
+            "source_updated_at": "Sun, 25 Oct 2026 17:01:25 GMT",
+            "sha256": "ccf1b215cc2e4a25131cc174eb996b0d8402051295a1dfbe8fd08d63e0cad93b"
+          },
+          {
+            "dataset": "adv_team",
+            "url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/espn_cfb_adv_team/adv_team_2026.csv",
+            "fetched_at": "2026-10-27T20:24:08.925823+00:00",
+            "source_updated_at": "Tue, 27 Oct 2026 08:35:27 GMT",
+            "sha256": "e6ea78d1838293c5be9f1cdccb29c2d887507b3bc0f9d6886392ffd3021ed0ff"
+          },
+          {
+            "dataset": "adv_defensive",
+            "url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/espn_cfb_adv_defensive/adv_defensive_2026.csv",
+            "fetched_at": "2026-10-27T20:24:09.363856+00:00",
+            "source_updated_at": "Tue, 27 Oct 2026 08:38:39 GMT",
+            "sha256": "2891ac6d3bc4e287f12fca0d8b7679b2835d3d0caceb7c97899d09f17da2dfc0"
+          },
+          {
+            "dataset": "adv_situational",
+            "url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/espn_cfb_adv_situational/adv_situational_2026.csv",
+            "fetched_at": "2026-10-27T20:24:09.857231+00:00",
+            "source_updated_at": "Tue, 27 Oct 2026 08:41:02 GMT",
+            "sha256": "f40a194d53863a18128e5accaf0d66e49c4f21ddb0b79982da47b4e5fde4c2e2"
+          }
+        ]
+      },
+      "warnings": [
+        "Published EPA is rounded and classifies scrambles as rushes. It differs from NFL dropback/designed-run EPA."
+      ],
+      "payload_sha256": "ef29ba2b76a9391acff677b55676d6bb1311aa52a09865d2854804a2a88ed793"
+    },
+    "cfb_schedule:2026": {
+      "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard",
+      "fetched_at": "2026-10-27T20:24:12.754589+00:00",
+      "source_updated_at": null,
+      "row_count": 949,
+      "context": {
+        "season": 2026,
+        "periods": [
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            2,
+            7
+          ],
+          [
+            2,
+            8
+          ],
+          [
+            2,
+            9
+          ],
+          [
+            2,
+            10
+          ],
+          [
+            2,
+            11
+          ],
+          [
+            2,
+            12
+          ],
+          [
+            2,
+            13
+          ],
+          [
+            2,
+            14
+          ],
+          [
+            2,
+            15
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            3,
+            6
+          ]
+        ],
+        "baseline_games": 888,
+        "resources": [
+          {
+            "dataset": "Regular season week 1",
+            "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=2026&week=1&seasontype=2&groups=80&limit=500",
+            "fetched_at": "2026-10-27T20:24:11.079216+00:00"
+          },
+          {
+            "dataset": "Regular season week 2",
+            "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=2026&week=2&seasontype=2&groups=80&limit=500",
+            "fetched_at": "2026-10-27T20:24:11.153619+00:00"
+          },
+          {
+            "dataset": "Regular season week 3",
+            "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=2026&week=3&seasontype=2&groups=80&limit=500",
+            "fetched_at": "2026-10-27T20:24:10.899708+00:00"
+          },
+          {
+            "dataset": "Regular season week 4",
+            "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=2026&week=4&seasontype=2&groups=80&limit=500",
+            "fetched_at": "2026-10-27T20:24:11.111985+00:00"
+          },
+          {
+            "dataset": "Regular season week 5",
+            "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=2026&week=5&seasontype=2&groups=80&limit=500",
+            "fetched_at": "2026-10-27T20:24:11.409796+00:00"
+          },
+          {
+            "dataset": "Regular season week 6",
+            "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=2026&week=6&seasontype=2&groups=80&limit=500",
+            "fetched_at": "2026-10-27T20:24:11.562648+00:00"
+          },
+          {
+            "dataset": "Regular season week 7",
+            "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=2026&week=7&seasontype=2&groups=80&limit=500",
+            "fetched_at": "2026-10-27T20:24:11.543841+00:00"
+          },
+          {
+            "dataset": "Regular season week 8",
+            "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=2026&week=8&seasontype=2&groups=80&limit=500",
+            "fetched_at": "2026-10-27T20:24:11.681216+00:00"
+          },
+          {
+            "dataset": "Regular season week 9",
+            "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=2026&week=9&seasontype=2&groups=80&limit=500",
+            "fetched_at": "2026-10-27T20:24:11.972190+00:00"
+          },
+          {
+            "dataset": "Regular season week 10",
+            "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=2026&week=10&seasontype=2&groups=80&limit=500",
+            "fetched_at": "2026-10-27T20:24:12.030557+00:00"
+          },
+          {
+            "dataset": "Regular season week 11",
+            "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=2026&week=11&seasontype=2&groups=80&limit=500",
+            "fetched_at": "2026-10-27T20:24:12.040805+00:00"
+          },
+          {
+            "dataset": "Regular season week 12",
+            "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=2026&week=12&seasontype=2&groups=80&limit=500",
+            "fetched_at": "2026-10-27T20:24:12.183802+00:00"
+          },
+          {
+            "dataset": "Regular season week 13",
+            "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=2026&week=13&seasontype=2&groups=80&limit=500",
+            "fetched_at": "2026-10-27T20:24:12.390106+00:00"
+          },
+          {
+            "dataset": "Regular season week 14",
+            "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=2026&week=14&seasontype=2&groups=80&limit=500",
+            "fetched_at": "2026-10-27T20:24:12.379670+00:00"
+          },
+          {
+            "dataset": "Regular season week 15",
+            "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=2026&week=15&seasontype=2&groups=80&limit=500",
+            "fetched_at": "2026-10-27T20:24:12.266456+00:00"
+          },
+          {
+            "dataset": "Postseason week 1",
+            "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=2026&week=1&seasontype=3&groups=80&limit=500",
+            "fetched_at": "2026-10-27T20:24:12.503162+00:00"
+          },
+          {
+            "dataset": "Postseason week 2",
+            "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=2026&week=2&seasontype=3&groups=80&limit=500",
+            "fetched_at": "2026-10-27T20:24:12.535837+00:00"
+          },
+          {
+            "dataset": "Postseason week 3",
+            "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=2026&week=3&seasontype=3&groups=80&limit=500",
+            "fetched_at": "2026-10-27T20:24:12.652673+00:00"
+          },
+          {
+            "dataset": "Postseason week 4",
+            "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=2026&week=4&seasontype=3&groups=80&limit=500",
+            "fetched_at": "2026-10-27T20:24:12.652785+00:00"
+          },
+          {
+            "dataset": "Postseason week 5",
+            "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=2026&week=5&seasontype=3&groups=80&limit=500",
+            "fetched_at": "2026-10-27T20:24:12.694679+00:00"
+          },
+          {
+            "dataset": "Postseason week 6",
+            "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=2026&week=6&seasontype=3&groups=80&limit=500",
+            "fetched_at": "2026-10-27T20:24:12.754589+00:00"
+          }
+        ]
+      },
+      "warnings": [
+        "Current schedule reconciled against saved game IDs; membership still follows the bulk source.",
+        "Schedule updates do not supply missing game statistics."
+      ],
+      "payload_sha256": "954f1b8cdfd59fa61c0510172fa70e4148959a2ea05d886ee329ccd88b0247e6"
+    },
+    "cfb_markets:2026": {
+      "url": "https://external-api.kalshi.com/trade-api/v2/markets?series_ticker=KXNCAAFSPREAD&status=open&limit=1000",
+      "fetched_at": "2026-10-27T20:24:13.667439+00:00",
+      "source_updated_at": null,
+      "row_count": 1,
+      "context": {
+        "season": 2026,
+        "series": "KXNCAAFSPREAD",
+        "events": 56,
+        "excluded_non_fbs_events": 0,
+        "identities_fetched_at": "2026-10-27T20:19:07.671726+00:00",
+        "milestones_fetched_at": {
+          "KXNCAAFSPREAD-26OCT27DELWKU": "2026-10-27T20:24:13.829051+00:00",
+          "KXNCAAFSPREAD-26OCT27SHSUMOSU": "2026-10-27T20:24:14.476806+00:00",
+          "KXNCAAFSPREAD-26OCT28JVSTNMSU": "2026-10-27T20:24:14.612340+00:00",
+          "KXNCAAFSPREAD-26OCT28KENNMTU": "2026-10-27T20:24:14.973262+00:00",
+          "KXNCAAFSPREAD-26OCT29FAUUNT": "2026-10-27T20:24:15.317512+00:00",
+          "KXNCAAFSPREAD-26OCT29TROYJMU": "2026-10-27T20:24:15.668561+00:00",
+          "KXNCAAFSPREAD-26OCT30BAYUCF": "2026-10-27T20:24:16.019233+00:00",
+          "KXNCAAFSPREAD-26OCT30KENTSAC": "2026-10-27T20:24:16.376933+00:00",
+          "KXNCAAFSPREAD-26OCT30TULNCHAR": "2026-10-27T20:24:16.717525+00:00",
+          "KXNCAAFSPREAD-26OCT31APPGASO": "2026-10-27T20:24:17.076992+00:00",
+          "KXNCAAFSPREAD-26OCT31ARIZTTU": "2026-10-27T20:24:17.436744+00:00",
+          "KXNCAAFSPREAD-26OCT31ARMYMEM": "2026-10-27T20:24:17.779289+00:00",
+          "KXNCAAFSPREAD-26OCT31ASUBYU": "2026-10-27T20:24:18.142503+00:00",
+          "KXNCAAFSPREAD-26OCT31AUBMISS": "2026-10-27T20:24:18.499636+00:00",
+          "KXNCAAFSPREAD-26OCT31BCDUKE": "2026-10-27T20:24:18.841000+00:00",
+          "KXNCAAFSPREAD-26OCT31BGSUWMU": "2026-10-27T20:24:19.205866+00:00",
+          "KXNCAAFSPREAD-26OCT31CALNCST": "2026-10-27T20:24:19.557380+00:00",
+          "KXNCAAFSPREAD-26OCT31CCARGAST": "2026-10-27T20:24:19.924734+00:00",
+          "KXNCAAFSPREAD-26OCT31CLEMFSU": "2026-10-27T20:24:20.269549+00:00",
+          "KXNCAAFSPREAD-26OCT31CONNAFA": "2026-10-27T20:24:20.626597+00:00",
+          "KXNCAAFSPREAD-26OCT31CSUUSU": "2026-10-27T20:24:20.993470+00:00",
+          "KXNCAAFSPREAD-26OCT31FIULIB": "2026-10-27T20:24:21.325511+00:00",
+          "KXNCAAFSPREAD-26OCT31FLAUGA": "2026-10-27T20:24:21.690460+00:00",
+          "KXNCAAFSPREAD-26OCT31GTPITT": "2026-10-27T20:24:22.042337+00:00",
+          "KXNCAAFSPREAD-26OCT31ILLMD": "2026-10-27T20:24:22.509827+00:00",
+          "KXNCAAFSPREAD-26OCT31KSUCOLO": "2026-10-27T20:24:22.781172+00:00",
+          "KXNCAAFSPREAD-26OCT31KUTCU": "2026-10-27T20:24:23.137929+00:00",
+          "KXNCAAFSPREAD-26OCT31LTUSA": "2026-10-27T20:24:23.445695+00:00",
+          "KXNCAAFSPREAD-26OCT31MIAUNC": "2026-10-27T20:24:23.809362+00:00",
+          "KXNCAAFSPREAD-26OCT31MICHRUTG": "2026-10-27T20:24:24.157102+00:00",
+          "KXNCAAFSPREAD-26OCT31MINNIND": "2026-10-27T20:24:24.534943+00:00",
+          "KXNCAAFSPREAD-26OCT31MIZZARK": "2026-10-27T20:24:24.888327+00:00",
+          "KXNCAAFSPREAD-26OCT31MRSHODU": "2026-10-27T20:24:25.210571+00:00",
+          "KXNCAAFSPREAD-26OCT31MSSTTEX": "2026-10-27T20:24:25.592382+00:00",
+          "KXNCAAFSPREAD-26OCT31NDNAVY": "2026-10-27T20:24:25.941796+00:00",
+          "KXNCAAFSPREAD-26OCT31NEVUCLA": "2026-10-27T20:24:26.279363+00:00",
+          "KXNCAAFSPREAD-26OCT31NIUUNLV": "2026-10-27T20:24:26.667148+00:00",
+          "KXNCAAFSPREAD-26OCT31NWORE": "2026-10-27T20:24:26.980604+00:00",
+          "KXNCAAFSPREAD-26OCT31OKSTISU": "2026-10-27T20:24:27.337743+00:00",
+          "KXNCAAFSPREAD-26OCT31ORSTFRES": "2026-10-27T20:24:27.705424+00:00",
+          "KXNCAAFSPREAD-26OCT31OSUUSC": "2026-10-27T20:24:28.060680+00:00",
+          "KXNCAAFSPREAD-26OCT31PURPSU": "2026-10-27T20:24:28.415754+00:00",
+          "KXNCAAFSPREAD-26OCT31SCAROKLA": "2026-10-27T20:24:28.766950+00:00",
+          "KXNCAAFSPREAD-26OCT31SMUSYR": "2026-10-27T20:24:29.109552+00:00",
+          "KXNCAAFSPREAD-26OCT31STANLOU": "2026-10-27T20:24:29.480584+00:00",
+          "KXNCAAFSPREAD-26OCT31TEMECU": "2026-10-27T20:24:29.828795+00:00",
+          "KXNCAAFSPREAD-26OCT31TXSTBSU": "2026-10-27T20:24:30.610844+00:00",
+          "KXNCAAFSPREAD-26OCT31UABUSF": "2026-10-27T20:24:30.816134+00:00",
+          "KXNCAAFSPREAD-26OCT31UNMSJSU": "2026-10-27T20:24:31.091766+00:00",
+          "KXNCAAFSPREAD-26OCT31USMULM": "2026-10-27T20:24:31.473031+00:00",
+          "KXNCAAFSPREAD-26OCT31UTAHCIN": "2026-10-27T20:24:31.816427+00:00",
+          "KXNCAAFSPREAD-26OCT31UTEPNDSU": "2026-10-27T20:24:32.257213+00:00",
+          "KXNCAAFSPREAD-26OCT31UVAWAKE": "2026-10-27T20:24:32.672671+00:00",
+          "KXNCAAFSPREAD-26OCT31WASHNEB": "2026-10-27T20:24:32.964319+00:00",
+          "KXNCAAFSPREAD-26OCT31WISIOWA": "2026-10-27T20:24:33.297571+00:00",
+          "KXNCAAFSPREAD-26OCT31WSUSDSU": "2026-10-27T20:24:33.588522+00:00"
+        },
+        "team_url": "https://external-api.kalshi.com/trade-api/v2/structured_targets?type=football_team&competition=NCAAFB&page_size=1000",
+        "game_url": "https://external-api.kalshi.com/trade-api/v2/milestones"
+      },
+      "warnings": [],
+      "payload_sha256": "5c3023f943b638e62852ec9ef56ec614a1ae24c4a1abe8457afbabae7eedeabe"
+    },
+    "cfb_strength:2026": {
+      "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=2026&week=15&seasontype=2&groups=81&limit=500",
+      "fetched_at": "2026-10-27T20:24:38.471919+00:00",
+      "source_updated_at": null,
+      "row_count": 1,
+      "context": {
+        "season": 2026,
+        "start_season": 2014,
+        "games": 19248,
+        "finals": 18681,
+        "resources": [
+          {
+            "dataset": "2014",
+            "url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/cfb_schedules/cfb_schedules_2014.csv.gz",
+            "fetched_at": "2026-10-26T19:59:08.286788+00:00",
+            "source_updated_at": "Sun, 04 Oct 2026 22:52:41 GMT",
+            "cached": true,
+            "sha256": "abb8046bdeb55c965827ee478653e19b0f18f85655ac212c8328f1f923545b16"
+          },
+          {
+            "dataset": "2015",
+            "url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/cfb_schedules/cfb_schedules_2015.csv.gz",
+            "fetched_at": "2026-10-26T19:59:08.326597+00:00",
+            "source_updated_at": "Sun, 04 Oct 2026 18:15:35 GMT",
+            "cached": true,
+            "sha256": "f57efe966a969ef49f99e0e7ab4acdc84281aade4b78542717a4c0fdbb29bacf"
+          },
+          {
+            "dataset": "2016",
+            "url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/cfb_schedules/cfb_schedules_2016.csv.gz",
+            "fetched_at": "2026-10-26T19:59:08.332443+00:00",
+            "source_updated_at": "Sun, 04 Oct 2026 02:56:47 GMT",
+            "cached": true,
+            "sha256": "2056538fd20724e3ae890bda0101e442ea832a14e16d93ed69e2a4182f74490d"
+          },
+          {
+            "dataset": "2017",
+            "url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/cfb_schedules/cfb_schedules_2017.csv.gz",
+            "fetched_at": "2026-10-26T19:59:08.338554+00:00",
+            "source_updated_at": "Sat, 03 Oct 2026 20:06:29 GMT",
+            "cached": true,
+            "sha256": "12672e78ef0dde8f73b8bcc59bd1d2779722fc2a99d47d65f1bf1b331caf89e7"
+          },
+          {
+            "dataset": "2018",
+            "url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/cfb_schedules/cfb_schedules_2018.csv.gz",
+            "fetched_at": "2026-10-26T19:59:08.944198+00:00",
+            "source_updated_at": "Sat, 03 Oct 2026 14:19:11 GMT",
+            "cached": true,
+            "sha256": "8c26cf436983115a1ca834ba6d2bd32bd6feb26731ecdfadd8350f07fa227082"
+          },
+          {
+            "dataset": "2019",
+            "url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/cfb_schedules/cfb_schedules_2019.csv.gz",
+            "fetched_at": "2026-10-26T19:59:08.984992+00:00",
+            "source_updated_at": "Sat, 03 Oct 2026 08:18:07 GMT",
+            "cached": true,
+            "sha256": "6fa2c202943b95fea0ae4d69880fb55e90dcc1c664e8a869c662ef3d8ad0a234"
+          },
+          {
+            "dataset": "2020",
+            "url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/cfb_schedules/cfb_schedules_2020.csv.gz",
+            "fetched_at": "2026-10-26T19:59:08.985928+00:00",
+            "source_updated_at": "Sat, 03 Oct 2026 03:40:51 GMT",
+            "cached": true,
+            "sha256": "53b33a0042f97553dcd6746cd721a6818b350f43065d374e38723ccba7aa90b1"
+          },
+          {
+            "dataset": "2021",
+            "url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/cfb_schedules/cfb_schedules_2021.csv.gz",
+            "fetched_at": "2026-10-26T19:59:09.046504+00:00",
+            "source_updated_at": "Sat, 03 Oct 2026 00:33:20 GMT",
+            "cached": true,
+            "sha256": "933747ab408c89e31f46376a06c33b27fc739e776feeba6b5abf7b5f4c2e958e"
+          },
+          {
+            "dataset": "2022",
+            "url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/cfb_schedules/cfb_schedules_2022.csv.gz",
+            "fetched_at": "2026-10-26T19:59:09.721839+00:00",
+            "source_updated_at": "Fri, 02 Oct 2026 20:30:23 GMT",
+            "cached": true,
+            "sha256": "05fe546e76ed8b8386a33f471a81a96fed4f1e3bde13082c45968721d1aa5b21"
+          },
+          {
+            "dataset": "2023",
+            "url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/cfb_schedules/cfb_schedules_2023.csv.gz",
+            "fetched_at": "2026-10-26T19:59:09.558561+00:00",
+            "source_updated_at": "Fri, 02 Oct 2026 13:07:49 GMT",
+            "cached": true,
+            "sha256": "068147a76f874567d69fc2bb012144df8b8085cf5ca46a4fc1c7b7a6206b232d"
+          },
+          {
+            "dataset": "2024",
+            "url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/cfb_schedules/cfb_schedules_2024.csv.gz",
+            "fetched_at": "2026-10-26T19:59:09.558649+00:00",
+            "source_updated_at": "Fri, 02 Oct 2026 07:36:15 GMT",
+            "cached": true,
+            "sha256": "2b9f86d67f592b9ec0e3941391afb82394666fbc6463863b58d001de3e044d53"
+          },
+          {
+            "dataset": "2025",
+            "url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/cfb_schedules/cfb_schedules_2025.csv.gz",
+            "fetched_at": "2026-10-26T19:59:09.721902+00:00",
+            "source_updated_at": "Fri, 09 Oct 2026 11:08:39 GMT",
+            "cached": true,
+            "sha256": "2f1e178b15aa1469398d88e58a66a4702a7190d939735a324f188b7559a3a749"
+          },
+          {
+            "dataset": "2026",
+            "url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/cfb_schedules/cfb_schedules_2026.csv.gz",
+            "fetched_at": "2026-10-27T20:24:34.147783+00:00",
+            "source_updated_at": "Tue, 27 Oct 2026 10:48:45 GMT",
+            "cached": false,
+            "sha256": "c45b85f93379641566cd156a144e79ffcf7490050ce06e8c66e7b79446ccc745"
+          },
+          {
+            "dataset": "Current finals",
+            "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=2026&week=1&seasontype=2&groups=80&limit=500",
+            "fetched_at": "2026-10-27T20:24:34.933192+00:00"
+          },
+          {
+            "dataset": "Current finals",
+            "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=2026&week=1&seasontype=2&groups=81&limit=500",
+            "fetched_at": "2026-10-27T20:24:34.950379+00:00"
+          },
+          {
+            "dataset": "Current finals",
+            "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=2026&week=2&seasontype=2&groups=80&limit=500",
+            "fetched_at": "2026-10-27T20:24:34.912757+00:00"
+          },
+          {
+            "dataset": "Current finals",
+            "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=2026&week=2&seasontype=2&groups=81&limit=500",
+            "fetched_at": "2026-10-27T20:24:34.880252+00:00"
+          },
+          {
+            "dataset": "Current finals",
+            "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=2026&week=3&seasontype=2&groups=80&limit=500",
+            "fetched_at": "2026-10-27T20:24:35.571497+00:00"
+          },
+          {
+            "dataset": "Current finals",
+            "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=2026&week=3&seasontype=2&groups=81&limit=500",
+            "fetched_at": "2026-10-27T20:24:35.506155+00:00"
+          },
+          {
+            "dataset": "Current finals",
+            "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=2026&week=4&seasontype=2&groups=80&limit=500",
+            "fetched_at": "2026-10-27T20:24:35.606278+00:00"
+          },
+          {
+            "dataset": "Current finals",
+            "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=2026&week=4&seasontype=2&groups=81&limit=500",
+            "fetched_at": "2026-10-27T20:24:35.593546+00:00"
+          },
+          {
+            "dataset": "Current finals",
+            "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=2026&week=5&seasontype=2&groups=80&limit=500",
+            "fetched_at": "2026-10-27T20:24:36.044722+00:00"
+          },
+          {
+            "dataset": "Current finals",
+            "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=2026&week=5&seasontype=2&groups=81&limit=500",
+            "fetched_at": "2026-10-27T20:24:36.113355+00:00"
+          },
+          {
+            "dataset": "Current finals",
+            "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=2026&week=6&seasontype=2&groups=80&limit=500",
+            "fetched_at": "2026-10-27T20:24:36.082266+00:00"
+          },
+          {
+            "dataset": "Current finals",
+            "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=2026&week=6&seasontype=2&groups=81&limit=500",
+            "fetched_at": "2026-10-27T20:24:36.069836+00:00"
+          },
+          {
+            "dataset": "Current finals",
+            "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=2026&week=7&seasontype=2&groups=80&limit=500",
+            "fetched_at": "2026-10-27T20:24:36.990637+00:00"
+          },
+          {
+            "dataset": "Current finals",
+            "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=2026&week=7&seasontype=2&groups=81&limit=500",
+            "fetched_at": "2026-10-27T20:24:36.967887+00:00"
+          },
+          {
+            "dataset": "Current finals",
+            "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=2026&week=8&seasontype=2&groups=80&limit=500",
+            "fetched_at": "2026-10-27T20:24:36.876999+00:00"
+          },
+          {
+            "dataset": "Current finals",
+            "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=2026&week=8&seasontype=2&groups=81&limit=500",
+            "fetched_at": "2026-10-27T20:24:37.096561+00:00"
+          },
+          {
+            "dataset": "Current finals",
+            "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=2026&week=9&seasontype=2&groups=80&limit=500",
+            "fetched_at": "2026-10-27T20:24:37.317634+00:00"
+          },
+          {
+            "dataset": "Current finals",
+            "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=2026&week=9&seasontype=2&groups=81&limit=500",
+            "fetched_at": "2026-10-27T20:24:37.497236+00:00"
+          },
+          {
+            "dataset": "Current finals",
+            "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=2026&week=10&seasontype=2&groups=80&limit=500",
+            "fetched_at": "2026-10-27T20:24:37.411528+00:00"
+          },
+          {
+            "dataset": "Current finals",
+            "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=2026&week=10&seasontype=2&groups=81&limit=500",
+            "fetched_at": "2026-10-27T20:24:37.510435+00:00"
+          },
+          {
+            "dataset": "Current finals",
+            "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=2026&week=11&seasontype=2&groups=80&limit=500",
+            "fetched_at": "2026-10-27T20:24:37.796359+00:00"
+          },
+          {
+            "dataset": "Current finals",
+            "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=2026&week=11&seasontype=2&groups=81&limit=500",
+            "fetched_at": "2026-10-27T20:24:37.887816+00:00"
+          },
+          {
+            "dataset": "Current finals",
+            "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=2026&week=12&seasontype=2&groups=80&limit=500",
+            "fetched_at": "2026-10-27T20:24:37.922403+00:00"
+          },
+          {
+            "dataset": "Current finals",
+            "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=2026&week=12&seasontype=2&groups=81&limit=500",
+            "fetched_at": "2026-10-27T20:24:37.980936+00:00"
+          },
+          {
+            "dataset": "Current finals",
+            "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=2026&week=13&seasontype=2&groups=80&limit=500",
+            "fetched_at": "2026-10-27T20:24:38.255819+00:00"
+          },
+          {
+            "dataset": "Current finals",
+            "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=2026&week=13&seasontype=2&groups=81&limit=500",
+            "fetched_at": "2026-10-27T20:24:38.236110+00:00"
+          },
+          {
+            "dataset": "Current finals",
+            "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=2026&week=14&seasontype=2&groups=80&limit=500",
+            "fetched_at": "2026-10-27T20:24:38.166516+00:00"
+          },
+          {
+            "dataset": "Current finals",
+            "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=2026&week=14&seasontype=2&groups=81&limit=500",
+            "fetched_at": "2026-10-27T20:24:38.231713+00:00"
+          },
+          {
+            "dataset": "Current finals",
+            "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=2026&week=15&seasontype=2&groups=80&limit=500",
+            "fetched_at": "2026-10-27T20:24:38.400292+00:00"
+          },
+          {
+            "dataset": "Current finals",
+            "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=2026&week=15&seasontype=2&groups=81&limit=500",
+            "fetched_at": "2026-10-27T20:24:38.471919+00:00"
+          }
+        ],
+        "venue_corrections": [
+          "400795729"
+        ],
+        "neutral_label_reversals": [
+          "401868324",
+          "401867935"
+        ]
+      },
+      "warnings": [
+        "Performance rating, not AP ranking or a calibrated spread/cover probability.",
+        "Season membership follows the bulk source, including transitional programs. Historical completeness is not independently certified.",
+        "Final margins include overtime. Historical rows may rely on completed flags without a named final status.",
+        "Historical archives are cached for seven days; current FBS and FCS finals refresh each time.",
+        "Reviewed venue correction applied to 2015 North Dakota State at South Dakota State (400795729).",
+        "2 neutral-site home/away label reversals reconciled by exact team, kickoff and final-score agreement."
+      ],
+      "payload_sha256": "367e1845b5cf40cf2162539c9c6da0d908f5fce7605d457adfc31a6e9ec2748f"
+    },
+    "cfb_research:2025": {
+      "url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/cfb_schedules/cfb_schedules_2025.csv.gz",
+      "fetched_at": "2026-10-26T19:59:53.712737+00:00",
+      "source_updated_at": null,
+      "row_count": 1,
+      "context": {
+        "season": 2025,
+        "resources": [
+          {
+            "dataset": "schedule",
+            "url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/cfb_schedules/cfb_schedules_2025.csv.gz",
+            "fetched_at": "2026-10-26T19:59:51.702750+00:00",
+            "source_updated_at": "Fri, 09 Oct 2026 11:08:39 GMT",
+            "sha256": "2f1e178b15aa1469398d88e58a66a4702a7190d939735a324f188b7559a3a749"
+          },
+          {
+            "dataset": "team_box",
+            "url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/espn_cfb_team_box/team_box_2025.csv",
+            "fetched_at": "2026-10-26T19:59:52.208640+00:00",
+            "source_updated_at": "Fri, 09 Oct 2026 06:08:04 GMT",
+            "sha256": "4ecc44939c4a90760fced98b8802a6d2483556516fe47410c41ccb79f8ed10b8"
+          },
+          {
+            "dataset": "adv_team",
+            "url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/espn_cfb_adv_team/adv_team_2025.csv",
+            "fetched_at": "2026-10-26T19:59:52.752085+00:00",
+            "source_updated_at": "Fri, 09 Oct 2026 12:24:03 GMT",
+            "sha256": "cfa33ef0cbea24857b62b57ad0848a0c79e1902e95f2c7947a9d2583cc5bcc57"
+          },
+          {
+            "dataset": "adv_defensive",
+            "url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/espn_cfb_adv_defensive/adv_defensive_2025.csv",
+            "fetched_at": "2026-10-26T19:59:53.217266+00:00",
+            "source_updated_at": "Fri, 09 Oct 2026 12:28:41 GMT",
+            "sha256": "81465ffe3f10f8462625c2cdf2198613f8e87c66321f8352ecbb3487cfdfd596"
+          },
+          {
+            "dataset": "adv_situational",
+            "url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/espn_cfb_adv_situational/adv_situational_2025.csv",
+            "fetched_at": "2026-10-26T19:59:53.712737+00:00",
+            "source_updated_at": "Fri, 09 Oct 2026 12:32:15 GMT",
+            "sha256": "68e9d37909977e9ff675bdeaa13b279153d1e11680062b45a20db149057e3500"
+          }
+        ]
+      },
+      "warnings": [
+        "adv_team: 4 completed team-game rows missing.",
+        "adv_defensive: 4 completed team-game rows missing.",
+        "adv_situational: 4 completed team-game rows missing.",
+        "Published EPA is rounded and classifies scrambles as rushes. It differs from NFL dropback/designed-run EPA."
+      ],
+      "payload_sha256": "9e1b86ef80181e14504599573ecc43eb99f2ebaa2dab738b6ed7f96e3722d95d"
+    }
+  }
+}

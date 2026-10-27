@@ -1,3 +1,6 @@
+import { MarginForecast } from './MarginForecast'
+import { CardSpreadQuote } from './CardSpreadQuote'
+import type { MarginContract, MarginForecast as Forecast } from './margins'
 import { useEffect, useState } from 'react'
 import { useReport } from './useReport'
 import { askPrice, Dropdown, Modal, navigate, useHash } from './ui'
@@ -10,8 +13,8 @@ import { collegeTeamStyle, collegeMatchupStyle } from './collegeColors'
 type Source = { name: string; label?: string; url?: string; fetched_at: string | null; error: string | null; warnings?: string[];
   context?: { resources?: { dataset: string; url: string; source_updated_at: string | null }[] } }
 type Team = { id: string; name: string; is_fbs: boolean; division: string; logo: string | null }
-type Market = { ticker: string; label: string; yes_ask_dollars: string | null; midpoint: number | null; wording: string; rules: string; rules_secondary: string }
-type Game = { game_id: string; season_type: 'regular' | 'postseason'; week: number; kickoff: string; time_tbd: boolean; neutral: boolean; venue: string | null; home: Team; away: Team;
+type Market = MarginContract & { ticker: string; label: string; spread: number; yes_ask_dollars: string | null; midpoint: number | null; wording: string; rules: string; rules_secondary: string }
+type Game = { margin_forecast?: Forecast; game_id: string; season_type: 'regular' | 'postseason'; week: number; kickoff: string; time_tbd: boolean; neutral: boolean; venue: string | null; home: Team; away: Team;
   schedule_verified: boolean; participants_confirmed: boolean; status: string; markets: Market[]; default_market_ticker: string | null; spread_status: string }
 type BaseReport = { available: boolean; warnings: string[]; sources: Source[]; issues?: { event?: string; market?: string; reason: string }[] }
 type Schedule = BaseReport & { season_type?: 'regular' | 'postseason'; periods?: { season_type: 'regular' | 'postseason'; week: number }[]; week?: number; weeks?: number[]; games?: Game[]; overdue_games?: number }
@@ -124,6 +127,7 @@ function SpreadPanel({ game, season, selected, onSelect, source, onRecord }: { g
     {!!game.markets.length && <Dropdown label="College spread" value={market?.ticker ?? ''} options={game.markets.map(item => ({ value: item.ticker, label: item.label }))} onChange={onSelect} />}
     {market && <div className="spread-quote"><span>{market.label}</span><strong>{askPrice(market.yes_ask_dollars)}</strong><small>Yes ask · before fees</small></div>}
   </div>
+    <MarginForecast forecast={game.margin_forecast} home={game.home.name} away={game.away.name} contract={market} />
     {selected && !game.markets.some(item => item.ticker === selected) && <p role="status">The previously selected contract is no longer available in the verified snapshot.</p>}
     {!market && <p>{game.spread_status}{game.markets.length ? ' · Select a verified contract to inspect it.' : ' · Research remains available.'}</p>}
     <p className="source-note">Saved quotes: {source?.fetched_at ? new Date(source.fetched_at).toLocaleString() : 'Not downloaded'}{source?.error && ' · Refresh failed; previous quotes retained.'}</p>
@@ -175,10 +179,11 @@ export function CollegeView({ season, revision, onSeason, onRecord }: { season: 
         {games.filter(item => date(item.kickoff) === day).map(item => <article className="game-card" key={item.game_id} style={collegeMatchupStyle(item.away.id, item.home.id)}>
           <button className="game-open" onClick={() => navigate(`cfb/game/${item.game_id}?${period(item)}`)} aria-label={`Open ${item.away.name} at ${item.home.name}`}>
             <span className="game-time">{when(item)}{item.neutral && ' · Neutral site'}<span aria-hidden="true">↗</span></span><TeamName team={item.away} /><TeamName team={item.home} />
-          </button><div className="game-market">{(() => {
+          </button><div className="game-market college-card-market">{(() => {
             const market = item.markets.find(m => m.ticker === item.default_market_ticker)
-            return market ? <><button className="game-spread" onClick={() => navigate(`cfb/game/${item.game_id}?${period(item)}`)}><div className="spread-quote"><span>{market.label}</span><strong>{askPrice(market.yes_ask_dollars)}</strong><small>Yes ask · before fees</small></div></button><WatchButton entry={watchEntry(item, market, season)} /><SpreadHistory ticker={market.ticker} label={market.label} compact /></> : <small>{item.spread_status}</small>
-          })()}</div><CollegeStrengthPair season={season} revision={revision} ids={[item.away.id, item.home.id]} />
+            const team = market?.team_id === item.home.id ? item.home : item.away
+            return market ? <><button className="game-spread" onClick={() => navigate(`cfb/game/${item.game_id}?${period(item)}`)}><CardSpreadQuote team={team.name} spread={market.spread} yesAsk={market.yes_ask_dollars} /></button><div className="card-market-tools"><WatchButton entry={watchEntry(item, market, season)} /><SpreadHistory ticker={market.ticker} label={market.label} compact /></div></> : <small>{item.spread_status}</small>
+          })()}</div><MarginForecast forecast={item.margin_forecast} home={item.home.name} away={item.away.name} contract={item.markets.find(m => m.ticker === item.default_market_ticker)} compact /><CollegeStrengthPair season={season} revision={revision} ids={[item.away.id, item.home.id]} />
         </article>)}
       </div></section>)}</>}
     {data && <Sources report={data} />}
